@@ -1,0 +1,78 @@
+[project]
+name = "ossfs-dd-data"
+version = "0.1.0"
+description = "Stage 1 dataset acquisition, provenance, validation and reproducible feature-stream preparation for the OSSFS-DD reproduction (TKDD 2022, DOI 10.1145/3502737)"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "numpy>=1.26,<3",
+    "scipy>=1.11,<2",
+    "scikit-learn>=1.4,<2",
+    "PyYAML>=6.0,<7",
+    "requests>=2.31,<3",
+    # pytest is a runtime dependency of this project on purpose: the Stage 1
+    # test suite is a graded gate input, so `uv sync --frozen` must produce an
+    # environment able to run it. Keeping it in an extra risks silently falling
+    # back to a pytest from another interpreter on a shared machine.
+    "pytest>=8.0",
+]
+
+[project.optional-dependencies]
+# RData/.rda reading. NOT needed for the sources selected in
+# configs/dataset_registry.yaml: the paper-cited Binghamton collection already
+# supplies SRBCT/LYMPHOMA/PROSTATE/LEUKEMIA. Install with
+#   uv sync --extra rdata
+# only if a fallback R source has to be parsed. See docs/dataset_provenance.md.
+rdata = [
+    "pyreadr>=0.5",
+    "pandas>=2.0",
+]
+dev = [
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ossfs_dd_data"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "BLE", "TRY", "ISC", "G", "PIE"]
+ignore = [
+    # Stage 1 deliberately records failures rather than aborting a pass. A
+    # dataset that cannot be fetched, parsed or verified must stay visibly
+    # failed while the remaining datasets are still attempted, so these broad
+    # excepts are load-bearing, not sloppy. Every one of them records the
+    # exception into a status, a manifest or a log before continuing.
+    "BLE001",
+    # Long URLs and long reason strings read worse when wrapped.
+    "E501",
+    # ParseError messages must name the file, the observed value and the
+    # expected value; putting that text in exception classes would hide it.
+    "TRY003",
+    "TRY400",
+    # git is invoked as an argv list with shell=False and a fixed timeout.
+    # Partial-path resolution is acceptable: the project venv must not be able
+    # to shadow git, and PATH is set by the workspace environment.
+    "S603",
+    "S607",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Entry-point scripts legitimately widen the net: a blocked dataset must not
+# abort the acquisition pass.
+"scripts/*" = ["BLE001", "TRY300"]
+# Test fixtures legitimately build deliberately-invalid inputs.
+"tests/*" = ["S101", "BLE001"]

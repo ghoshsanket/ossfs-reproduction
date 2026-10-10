@@ -1,0 +1,126 @@
+{
+  "generated_utc": "2026-10-10T05:19:58Z",
+  "datasets": [
+    {
+      "dataset": "SRBCT",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (63, 2308, 4) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a paper_cited source",
+      "n_samples": 63,
+      "n_features": 2308,
+      "n_classes": 4,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "LYMPHOMA",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (62, 4026, 3) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a paper_cited source",
+      "n_samples": 62,
+      "n_features": 4026,
+      "n_classes": 3,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "PROSTATE",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (102, 6033, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a paper_cited source",
+      "n_samples": 102,
+      "n_features": 6033,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "LEUKEMIA",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (72, 7129, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a paper_cited source",
+      "n_samples": 72,
+      "n_features": 7129,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "DLBCL",
+      "status": "SHAPE_MATCH_PROVENANCE_UNVERIFIED",
+      "reason": "dimensions (77, 7129, 2) and labels match Table 1, but the variant came from an academic_repository record and the paper does not state which release it consumed, so exact scientific equivalence is not proven",
+      "n_samples": 77,
+      "n_features": 7129,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "ARCENE",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (200, 10000, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a official source",
+      "n_samples": 200,
+      "n_features": 10000,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "DEXTER",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (600, 20000, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a official source",
+      "n_samples": 600,
+      "n_features": 20000,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "BREAST",
+      "status": "SHAPE_MATCH_PROVENANCE_UNVERIFIED",
+      "reason": "dimensions (97, 24481, 2) and labels match Table 1, but the variant came from an academic_repository record and the paper does not state which release it consumed, so exact scientific equivalence is not proven",
+      "n_samples": 97,
+      "n_features": 24481,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "MADELON",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (2600, 500, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a official source",
+      "n_samples": 2600,
+      "n_features": 500,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "GINA",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (3468, 970, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a official source",
+      "n_samples": 3468,
+      "n_features": 970,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    },
+    {
+      "dataset": "GISETTE",
+      "status": "EXACT_VERIFIED",
+      "reason": "dimensions (7000, 5000, 2) match Table 1, labels align and are reversible, no non-finite values, and lineage is substantiated by a official source",
+      "n_samples": 7000,
+      "n_features": 5000,
+      "n_classes": 2,
+      "split_plans": 10,
+      "feature_orders": 10,
+      "roundtrip_ok": true
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+# Project-level ignore rules.
+#
+# COPY THIS FILE TO <project>/.gitignore WHEN THE PROJECT IS CREATED.
+# Each research project is its OWN git repository and is pushed from its own
+# folder (projects/<name>/). The workspace root is never a repository.
+#
+# RULE: code is committed, data is not.
+#   committed : src/, scripts/, configs/, tests/, docs/, pyproject.toml, uv.lock,
+#               and small text results in results/
+#   excluded  : .venv/, caches, data/, outputs/, checkpoints/, figures/,
+#               large binaries, secrets
+
+# ------------------------------------------------------- environment / venv --
+# Recreate with `uv venv .venv` (see the workspace README).
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ----------------------------------------------------------------- secrets --
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*_token
+*_TOKEN
+access_token
+credentials.json
+
+# ------------------------------------------------------------------- data --
+# Raw and processed data belongs in the workspace dataset/ directory, never in
+# the project. These rules exist to catch the case where it was downloaded here
+# by mistake, so a large file can never be committed silently.
+data/
+dataset/
+datasets/
+*.parquet
+*.csv
+*.csv.gz
+*.tsv
+*.feather
+*.arrow
+*.h5
+*.hdf5
+*.db
+*.sqlite
+*.sqlite3
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.joblib
+
+# ------------------------------------------------- committed results (keep) --
+# Small text artifacts in results/ are the evidence a result rests on: ledgers,
+# summary JSON and the final report. They are kilobytes, not data.
+#
+# ORDERING MATTERS: in git the LAST matching pattern wins, so this re-include
+# block MUST stay below the blanket data-file rules above. Moving it earlier
+# silently stops result ledgers from being committed.
+!results/**/*.csv
+!results/**/*.json
+!results/**/*.md
+!results/**/*.txt
+!results/**/*.tsv
+
+# ---------------------------------------------------------- run artifacts --
+outputs/
+output/
+runs/
+wandb/
+mlruns/
+logs/
+checkpoints/
+artifacts/
+figures/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.gguf
+*.bin
+
+# ----------------------------------------------------------------- caches --
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+.coverage
+coverage.xml
+htmlcov/
+*.log
+
+# --------------------------------------------------------------- editors --
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

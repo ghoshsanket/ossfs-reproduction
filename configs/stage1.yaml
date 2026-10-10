@@ -1,0 +1,141 @@
+# Stage 1 configuration — FIXED / PREREGISTERED.
+#
+# Every value in this file is a gate or a protocol parameter. None of it may be
+# lowered or retuned after observing results. Changing a value here invalidates
+# the run and requires a new report version.
+
+project: ossfs-dd-reproduction
+stage: 1
+stage_name: dataset_acquisition_provenance_validation
+
+# --------------------------------------------------------------------------
+# Cross-validation and feature-arrival-order protocol.
+# The paper describes 5-fold CV with 10 repetitions of randomized feature
+# arrival orders, with feature selection inside each training fold.
+# The paper does NOT disclose its splits or seeds. These seeds are therefore an
+# explicit reproduction assumption, not a recovery of the original experiment.
+# --------------------------------------------------------------------------
+evaluation_plan:
+  n_splits: 5
+  seeds: [11, 17, 23, 31, 47, 59, 71, 83, 97, 109]
+  splitter: sklearn.model_selection.StratifiedKFold
+  shuffle: true
+  random_state_source: seed              # one seed per repetition
+  feature_order_generator: numpy.random.Generator
+  feature_order_bit_generator: PCG64     # recorded in every plan file
+  feature_order_space: original_feature_indices_0_to_p_minus_1
+  selection_inside_training_fold: true
+  hold_out_original_nips_validation_split: false
+  notes: >
+    Original NIPS-2003 train/valid membership is preserved per row as metadata
+    but is NOT used as an evaluation holdout, because the paper's sample totals
+    are the combined labeled train+valid counts.
+
+# --------------------------------------------------------------------------
+# Download policy.
+# --------------------------------------------------------------------------
+download:
+  max_attempts_per_url: 3
+  connect_timeout_seconds: 30
+  read_timeout_seconds: 300
+  backoff_base_seconds: 2.0
+  backoff_max_seconds: 30.0
+  retry_on_http_status: [429, 500, 502, 503, 504]
+  do_not_retry_on_http_status: [401, 403, 404, 410]
+  max_concurrent_downloads: 3
+  user_agent: "ossfs-dd-reproduction/stage1 (academic reproduction; noncommercial)"
+  verify_signature_after_download: true
+  reuse_existing_raw_by_sha256: true     # never re-fetch or overwrite a good file
+  min_free_bytes_required: 500000000      # refuse large fetches on a nearly full disk
+
+# --------------------------------------------------------------------------
+# Safe extraction policy.
+# --------------------------------------------------------------------------
+extraction:
+  allow_symlinks: false
+  allow_hardlinks: false
+  allow_absolute_paths: false
+  allow_parent_traversal: false
+  max_total_uncompressed_bytes: 2000000000
+  max_compression_ratio: 200
+  max_members: 10000
+
+# --------------------------------------------------------------------------
+# Parsing policy.
+# --------------------------------------------------------------------------
+parsing:
+  float_dtype: float64
+  sparse_if_density_below: 0.30
+  label_position: explicit               # never "assume last column"
+  transpose_only_when_proven: true
+  sentinel_values_audited_not_replaced: [NaN, Inf, -Inf, "?", "", "NA", "null"]
+
+# --------------------------------------------------------------------------
+# Data-quality audit (report only — Stage 1 never repairs data).
+# --------------------------------------------------------------------------
+data_quality:
+  allow_imputation: false
+  allow_scaling: false
+  allow_discretisation: false
+  allow_feature_dropping: false
+  allow_deduplication: false
+  audit_constant_columns: true
+  audit_duplicate_columns: true          # via hashing, not pairwise matrices
+  audit_duplicate_rows: true
+  audit_zero_only_rows: true
+
+# --------------------------------------------------------------------------
+# Stage gates. FIXED BEFORE ANY DOWNLOAD. Never lowered to force a pass.
+# --------------------------------------------------------------------------
+gates:
+  inventory_attempted:
+    required: 11
+    of: 11
+  exact_dimension_and_label_match:
+    required: 11
+    of: 11
+  exact_verified_provenance:
+    required: 11
+    of: 11
+  unresolved_corrupt_rows_or_columns:
+    max_allowed: 0
+  unresolved_nonfinite_or_missing_in_ready_data:
+    max_allowed: 0
+  unlabeled_challenge_test_examples_used:
+    max_allowed: 0
+  cv_test_folds_defined:
+    required: 550        # 11 datasets x 10 seeds x 5 folds
+  feature_order_permutations_defined:
+    required: 110        # 11 datasets x 10 seeds
+  stream_leakage_tests_passing:
+    required_fraction: 1.0
+  data_or_result_binaries_in_git:
+    max_allowed: 0
+  required_tests_passing:
+    required_fraction: 1.0
+
+verdict_values: [STAGE1_READY, STAGE1_PARTIAL, STAGE1_BLOCKED]
+
+required_named_tests:
+  - test_registry_exact_table1
+  - test_no_target_column_in_features
+  - test_nips_train_valid_alignment
+  - test_no_unlabeled_test_data
+  - test_dexter_sparse_one_based_indices
+  - test_orientation_and_transpose_contract
+  - test_sha256_and_immutable_raw
+  - test_dataset_roundtrip
+  - test_cv_train_test_disjoint
+  - test_feature_order_is_permutation
+  - test_stream_contains_only_training_rows
+  - test_rerun_idempotence
+  - test_git_excludes_data
+
+# --------------------------------------------------------------------------
+# Resource safety (shared machine).
+# --------------------------------------------------------------------------
+resources:
+  use_gpu: false
+  max_worker_threads: 4
+  respect_cuda_visible_devices: true
+  respect_scheduler: true

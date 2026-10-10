@@ -1,0 +1,512 @@
+# Stage 1 dataset registry — Table 1 expectations are IMMUTABLE.
+#
+# `n_samples`, `n_features` and `n_classes` below are transcribed from Table 1 of
+# Zhou, Zhao, Yan & Wu, "Online Scalable Streaming Feature Selection via Dynamic
+# Decision", ACM TKDD 16(5) art. 87 (2022). They are a PREREGISTERED specification:
+# the code compares observed values against them and never edits them to fit a
+# downloaded file.
+#
+# `n_features` counts PREDICTOR COLUMNS ONLY. The class-label column is never
+# counted as a feature.
+#
+# `paper_feature_type` reproduces the paper's own wording. It is stored separately
+# from the dtype actually parsed, because sources disagree with the paper and with
+# each other (UCI describes ARCENE as continuous). That disagreement is recorded,
+# never resolved by falsifying a dtype.
+
+schema_version: 1
+paper:
+  title: "Online Scalable Streaming Feature Selection via Dynamic Decision"
+  authors: "Peng Zhou, Shu Zhao, Yuanting Yan, Xindong Wu"
+  venue: "ACM TKDD 16(5), Article 87"
+  year: 2022
+  doi: "10.1145/3502737"
+  table: "Table 1"
+  cited_source_collections:
+    - name: "Binghamton legacy research datasets (Wei Lyu, KDD08)"
+      url_as_cited_in_paper: "http://www.cs.binghamton.edu/~lyu/KDD08/data/"
+      availability_at_stage1_runtime: "LIVE (HTTP 301 to https, directory listing served)"
+    - name: "UCI Machine Learning Repository"
+      url: "https://archive.ics.uci.edu/"
+      availability_at_stage1_runtime: "LIVE"
+
+# Provenance tier vocabulary:
+#   paper_cited          the URL is the paper's own cited collection
+#   official             the dataset owner's own archive (UCI / OpenML / source author)
+#   academic_repository  a documented academic or institutional repository
+#   mirror               an unofficial redistribution
+# confidence vocabulary: high | medium | low   (rationale required in `provenance_note`)
+
+datasets:
+
+  # ---------------------------------------------------------------- 1 ------
+  - id: 1
+    key: SRBCT
+    name: SRBCT
+    n_samples: 63
+    n_features: 2308
+    n_classes: 4
+    paper_feature_type: Real
+    domain: microarray
+    task: small-sample-round-cell-cancer-diagnosis
+    label_semantics: "4 tumour classes of the NCI-60 small round blue cell tumour panel"
+    source_splits: []                    # single source file, no train/valid partition
+    provenance_tier: paper_cited
+    provenance_confidence: high
+    provenance_note: >
+      Fetched from the exact URL collection cited in the paper's Section 4.1.1
+      footnote. Attribute count and class count observed in the file agree with
+      Table 1. Note the source file carries a "-std" suffix, i.e. a standardised
+      release produced upstream by the Binghamton collection; this is PREEXISTING
+      preprocessing by the source, NOT applied by this pipeline. The paper does
+      not state whether it consumed the "-std" variant, so that remains an
+      explicitly documented open question rather than an assumed fact.
+    alternatives_rejected:
+      - what: "mixOmics `srbct` (63 samples) and other SRBCT variants with 83 samples"
+        why_rejected_at_stage1: >
+          Not needed: the paper-cited source already matches Table 1 exactly.
+          The 83-sample variant is explicitly out of scope (would add 20 test
+          samples not present in the paper).
+    citation: "Khan J. et al., Cancer Res 61(16):6469-6476 (2001); NCI-60 small round blue cell tumour panel."
+    license: "license_unknown — academic research redistribution, no licence published on the cited page"
+    sources:
+      - tier: paper_cited
+        url: "https://www.cs.binghamton.edu/~lyu/KDD08/data/srbct-std.arff"
+        format: arff
+        filename_in_archive: srbct-std.arff
+        expected_sha256: unknown
+        verified_at_runtime: false
+
+  # ---------------------------------------------------------------- 2 ------
+  - id: 2
+    key: LYMPHOMA
+    name: LYMPHOMA
+    n_samples: 62
+    n_features: 4026
+    n_classes: 3
+    paper_feature_type: Real
+    domain: microarray
+    task: lymphoma-subtype-classification
+    label_semantics: "3 lymphoma subtypes"
+    source_splits: []
+    provenance_tier: paper_cited
+    provenance_confidence: high
+    provenance_note: >
+      Fetched from the exact URL collection cited in the paper's footnote.
+      Observed shape agrees with Table 1 (62 rows x 4027 attributes = 4026
+      predictors + 1 nominal class).
+    alternatives_rejected:
+      - what: "spls R package `lymphoma` (documented 62 x 4026)"
+        why_rejected_at_stage1: "Superseded: identical dimensions, but the paper-cited source ranks higher on lineage."
+      - what: "lymphoma 96 x 4026 (scikit-feature `lymphoma`)"
+        why_rejected_at_stage1: "96 samples, not 62. Wrong variant."
+      - what: "lymphoma 62 x 4682"
+        why_rejected_at_stage1: "Wrong feature count. Wrong variant."
+    citation: "Ahn C. et al., Nat Genet 21(3):323-325 (1999) — NCI-60 lymphoma expression data."
+    license: "license_unknown — academic research redistribution, no licence published on the cited page"
+    sources:
+      - tier: paper_cited
+        url: "https://www.cs.binghamton.edu/~lyu/KDD08/data/lymphoma-std.arff"
+        format: arff
+        filename_in_archive: lymphoma-std.arff
+        expected_sha256: unknown
+        verified_at_runtime: false
+
+  # ---------------------------------------------------------------- 3 ------
+  - id: 3
+    key: PROSTATE
+    name: PROSTATE
+    n_samples: 102
+    n_features: 6033
+    n_classes: 2
+    paper_feature_type: Real
+    domain: microarray
+    task: prostate-cancer-classification
+    label_semantics: "2 classes (tumour vs normal)"
+    source_splits: []
+    provenance_tier: paper_cited
+    provenance_confidence: high
+    provenance_note: >
+      Fetched from the exact URL collection cited in the paper's footnote.
+      Observed shape agrees with Table 1 (102 rows x 6034 attributes). No
+      transpose is needed: the source is already sample-major.
+    alternatives_rejected:
+      - what: "hastie.su.domains CASI `prostmat.csv` (6033 genes x 102 samples, gene-major)"
+        why_rejected_at_stage1: >
+          Retained as a corroborating lead only. It requires a justified
+          transpose and carries its labels in separate files; the paper-cited
+          source already yields the correct orientation directly.
+      - what: "prostate 102 x 5966 (scikit-feature `Prostate_GE`)"
+        why_rejected_at_stage1: "5966 features, not 6033. Wrong variant."
+      - what: "prostate 102 x 12600"
+        why_rejected_at_stage1: "Wrong feature count. Wrong variant."
+    citation: "Singh D. et al., Cancer Res 62(24):7173-7180 (2002) — prostate tumour vs normal expression."
+    license: "license_unknown — academic research redistribution, no licence published on the cited page"
+    sources:
+      - tier: paper_cited
+        url: "https://www.cs.binghamton.edu/~lyu/KDD08/data/prostate-std.arff"
+        format: arff
+        filename_in_archive: prostate-std.arff
+        expected_sha256: unknown
+        verified_at_runtime: false
+
+  # ---------------------------------------------------------------- 4 ------
+  - id: 4
+    key: LEUKEMIA
+    name: LEUKEMIA
+    n_samples: 72
+    n_features: 7129
+    n_classes: 2
+    paper_feature_type: Real
+    domain: microarray
+    task: acute-leukaemia-subtype-classification
+    label_semantics: "2 classes (ALL vs AML)"
+    source_splits: []
+    provenance_tier: paper_cited
+    provenance_confidence: high
+    provenance_note: >
+      Fetched from the exact URL collection cited in the paper's footnote.
+      Observed shape agrees with Table 1 (72 rows x 7130 attributes = 7129
+      predictors + 1 class). No padding, dropping or synthesis was performed to
+      reach 7129.
+    alternatives_rejected:
+      - what: "scikit-feature `ALLAML` (72 x 7129)"
+        why_rejected_at_stage1: >
+          Same dimensions, but a lead rather than the paper's own cited source;
+          the paper-cited source ranks higher on lineage.
+      - what: "scikit-feature `leukemia` (72 x 7070)"
+        why_rejected_at_stage1: "7070 features. Wrong variant — explicitly warned about in the Stage 1 prompt."
+      - what: "releases with 7128 genes"
+        why_rejected_at_stage1: "Wrong feature count. Wrong variant."
+    citation: "Golub T.R. et al., Science 286(5440):531-537 (1999) — ALL vs AML gene expression classification."
+    license: "license_unknown — academic research redistribution, no licence published on the cited page"
+    sources:
+      - tier: paper_cited
+        url: "https://www.cs.binghamton.edu/~lyu/KDD08/data/leukemia-std.arff"
+        format: arff
+        filename_in_archive: leukemia-std.arff
+        expected_sha256: unknown
+        verified_at_runtime: false
+
+  # ---------------------------------------------------------------- 5 ------
+  - id: 5
+    key: DLBCL
+    name: DLBCL
+    n_samples: 77
+    n_features: 7129
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: microarray
+    task: diffuse-large-b-cell-lymphoma-classification
+    label_semantics: "DLBCL vs follicular lymphoma (FL) — 58 vs 19"
+    source_splits: []
+    provenance_tier: academic_repository
+    provenance_confidence: medium
+    provenance_note: >
+      NOT present in either collection cited by the paper, so the paper's own
+      source cannot be used. Obtained from the TU Berlin Machine Learning
+      Repository, dataset page `dlbcl-tumor-from-harvard`, which documents the
+      record as coming from the UCI/LibSVM-era Kent Ridge collection and states
+      "7130 attributes, 77 instances" on its own index page. The repository's
+      description of the two Shipp et al. (2002) classification problems
+      matches the observed class semantics exactly (58 DLBCL vs 19 FL
+      observed in the parsed data). Lineage is therefore documented and
+      self-consistent, but it is NOT the paper's cited source and the paper does
+      not state which DLBCL variant it used, so provenance is recorded as
+      substantiated-but-not-cited rather than as certain.
+    alternatives_rejected:
+      - what: "OpenML DLBCL did=45088 (77 instances, 5469 numeric features)"
+        why_rejected_at_stage1: >
+          Sample count matches but the feature count is 5469, not 7129. This is
+          exactly the reprocessed DLBCL variant the Stage 1 prompt says to reject.
+      - what: "TU Berlin `dlbcl-outcome-from-harvard` (58 instances, 7129 attributes)"
+        why_rejected_at_stage1: "58 instances, not 77 — this is the cured-vs-fatal subset, a different classification problem."
+      - what: "TU Berlin `dlbcl-nih` (240 x 7399)"
+        why_rejected_at_stage1: "Different cohort, different sample and feature counts."
+      - what: "ico2s.org DLBCL (7129 genes x 77 samples, per its index text)"
+        why_rejected_at_stage1: "Dead link — the file is named in the page text but no href exists in the served HTML and the conventional paths return HTTP 404."
+    citation: "Shipp M.A. et al., Nature Medicine 8(1):68-74 (2002) — DLBCL outcome prediction by gene-expression profiling."
+    license: "license_unknown — repository states 'License: unknown (from UCI repository)'"
+    sources:
+      - tier: academic_repository
+        url: "https://mldata-static.ml.tu-berlin.de/repository/data/download/csv/dlbcl-tumor-from-harvard/index.html"
+        format: csv_label_last
+        filename_in_archive: dlbcl-tumor-from-harvard.csv
+        expected_sha256: unknown
+        verified_at_runtime: false
+        notes: >
+          The repository serves the payload itself at this path (Content-Type is
+          mislabelled text/html; the body is a plain CSV). Documented shape on the
+          index page: 7130 attributes, 77 instances.
+
+  # ---------------------------------------------------------------- 6 ------
+  - id: 6
+    key: ARCENE
+    name: ARCENE
+    n_samples: 200
+    n_features: 10000
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: sparse-text-binary
+    task: handwritten-word-arcene-vs-control
+    label_semantics: "arcene (word) vs control"
+    source_splits:
+      combine: [train, valid]
+      counts: {train: 100, valid: 100}
+      exclude: [test]
+      exclude_reason: "NIPS-2003 challenge test records are UNLABELLED; they must never enter a labeled sample count."
+    provenance_tier: official
+    provenance_confidence: high
+    provenance_note: >
+      Official UCI archive. The paper's Table 1 total of 200 equals UCI's
+      labeled train (100) + labeled validation (100). The unlabeled challenge
+      test file is downloaded only to prove it exists and is never parsed into
+      the dataset; its absence from the sample ledger is asserted by a test.
+    alternatives_rejected: []
+    citation: "NIPS 2003 Feature Selection Challenge; Bottou L. et al."
+    license: "CC BY 4.0 as published by the UCI Machine Learning Repository"
+    sources:
+      - tier: official
+        url: "https://archive.ics.uci.edu/static/public/167/arcene.zip"
+        format: uci_data_labels_pair
+        filename_in_archive: arcene.zip
+        expected_sha256: unknown
+        verified_at_runtime: false
+        members:
+          data_train:   ["ARCENE/arcene_train.data"]
+          labels_train: ["ARCENE/arcene_train.labels"]
+          data_valid:   ["ARCENE/arcene_valid.data"]
+          labels_valid: ["arcene_valid.labels", "ARCENE/arcene_valid.labels"]
+          data_test_unlabeled: ["ARCENE/arcene_test.data"]
+          source_param:      ["ARCENE/arcene.param"]
+        notes: >
+          OBSERVED at Stage 1 runtime: UCI's own archive places arcene_valid.labels
+          at the archive root rather than inside the ARCENE/ folder. Both locations
+          are accepted and the resolved one is recorded in the manifest.
+
+  # ---------------------------------------------------------------- 7 ------
+  - id: 7
+    key: DEXTER
+    name: DEXTER
+    n_samples: 600
+    n_features: 20000
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: sparse-text-binary
+    task: handwritten-word-dexter-vs-control
+    label_semantics: "dexter (word) vs control"
+    source_splits:
+      combine: [train, valid]
+      counts: {train: 300, valid: 300}
+      exclude: [test]
+      exclude_reason: "NIPS-2003 challenge test records are UNLABELLED; they must never enter a labeled sample count."
+    provenance_tier: official
+    provenance_confidence: high
+    provenance_note: >
+      Official UCI archive. Table 1 total of 600 equals labeled train (300) +
+      labeled validation (300). 20000 columns are set explicitly, INCLUDING
+      implicitly all-zero columns, because the sparse encoding omits zeros. The
+      parser supports 1-based `index:value` source indices and 0-based indices
+      and records which convention it found.
+    alternatives_rejected: []
+    citation: "NIPS 2003 Feature Selection Challenge; Bottou L. et al."
+    license: "CC BY 4.0 as published by the UCI Machine Learning Repository"
+    sources:
+      - tier: official
+        url: "https://archive.ics.uci.edu/static/public/168/dexter.zip"
+        format: uci_data_labels_pair
+        filename_in_archive: dexter.zip
+        expected_sha256: unknown
+        verified_at_runtime: false
+        members:
+          data_train:   ["DEXTER/dexter_train.data"]
+          labels_train: ["DEXTER/dexter_train.labels"]
+          data_valid:   ["DEXTER/dexter_valid.data"]
+          labels_valid: ["dexter_valid.labels", "DEXTER/dexter_valid.labels"]
+          data_test_unlabeled: ["DEXTER/dexter_test.data"]
+          source_param:      ["DEXTER/dexter.param"]
+        notes: >
+          OBSERVED at Stage 1 runtime: the DEXTER .data files use the original NIPS
+          SPARSE `index:value` layout with 1-BASED feature indices and 20000 columns
+          (zeros omitted). dexter_valid.labels sits at the archive root.
+
+  # ---------------------------------------------------------------- 8 ------
+  - id: 8
+    key: BREAST
+    name: BREAST
+    n_samples: 97
+    n_features: 24481
+    n_classes: 2
+    paper_feature_type: Real
+    domain: microarray
+    task: breast-cancer-relapse-classification
+    label_semantics: "relapse vs non-relapse — 46 vs 51"
+    source_splits: []
+    provenance_tier: academic_repository
+    provenance_confidence: medium
+    provenance_note: >
+      NOT present in either collection cited by the paper. Obtained from the TU
+      Berlin Machine Learning Repository, dataset page
+      `breast-cancer-kent-ridge-2`, whose index page states "24482 attributes,
+      97 instances" — i.e. 24481 predictors plus the class column, exactly
+      matching the Stage 1 prompt's independent account of that index. The
+      repository names the record as the Kent Ridge variant and the observed
+      class semantics (relapse / non-relapse) are a coherent 2-class outcome
+      variable. The paper does not state which breast variant it used, so
+      provenance is documented and dimensionally exact but not paper-cited.
+    alternatives_rejected:
+      - what: "ico2s.org `breast_*` (Naderi et al. 2006, 47293 genes, 128 samples)"
+        why_rejected_at_stage1: "128 samples and 47293 genes. Different cohort entirely."
+      - what: "seventyGeneData van't Veer / van de Vijver (24481 features)"
+        why_rejected_at_stage1: >
+          24481 features is a coincidental collision with 117 and 295 samples
+          respectively. Different cohort, different sample count.
+      - what: "TU Berlin `uci-20070111-breast-cancer` / `breast-cancer-ida`"
+        why_rejected_at_stage1: "UCI-style low-dimensional versions, not the 24481-gene microarray matrix."
+    citation: "Kent Ridge Bioinformatics breast cancer expression data (repository record cites the LibSVM-era collection)."
+    license: "license_unknown — repository states 'License: unknown (from LibSVMTools repository)'"
+    sources:
+      - tier: academic_repository
+        url: "https://mldata-static.ml.tu-berlin.de/repository/data/download/csv/breast-cancer-kent-ridge-2/index.html"
+        format: csv_label_last
+        filename_in_archive: breast-cancer-kent-ridge-2.csv
+        expected_sha256: unknown
+        verified_at_runtime: false
+        notes: >
+          Served as a plain CSV despite Content-Type text/html. The repository's
+          `download/arff/...` and `download/matlab/...` variants of the same
+          record returned a server-side error page at Stage 1 runtime; the CSV
+          variant was the one that resolved. Documented shape: 24482 attributes,
+          97 instances.
+
+  # ---------------------------------------------------------------- 9 ------
+  - id: 9
+    key: MADELON
+    name: MADELON
+    n_samples: 2600
+    n_features: 500
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: synthetic-binary
+    task: madelon-artificial-classification
+    label_semantics: "positive vs negative"
+    source_splits:
+      combine: [train, valid]
+      counts: {train: 2000, valid: 600}
+      exclude: [test]
+      exclude_reason: "NIPS-2003 challenge test records are UNLABELLED; they must never enter a labeled sample count."
+    provenance_tier: official
+    provenance_confidence: high
+    provenance_note: >
+      Official UCI archive. Table 1 total of 2600 equals labeled train (2000) +
+      labeled validation (600). MADELON is itself a synthetic dataset by
+      construction of the NIPS 2003 challenge; it is the paper's chosen benchmark
+      and is used as published.
+    alternatives_rejected: []
+    citation: "NIPS 2003 Feature Selection Challenge; Guyon I. et al., JMLR 3:1157-1232 (2002)."
+    license: "CC BY 4.0 as published by the UCI Machine Learning Repository"
+    sources:
+      - tier: official
+        url: "https://archive.ics.uci.edu/static/public/171/madelon.zip"
+        format: uci_data_labels_pair
+        filename_in_archive: madelon.zip
+        expected_sha256: unknown
+        verified_at_runtime: false
+        members:
+          data_train:   ["madelon/madelon_train.data"]
+          labels_train: ["madelon/madelon_train.labels"]
+          data_valid:   ["madelon/madelon_valid.data"]
+          labels_valid: ["madelon_valid.labels", "madelon/madelon_valid.labels"]
+          data_test_unlabeled: ["madelon/madelon_test.data"]
+          source_param:      ["madelon/madelon.param"]
+        notes: >
+          OBSERVED at Stage 1 runtime: MADELON .data files are dense whitespace-separated
+          with 500 columns; madelon_valid.labels sits at the archive root.
+
+  # ---------------------------------------------------------------- 10 -----
+  - id: 10
+    key: GINA
+    name: GINA
+    n_samples: 3468
+    n_features: 970
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: image-binary
+    task: handwritten-digit-odd-vs-even
+    label_semantics: "odd (1) vs even (-1) two-digit classes; observed labels are +/-1"
+    source_splits:
+      combine: [original_labeled]
+      counts: {original_labeled: 3468}
+      exclude: []
+      exclude_reason: "The agnostic track publishes a single labeled table; no unlabeled test split is part of this record."
+    provenance_tier: official
+    provenance_confidence: medium
+    provenance_note: >
+      OpenML did=1038, `gina_agnostic`, fetched from the data file OpenML itself
+      publishes for that dataset id. The ARFF header states 970 features and the
+      data section has 971 fields, i.e. 970 predictors plus the class column —
+      971 is NOT 971 predictors. Observed class encoding is {-1, 1}, consistent
+      with the documented odd/even task. OpenML records the file's own header
+      credit as "converted to ARFF format by TunedIT" from the original ETH
+      agnostic-track source, so the value is an ARFF re-encoding of the original
+      release rather than the original file byte-for-byte; that is recorded rather
+      than glossed over. Row order is preserved as published.
+    alternatives_rejected:
+      - what: "original ETH Zurich agnostic-track gzip release"
+        why_rejected_at_stage1: >
+          Recorded as the ultimate upstream origin in the ARFF header, but the
+          OpenML-hosted ARFF is the traceable, integrity-checkable copy with a
+          published dataset id; preferred for reproducibility.
+    citation: "ETH Zurich Agnostic Learning Competition, GINA digit-recognition dataset."
+    license: "CC BY 4.0 as published by OpenML (dataset did=1038)"
+    sources:
+      - tier: official
+        url: "https://www.openml.org/data/download/53921/gina_agnostic.arff"
+        format: arff
+        filename_in_archive: gina_agnostic.arff
+        expected_sha256: unknown
+        verified_at_runtime: false
+        notes: "OpenML dataset page https://www.openml.org/d/1038 ; ARFF relation name gina_agnostic."
+
+  # ---------------------------------------------------------------- 11 -----
+  - id: 11
+    key: GISETTE
+    name: GISETTE
+    n_samples: 7000
+    n_features: 5000
+    n_classes: 2
+    paper_feature_type: Integer
+    domain: image-binary
+    task: handwritten-digit-gisette-vs-control
+    label_semantics: "gisette (digit 1) vs control"
+    source_splits:
+      combine: [train, valid]
+      counts: {train: 6000, valid: 1000}
+      exclude: [test]
+      exclude_reason: "NIPS-2003 challenge test records are UNLABELLED; they must never enter a labeled sample count."
+    provenance_tier: official
+    provenance_confidence: high
+    provenance_note: >
+      Official UCI archive. Table 1 total of 7000 equals labeled train (6000) +
+      labeled validation (1000). The unlabeled challenge test file is never
+      parsed into the dataset.
+    alternatives_rejected: []
+    citation: "NIPS 2003 Feature Selection Challenge; Bottou L. et al."
+    license: "CC BY 4.0 as published by the UCI Machine Learning Repository"
+    sources:
+      - tier: official
+        url: "https://archive.ics.uci.edu/static/public/170/gisette.zip"
+        format: uci_data_labels_pair
+        filename_in_archive: gisette.zip
+        expected_sha256: unknown
+        verified_at_runtime: false
+        members:
+          data_train:   ["GISETTE/gisette_train.data"]
+          labels_train: ["GISETTE/gisette_train.labels"]
+          data_valid:   ["GISETTE/gisette_valid.data"]
+          labels_valid: ["gisette_valid.labels", "GISETTE/gisette_valid.labels"]
+          data_test_unlabeled: ["GISETTE/gisette_test.data"]
+          source_param:      ["GISETTE/gisette.param"]
+        notes: >
+          OBSERVED at Stage 1 runtime: UCI places gisette_valid.labels at the archive
+          root rather than inside the GISETTE/ folder. Both locations are accepted.
