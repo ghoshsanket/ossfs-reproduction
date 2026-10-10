@@ -1,0 +1,23 @@
+{
+  "stream_order": {
+    "migration": "stream_order/1.0 -> 2.0",
+    "change": "inverse_position_of_feature now maps str(feature_index) -> arrival_position, the true mathematical inverse of arrival_order",
+    "arrival_order_modified": false,
+    "already_current": [],
+    "absent": [],
+    "backup_suffix": ".v1backup",
+    "completed_utc": "2026-10-10T16:44:14Z"
+  },
+  "stream_order_migrated_count": 110,
+  "sample_ids": {
+    "migration": "processed/1.0 sample_ids object-dtype -> fixed-width Unicode",
+    "change": "sample_ids.npy no longer requires allow_pickle=True to read",
+    "raw_data_modified": false,
+    "predictor_or_label_values_modified": false,
+    "already_current": [],
+    "absent": [],
+    "backup_suffix": ".v1backup",
+    "completed_utc": "2026-10-10T16:44:14Z"
+  },
+  "sample_ids_migrated_count": 11
+}

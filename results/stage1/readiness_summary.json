@@ -1,6 +1,6 @@
 {
   "schema": "ossfs-dd-reproduction/stage1/readiness/1.1",
-  "generated_utc": "2026-10-10T05:20:50Z",
+  "generated_utc": "2026-10-10T16:56:45Z",
   "verdict": "STAGE1_PARTIAL",
   "gates": [
     {
@@ -63,7 +63,7 @@
       "name": "stream_leakage_tests_passing",
       "pass": true,
       "threshold": 1.0,
-      "observed": "22 passed, 0 failed",
+      "observed": "63 passed, 0 failed",
       "detail": "stream-leakage test failures: 0 of 4 leakage tests"
     },
     {
@@ -71,13 +71,13 @@
       "pass": true,
       "threshold": 0,
       "observed": 0,
-      "detail": "git ignore audit from test_git_excludes_data"
+      "detail": "git audit status='ok': no data or binary path would be staged"
     },
     {
       "name": "required_tests_passing",
       "pass": true,
       "threshold": 1.0,
-      "observed": "22 passed, 0 failed",
+      "observed": "63 passed, 0 failed, 0 skipped",
       "detail": "every required named test ran and passed"
     }
   ],

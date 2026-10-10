@@ -190,49 +190,70 @@ def evaluate_gates(cfg: dict[str, Any], n_datasets: int, n_splits: int, seeds: l
     ))
 
     # ---- gates whose evidence is the test suite --------------------------
+    # Every one of these is FAIL-CLOSED. A value of ``null`` or a non-"ok"
+    # audit status means the evidence was not produced, which is reported as
+    # "not measured" and does NOT pass. v1 read a bare integer that defaulted
+    # to 0 whenever git was unavailable, which converted missing evidence into
+    # a green gate.
     if tests is None:
-        gates.append(_gate(
-            "stream_leakage_tests_passing", False,
-            g["stream_leakage_tests_passing"]["required_fraction"],
-            "not measured",
-            "results/stage1/test_results.json is absent; run `uv run pytest` before judging",
-        ))
-        gates.append(_gate(
-            "data_or_result_binaries_in_git", False,
-            g["data_or_result_binaries_in_git"]["max_allowed"], "not measured",
-            "requires the git audit recorded by test_git_excludes_data",
-        ))
-        gates.append(_gate(
-            "required_tests_passing", False,
-            g["required_tests_passing"]["required_fraction"], "not measured",
-            "requires results/stage1/test_results.json",
-        ))
+        # No evidence file at all: every test-dependent gate reports
+        # "not measured" and does NOT pass.
+        for name in (
+            "stream_leakage_tests_passing",
+            "data_or_result_binaries_in_git",
+            "required_tests_passing",
+        ):
+            spec = g[name]
+            # these gates express their bar differently (a fraction vs a count)
+            threshold = spec.get("required_fraction", spec.get("max_allowed"))
+            gates.append(_gate(
+                name, False, threshold, "not measured",
+                "results/stage1/test_results.json is absent; run `uv run pytest` before judging",
+            ))
     else:
+        git_status = tests.get("git_audit_status", "missing")
+        git_violations = tests.get("git_data_violations")
+
         leaked = tests.get("stream_leakage_failures")
-        leaked_count = len(leaked) if isinstance(leaked, list) else None
+        leaked_ok = isinstance(leaked, list) and len(leaked) == 0
         gates.append(_gate(
             "stream_leakage_tests_passing",
-            leaked_count == 0 and tests.get("failed", 1) == 0,
+            bool(leaked_ok and tests.get("failed", 1) == 0),
             g["stream_leakage_tests_passing"]["required_fraction"],
             f"{tests.get('passed', 0)} passed, {tests.get('failed', 0)} failed",
-            f"stream-leakage test failures: {leaked_count if leaked_count is not None else 'not measured'}"
+            f"stream-leakage test failures: {len(leaked) if isinstance(leaked, list) else 'not measured'}"
             f" of {len(tests.get('stream_leakage_tests') or [])} leakage tests",
         ))
+
+        git_measured = git_status == "ok" and git_violations is not None
         gates.append(_gate(
             "data_or_result_binaries_in_git",
-            tests.get("git_data_violations", 1) == 0,
+            bool(git_measured and git_violations == 0),
             g["data_or_result_binaries_in_git"]["max_allowed"],
-            tests.get("git_data_violations", "not measured"),
-            "git ignore audit from test_git_excludes_data",
+            git_violations if git_violations is not None else "not measured",
+            f"git audit status={git_status!r}: {tests.get('git_audit_detail', 'no detail')}"
+            + ("" if git_measured else "  <-- evidence not measured; this gate cannot pass"),
         ))
-        missing = tests.get("missing_required_tests", ["not measured"])
+
+        missing = tests.get("missing_required_tests") or []
+        skipped_req = tests.get("skipped_required_tests") or []
+        config_error = tests.get("config_error")
         gates.append(_gate(
             "required_tests_passing",
-            tests.get("failed", 1) == 0 and not missing,
+            bool(
+                tests.get("failed", 1) == 0
+                and not missing
+                and not skipped_req
+                and config_error is None
+            ),
             g["required_tests_passing"]["required_fraction"],
-            f"{tests.get('passed', 0)} passed, {tests.get('failed', 0)} failed",
-            f"required named tests missing: {missing}"
-            if missing else "every required named test ran and passed",
+            f"{tests.get('passed', 0)} passed, {tests.get('failed', 0)} failed, "
+            f"{tests.get('skipped', 0)} skipped",
+            (
+                "every required named test ran and passed"
+                if not missing and not skipped_req and not config_error
+                else f"missing={missing}; skipped_required={skipped_req}; config_error={config_error}"
+            ),
         ))
 
     failed = [x["name"] for x in gates if not x["pass"]]

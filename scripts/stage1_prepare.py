@@ -118,7 +118,7 @@ def save_processed(spec: DatasetSpec, parsed: ParsedDataset, cfg: dict) -> dict:
 
     common = {
         "dataset": spec.key,
-        "schema": "ossfs-dd-reproduction/stage1/processed/1.0",
+        "schema": "ossfs-dd-reproduction/stage1/processed/2.0",
         "n_samples": parsed.n_samples,
         "n_features": parsed.n_features,
         "n_classes": len(np.unique(parsed.y)),
@@ -155,8 +155,12 @@ def save_processed(spec: DatasetSpec, parsed: ParsedDataset, cfg: dict) -> dict:
     ri = out / "source_row_index.npy"
     np.save(ri, parsed.source_row_index.astype(np.int64), allow_pickle=False)
 
+    # Fixed-width Unicode, written without pickle. The previous object-dtype form
+    # could only be read with allow_pickle=True; existing artifacts are migrated
+    # non-lossfully by ossfs_dd_data.migrations.migrate_sample_ids.
     sid = out / "sample_ids.npy"
-    np.save(sid, np.array([f"{spec.key}:{i}" for i in range(parsed.n_samples)], dtype=object), allow_pickle=True)
+    np.save(sid, np.array([f"{spec.key}:{i}" for i in range(parsed.n_samples)], dtype=np.str_),
+            allow_pickle=False)
 
     fid = out / "feature_ids.npy"
     np.save(fid, np.arange(parsed.n_features, dtype=np.int64), allow_pickle=False)

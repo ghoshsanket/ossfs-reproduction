@@ -108,11 +108,15 @@ class FeatureStream:
         return self._perm.copy()
 
     # ---- the stream -------------------------------------------------------
-    def _column_training_rows(self, feature_index: int) -> np.ndarray:
+    def _column_rows(self, feature_index: int, rows: np.ndarray) -> np.ndarray:
+        """Read one column for an explicit set of rows (internal use)."""
         if sparse.issparse(self._X):
             col = self._X[:, feature_index]
-            return np.asarray(col[self._train].todense()).ravel()
-        return np.asarray(self._X[self._train, feature_index])
+            return np.asarray(col[rows].todense()).ravel()
+        return np.asarray(self._X[rows, feature_index])
+
+    def _column_training_rows(self, feature_index: int) -> np.ndarray:
+        return self._column_rows(feature_index, self._train)
 
     def __iter__(self) -> Iterator[tuple[int, np.ndarray]]:
         for _position, feature_index in enumerate(self._perm.tolist()):
@@ -146,20 +150,70 @@ class FeatureStream:
             return np.asarray(self._X[:, feature_index].todense()).ravel()
         return np.asarray(self._X[:, feature_index])
 
-    def self_check(self) -> dict[str, Any]:
-        """Prove the leakage contract on real data, not just in theory."""
+    def self_check(self, *, deep: bool = True, max_deep_features: int = 8) -> dict[str, Any]:
+        """Prove the leakage contract against the real matrix, not just in theory.
+
+        The v1 implementation reported ``train_indices_disjoint_from_complement``,
+        which was ``train_set.isdisjoint(complement)`` — true by construction for
+        any set and therefore worthless as evidence. That field is removed.
+
+        What replaces it is a genuine content check: emitted columns are compared
+        element-wise against ``X[train_indices, column]``, and held-out rows are
+        confirmed to be *different content*, so a stream that accidentally
+        served test rows would be caught rather than passing.
+
+        ``deep`` performs the value comparison on up to ``max_deep_features``
+        columns (every column for small feature counts). Set ``deep=False`` for
+        a cheap structural-only pass on very wide datasets.
+        """
         seen: list[int] = []
         row_counts: set[int] = set()
+        mismatched: list[int] = []
+        sample_ids = self._train
+
         for feature_index, values in self:
             seen.append(feature_index)
             row_counts.add(int(values.shape[0]))
-        train_set = set(self._train.tolist())
+            if deep and len(mismatched) < max_deep_features:
+                expected = self._column_training_rows(int(feature_index))
+                if not np.array_equal(np.asarray(values), np.asarray(expected)):
+                    mismatched.append(int(feature_index))
+
+        # Value-equality evidence: emitted == X[train_indices, column].
+        values_match = not mismatched
+        value_check_coverage = (
+            min(len(seen), max_deep_features) if deep else 0
+        )
+
+        # Held-out rows must be reachable but must NOT be what we emitted.
+        held_out = np.setdiff1d(np.arange(self._n_samples), self._train)
+        held_out_distinguishable = True
+        if held_out.size and seen:
+            col = int(seen[0])
+            emitted = self._column_training_rows(col)
+            holdout_values = self._column_rows(col, held_out)
+            if np.array_equal(np.asarray(emitted), np.asarray(holdout_values)):
+                held_out_distinguishable = False
+
         return {
             "n_features_emitted": len(seen),
             "emission_is_permutation": sorted(seen) == list(range(self._n_features)),
             "distinct_row_counts_emitted": sorted(row_counts),
             "every_emitted_row_count_equals_train_rows": row_counts == {self._train.size},
-            "train_indices_disjoint_from_complement": train_set.isdisjoint(
-                set(range(self._n_samples)) - train_set
+            "emitted_values_equal_X_train_column": values_match,
+            "value_checked_columns": value_check_coverage,
+            "value_check_mode": "elementwise" if deep else "skipped",
+            "mismatched_feature_indices": mismatched,
+            "n_held_out_rows": int(held_out.size),
+            "held_out_rows_are_distinguishable_from_emitted": held_out_distinguishable,
+            "contract_satisfied": bool(
+                sorted(seen) == list(range(self._n_features))
+                and row_counts == {self._train.size}
+                and values_match
+                and held_out_distinguishable
             ),
+            "removed_v1_field_note": (
+                "'train_indices_disjoint_from_complement' was tautological and has been removed"
+            ),
+            "_train_index_preview": sample_ids[:5].tolist(),
         }

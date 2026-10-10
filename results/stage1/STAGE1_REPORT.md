@@ -1,7 +1,7 @@
 # Stage 1 Report — Dataset Acquisition, Provenance and Validation
 
 **Project:** `ossfs-dd-reproduction`  
-**Generated (UTC):** 2026-10-10T05:20:50Z  
+**Generated (UTC):** 2026-10-10T16:56:45Z  
 **Stage:** 1 of 3 — **DATA ONLY**  
 **Paper:** Zhou, Zhao, Yan & Wu, *Online Scalable Streaming Feature Selection via Dynamic Decision*, ACM TKDD 16(5) art. 87 (2022), DOI 10.1145/3502737
 
@@ -29,9 +29,9 @@ Thresholds come from `configs/stage1.yaml` and were fixed before any download. N
 | `unlabeled_challenge_test_examples_used` | 0 | 0 | **PASS** | parsers refuse a 'test' split outright; asserted by test_no_unlabeled_test_data |
 | `cv_test_folds_defined` | 550 | 550 | **PASS** | 110 split-plan files covering 550 test folds (11 datasets x 10 seeds x 5 folds = 550) |
 | `feature_order_permutations_defined` | 110 | 110 | **PASS** | 110 feature-order permutations (11 datasets x 10 seeds = 110) |
-| `stream_leakage_tests_passing` | 1.0 | 22 passed, 0 failed | **PASS** | stream-leakage test failures: 0 of 4 leakage tests |
-| `data_or_result_binaries_in_git` | 0 | 0 | **PASS** | git ignore audit from test_git_excludes_data |
-| `required_tests_passing` | 1.0 | 22 passed, 0 failed | **PASS** | every required named test ran and passed |
+| `stream_leakage_tests_passing` | 1.0 | 63 passed, 0 failed | **PASS** | stream-leakage test failures: 0 of 4 leakage tests |
+| `data_or_result_binaries_in_git` | 0 | 0 | **PASS** | git audit status='ok': no data or binary path would be staged |
+| `required_tests_passing` | 1.0 | 63 passed, 0 failed, 0 skipped | **PASS** | every required named test ran and passed |
 
 ## Dataset status: paper Table 1 vs observed
 
@@ -299,9 +299,9 @@ Thresholds come from `configs/stage1.yaml` and were fixed before any download. N
 | Artifact tree | Files | Bytes |
 |---|---:|---:|
 | `dataset/ossfs-dd-reproduction/raw/` | 39 | 264829431 |
-| `dataset/ossfs-dd-reproduction/processed/` | 88 | 105848738 |
+| `dataset/ossfs-dd-reproduction/processed/` | 99 | 106486558 |
 | `dataset/ossfs-dd-reproduction/splits/` | 110 | 9907922 |
-| `dataset/ossfs-dd-reproduction/stream_orders/` | 110 | 24969522 |
+| `dataset/ossfs-dd-reproduction/stream_orders/` | 220 | 49975674 |
 
 - CV test folds defined: **550** (target 550)
 - Feature-order permutations defined: **110** (target 110)

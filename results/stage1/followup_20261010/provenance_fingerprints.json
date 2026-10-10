@@ -1,0 +1,49 @@
+{
+  "note": "Comparison fingerprints, not dataset bytes. Use to compare against an independently obtained archive of the same release.",
+  "fingerprints": {
+    "DLBCL": {
+      "dataset": "DLBCL",
+      "shape": [
+        77,
+        7129
+      ],
+      "class_labels": [
+        "DLBCL",
+        "FL"
+      ],
+      "class_counts": {
+        "DLBCL": 58,
+        "FL": 19
+      },
+      "value_sum": 427512912.0,
+      "row_sums_sha256": "c5aac3dfda0145923ee14cc87152fcc74120cb677e06ba94d999f13d1cbb7948",
+      "col_sums_sha256": "bbd9ff7791dbfd9faa4faa4c50d6671420036c1418b65a2f87052c104cadaf43",
+      "first_row_sum": 5140001.0,
+      "last_row_sum": 4458964.0,
+      "col_min": -95892.0,
+      "col_max": 84063.0
+    },
+    "BREAST": {
+      "dataset": "BREAST",
+      "shape": [
+        97,
+        24481
+      ],
+      "class_labels": [
+        "non-relapse",
+        "relapse"
+      ],
+      "class_counts": {
+        "non-relapse": 51,
+        "relapse": 46
+      },
+      "value_sum": 4196496.077,
+      "row_sums_sha256": "0f57cec14a34d04775d31b06573724bea5ac3555fb31b6f95a3d811f717e6c13",
+      "col_sums_sha256": "1b44f66099a54bc9a152ff6da4bb1e7a77755247d8e040b62aeea0644bd98570",
+      "first_row_sum": 29052.347999999998,
+      "last_row_sum": 29212.884,
+      "col_min": -2.0,
+      "col_max": 100.0
+    }
+  }
+}

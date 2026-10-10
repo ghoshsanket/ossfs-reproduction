@@ -147,7 +147,25 @@ def build_feature_orders(n_features: int, seeds: list[int]) -> dict[int, np.ndar
 
 
 def feature_order_record(dataset: str, n_features: int, seed: int, order: np.ndarray) -> dict[str, Any]:
+    """Build one feature-arrival-order plan record.
+
+    Two distinct mappings are stored and must not be confused:
+
+    ``arrival_order``
+        ``arrival_order[position] -> original_feature_index``. The order in
+        which features reach the selector.
+
+    ``inverse_position_of_feature``
+        ``str(feature_index) -> arrival_position``. The true mathematical
+        inverse, so ``inverse_position_of_feature[str(f)] == position`` and
+        ``arrival_order[inverse_position_of_feature[str(f)]] == f``.
+
+    A v1 of this record shipped ``arrival_order`` duplicated under the inverse
+    key, which carried no additional information and could not be inverted. v2
+    stores the real inverse.
+    """
     return {
+        "schema": "ossfs-dd-reproduction/stage1/stream_order/2.0",
         "dataset": dataset,
         "seed": seed,
         "n_features": int(n_features),
@@ -156,8 +174,14 @@ def feature_order_record(dataset: str, n_features: int, seed: int, order: np.nda
         "generator_api": f"numpy.random.Generator(numpy.random.PCG64({seed})).permutation({n_features})",
         "space": "original feature indices 0..p-1",
         "arrival_order": order.tolist(),
-        "reversible": True,
+        "arrival_order_meaning": "arrival_order[position] -> original_feature_index",
         "inverse_position_of_feature": _inverse(order),
+        "inverse_position_of_feature_meaning": (
+            "str(feature_index) -> arrival_position; "
+            "inverse_position_of_feature[str(f)] == position and "
+            "arrival_order[inverse_position_of_feature[str(f)]] == f"
+        ),
+        "reversible": True,
         "assumption_notice": (
             "The paper does not disclose its feature arrival orders or seeds. This permutation "
             "is a fixed, preregistered reproduction assumption."
@@ -167,8 +191,12 @@ def feature_order_record(dataset: str, n_features: int, seed: int, order: np.nda
 
 
 def _inverse(order: np.ndarray) -> dict[str, int]:
-    """arrival position -> feature index, so the mapping is provably reversible."""
-    return {str(pos): int(idx) for pos, idx in enumerate(order.tolist())}
+    """feature_index -> arrival position.
+
+    This is the genuine inverse of ``arrival_order``; the earlier v1 stored the
+    forward mapping here instead, which made the two fields indistinguishable.
+    """
+    return {str(feature_index): int(position) for position, feature_index in enumerate(order.tolist())}
 
 
 def validate_plan(plans: list[SplitPlan], orders: dict[int, np.ndarray], n_samples: int) -> dict[str, Any]:

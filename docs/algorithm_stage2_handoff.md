@@ -36,21 +36,46 @@ GINA GISETTE`.
 
 ## 2. Loading a dataset
 
+> **Paths stored in `schema.json` and the manifests are relative to
+> `RESEARCH_ROOT`, not to the current working directory.** Resolving them
+> directly (`np.load(meta["X"]["path"])`) works only if you happen to be sitting
+> in `$RESEARCH_ROOT` and silently fails with `FileNotFoundError` anywhere else.
+> Always go through `ossfs_dd_data.workspace.resolve`.
+
 ```python
 import json
 import numpy as np
 from scipy import sparse
-from ossfs_dd_data.workspace import data_root, processed_dir, splits_dir, stream_orders_dir
+from ossfs_dd_data.workspace import processed_dir, resolve, splits_dir, stream_orders_dir
 
 KEY = "ARCENE"
 
-meta = json.loads((processed_dir(KEY) / "schema.json").read_text())
-X = (sparse.load_npz(meta["X"]["path"])
-     if meta["X"]["format"] == "scipy_csr" else np.load(meta["X"]["path"]))
-y = np.load(meta["y"]["path"], allow_pickle=False).astype(str)
+meta = json.loads((processed_dir(KEY) / "schema.json").read_text(encoding="utf-8"))
+
+xrec = meta["X"]
+X = (
+    sparse.load_npz(str(resolve(xrec["path"])))
+    if xrec["format"] == "scipy_csr"
+    else np.load(resolve(xrec["path"]), allow_pickle=False)
+)
+y = np.load(resolve(meta["y"]["path"]), allow_pickle=False).astype(str)
+source_split = np.load(resolve(meta["source_split"]["path"]), allow_pickle=False).astype(str)
+sample_ids = np.load(resolve(meta["sample_ids"]["path"]), allow_pickle=False)  # fixed-width, no pickle
 
 assert X.shape == (meta["n_samples"], meta["n_features"])
+assert len(y) == len(sample_ids) == X.shape[0]
 ```
+
+`sample_ids.npy` is a fixed-width Unicode array and **must** be readable with
+`allow_pickle=False`. Artifacts written before the Stage 1 follow-up migration
+were object-dtype and did require `allow_pickle=True`; those files were migrated
+non-lossfully and retained as `sample_ids.npy.v1backup`. If you ever encounter a
+`ValueError: Object arrays cannot be loaded when allow_pickle=False`, you are
+reading a pre-migration file.
+
+This loader is exercised against **real stored data** (both the dense and the
+sparse storage formats) by `tests/test_real_data_loading.py`, so it is not
+merely illustrative documentation.
 
 Guarantees a Stage 2 selector may rely on:
 
@@ -74,11 +99,11 @@ Guarantees a Stage 2 selector may rely on:
 ```python
 from ossfs_dd_data.stream import FeatureStream
 
-plan = json.loads((splits_dir(KEY) / "seed_11.json").read_text())
+plan = json.loads((splits_dir(KEY) / "seed_11.json").read_text(encoding="utf-8"))
 fold = plan["folds"][0]
 train_idx = np.asarray(fold["train"], dtype=np.int64)
 
-order_rec = json.loads((stream_orders(KEY) / "seed_11.json").read_text())
+order_rec = json.loads((stream_orders_dir(KEY) / "seed_11.json").read_text(encoding="utf-8"))
 order = np.asarray(order_rec["arrival_order"], dtype=np.int64)
 
 stream = FeatureStream(X, y, train_idx, order)
@@ -136,14 +161,36 @@ Guarantees:
   `stratified_skip_reason`. It does not silently degrade.
 
 ```python
-order_rec = json.loads((stream_orders(KEY) / "seed_23.json").read_text())
+order_rec = json.loads((stream_orders_dir(KEY) / "seed_23.json").read_text(encoding="utf-8"))
 order_rec["arrival_order"]                 # list of length p, a permutation of 0..p-1
 order_rec["generator_api"]                 # exact numpy call that produced it
-order_rec["inverse_position_of_feature"]   # arrival position -> feature index
+order_rec["inverse_position_of_feature"]   # str(feature_index) -> arrival position
 ```
 
+> **The two fields point in opposite directions.** `arrival_order` answers *"which
+> feature arrives at step k?"*; `inverse_position_of_feature` answers *"at which
+> step does feature j arrive?"*. Conflating them silently produces a wrong
+> answer.
+>
+> ```python
+> inverse = {int(k): v for k, v in order_rec["inverse_position_of_feature"].items()}
+> assert inverse[j] == order.index(j)   # feature -> position
+> assert order[inverse[j]] == j         # and it genuinely inverts
+> ```
+>
+> **Schema history.** Plans written as `stream_order/1.0` stored
+> `inverse_position_of_feature` in the *forward* direction, i.e. a verbatim copy
+> of `arrival_order`. The Stage 1 follow-up migrated all 110 plans to
+> `stream_order/2.0` where the field is the true inverse; originals are retained
+> as `*.json.v1backup`. **`arrival_order` was never altered** — only the inverse
+> mapping. A `1.0` record's inverse key is unusable and must be re-derived.
+>
+> Arrival order is preregistered: it is regenerated deterministically from
+> `numpy.random.Generator(PCG64(seed)).permutation(p)`, so re-running Stage 1
+> reproduces it byte-for-byte.
+
 `test_feature_order_is_permutation` asserts the permutation property and that the
-inverse map really inverts it.
+inverse really inverts the forward order, on the real stored plans.
 
 ---
 

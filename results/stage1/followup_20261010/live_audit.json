@@ -1,0 +1,910 @@
+{
+  "schema": "ossfs-dd-reproduction/stage1/live_audit/1.0",
+  "generated_utc": "2026-10-10T16:59:12Z",
+  "elapsed_seconds": 139.2,
+  "outcome": "DATASET_FILES_PRESENT",
+  "outcome_detail": "every dataset present, hash-verified, dimensionally correct, all plans valid, no stream leakage observed",
+  "dataset_tree": "dataset/ossfs-dd-reproduction",
+  "dataset_tree_outside_git": {
+    "status": "ok",
+    "detail": "dataset tree is outside the repository"
+  },
+  "environment": {
+    "architecture": "aarch64",
+    "python_version": "3.11.16",
+    "interpreter_is_project_venv": true,
+    "cpu_count": 20,
+    "gpu_used": false
+  },
+  "git": {
+    "commit": "dcc15d6d4fbd5ccb7a2821ecb615b2549078e21e",
+    "branch": "main",
+    "dirty": true
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    31,
+    47,
+    59,
+    71,
+    83,
+    97,
+    109
+  ],
+  "totals": {
+    "raw_present_and_hash_verified": 11,
+    "processed_x_present_and_hash_verified": 11,
+    "dimensions_and_classes_match_table1": 11,
+    "split_plan_files": 110,
+    "order_plan_files": 110,
+    "folds_checked": 550,
+    "disjoint_violations": 0,
+    "coverage_violations": 0,
+    "bounds_violations": 0,
+    "permutation_violations": 0,
+    "inverse_violations": 0,
+    "v1_backups_checked": 110,
+    "v1_arrival_order_preserved": 110,
+    "stream_columns_emitted": 875760,
+    "stream_value_columns_checked": 1320,
+    "stream_value_mismatches": 0,
+    "stream_row_count_violations": 0
+  },
+  "counts": {
+    "datasets_audited": 11,
+    "files_present_and_valid": 11,
+    "files_present_but_invalid": 0,
+    "files_missing": 0,
+    "missing_keys": [],
+    "invalid_keys": []
+  },
+  "datasets": [
+    {
+      "dataset": "SRBCT",
+      "expected": {
+        "n": 63,
+        "p": 2308,
+        "c": 4
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/SRBCT/srbct-std.arff",
+        "recorded_sha256": "d5bb3895e99888bc52c3e31d747bd2d422fe99d0b0dead771229ac2b84daa7cb",
+        "present": true,
+        "bytes": 1434331,
+        "observed_sha256": "d5bb3895e99888bc52c3e31d747bd2d422fe99d0b0dead771229ac2b84daa7cb",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/SRBCT/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 1163360,
+        "observed_sha256": "51edd599285dbe122b208ea20ab3632e89866afdcbe5e1dd2363a172080bb1e6",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U8",
+        "n": 63
+      },
+      "content": {
+        "shape": [
+          63,
+          2308
+        ],
+        "y_length": 63,
+        "n_classes_observed": 4,
+        "class_counts": {
+          "0": 23,
+          "1": 20,
+          "2": 12,
+          "3": 8
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 63
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 23080,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "LYMPHOMA",
+      "expected": {
+        "n": 62,
+        "p": 4026,
+        "c": 3
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/LYMPHOMA/lymphoma-std.arff",
+        "recorded_sha256": "b10aa781ff961d9b8dbd00b8e0e94f911caffa2c0f3a461373912ef0d76b9e07",
+        "present": true,
+        "bytes": 2445998,
+        "observed_sha256": "b10aa781ff961d9b8dbd00b8e0e94f911caffa2c0f3a461373912ef0d76b9e07",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/LYMPHOMA/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 1997024,
+        "observed_sha256": "c52ce75bab41a90552ec6ed9c6292145a60415ca35b6775c9588a4dd34278438",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U11",
+        "n": 62
+      },
+      "content": {
+        "shape": [
+          62,
+          4026
+        ],
+        "y_length": 62,
+        "n_classes_observed": 3,
+        "class_counts": {
+          "0": 42,
+          "1": 9,
+          "2": 11
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 62
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 40260,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "PROSTATE",
+      "expected": {
+        "n": 102,
+        "p": 6033,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/PROSTATE/prostate-std.arff",
+        "recorded_sha256": "711cef5a04110859850e95bcd0a033b6da5779190604f598956ece29ee342de6",
+        "present": true,
+        "bytes": 5964489,
+        "observed_sha256": "711cef5a04110859850e95bcd0a033b6da5779190604f598956ece29ee342de6",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/PROSTATE/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 4923056,
+        "observed_sha256": "d0bc2ce80ea17e682ab33eb56dcd61321a856e6950f9ae574e8c454c2d2106c3",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U12",
+        "n": 102
+      },
+      "content": {
+        "shape": [
+          102,
+          6033
+        ],
+        "y_length": 102,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "0": 50,
+          "1": 52
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 102
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 60330,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "LEUKEMIA",
+      "expected": {
+        "n": 72,
+        "p": 7129,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/LEUKEMIA/leukemia-std.arff",
+        "recorded_sha256": "0fd632f7469ffbbe10e6e955f6a29144cd096eb03b71c7f81a959a604356df81",
+        "present": true,
+        "bytes": 5020791,
+        "observed_sha256": "0fd632f7469ffbbe10e6e955f6a29144cd096eb03b71c7f81a959a604356df81",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/LEUKEMIA/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 4106432,
+        "observed_sha256": "1f8f7794b0a7ce511cd38372d50ee26f850b082efb3e2bdc80f4cd8025c5e0ba",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U11",
+        "n": 72
+      },
+      "content": {
+        "shape": [
+          72,
+          7129
+        ],
+        "y_length": 72,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "ALL": 47,
+          "AML": 25
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 72
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 71290,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "DLBCL",
+      "expected": {
+        "n": 77,
+        "p": 7129,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/DLBCL/dlbcl-tumor-from-harvard.csv",
+        "recorded_sha256": "30bc95073e27e05a9aa6e99b46b173e5636c7b47c1bbdf9e6f8f8ee82f0e8e00",
+        "present": true,
+        "bytes": 2276269,
+        "observed_sha256": "30bc95073e27e05a9aa6e99b46b173e5636c7b47c1bbdf9e6f8f8ee82f0e8e00",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/DLBCL/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 4391592,
+        "observed_sha256": "282a5076efcade74836e1998a406d395fc9f08551db76a0b160e0cfe81c55e01",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U8",
+        "n": 77
+      },
+      "content": {
+        "shape": [
+          77,
+          7129
+        ],
+        "y_length": 77,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "DLBCL": 58,
+          "FL": 19
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 77
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 71290,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "ARCENE",
+      "expected": {
+        "n": 200,
+        "p": 10000,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/ARCENE/arcene.zip",
+        "recorded_sha256": "c7a40e39edf23a9b744eb570592d6e917fd9a1976aaf20ad581e09afd47d5220",
+        "present": true,
+        "bytes": 8648477,
+        "observed_sha256": "c7a40e39edf23a9b744eb570592d6e917fd9a1976aaf20ad581e09afd47d5220",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/ARCENE/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 16000128,
+        "observed_sha256": "62d617a0ff8f03cc3ef691425e53f9dca8e45abc60bd99901178e455eddd67a1",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U10",
+        "n": 200
+      },
+      "content": {
+        "shape": [
+          200,
+          10000
+        ],
+        "y_length": 200,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "-1": 112,
+          "1": 88
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "train": 100,
+          "valid": 100
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 100000,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "DEXTER",
+      "expected": {
+        "n": 600,
+        "p": 20000,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/DEXTER/dexter.zip",
+        "recorded_sha256": "70400df292178d8d3627411a5631a4cb13fb6b19da4a200b9a206f25255cddcc",
+        "present": true,
+        "bytes": 1323575,
+        "observed_sha256": "70400df292178d8d3627411a5631a4cb13fb6b19da4a200b9a206f25255cddcc",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/DEXTER/X_csr.npz",
+        "format": "scipy_csr",
+        "present": true,
+        "bytes": 200291,
+        "observed_sha256": "daa81da5aaa600d3c4f903cf79656e298eade7713ad63e4dc9a6e6f27030f278",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U10",
+        "n": 600
+      },
+      "content": {
+        "shape": [
+          600,
+          20000
+        ],
+        "y_length": 600,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "-1": 300,
+          "1": 300
+        },
+        "storage": "scipy_csr",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "train": 300,
+          "valid": 300
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 200000,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "BREAST",
+      "expected": {
+        "n": 97,
+        "p": 24481,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/BREAST/breast-cancer-kent-ridge-2.csv",
+        "recorded_sha256": "9a4971e3bc260ff1f3f68cfbbed3754c04940e4c042fe64faf3bf27737240f64",
+        "present": true,
+        "bytes": 15001176,
+        "observed_sha256": "9a4971e3bc260ff1f3f68cfbbed3754c04940e4c042fe64faf3bf27737240f64",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/BREAST/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 18997384,
+        "observed_sha256": "ed6f705c0e580bb31aea56a4ffe361fb15fa364546746a5328e6bf375eb92633",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U9",
+        "n": 97
+      },
+      "content": {
+        "shape": [
+          97,
+          24481
+        ],
+        "y_length": 97,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "non-relapse": 51,
+          "relapse": 46
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 97
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 244810,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "MADELON",
+      "expected": {
+        "n": 2600,
+        "p": 500,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/MADELON/madelon.zip",
+        "recorded_sha256": "eb99a0153ebe7d9f4e74551b4b10c54a958b2990b156ce7d76b4e8d71a6f6e82",
+        "present": true,
+        "bytes": 3040503,
+        "observed_sha256": "eb99a0153ebe7d9f4e74551b4b10c54a958b2990b156ce7d76b4e8d71a6f6e82",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/MADELON/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 10400128,
+        "observed_sha256": "dac47cb610265c0a43c3b9999bfd5d1cea473469251b10d42ec65354bd1a9449",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U12",
+        "n": 2600
+      },
+      "content": {
+        "shape": [
+          2600,
+          500
+        ],
+        "y_length": 2600,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "-1": 1300,
+          "1": 1300
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "train": 2000,
+          "valid": 600
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 5000,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "GINA",
+      "expected": {
+        "n": 3468,
+        "p": 970,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/GINA/gina_agnostic.arff",
+        "recorded_sha256": "d4b95d97b031c4d331ec2d23d94203f1f8451e1af473bfd95a02d3881761d1b6",
+        "present": true,
+        "bytes": 8544653,
+        "observed_sha256": "d4b95d97b031c4d331ec2d23d94203f1f8451e1af473bfd95a02d3881761d1b6",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/GINA/X.npy",
+        "format": "numpy_npy",
+        "present": true,
+        "bytes": 26911808,
+        "observed_sha256": "aba37efdeda83810adb314ffd36d6cd9e0c6cf88951dae9e36a039661391e741",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U9",
+        "n": 3468
+      },
+      "content": {
+        "shape": [
+          3468,
+          970
+        ],
+        "y_length": 3468,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "-1": 1763,
+          "1": 1705
+        },
+        "storage": "numpy_dense",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "original_labeled": 3468
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 9700,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    },
+    {
+      "dataset": "GISETTE",
+      "expected": {
+        "n": 7000,
+        "p": 5000,
+        "c": 2
+      },
+      "failures": [],
+      "warnings": [],
+      "raw": {
+        "recorded_path": "dataset/ossfs-dd-reproduction/raw/GISETTE/gisette.zip",
+        "recorded_sha256": "430bb631b3e494659f13763c117f06f5aa8a269b0d8e13ccf5b71d95303f3808",
+        "present": true,
+        "bytes": 21298687,
+        "observed_sha256": "430bb631b3e494659f13763c117f06f5aa8a269b0d8e13ccf5b71d95303f3808",
+        "hash_matches": true
+      },
+      "processed_X": {
+        "path": "dataset/ossfs-dd-reproduction/processed/GISETTE/X_csr.npz",
+        "format": "scipy_csr",
+        "present": true,
+        "bytes": 13665560,
+        "observed_sha256": "9a8eef7f265264bc40eb385b89d34e48857a7e17495f288c41ab1bf2100dfeef",
+        "hash_matches": true
+      },
+      "sample_ids": {
+        "present": true,
+        "dtype": "<U12",
+        "n": 7000
+      },
+      "content": {
+        "shape": [
+          7000,
+          5000
+        ],
+        "y_length": 7000,
+        "n_classes_observed": 2,
+        "class_counts": {
+          "-1": 3500,
+          "1": 3500
+        },
+        "storage": "scipy_csr",
+        "nonfinite_values": 0,
+        "label_map_reversible": true,
+        "source_split_counts": {
+          "train": 6000,
+          "valid": 1000
+        }
+      },
+      "plan_checks": {
+        "split_plans_expected": 10,
+        "split_plans_present": 10,
+        "order_plans_expected": 10,
+        "order_plans_present": 10,
+        "folds_checked": 50,
+        "disjoint_violations": 0,
+        "coverage_violations": 0,
+        "bounds_violations": 0,
+        "permutation_violations": 0,
+        "inverse_violations": 0,
+        "v1_backup_checked": 10,
+        "v1_backup_arrival_order_preserved": 10,
+        "failures": []
+      },
+      "stream_check": {
+        "seeds_checked": 10,
+        "folds_checked": 10,
+        "columns_emitted_total": 50000,
+        "row_count_violations": 0,
+        "value_columns_checked": 120,
+        "value_mismatches": 0,
+        "held_out_rows_never_emitted": true,
+        "value_sampling_policy": "element-wise comparison of 12 columns per seed; row-count coverage is 100%",
+        "failures": []
+      },
+      "outcome": "DATASET_FILES_PRESENT"
+    }
+  ],
+  "read_only": true,
+  "datasets_modified_by_this_audit": []
+}

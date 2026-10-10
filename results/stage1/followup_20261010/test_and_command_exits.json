@@ -1,0 +1,37 @@
+{
+  "schema": "ossfs-dd-reproduction/stage1/command_exits/1.0",
+  "recorded_utc": "2026-10-10T16:59:12Z",
+  "note": "Exit codes are preserved verbatim. A non-zero code from stage1_verify/stage1_report is the expected consequence of the unchanged provenance gate; it is NOT suppressed.",
+  "commands": [
+    {
+      "command": "uv run python scripts/stage1_live_audit.py",
+      "exit_code": 0,
+      "expected": 0,
+      "meaning": "all 11 datasets physically present, hash-verified, dimensionally correct; 550 folds and 110 permutations valid; 0 stream mismatches"
+    },
+    {
+      "command": "uv run pytest -q",
+      "exit_code": 0,
+      "expected": 0,
+      "meaning": "full suite passed, 0 failed, 0 skipped; git audit status=ok"
+    },
+    {
+      "command": "uv run python scripts/stage1_verify.py --all",
+      "exit_code": 2,
+      "expected": 2,
+      "meaning": "data gate exact_verified_provenance failed (9/11); reports written before exit"
+    },
+    {
+      "command": "uv run python scripts/stage1_report.py",
+      "exit_code": 2,
+      "expected": 2,
+      "meaning": "final verdict STAGE1_PARTIAL; reports written before exit"
+    },
+    {
+      "command": "uv run python scripts/stage1_live_audit.py",
+      "exit_code": 0,
+      "expected": 0,
+      "meaning": "post-repair re-audit identical: DATASET_FILES_PRESENT"
+    }
+  ]
+}

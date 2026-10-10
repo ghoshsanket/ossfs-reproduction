@@ -146,9 +146,74 @@ def audit_dataset(parsed: ParsedDataset, spec: DatasetSpec) -> dict[str, Any]:
         },
         "value_range": value_range,
         "value_integrality": _integrality(X, is_sparse),
+        "sentinel_candidates": detect_sentinel_candidates(X, is_sparse),
         "modifications_applied": [],
         "modification_policy": "Stage 1 audits only; it never imputes, scales, drops or deduplicates.",
         "flags": _flags(n_nonfinite, constant_columns, duplicate_columns, duplicate_rows, zero_rows),
+    }
+
+
+def detect_sentinel_candidates(X: Any, is_sparse: bool, *, min_share: float = 1e-4,
+                               iqr_multiple: float = 10.0) -> dict[str, Any]:
+    """Flag values that look like placeholder/sentinel codes.
+
+    Stage 1 must NOT repair them; it must surface them. A sentinel is inferred
+    here when a value is both
+
+      * **repetitive** — it occupies at least ``min_share`` of all cells, and
+      * **displaced** — it sits more than ``iqr_multiple`` interquartile ranges
+        outside the interquartile range, so it cannot be ordinary biological
+        variation, and it is a round number.
+
+    This is deliberately conservative and is reported as a *candidate* set. It
+    is not a declaration that the value is a sentinel: only the data owner or
+    the original publication can settle that, and the decision belongs to the
+    researcher, not to this pipeline.
+    """
+    d = X.data if is_sparse else np.asarray(X).ravel()
+    if d.size == 0:
+        return {"checked": False, "reason": "no values"}
+    finite = d[np.isfinite(d)]
+    if finite.size == 0:
+        return {"checked": False, "reason": "no finite values"}
+
+    q1, q3 = np.percentile(finite, [25, 75])
+    iqr = float(q3 - q1)
+    n_cells = int(d.size)
+
+    values, counts = np.unique(d, return_counts=True)
+    share = counts / n_cells
+    mask = share >= min_share
+
+    candidates = []
+    for v, c, sh in zip(values[mask], counts[mask], share[mask], strict=True):
+        if iqr <= 0:
+            continue
+        dev = max((float(v) - q3), (q1 - float(v))) / iqr
+        if dev <= iqr_multiple:
+            continue
+        if not float(v).is_integer() and abs(float(v)) >= 1e4:
+            continue  # large non-round values are more likely genuine
+        candidates.append({
+            "value": float(v),
+            "occurrences": int(c),
+            "share_of_cells": float(sh),
+            "iqr_distances_beyond_range": round(float(dev), 2),
+            "interpretation": "candidate placeholder/sentinel — NOT repaired, requires a "
+                              "researcher decision on how the source encodes missingness",
+        })
+    candidates.sort(key=lambda r: -r["occurrences"])
+    return {
+        "checked": True,
+        "criterion": (
+            f"value occupies >= {min_share:.0e} of cells AND lies > {iqr_multiple:g} IQR "
+            f"outside [q1, q3]; observed IQR={iqr:.6g}"
+        ),
+        "n_candidates": len(candidates),
+        "total_candidate_occurrences": int(sum(c["occurrences"] for c in candidates)),
+        "candidates": candidates[:10],
+        "is_definitive": False,
+        "policy": "Reported only. Stage 1 never imputes, clips or replaces values.",
     }
 
 

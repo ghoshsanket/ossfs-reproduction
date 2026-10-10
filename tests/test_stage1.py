@@ -353,7 +353,12 @@ def test_cv_train_test_disjoint(registry, stage1_cfg):
 # 10
 # =========================================================================
 def test_feature_order_is_permutation(stage1_cfg):
-    """Each saved arrival order is a permutation of 0..p-1 and is reversible."""
+    """Each saved arrival order is a permutation of 0..p-1 and is reversible.
+
+    The inverse field must map ``feature_index -> arrival_position`` (schema
+    2.0). A v1 record stored the forward mapping there, which made it a verbatim
+    copy of ``arrival_order`` and therefore not an inverse at all.
+    """
     seeds = stage1_cfg["evaluation_plan"]["seeds"]
     found = 0
     for spec_dir in (data_root() / "stream_orders").glob("*"):
@@ -368,11 +373,20 @@ def test_feature_order_is_permutation(stage1_cfg):
             assert sorted(order) == list(range(expected_p)), f"{key} seed {seed}: not a permutation"
             assert rec["n_features"] == expected_p
             assert len(order) == len(set(order))
-            # reversibility: position -> feature must invert the order exactly
+
+            assert rec.get("schema") == "ossfs-dd-reproduction/stage1/stream_order/2.0", (
+                f"{key} seed {seed}: pre-migration v1 record; its inverse field is a copy of "
+                "arrival_order"
+            )
             inv = {int(k): v for k, v in rec["inverse_position_of_feature"].items()}
-            assert len(inv) == expected_p
-            for pos, feat in enumerate(order):
-                assert inv[pos] == feat, f"{key} seed {seed}: inverse map disagrees at {pos}"
+            assert len(inv) == expected_p, f"{key} seed {seed}: inverse has {len(inv)} entries"
+            for feature_id in range(expected_p):
+                position = inv[feature_id]
+                assert 0 <= position < expected_p
+                assert order[position] == feature_id, (
+                    f"{key} seed {seed}: inverse_position_of_feature[{feature_id}]={position} "
+                    f"but arrival_order[{position}]={order[position]} — the field is not an inverse"
+                )
             found += 1
     assert found > 0, "no feature-order plans found on disk"
 

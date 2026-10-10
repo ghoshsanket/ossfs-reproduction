@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pytest
@@ -60,11 +61,17 @@ def synthetic_fixture(tmp_path_factory):
 
 def pytest_sessionfinish(session, exitstatus):
     """Persist test evidence for the Stage 1 gate evaluator."""
+    config_error: str | None = None
     try:
         cfg = load_stage1_config()
         required = set(cfg.get("required_named_tests") or [])
-    except Exception:
+        if not required:
+            config_error = "configs/stage1.yaml declared no required_named_tests"
+    except Exception as exc:  # noqa: BLE001 - evidence must be reported, not assumed
+        # Failing over to an empty required-set would make `missing_required_tests`
+        # vacuously empty and turn the gate green. Record the failure instead.
         required = set()
+        config_error = f"{type(exc).__name__}: {exc}"
 
     reporter = None
     pm = getattr(session.config, "pluginmanager", None)
@@ -79,17 +86,26 @@ def pytest_sessionfinish(session, exitstatus):
         for bucket in stats.values()
         for rep in bucket
     ]
-    passed_names = {
-        rep.nodeid.split("::")[-1].split("[")[0] for rep in stats.get("passed", [])
-    }
     distinct = set(names)
     missing = sorted(required - distinct)
+    # A required test that was SKIPPED has not produced evidence. Treating a skip
+    # as a pass would let an inaccessible dataset source turn a hard gate green.
+    skipped_names = {
+        rep.nodeid.split("::")[-1].split("[")[0] for rep in stats.get("skipped", [])
+    }
+    skipped_required = sorted(required & skipped_names)
+    effective_passed = {
+        rep.nodeid.split("::")[-1].split("[")[0] for rep in stats.get("passed", [])
+    }
+    skipped_required = [n for n in skipped_required if n not in effective_passed]
     leakage_failures = sorted(
-        n for n in STREAM_LEAKAGE_TESTS if n in distinct and n not in passed_names
+        n for n in STREAM_LEAKAGE_TESTS if n in distinct and n not in effective_passed
     )
 
+    git_audit = _git_data_violations()
+
     payload = {
-        "schema": "ossfs-dd-reproduction/stage1/testresults/1.0",
+        "schema": "ossfs-dd-reproduction/stage1/testresults/2.0",
         "exitstatus": int(exitstatus),
         # Sanitised: a committed artefact must not carry private absolute paths.
         "interpreter_is_project_venv": str(Path(sys.executable).resolve())
@@ -101,10 +117,25 @@ def pytest_sessionfinish(session, exitstatus):
         "total": passed + failed + len(stats.get("skipped", [])),
         "required_named_tests": sorted(required),
         "missing_required_tests": missing,
+        "skipped_required_tests": skipped_required,
         "observed_test_names": sorted(distinct),
         "stream_leakage_tests": sorted(STREAM_LEAKAGE_TESTS),
         "stream_leakage_failures": leakage_failures,
-        "git_data_violations": _git_data_violations(),
+        "git_audit_status": git_audit["status"],
+        "git_data_violations": git_audit["violations"],
+        "git_audit_detail": git_audit["detail"],
+        "config_error": config_error,
+        "evidence_complete": bool(
+            not missing
+            and not skipped_required
+            and git_audit["status"] == "ok"
+            and not leakage_failures
+            and config_error is None
+        ),
+        "fail_closed_note": (
+            "git_data_violations is null when the git audit could not run. A gate "
+            "evaluated against null evidence must report 'not measured' and must not pass."
+        ),
     }
     try:
         results_dir().mkdir(parents=True, exist_ok=True)
@@ -115,48 +146,80 @@ def pytest_sessionfinish(session, exitstatus):
         print(f"WARNING: could not persist test_results.json: {exc}", file=sys.stderr)
 
 
-_GIT_CACHE: dict[str, object] = {}
+def _git_data_violations() -> dict[str, Any]:
+    """Audit whether git would stage data or binaries.
 
+    FAIL-CLOSED. v1 returned ``0`` violations whenever git was missing, the
+    project was not a repository, or a subprocess raised, which silently turned
+    absent evidence into a passing gate. The result now carries an explicit
+    status:
 
-def _git_data_violations() -> int:
-    """Count data/binary paths git would actually stage.
+      ``ok``       the audit ran; ``violations`` is a measured integer
+      ``unavailable``  git is not a repository here -> ``violations`` is null
+      ``error``     git raised or returned unusable output -> ``violations`` null
 
-    Runs the real ``git add --dry-run`` so the answer reflects git's own
-    matching rules rather than a reimplementation of them.
+    ``null`` means *not measured*, and a gate evaluated against it must not pass.
     """
-    if "v" in _GIT_CACHE:
-        return _GIT_CACHE["v"]  # type: ignore[return-value]
     import subprocess
 
     root = project_root()
-    violations = 0
     try:
         inside = subprocess.run(
             ["git", "-C", str(root), "rev-parse", "--is-inside-work-tree"],
             capture_output=True, text=True, timeout=30, check=False,
         )
-        if inside.returncode != 0 or inside.stdout.strip() != "true":
-            _GIT_CACHE["v"] = 0
-            return 0
+    except (OSError, subprocess.SubprocessError) as exc:
+        return {"status": "error", "violations": None,
+                "detail": f"could not execute git: {type(exc).__name__}: {exc}"}
+
+    if inside.returncode != 0 or inside.stdout.strip() != "true":
+        return {
+            "status": "unavailable",
+            "violations": None,
+            "detail": "project is not inside a git work tree; the ignore rules could not be audited",
+        }
+
+    try:
         dry = subprocess.run(
             ["git", "-C", str(root), "add", "-A", "--dry-run", "--verbose"],
-            capture_output=True, text=True, timeout=120, check=False,
+            capture_output=True, text=True, timeout=180, check=False,
         )
-        for line in dry.stdout.splitlines():
-            if not line.startswith("add "):
-                continue
-            path = line.split("'", 2)[-1].rstrip("'") if "'" in line else line.split()[-1]
-            p = Path(path)
-            if p.suffix.lower() in {".npy", ".npz", ".zip", ".arff", ".csv.gz", ".pt", ".pth"} \
-               or "/dataset/" in path or "/outputs/" in path:
-                violations += 1
         ignored = subprocess.run(
             ["git", "-C", str(root), "status", "--ignored", "--porcelain"],
-            capture_output=True, text=True, timeout=120, check=False,
+            capture_output=True, text=True, timeout=180, check=False,
         )
-        if ignored.returncode == 0 and data_root().exists() and "!!" not in ignored.stdout:
-            violations += 1
-    except Exception:
-        violations = 0
-    _GIT_CACHE["v"] = violations
-    return violations
+    except (OSError, subprocess.SubprocessError) as exc:
+        return {"status": "error", "violations": None,
+                "detail": f"git subprocess failed: {type(exc).__name__}: {exc}"}
+
+    if dry.returncode != 0 or not dry.stdout:
+        return {
+            "status": "error",
+            "violations": None,
+            "detail": f"git add --dry-run failed (rc={dry.returncode}): {dry.stderr.strip()[:200]}",
+        }
+    if ignored.returncode != 0:
+        return {
+            "status": "error",
+            "violations": None,
+            "detail": f"git status --ignored failed (rc={ignored.returncode})",
+        }
+
+    violations: list[str] = []
+    for line in dry.stdout.splitlines():
+        if not line.startswith("add "):
+            continue
+        path = line.split("'")[1] if "'" in line else line.split()[-1]
+        low = path.lower()
+        if low.startswith(("dataset/", "data/", "outputs/", "runs/")) or low.endswith(
+            (".npy", ".npz", ".zip", ".arff", ".pt", ".pth", ".safetensors")
+        ):
+            violations.append(path)
+    if data_root().exists() and "!!" not in ignored.stdout:
+        violations.append("dataset tree present but nothing reported as ignored")
+
+    return {
+        "status": "ok",
+        "violations": len(violations),
+        "detail": sorted(violations) if violations else "no data or binary path would be staged",
+    }
