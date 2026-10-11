@@ -1,0 +1,53 @@
+{
+  "classifier_evaluated": false,
+  "datasets": [
+    "SRBCT",
+    "LYMPHOMA",
+    "PROSTATE",
+    "LEUKEMIA"
+  ],
+  "mode_id": "continuous_reconstructed_fisherz_v1",
+  "results": {
+    "LEUKEMIA": {
+      "n_features_seen": 7129,
+      "n_selected": 608,
+      "n_train_rows": 57,
+      "pair_skips": 0,
+      "seconds": 7.784,
+      "selected_fraction": 0.08528545378033385,
+      "status": "DIAGNOSTIC_COMPLETED"
+    },
+    "LYMPHOMA": {
+      "n_features_seen": 4026,
+      "n_selected": 343,
+      "n_train_rows": 49,
+      "pair_skips": 0,
+      "seconds": 4.29,
+      "selected_fraction": 0.08519622454048684,
+      "status": "DIAGNOSTIC_COMPLETED"
+    },
+    "PROSTATE": {
+      "n_features_seen": 6033,
+      "n_selected": 469,
+      "n_train_rows": 81,
+      "pair_skips": 0,
+      "seconds": 5.48,
+      "selected_fraction": 0.07773910160782364,
+      "status": "DIAGNOSTIC_COMPLETED"
+    },
+    "SRBCT": {
+      "n_features_seen": 2308,
+      "n_selected": 211,
+      "n_train_rows": 50,
+      "pair_skips": 0,
+      "seconds": 1.617,
+      "selected_fraction": 0.09142114384748701,
+      "status": "DIAGNOSTIC_COMPLETED"
+    }
+  },
+  "schema": "ossfs-dd-reproduction/continuous_rnd/summary/1.0",
+  "semantics_status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED",
+  "stage2_verdict_unchanged": "STAGE2_PARTIAL | DISCRETE_CORRECTNESS_PASS",
+  "training_rows_only_verified": true,
+  "verdict": "CONTINUOUS_RND_DIAGNOSTIC_READY"
+}

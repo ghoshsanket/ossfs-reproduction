@@ -1,0 +1,1012 @@
+{
+  "n_records": 250,
+  "schema": "ossfs-dd-reproduction/stage3a/aggregate/1.0",
+  "seeds": [
+    11,
+    17,
+    23,
+    31,
+    47,
+    59,
+    71,
+    83,
+    97,
+    109
+  ],
+  "variants": {
+    "outcomes_raw_primary": {
+      "datasets": {
+        "ARCENE": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.8200000000000001,
+              "mean_accuracy": 0.748,
+              "min_seed_mean": 0.675,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8200000000000001,
+                "17": 0.675,
+                "23": 0.74,
+                "31": 0.7549999999999999,
+                "47": 0.75,
+                "59": 0.79,
+                "71": 0.75,
+                "83": 0.7249999999999999,
+                "97": 0.745,
+                "109": 0.73
+              },
+              "sd_across_seed_means": 0.0383840244546261
+            },
+            "knn": {
+              "max_seed_mean": 0.8550000000000001,
+              "mean_accuracy": 0.8089999999999999,
+              "min_seed_mean": 0.7499999999999999,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.78,
+                "17": 0.7849999999999999,
+                "23": 0.8400000000000001,
+                "31": 0.82,
+                "47": 0.8450000000000001,
+                "59": 0.8150000000000001,
+                "71": 0.8550000000000001,
+                "83": 0.7499999999999999,
+                "97": 0.8099999999999999,
+                "109": 0.7899999999999999
+              },
+              "sd_across_seed_means": 0.032981476282570824
+            },
+            "svm": {
+              "max_seed_mean": 0.89,
+              "mean_accuracy": 0.8474999999999999,
+              "min_seed_mean": 0.8,
+              "n_nonconverged_runs": 2,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.86,
+                "17": 0.8550000000000001,
+                "23": 0.865,
+                "31": 0.865,
+                "47": 0.835,
+                "59": 0.8300000000000001,
+                "71": 0.86,
+                "83": 0.8150000000000001,
+                "97": 0.89,
+                "109": 0.8
+              },
+              "sd_across_seed_means": 0.027003086243366066
+            }
+          },
+          "n_features_total": 10000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.152,
+          "selected_count_mean": 963.64,
+          "selected_fraction_mean": 0.096364,
+          "selection_seconds_mean": 2.02644,
+          "selection_seconds_total": 101.322
+        },
+        "DEXTER": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.85,
+              "mean_accuracy": 0.8348333333333334,
+              "min_seed_mean": 0.8083333333333333,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.85,
+                "17": 0.8133333333333332,
+                "23": 0.85,
+                "31": 0.835,
+                "47": 0.8416666666666668,
+                "59": 0.8383333333333333,
+                "71": 0.825,
+                "83": 0.8083333333333333,
+                "97": 0.8366666666666667,
+                "109": 0.85
+              },
+              "sd_across_seed_means": 0.014957759454585266
+            },
+            "knn": {
+              "max_seed_mean": 0.7566666666666666,
+              "mean_accuracy": 0.7230000000000001,
+              "min_seed_mean": 0.7016666666666668,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.7233333333333333,
+                "17": 0.7233333333333334,
+                "23": 0.7216666666666667,
+                "31": 0.7566666666666666,
+                "47": 0.7300000000000001,
+                "59": 0.7116666666666667,
+                "71": 0.7016666666666668,
+                "83": 0.7166666666666666,
+                "97": 0.7233333333333334,
+                "109": 0.7216666666666667
+              },
+              "sd_across_seed_means": 0.01418136492412174
+            },
+            "svm": {
+              "max_seed_mean": 0.9033333333333333,
+              "mean_accuracy": 0.8943333333333333,
+              "min_seed_mean": 0.8816666666666666,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9033333333333333,
+                "17": 0.8966666666666667,
+                "23": 0.8883333333333334,
+                "31": 0.9016666666666667,
+                "47": 0.8983333333333334,
+                "59": 0.9,
+                "71": 0.8833333333333334,
+                "83": 0.8933333333333333,
+                "97": 0.8966666666666667,
+                "109": 0.8816666666666666
+              },
+              "sd_across_seed_means": 0.007544108976341322
+            }
+          },
+          "n_features_total": 20000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.16,
+          "selected_count_mean": 460.18,
+          "selected_fraction_mean": 0.023009,
+          "selection_seconds_mean": 49.477920000000005,
+          "selection_seconds_total": 2473.896
+        },
+        "GINA": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.8365100157607361,
+              "mean_accuracy": 0.8246839743669716,
+              "min_seed_mean": 0.8076687001759048,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8310307687829301,
+                "17": 0.8145867900911128,
+                "23": 0.8232468780019213,
+                "31": 0.8076687001759048,
+                "47": 0.8344914771427738,
+                "59": 0.8264135800158854,
+                "71": 0.8365100157607361,
+                "83": 0.8180487460026364,
+                "97": 0.8189170419717972,
+                "109": 0.8359257457240166
+              },
+              "sd_across_seed_means": 0.009868664329332411
+            },
+            "knn": {
+              "max_seed_mean": 0.8936029708364004,
+              "mean_accuracy": 0.8792115473383484,
+              "min_seed_mean": 0.858996303088522,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8794748639129043,
+                "17": 0.8728383048267775,
+                "23": 0.8783221261607428,
+                "31": 0.858996303088522,
+                "47": 0.8826394866740689,
+                "59": 0.8849437146267117,
+                "71": 0.8840866466226697,
+                "83": 0.8936029708364004,
+                "97": 0.8716826561206965,
+                "109": 0.8855284005139913
+              },
+              "sd_across_seed_means": 0.009558066611183236
+            },
+            "svm": {
+              "max_seed_mean": 0.5273330256039189,
+              "mean_accuracy": 0.44823221926968326,
+              "min_seed_mean": 0.3206889812077132,
+              "n_nonconverged_runs": 50,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.4483397166394285,
+                "17": 0.42068357515043386,
+                "23": 0.5273330256039189,
+                "31": 0.3206889812077132,
+                "47": 0.47606572102249334,
+                "59": 0.4166627160863472,
+                "71": 0.48733859800142226,
+                "83": 0.4850164884747018,
+                "97": 0.45065600425830976,
+                "109": 0.44953736625206364
+              },
+              "sd_across_seed_means": 0.05572198977303177
+            }
+          },
+          "n_features_total": 970,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.197,
+          "selected_count_mean": 91.36,
+          "selected_fraction_mean": 0.09418556701030928,
+          "selection_seconds_mean": 1.98694,
+          "selection_seconds_total": 99.347
+        },
+        "GISETTE": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.9357142857142856,
+              "mean_accuracy": 0.9313571428571429,
+              "min_seed_mean": 0.925142857142857,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9318571428571427,
+                "17": 0.9328571428571427,
+                "23": 0.925142857142857,
+                "31": 0.9357142857142856,
+                "47": 0.9302857142857143,
+                "59": 0.9331428571428573,
+                "71": 0.9322857142857144,
+                "83": 0.9312857142857143,
+                "97": 0.9322857142857144,
+                "109": 0.9287142857142857
+              },
+              "sd_across_seed_means": 0.002850985428554883
+            },
+            "knn": {
+              "max_seed_mean": 0.9629999999999999,
+              "mean_accuracy": 0.9596,
+              "min_seed_mean": 0.9572857142857144,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9629999999999999,
+                "17": 0.9578571428571427,
+                "23": 0.961,
+                "31": 0.9592857142857142,
+                "47": 0.9594285714285714,
+                "59": 0.9572857142857144,
+                "71": 0.9585714285714285,
+                "83": 0.9595714285714287,
+                "97": 0.9617142857142857,
+                "109": 0.9582857142857142
+              },
+              "sd_across_seed_means": 0.0018042529751079437
+            },
+            "svm": {
+              "max_seed_mean": 0.8859999999999999,
+              "mean_accuracy": 0.8509,
+              "min_seed_mean": 0.8172857142857142,
+              "n_nonconverged_runs": 50,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8508571428571429,
+                "17": 0.849,
+                "23": 0.8505714285714285,
+                "31": 0.8172857142857142,
+                "47": 0.865,
+                "59": 0.8262857142857143,
+                "71": 0.8310000000000001,
+                "83": 0.8859999999999999,
+                "97": 0.8754285714285714,
+                "109": 0.8575714285714288
+              },
+              "sd_across_seed_means": 0.021634570680419733
+            }
+          },
+          "n_features_total": 5000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.326,
+          "selected_count_mean": 175.64,
+          "selected_fraction_mean": 0.035128,
+          "selection_seconds_mean": 63.20542,
+          "selection_seconds_total": 3160.2709999999997
+        },
+        "MADELON": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.7803846153846153,
+              "mean_accuracy": 0.7669615384615385,
+              "min_seed_mean": 0.7511538461538463,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.7626923076923077,
+                "17": 0.7803846153846153,
+                "23": 0.7657692307692308,
+                "31": 0.7669230769230768,
+                "47": 0.7684615384615384,
+                "59": 0.7719230769230768,
+                "71": 0.7769230769230769,
+                "83": 0.7511538461538463,
+                "97": 0.7607692307692308,
+                "109": 0.7646153846153846
+              },
+              "sd_across_seed_means": 0.008297655380444687
+            },
+            "knn": {
+              "max_seed_mean": 0.7938461538461539,
+              "mean_accuracy": 0.7803461538461539,
+              "min_seed_mean": 0.7542307692307693,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.7815384615384615,
+                "17": 0.7761538461538462,
+                "23": 0.778076923076923,
+                "31": 0.7542307692307693,
+                "47": 0.7857692307692308,
+                "59": 0.7826923076923077,
+                "71": 0.7938461538461539,
+                "83": 0.7865384615384615,
+                "97": 0.7819230769230769,
+                "109": 0.7826923076923077
+              },
+              "sd_across_seed_means": 0.010379786784973572
+            },
+            "svm": {
+              "max_seed_mean": 0.546923076923077,
+              "mean_accuracy": 0.513423076923077,
+              "min_seed_mean": 0.465,
+              "n_nonconverged_runs": 50,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.5153846153846154,
+                "17": 0.5192307692307692,
+                "23": 0.5361538461538462,
+                "31": 0.49884615384615383,
+                "47": 0.5330769230769231,
+                "59": 0.51,
+                "71": 0.4903846153846153,
+                "83": 0.546923076923077,
+                "97": 0.465,
+                "109": 0.5192307692307692
+              },
+              "sd_across_seed_means": 0.02402842525530619
+            }
+          },
+          "n_features_total": 500,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.164,
+          "selected_count_mean": 56.08,
+          "selected_fraction_mean": 0.11216,
+          "selection_seconds_mean": 0.30025999999999997,
+          "selection_seconds_total": 15.013
+        }
+      },
+      "label": "RAW_PRIMARY",
+      "seed_blocked_bootstrap": {
+        "ARCENE:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.771,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.726,
+          "mean": 0.748,
+          "n": 10,
+          "resamples": 10000
+        },
+        "ARCENE:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8285,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.7895,
+          "mean": 0.8089999999999999,
+          "n": 10,
+          "resamples": 10000
+        },
+        "ARCENE:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8630000000000001,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8310000000000001,
+          "mean": 0.8474999999999999,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8431666666666666,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8254999999999999,
+          "mean": 0.8348333333333334,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.7321666666666666,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.7153333333333334,
+          "mean": 0.7230000000000001,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8985000000000001,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8896666666666666,
+          "mean": 0.8943333333333333,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8303078292184921,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8186831738546435,
+          "mean": 0.8246839743669716,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8844886628741097,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8732113851566302,
+          "mean": 0.8792115473383484,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.4779539466297391,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.4119450786165483,
+          "mean": 0.44823221926968326,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.9328999999999998,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.9295571428571427,
+          "mean": 0.9313571428571429,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.9606860714285717,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.9585857142857144,
+          "mean": 0.9596,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.863115,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8379424999999999,
+          "mean": 0.8509,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.7718076923076923,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.7621153846153846,
+          "mean": 0.7669615384615385,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.7856153846153846,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.773423076923077,
+          "mean": 0.7803461538461539,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.5263846153846155,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.4992298076923076,
+          "mean": 0.513423076923077,
+          "n": 10,
+          "resamples": 10000
+        }
+      }
+    },
+    "outcomes_standardized_sensitivity": {
+      "datasets": {
+        "ARCENE": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.8200000000000001,
+              "mean_accuracy": 0.748,
+              "min_seed_mean": 0.675,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8200000000000001,
+                "17": 0.675,
+                "23": 0.74,
+                "31": 0.7549999999999999,
+                "47": 0.75,
+                "59": 0.79,
+                "71": 0.75,
+                "83": 0.7249999999999999,
+                "97": 0.745,
+                "109": 0.73
+              },
+              "sd_across_seed_means": 0.0383840244546261
+            },
+            "knn": {
+              "max_seed_mean": 0.8600000000000001,
+              "mean_accuracy": 0.8190000000000002,
+              "min_seed_mean": 0.7700000000000001,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8,
+                "17": 0.775,
+                "23": 0.8550000000000001,
+                "31": 0.825,
+                "47": 0.845,
+                "59": 0.825,
+                "71": 0.8600000000000001,
+                "83": 0.7700000000000001,
+                "97": 0.82,
+                "109": 0.8150000000000001
+              },
+              "sd_across_seed_means": 0.030623157540948926
+            },
+            "svm": {
+              "max_seed_mean": 0.9,
+              "mean_accuracy": 0.8494999999999999,
+              "min_seed_mean": 0.825,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.845,
+                "17": 0.85,
+                "23": 0.85,
+                "31": 0.8549999999999999,
+                "47": 0.8300000000000001,
+                "59": 0.845,
+                "71": 0.85,
+                "83": 0.845,
+                "97": 0.9,
+                "109": 0.825
+              },
+              "sd_across_seed_means": 0.02006240264773888
+            }
+          },
+          "n_features_total": 10000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.152,
+          "selected_count_mean": 963.64,
+          "selected_fraction_mean": 0.096364,
+          "selection_seconds_mean": 2.02644,
+          "selection_seconds_total": 101.322
+        },
+        "DEXTER": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.85,
+              "mean_accuracy": 0.835,
+              "min_seed_mean": 0.8083333333333333,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.85,
+                "17": 0.8133333333333332,
+                "23": 0.85,
+                "31": 0.835,
+                "47": 0.8433333333333334,
+                "59": 0.8383333333333333,
+                "71": 0.825,
+                "83": 0.8083333333333333,
+                "97": 0.8366666666666667,
+                "109": 0.85
+              },
+              "sd_across_seed_means": 0.01505135242682675
+            },
+            "knn": {
+              "max_seed_mean": 0.7699999999999999,
+              "mean_accuracy": 0.7549999999999999,
+              "min_seed_mean": 0.7333333333333333,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.7449999999999999,
+                "17": 0.765,
+                "23": 0.76,
+                "31": 0.7666666666666666,
+                "47": 0.7499999999999999,
+                "59": 0.7483333333333333,
+                "71": 0.7333333333333333,
+                "83": 0.7699999999999999,
+                "97": 0.7633333333333333,
+                "109": 0.7483333333333333
+              },
+              "sd_across_seed_means": 0.01173261782330161
+            },
+            "svm": {
+              "max_seed_mean": 0.9066666666666668,
+              "mean_accuracy": 0.8901666666666668,
+              "min_seed_mean": 0.875,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9066666666666668,
+                "17": 0.885,
+                "23": 0.8933333333333333,
+                "31": 0.8833333333333334,
+                "47": 0.8966666666666667,
+                "59": 0.8983333333333332,
+                "71": 0.8883333333333333,
+                "83": 0.8866666666666667,
+                "97": 0.8883333333333333,
+                "109": 0.875
+              },
+              "sd_across_seed_means": 0.00890450018006572
+            }
+          },
+          "n_features_total": 20000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.16,
+          "selected_count_mean": 460.18,
+          "selected_fraction_mean": 0.023009,
+          "selection_seconds_mean": 49.477920000000005,
+          "selection_seconds_total": 2473.896
+        },
+        "GINA": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.8365100157607361,
+              "mean_accuracy": 0.8248857450586558,
+              "min_seed_mean": 0.8085332534900258,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8316071376590107,
+                "17": 0.8145867900911128,
+                "23": 0.8235350624399616,
+                "31": 0.8085332534900258,
+                "47": 0.8347792457302544,
+                "59": 0.8269907805930862,
+                "71": 0.8365100157607361,
+                "83": 0.8177605615645962,
+                "97": 0.8180524886576761,
+                "109": 0.8365021146000974
+              },
+              "sd_across_seed_means": 0.009946030976304086
+            },
+            "knn": {
+              "max_seed_mean": 0.8898461768778771,
+              "mean_accuracy": 0.8763843873065774,
+              "min_seed_mean": 0.8638987653396875,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8745686590066993,
+                "17": 0.8725488728370573,
+                "23": 0.8699585396991736,
+                "31": 0.8638987653396875,
+                "47": 0.8786049045415039,
+                "59": 0.8809091324941468,
+                "71": 0.8774525826399024,
+                "83": 0.8898461768778771,
+                "97": 0.8705311659202148,
+                "109": 0.8855250737095117
+              },
+              "sd_across_seed_means": 0.007751469379903463
+            },
+            "svm": {
+              "max_seed_mean": 0.8491892993333916,
+              "mean_accuracy": 0.8427340510913999,
+              "min_seed_mean": 0.8359357261374554,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.8451588757064261,
+                "17": 0.842841340535865,
+                "23": 0.8460192705149477,
+                "31": 0.8359357261374554,
+                "47": 0.8434231154692249,
+                "59": 0.8457364921341867,
+                "71": 0.8431424163412636,
+                "83": 0.8491892993333916,
+                "97": 0.836504609703457,
+                "109": 0.8393893650377799
+              },
+              "sd_across_seed_means": 0.0042716181302631905
+            }
+          },
+          "n_features_total": 970,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.197,
+          "selected_count_mean": 91.36,
+          "selected_fraction_mean": 0.09418556701030928,
+          "selection_seconds_mean": 1.98694,
+          "selection_seconds_total": 99.347
+        },
+        "GISETTE": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.9355714285714285,
+              "mean_accuracy": 0.9313142857142858,
+              "min_seed_mean": 0.925,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9318571428571427,
+                "17": 0.9328571428571427,
+                "23": 0.925,
+                "31": 0.9355714285714285,
+                "47": 0.9304285714285715,
+                "59": 0.933,
+                "71": 0.932,
+                "83": 0.9312857142857143,
+                "97": 0.9324285714285715,
+                "109": 0.9287142857142857
+              },
+              "sd_across_seed_means": 0.002843459296521561
+            },
+            "knn": {
+              "max_seed_mean": 0.962142857142857,
+              "mean_accuracy": 0.9604857142857142,
+              "min_seed_mean": 0.9592857142857142,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9608571428571429,
+                "17": 0.9597142857142856,
+                "23": 0.962142857142857,
+                "31": 0.9608571428571431,
+                "47": 0.9608571428571429,
+                "59": 0.9594285714285714,
+                "71": 0.96,
+                "83": 0.9592857142857142,
+                "97": 0.9620000000000001,
+                "109": 0.9597142857142857
+              },
+              "sd_across_seed_means": 0.0010239756232926294
+            },
+            "svm": {
+              "max_seed_mean": 0.9600000000000002,
+              "mean_accuracy": 0.9574000000000001,
+              "min_seed_mean": 0.9552857142857143,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.9572857142857142,
+                "17": 0.9571428571428571,
+                "23": 0.9555714285714286,
+                "31": 0.9552857142857143,
+                "47": 0.9592857142857143,
+                "59": 0.9565714285714286,
+                "71": 0.9585714285714285,
+                "83": 0.9572857142857142,
+                "97": 0.9600000000000002,
+                "109": 0.9570000000000001
+              },
+              "sd_across_seed_means": 0.0015070507005602105
+            }
+          },
+          "n_features_total": 5000,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.326,
+          "selected_count_mean": 175.64,
+          "selected_fraction_mean": 0.035128,
+          "selection_seconds_mean": 63.20542,
+          "selection_seconds_total": 3160.2709999999997
+        },
+        "MADELON": {
+          "classifiers": {
+            "cart": {
+              "max_seed_mean": 0.78,
+              "mean_accuracy": 0.7674615384615384,
+              "min_seed_mean": 0.7515384615384615,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.7634615384615384,
+                "17": 0.78,
+                "23": 0.7669230769230768,
+                "31": 0.7673076923076924,
+                "47": 0.7696153846153846,
+                "59": 0.7719230769230768,
+                "71": 0.7773076923076923,
+                "83": 0.7515384615384615,
+                "97": 0.7611538461538461,
+                "109": 0.7653846153846153
+              },
+              "sd_across_seed_means": 0.008114888387631802
+            },
+            "knn": {
+              "max_seed_mean": 0.6592307692307692,
+              "mean_accuracy": 0.6379230769230768,
+              "min_seed_mean": 0.62,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.6399999999999999,
+                "17": 0.6342307692307692,
+                "23": 0.6396153846153846,
+                "31": 0.6288461538461538,
+                "47": 0.62,
+                "59": 0.6384615384615384,
+                "71": 0.643076923076923,
+                "83": 0.6592307692307692,
+                "97": 0.6280769230769231,
+                "109": 0.6476923076923077
+              },
+              "sd_across_seed_means": 0.011043813289159302
+            },
+            "svm": {
+              "max_seed_mean": 0.6096153846153847,
+              "mean_accuracy": 0.6035,
+              "min_seed_mean": 0.5984615384615386,
+              "n_nonconverged_runs": 0,
+              "n_seeds_evaluated": 10,
+              "per_seed_mean": {
+                "11": 0.6096153846153847,
+                "17": 0.6015384615384616,
+                "23": 0.6092307692307692,
+                "31": 0.6046153846153847,
+                "47": 0.6030769230769231,
+                "59": 0.6026923076923076,
+                "71": 0.6007692307692308,
+                "83": 0.6023076923076924,
+                "97": 0.6026923076923076,
+                "109": 0.5984615384615386
+              },
+              "sd_across_seed_means": 0.0035131480289020247
+            }
+          },
+          "n_features_total": 500,
+          "n_runs": 50,
+          "peak_rss_gib_max": 0.164,
+          "selected_count_mean": 56.08,
+          "selected_fraction_mean": 0.11216,
+          "selection_seconds_mean": 0.30025999999999997,
+          "selection_seconds_total": 15.013
+        }
+      },
+      "label": "STANDARDIZED_SENSITIVITY",
+      "seed_blocked_bootstrap": {
+        "ARCENE:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.771,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.726,
+          "mean": 0.748,
+          "n": 10,
+          "resamples": 10000
+        },
+        "ARCENE:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8370000000000001,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8009999999999999,
+          "mean": 0.8190000000000002,
+          "n": 10,
+          "resamples": 10000
+        },
+        "ARCENE:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8625,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8394999999999999,
+          "mean": 0.8494999999999999,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8433333333333334,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8256666666666665,
+          "mean": 0.835,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.7616666666666665,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.748,
+          "mean": 0.7549999999999999,
+          "n": 10,
+          "resamples": 10000
+        },
+        "DEXTER:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8953333333333335,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8851625,
+          "mean": 0.8901666666666668,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8305671567465516,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8188886029916288,
+          "mean": 0.8248857450586558,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8810830027321381,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8718286487767756,
+          "mean": 0.8763843873065774,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GINA:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.8451266545654154,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.8401122786115582,
+          "mean": 0.8427340510913999,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.9328428571428569,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.9294996428571426,
+          "mean": 0.9313142857142858,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.9611142857142857,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.9599,
+          "mean": 0.9604857142857142,
+          "n": 10,
+          "resamples": 10000
+        },
+        "GISETTE:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.9582860714285716,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.9565285714285714,
+          "mean": 0.9574000000000001,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:cart": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.7721538461538462,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.7626538461538461,
+          "mean": 0.7674615384615384,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:knn": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.6445384615384614,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.6315384615384615,
+          "mean": 0.6379230769230768,
+          "n": 10,
+          "resamples": 10000
+        },
+        "MADELON:svm": {
+          "caution": "Repeated CV over the same dataset is not an independent population; this is not a generalisation confidence interval.",
+          "hi": 0.6056923076923078,
+          "label": "DESCRIPTIVE_ONLY",
+          "lo": 0.6015769230769231,
+          "mean": 0.6035,
+          "n": 10,
+          "resamples": 10000
+        }
+      }
+    }
+  }
+}

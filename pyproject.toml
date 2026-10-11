@@ -9,6 +9,8 @@ dependencies = [
     "scipy>=1.11,<2",
     "scikit-learn>=1.4,<2",
     "PyYAML>=6.0,<7",
+    # Stage 3A analysis: accuracy/feature-count/rank plots (src/ossfs_dd_eval/plots.py).
+    "matplotlib>=3.8,<4",
     "requests>=2.31,<3",
     # pytest is a runtime dependency of this project on purpose: the Stage 1
     # test suite is a graded gate input, so `uv sync --frozen` must produce an

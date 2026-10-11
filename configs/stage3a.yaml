@@ -1,0 +1,159 @@
+# Stage 3A configuration — FROZEN 2026-10-11, BEFORE the first test-fold evaluation.
+#
+# Workstream A only: the five discrete EXACT_VERIFIED datasets.
+# Continuous R&D is configured separately in configs/continuous_rnd_v1.yaml and
+# is NOT a dependency of this workstream.
+#
+# NOTE: configs/stage1.yaml and configs/stage2.yaml are NOT modified by this stage.
+
+schema_version: 1
+stage: 3a
+workstream: A
+frozen_utc: "2026-10-11T12:00:00Z"
+freeze_statement: >
+  Frozen before any held-out evaluation. No gate is lowered or reinterpreted
+  after observing results. No accuracy threshold is asserted in advance: the
+  published means are a descriptive comparison target, not an outcome gate.
+
+authorization:
+  allowlist: [ARCENE, DEXTER, MADELON, GINA, GISETTE]
+  forbidden: [DLBCL, BREAST]
+  # continuous datasets belong to Workstream B; Stage 3A must not read them
+  continuous_datasets_excluded_from_A: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA]
+  require_manifest_status: EXACT_VERIFIED
+  require_x_sha256_match: true
+  require_y_hash_match: true
+  fail_closed_on_violation: true
+
+protocol:
+  # Re-used verbatim from configs/stage1.yaml; Stage 1 splits/orders are immutable.
+  seeds: [11, 17, 23, 31, 47, 59, 71, 83, 97, 109]
+  folds: [0, 1, 2, 3, 4]
+  one_order_per_dataset_seed: true
+  order_reuse_note: >
+    Each seed's single arrival_order is re-used across that seed's five folds.
+    The five folds of a seed are NOT five independent feature-order permutations.
+  planned_selector_evaluations: 250      # 5 datasets x 10 seeds x 5 folds
+  planned_classifier_outcomes: 750       # 3 classifiers per selection
+  smoke_results_are_diagnostics_only: true
+  recompute_rather_than_copy: >
+    Stage-2 smoke values (seed 11 fold 0) are recomputed by this runner, never
+    copied from an existing JSON into an evaluation slot.
+
+selection:
+  mode: matlab_compatible_v1
+  metric_family: discrete_information
+  k1: 1.0
+  k2: 2.0
+  pool_size: 100
+  routing: paper_table1_feature_type   # never numpy dtype
+  empty_selection:
+    status: EMPTY_SELECTION_VALID
+    classifier_status: NOT_EVALUABLE_EMPTY_SELECTION
+    accuracy: null                     # NOT zero
+    forbid_substitution: [all_features, majority_class, retuned_method]
+
+classifiers:
+  knn:
+    class: sklearn.neighbors.KNeighborsClassifier
+    params: {n_neighbors: 5, weights: uniform, metric: minkowski, p: 2}
+  svm:
+    class: sklearn.svm.SVC
+    params: {kernel: linear, C: 1.0, max_iter: 2000000}
+    params_note: >
+      `probability` is left at its default False (passing it explicitly only
+      triggers a sklearn FutureWarning). `max_iter=2000000` is liblinear's own
+      documented iteration cap, made explicit so the run is bounded and
+      reproducible: with no cap sklearn ran 285,030,558 iterations (~100 s) on
+      MADELON and did not converge, which cannot fit the declared budget.
+      This is NOT a tuned hyper-parameter — it is the solver default, surfaced.
+    convergence:
+      record: [converged, n_iter]
+      on_nonconvergence: FLAG_NOT_SUBSTITUTE
+      nonconvergence_note: >
+        MADELON features have a 224x per-column scale ratio, so the raw-scale
+        linear SVC does not reach convergence. Every SVM outcome records
+        `converged`; a non-converged fit is FLAGGED, never silently reported
+        as a converged accuracy and never silently re-tuned.
+  cart:
+    class: sklearn.tree.DecisionTreeClassifier
+    params: {criterion: gini, splitter: best, random_state: seed}
+  preprocessing:
+    primary: none
+    primary_note: >
+      Raw stored feature values. MATLAB's fitcsvm documents 'Standardize' with
+      default false, so raw values are the faithful primary path. No scaling,
+      imputation or discretization is applied before the three classifiers.
+    sensitivity:
+      variant: standardized
+      label: STANDARDIZED_SENSITIVITY
+      status: NOT_PRIMARY
+      fitted_on: training rows only
+      rationale: >
+        Reported because the raw linear SVC does not converge on MADELON. It is
+        a separately labelled sensitivity analysis, never a silent default and
+        never substituted into the primary table.
+    tuning: forbidden
+    substitute_estimator: forbidden
+
+metrics:
+  accuracy: correct_test_predictions / n_test
+  accuracy_bounds: [0.0, 1.0]
+  supplementary: [macro_f1, balanced_accuracy]
+  zero_division: 0                      # sklearn default; declared BEFORE evaluation
+  zero_division_note: sklearn-compatible, fixed before evaluation, explicitly labelled
+  record_n_test_and_label_checksums: true
+
+resources:
+  memory_limit_gib: 32
+  per_selection_attempt_max_minutes: 60
+  sweep_max_wallclock_hours: 18
+  initial_concurrency: 1
+  max_concurrency: 4
+  blas_threads: 1
+  use_gpu: false
+
+determinism:
+  repeat_cases: [MADELON, GISETTE]
+  repeat_seed: 11
+  repeat_fold: 0
+  exclude_from_equality: [runtime_seconds, peak_rss, timestamps, log_paths, host]
+
+paper_comparison:
+  reference_file: configs/paper_reference_discrete.csv
+  statistical_test_against_published_mean: forbidden
+  runtime_comparability: none
+  runtime_note: >
+    The published timings used a different machine (AMD 3700X, 32 GB, MATLAB).
+    They are displayed as non-comparable context only. No speedup or parity claim.
+
+statistics:
+  seed_blocked_bootstrap:
+    resamples: 10000
+    bootstrap_seed: 20261011
+    label: DESCRIPTIVE_ONLY
+    caution: >
+      Repeated CV over the same dataset is not an independent population, so this
+      interval is NOT a generalisation confidence interval.
+  paired_tests_require: actually evaluated paired classifiers on identical held-out rows
+  multiple_testing_adjustment: Holm
+  friedman_nemenyi_against_paper_algorithms: forbidden
+
+gates:
+  exact_allowlist_five: {required_datasets: 5, forbidden_reads_allowed: 0}
+  planned_selector_evaluations: {required: 250}
+  planned_classifier_outcomes: {required: 750}
+  all_selections_terminal: COMPLETED | EMPTY_SELECTION_VALID
+  accuracy_bounded_and_denominators_present: true
+  full_test_suite: {required_fraction: 1.0, allowed_skipped: 0}
+  ruff_clean: true
+  determinism_repeats: {required: 2}
+  resource_limits_respected: true
+  git_staging_exclusions: {required_forbidden_entries: 0}
+
+verdict_values:
+  - STAGE3A_READY
+  - STAGE3A_PARTIAL
+  - STAGE3A_PARTIAL_RESOURCE_LIMIT
+  - STAGE3A_BLOCKED_DATA
+  - STAGE3A_BLOCKED_IMPLEMENTATION

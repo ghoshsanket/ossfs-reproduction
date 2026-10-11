@@ -1,0 +1,67 @@
+{
+  "code_hash": "e8bd699cf609cbdf372e1c054179bf63bffc7305b655b29785787976e8b22a64",
+  "gates": {
+    "accuracy_bounded_and_denominators_present": {
+      "n_checked": 750,
+      "pass": true
+    },
+    "all_selections_terminal": {
+      "pass": true
+    },
+    "exact_allowlist_five": {
+      "datasets": [
+        "ARCENE",
+        "DEXTER",
+        "GINA",
+        "GISETTE",
+        "MADELON"
+      ],
+      "forbidden_reads": 0,
+      "matches_frozen_allowlist": true,
+      "observed": 5,
+      "pass": true,
+      "required": 5
+    },
+    "planned_classifier_outcomes": {
+      "observed_primary": 750,
+      "observed_standardized_sensitivity": 750,
+      "pass": true,
+      "required": 750
+    },
+    "planned_selector_evaluations": {
+      "observed": 250,
+      "pass": true,
+      "required": 250
+    },
+    "resource_limits_respected": {
+      "max_single_attempt_minutes": 1.1801,
+      "memory_limit_gib": 32,
+      "pass": true,
+      "peak_rss_gib_max": 0.326,
+      "per_attempt_max_minutes": 60
+    }
+  },
+  "generated_utc": "2026-10-11T08:17:33Z",
+  "machine": "aarch64",
+  "nonconverged_fits": {
+    "outcomes_raw_primary": {
+      "ARCENE": 2,
+      "GINA": 50,
+      "GISETTE": 50,
+      "MADELON": 50
+    },
+    "outcomes_standardized_sensitivity": {}
+  },
+  "protocol_digest": "31daed221a4bc0f3797e1fd03160682ecad2aec4300251c05f103ed4a87103d5",
+  "schema": "ossfs-dd-reproduction/stage3a/report_manifest/1.0",
+  "sweep_wallclock_note": "Selection seconds are summed across 4 worker processes, so the total is CPU-seconds of selection work, not elapsed wall-clock.",
+  "verdict": "STAGE3A_READY",
+  "versions": {
+    "machine": "aarch64",
+    "numpy": "2.4.6",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "python": "3.11.16",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  }
+}

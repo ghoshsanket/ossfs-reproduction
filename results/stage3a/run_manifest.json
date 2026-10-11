@@ -1,0 +1,55 @@
+{
+  "code_hash": "e7db13fc14d77840f5c965ba8b57c1f1003bb710fae789a3eac4ed46b840d564",
+  "dataset_fingerprints": {
+    "ARCENE": {
+      "match": true,
+      "sha256_observed": "62d617a0ff8f03cc3ef691425e53f9dca8e45abc60bd99901178e455eddd67a1",
+      "sha256_recorded": "62d617a0ff8f03cc3ef691425e53f9dca8e45abc60bd99901178e455eddd67a1",
+      "stage1_status": "EXACT_VERIFIED"
+    },
+    "DEXTER": {
+      "match": true,
+      "sha256_observed": "daa81da5aaa600d3c4f903cf79656e298eade7713ad63e4dc9a6e6f27030f278",
+      "sha256_recorded": "daa81da5aaa600d3c4f903cf79656e298eade7713ad63e4dc9a6e6f27030f278",
+      "stage1_status": "EXACT_VERIFIED"
+    },
+    "GINA": {
+      "match": true,
+      "sha256_observed": "aba37efdeda83810adb314ffd36d6cd9e0c6cf88951dae9e36a039661391e741",
+      "sha256_recorded": "aba37efdeda83810adb314ffd36d6cd9e0c6cf88951dae9e36a039661391e741",
+      "stage1_status": "EXACT_VERIFIED"
+    },
+    "GISETTE": {
+      "match": true,
+      "sha256_observed": "9a8eef7f265264bc40eb385b89d34e48857a7e17495f288c41ab1bf2100dfeef",
+      "sha256_recorded": "9a8eef7f265264bc40eb385b89d34e48857a7e17495f288c41ab1bf2100dfeef",
+      "stage1_status": "EXACT_VERIFIED"
+    },
+    "MADELON": {
+      "match": true,
+      "sha256_observed": "dac47cb610265c0a43c3b9999bfd5d1cea473469251b10d42ec65354bd1a9449",
+      "sha256_recorded": "dac47cb610265c0a43c3b9999bfd5d1cea473469251b10d42ec65354bd1a9449",
+      "stage1_status": "EXACT_VERIFIED"
+    }
+  },
+  "datasets": [
+    "ARCENE",
+    "DEXTER",
+    "MADELON",
+    "GINA",
+    "GISETTE"
+  ],
+  "planned_outcomes": 750,
+  "planned_selections": 250,
+  "protocol_digest": "ae56ea7ebe2c8bee1876126de8293d599a6da5924988f4f5aab16a4fdd47d3d3",
+  "schema": "ossfs-dd-reproduction/stage3a/manifest/1.0",
+  "versions": {
+    "machine": "aarch64",
+    "numpy": "2.4.6",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "python": "3.11.16",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "workers": 4
+}

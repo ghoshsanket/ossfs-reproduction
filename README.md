@@ -299,3 +299,25 @@ them as if they were.
 
 Stage 3 must not begin until the researcher has reviewed
 `results/stage2/STAGE2_REPORT.md` and resolved item 3 above.
+
+## Stage 3A (added after Stage 3)
+
+Stage 3A adds an **evaluation layer only**; it does not change Stage 1 or
+Stage 2, and the Stage-2 verdict (`STAGE2_PARTIAL |
+DISCRETE_CORRECTNESS_PASS`) stands unchanged, including its `UNRESOLVED`
+continuous semantics.
+
+- **Workstream A** — the five discrete `EXACT_VERIFIED` datasets, 10 seeds x
+  5 folds = **250 selections** and **750 classifier outcomes** under three
+  fixed classifiers, plus a labelled standardized sensitivity analysis.
+  Verdict: `STAGE3A_READY`.
+- **Workstream B** — a **reconstructed** continuous Fisher-Z estimator
+  (`continuous_reconstructed_fisherz_v1`), run train-only on seed 11 / fold 0
+  for the four `Real` datasets. The authors' `Fisher_Ztest` helper is absent
+  from their repository, so this is research, **not** a reproduction, and it
+  does not unlock Stage 2's fail-closed route.
+
+The raw linear SVC does not converge on MADELON, GINA or GISETTE (feature
+scale), so those raw SVM fits are flagged rather than reported as results; the
+report says so explicitly. Read `docs/stage3a_summary.md` and
+`docs/stage3a_evaluation.md` for the numbers, gates and limitations.

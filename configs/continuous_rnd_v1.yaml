@@ -1,0 +1,95 @@
+# Continuous R&D configuration — FROZEN 2026-10-11.
+#
+# WORKSTREAM B. INDEPENDENT RESEARCH, NOT PAPER REPRODUCTION.
+#
+# The authors' `OSFS_DD_z2.m` calls `Fisher_Ztest`, which does NOT exist in the
+# pinned repository (doodzhou/OSFS@845a8e9d5625616b43e8cee16e8d22081dbe3f62).
+# Its exact output, units, sign handling and pairwise semantics are UNKNOWN.
+#
+# Everything below is OUR declared reconstruction. It is NOT the authors'
+# semantics, NOT source-verified, and NOT a claim about Zhou et al.'s algorithm.
+# Stage 2's `gaussian_fisher_z` route stays UNRESOLVED and fail-closed; this
+# configuration does not unlock, replace or overwrite it.
+
+schema_version: 1
+workstream: B
+mode_id: continuous_reconstructed_fisherz_v1
+semantics_status: RECONSTRUCTED_NOT_SOURCE_VERIFIED
+frozen_utc: "2026-10-11T12:00:00Z"
+
+relationship_to_paper: >
+  Zhou et al. state that continuous features are handled with a Fisher Z-test.
+  The helper implementing it was never published. This module reconstructs a
+  Fisher-Z-style estimator from first principles so that the continuous route can
+  be exercised and tested. No equivalence to the hidden helper is asserted.
+
+authorization:
+  allowlist: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA]
+  forbidden: [DLBCL, BREAST]
+  stage3a_datasets_not_readable_here: [ARCENE, DEXTER, MADELON, GINA, GISETTE]
+  require_manifest_status: EXACT_VERIFIED
+  diagnostics:
+    folds: [0]
+    seeds: [11]
+    max_runs_per_dataset: 1
+    training_rows_only: true
+    forbidden: [test_fold_prediction, classifier_accuracy, cv_sweep, posthoc_tuning]
+
+marginal_estimator:
+  form: confidence_adjusted_correlation_strength
+  formula: |
+    For each observed training class c:
+        b_c = 1[y == c]                        (one-vs-rest)
+        r_c = pearson(x, b_c)                  (0 if x or b_c constant -> neutral 0)
+        require n >= 5, else UNSUPPORTED_SAMPLE_SIZE
+        r_c <- clip(r_c, -(1-1e-12), 1-1e-12)
+        z_c = atanh(r_c);  SE = 1/sqrt(n-3)
+        q   = Phi^-1(1 - 0.05/(2*K))           (K = observed training classes; Bonferroni)
+        score_c = tanh(max(0, |z_c| - q*SE))
+    score(x,y) = max_c score_c
+  range: [0.0, 1.0]
+  explicitly_not: [p_value, one_minus_p, abs_r_alone, mutual_information]
+  log_separately: [raw_r, z, two_sided_p]
+  K2_symmetry_note: >
+    With K=2 the one-vs-rest contrasts are reflected duplicates. The declared
+    K=2 Bonferroni correction is RETAINED rather than silently changed because
+    the two-class case is symmetric.
+  limitations:
+    - one-hot class indicators are not Gaussian; the approximation is not exact
+    - captures linear dependence only; XOR-style synergy is invisible
+    - never assert exact Fisher-test equivalence for categorical labels
+
+pair_estimator:
+  id: heuristic_joint_v1
+  status: HEURISTIC_APPROXIMATION
+  rationale: >
+    A two-predictor Fisher conditional-independence theorem does not transfer to
+    an in-sample multiple correlation R. This formula is declared heuristic and
+    is labelled as such everywhere.
+  formula: |
+    For each class c, fit on TRAINING ROWS ONLY:  b_c ~ 1 + x + z
+    R_c   = sqrt(clip(R2_c, 0, 1))            (neutral 0 if var(b_c) == 0)
+    require n >= 6, else UNSUPPORTED_SAMPLE_SIZE
+    score_pair_c = tanh(max(0, atanh(clip(R_c,0,1-1e-12)) - q/sqrt(n-4)))
+    score_pair    = max_c score_pair_c
+  range: [0.0, 1.0]
+  thresholds: reuse the discrete 2*beta comparisons as DECLARED HEURISTIC REUSE
+  must_report_when_2beta_exceeds_1: true
+  synergy_claim: forbidden
+  rank_deficiency_handling: pinv-based solve; record the condition number
+
+selection_integration:
+  mode_id: continuous_reconstructed_fisherz_v1
+  three_way: true
+  k1: 1.0
+  k2: 2.0
+  pool_size: 100
+  isolation: >
+    Implemented in a separate package (src/ossfs_dd_continuous). It must not be
+    selectable through the Stage 2 CLI and must not reuse the
+    matlab_compatible_v1 or paper_spec_v1 labels.
+
+verdict_values:
+  - CONTINUOUS_RND_DIAGNOSTIC_READY
+  - CONTINUOUS_RND_PARTIAL
+  - CONTINUOUS_RND_BLOCKED_DESIGN
