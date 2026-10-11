@@ -1,0 +1,7 @@
+{
+  "all_have_10000_arrivals": true,
+  "all_have_terminal": true,
+  "n_runs": 50,
+  "run_id": "20261011T174326Z",
+  "threshold_oracle": "see stage3b report; tolerance 1e-10"
+}

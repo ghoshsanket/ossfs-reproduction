@@ -307,7 +307,21 @@ class Selector:
         ))
 
     def _redundancy_pass(self, new: Candidate, beta: float) -> list[int]:
-        """mi2.m:128-150. Returns the feature IDs actually removed."""
+        """mi2.m:128-150. Returns the feature IDs actually removed.
+
+        Diagnostic-only correction (Stage 3B follow-up D1).
+
+        The scan may queue older candidates in ``to_remove`` and then set
+        ``drop_new`` and break (mi2.m:141). In that branch the ``else`` that
+        applies ``to_remove`` never runs, so those queued candidates are NOT
+        deleted. The previous code nevertheless returned and counted them.
+
+        The ledger is therefore derived only from removals that were actually
+        applied, using ``CandidateSet.remove``'s boolean return (which reports
+        real shrinkage). Deletion ORDER, the pair-search order, the tie-break,
+        the applied promotions and the resulting selected feature order are all
+        unchanged: this touches accounting only.
+        """
         if len(self.candidates) <= 1:
             return []
         existing = list(self.candidates)[:-1]      # count-1, newest excluded
@@ -323,14 +337,17 @@ class Selector:
                 drop_new = True
                 break                       # mi2.m:141 breaks out of the loop
             to_remove.append(c.feature_id)
+        # Only deletions that really shrank the candidate list are reported.
+        applied: list[int] = []
         if drop_new:
-            self.candidates.remove(new.feature_id)
+            if self.candidates.remove(new.feature_id):
+                applied.append(new.feature_id)
         else:
-            for fid in to_remove:
-                self.candidates.remove(fid)
-        removed = to_remove + ([new.feature_id] if drop_new else [])
-        self.state.redundancy_removals += len(removed)
-        return removed
+            for fid in to_remove:           # preserve deletion order
+                if self.candidates.remove(fid):
+                    applied.append(fid)
+        self.state.redundancy_removals += len(applied)
+        return applied
 
     def _flush_pool(self, trigger: str) -> None:
         """mi2.m:107-125. Promotes qualifying pairs; no redundancy re-check."""

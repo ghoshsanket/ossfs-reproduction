@@ -1,0 +1,178 @@
+{
+  "A_H1": {
+    "hypothesis": "A-H1",
+    "min_datasets_meeting": 1,
+    "n_inconclusive": 3,
+    "n_meeting": 0,
+    "overall": "INCONCLUSIVE",
+    "per_dataset": {
+      "GINA": {
+        "absolute_difference": null,
+        "dataset": "GINA",
+        "mean_accuracy_C0.1": 0.8464987462105618,
+        "mean_accuracy_C10": null,
+        "meets_threshold": false,
+        "n_paired_converged_C0.1": 15,
+        "n_paired_converged_C10": 0,
+        "outcome": "INCONCLUSIVE"
+      },
+      "GISETTE": {
+        "absolute_difference": null,
+        "dataset": "GISETTE",
+        "mean_accuracy_C0.1": 0.9580476190476191,
+        "mean_accuracy_C10": null,
+        "meets_threshold": false,
+        "n_paired_converged_C0.1": 15,
+        "n_paired_converged_C10": 0,
+        "outcome": "INCONCLUSIVE"
+      },
+      "MADELON": {
+        "absolute_difference": 0.017692307692307674,
+        "dataset": "MADELON",
+        "mean_accuracy_C0.1": 0.6080769230769231,
+        "mean_accuracy_C10": 0.5903846153846154,
+        "meets_threshold": false,
+        "n_paired_converged_C0.1": 15,
+        "n_paired_converged_C10": 1,
+        "outcome": "INCONCLUSIVE"
+      }
+    },
+    "summary": "0/3 datasets meet the 0.02 criterion; every dataset lacked the 15 complete converged pairs (C=10 rarely converges), so no dataset could be assessed.",
+    "threshold": 0.02
+  },
+  "A_H2": {
+    "hypothesis": "A-H2",
+    "min_datasets_meeting": 2,
+    "n_meeting": 3,
+    "overall": "SUPPORTED",
+    "per_dataset": {
+      "GINA": {
+        "dataset": "GINA",
+        "median_tol1e-3": 303499.0,
+        "median_tol1e-4": 1327639.0,
+        "meets_threshold": true,
+        "n_pairs": 15,
+        "outcome": "MEETS",
+        "relative_change": 3.374442749399504
+      },
+      "GISETTE": {
+        "dataset": "GISETTE",
+        "median_tol1e-3": 598868.0,
+        "median_tol1e-4": 1764649.0,
+        "meets_threshold": true,
+        "n_pairs": 15,
+        "outcome": "MEETS",
+        "relative_change": 1.9466409960124769
+      },
+      "MADELON": {
+        "dataset": "MADELON",
+        "median_tol1e-3": 219975.0,
+        "median_tol1e-4": 651958.0,
+        "meets_threshold": true,
+        "n_pairs": 15,
+        "outcome": "MEETS",
+        "relative_change": 1.9637822479827254
+      }
+    },
+    "summary": "3/3 datasets show a >=10% median n_iter increase when tol tightens from 1e-3 to 1e-4 (criterion: >=2).",
+    "threshold_relative": 0.1
+  },
+  "A_H3": {
+    "convergence_rate": 0.6407407407407407,
+    "denominator": 270,
+    "hypothesis": "A-H3",
+    "n_converged": 173,
+    "n_missing": 0,
+    "n_records": 270,
+    "overall": "NOT_SUPPORTED",
+    "per_cell": {
+      "GINA|C=0.1|tol=0.0001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GINA|C=0.1|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GINA|C=1.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 14
+      },
+      "GINA|C=1.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GINA|C=10.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 0
+      },
+      "GINA|C=10.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 0
+      },
+      "GISETTE|C=0.1|tol=0.0001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GISETTE|C=0.1|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GISETTE|C=1.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 8
+      },
+      "GISETTE|C=1.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "GISETTE|C=10.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 0
+      },
+      "GISETTE|C=10.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 0
+      },
+      "MADELON|C=0.1|tol=0.0001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "MADELON|C=0.1|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "MADELON|C=1.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "MADELON|C=1.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 15
+      },
+      "MADELON|C=10.0|tol=0.0001": {
+        "n": 15,
+        "n_converged": 0
+      },
+      "MADELON|C=10.0|tol=0.001": {
+        "n": 15,
+        "n_converged": 1
+      }
+    },
+    "summary": "173/270 planned cells converged (rate 0.6407); threshold 0.95 -> NOT_SUPPORTED.",
+    "threshold": 0.95
+  },
+  "control_cell": {
+    "mismatches": [],
+    "n_compared": 0,
+    "n_match": 0,
+    "status": "NOT_DIRECTLY_COMPARABLE",
+    "tolerance": 1e-10
+  },
+  "n_converged": 173,
+  "run_id": "20261011T174326Z",
+  "status_counts": {
+    "CONVERGED": 173,
+    "NONCONVERGED": 97
+  }
+}

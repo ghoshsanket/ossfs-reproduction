@@ -1,0 +1,214 @@
+schema_version: 1
+stage: 3b_followup
+version: v1
+frozen_utc: '2026-10-11T17:43:26Z'
+freeze_statement: Frozen and hashed before any real-data fit or selection. This is
+  an in-process, chronologically ordered freeze. It is NOT an independently registered
+  or attested preregistration.
+supersedes_nothing: This is a NEW separately versioned follow-up. It does not replace
+  or alter Stage 3B, Stage 3A, or the Stage 2 partial gate.
+authorization:
+  experiment_a_datasets:
+  - MADELON
+  - GINA
+  - GISETTE
+  experiment_b_datasets:
+  - ARCENE
+  forbidden:
+  - DLBCL
+  - BREAST
+  continuous_excluded:
+  - SRBCT
+  - LYMPHOMA
+  - PROSTATE
+  - LEUKEMIA
+  required_manifest_status: EXACT_VERIFIED
+diagnostic_repairs:
+  D1:
+    file: src/ossfs_dd/selector.py
+    symbol: Selector._redundancy_pass
+    nature: accounting_only
+    description: Report only candidate removals that were actually applied. Queued-but-unapplied
+      removals are no longer reported or counted.
+    must_not_change:
+    - selected feature ids
+    - arrival positions
+    - deletion order
+    - tie-breaking
+    - promotions
+  D2:
+    file: src/ossfs_dd_stage3b/trace.py
+    symbol: checkpoint_rows
+    nature: accounting_only
+    description: Prefix checkpoints are chronological snapshots. The final pool flush
+      is counted only in the terminal summary, never in an arrival checkpoint.
+counter_semantics:
+  direct_accepts: entered the direct-accept path, even if removed immediately
+  promoted_from_pool: actual candidate insertions from a pool flush
+  redundancy_removals: only applied, successful candidate deletions
+  n_selected: candidate-list length (not a de-duplicated set size)
+  warmup: mi2 SKIPS the first two arrivals; they are not insertions
+  conflict_policy: If these definitions conflict with the live selector, disclose
+    it; never force an accounting equation by changing feature selection.
+experiment_a:
+  purpose: SVM C/tol sensitivity on fixed Stage 3A subsets
+  datasets:
+  - MADELON
+  - GINA
+  - GISETTE
+  seeds:
+  - 11
+  - 17
+  - 23
+  folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  subset_source: results/stage3a/runs/records/ (raw selected_feature_ids)
+  scale_variant: standardized
+  scaler_fit_rows: selected_training_rows_only
+  estimator: sklearn.svm.SVC
+  kernel: linear
+  C_values:
+  - 0.1
+  - 1.0
+  - 10.0
+  tol_values:
+  - 0.001
+  - 0.0001
+  max_iter: 2000000
+  probability: false
+  linear_svc_substitution_forbidden: true
+  status_types:
+  - CONVERGED
+  - NONCONVERGED
+  - TIMEOUT
+  - FIT_ERROR
+  - BLOCKED_INPUT
+  planned_fits: 270
+  control_cell:
+    C: 1.0
+    tol: 0.001
+    max_iter: 2000000
+    compare_to: stage3b 20261011T153549Z standardized highest-cap fits
+    tolerance: 1.0e-10
+    on_version_mismatch: NOT_DIRECTLY_COMPARABLE
+hypotheses_a:
+  A_H1:
+    name: C sensitivity
+    datasets:
+    - MADELON
+    - GINA
+    - GISETTE
+    compare: paired converged-fit mean accuracy at C=0.1 vs C=10, tol=1e-3
+    threshold: 0.02
+    min_datasets_meeting: 1
+    type: descriptive_effect_not_significance
+  A_H2:
+    name: tolerance sensitivity
+    datasets:
+    - MADELON
+    - GINA
+    - GISETTE
+    compare: median n_iter_max at C=1, tol 1e-3 vs 1e-4
+    threshold_relative: 0.1
+    min_datasets_meeting: 2
+    zero_denominator: UNDEFINED
+  A_H3:
+    name: feasible convergence
+    statement: standardized converges in >= 95% of 270 planned cells
+    threshold: 0.95
+    denominator: 270
+experiment_b:
+  purpose: ARCENE decision trajectory + downstream accuracy
+  dataset: ARCENE
+  split_seed: 11
+  folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  order_seeds:
+  - 11
+  - 17
+  - 23
+  - 31
+  - 47
+  - 59
+  - 71
+  - 83
+  - 97
+  - 109
+  order_seed_selects_permutation_only: true
+  baseline_records: outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/
+  planned_selections: 50
+  planned_subset_classifiers: 150
+  planned_baselines: 15
+  classifiers:
+    knn: KNeighborsClassifier(n_neighbors=5, weights='uniform', metric='minkowski',
+      p=2) on raw selected values
+    cart: DecisionTreeClassifier(criterion='gini', splitter='best', random_state=11)
+      on raw selected values
+    svm: sklearn.svm.SVC(kernel='linear', C=1.0, tol=0.001, max_iter=2000000) raw
+      selected values
+  cart_seed_fixed_across_orders: 11
+  baseline_model: same three classifiers on all 10000 original features
+  baseline_role: contextual comparator, not a tuned reference model
+  illustrative_pair:
+    fold: 0
+    order_seeds:
+    - 11
+    - 17
+  divergence_gap_threshold: 100
+  divergence_bin_size: 100
+  jaccard_pairs_expected: 225
+  threshold_tolerance: 1.0e-10
+hypotheses_b:
+  B_H1:
+    name: ledger correctness
+    operational_gate: true
+    criterion: candidate-count conservation and selected-ID agreement hold in 50/50
+      ARCENE runs
+  B_H2:
+    name: downstream order effect
+    primary_metric: CART
+    criterion: within-fold CART accuracy range across 10 orders >= 0.05
+    threshold: 0.05
+    min_folds_meeting: 3
+    type: within_fold_sensitivity_not_independent_sample_test
+  B_H3:
+    name: mechanism
+    preregistered_mechanism: null
+    default_outcome: MECHANISM_UNRESOLVED
+    note: Correlation with arithmetic components is not causation.
+resources:
+  cpu_only: true
+  memory_limit_gib: 32
+  max_fit_workers: 2
+  selection_workers: 1
+  blas_threads_per_worker: 1
+  per_fit_timeout_minutes: 10
+  experiment_a_max_hours: 3
+  experiment_b_max_hours: 4
+  total_max_hours: 8
+operational_gates:
+- F1_AUTHORIZATION_AND_SOURCE
+- F2_FAIL_BEFORE_PASS_AFTER
+- F3_SELECTOR_INVARIANCE
+- F4_TRUE_LEDGER
+- F5_C_TRIAL_COMPLETE
+- F6_ARCENE_CLASSIFICATION_COMPLETE
+- F7_NO_LEAKAGE
+- F8_CHRONOLOGY_AND_HASH
+- F9_REPRODUCIBILITY
+- F10_CODE_AND_IMMUTABILITY
+hypotheses_are_not_operational_gates: true
+forbidden_actions:
+- changing k1/k2/pool_size/mode/entry_file
+- changing feature-selection thresholds to improve results
+- selecting best C from test accuracy
+- any work on continuous datasets or DLBCL/BREAST
+- any retroactive edit of Stage 1/2/3A/3B artifacts

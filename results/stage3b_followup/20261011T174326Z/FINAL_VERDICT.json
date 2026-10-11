@@ -1,0 +1,26 @@
+{
+  "final_verdict": "STAGE3B_FOLLOWUP_READY",
+  "generated_utc": "2026-10-11T18:11:30Z",
+  "hypotheses": {
+    "A_H1": "INCONCLUSIVE",
+    "A_H2": "SUPPORTED",
+    "A_H3": "NOT_SUPPORTED",
+    "B_H1": "PASS",
+    "B_H2": "SUPPORTED",
+    "B_H3": "MECHANISM_UNRESOLVED"
+  },
+  "n_failed_gates": [],
+  "operational_gates": {
+    "F10_CODE_AND_IMMUTABILITY": true,
+    "F1_AUTHORIZATION_AND_SOURCE": true,
+    "F2_FAIL_BEFORE_PASS_AFTER": true,
+    "F3_SELECTOR_INVARIANCE": true,
+    "F4_TRUE_LEDGER": true,
+    "F5_C_TRIAL_COMPLETE": true,
+    "F6_ARCENE_CLASSIFICATION_COMPLETE": true,
+    "F7_NO_LEAKAGE": true,
+    "F8_CHRONOLOGY_AND_HASH": true,
+    "F9_REPRODUCIBILITY": true
+  },
+  "report": "results/stage3b_followup/20261011T174326Z/STAGE3B_FOLLOWUP_REPORT.md"
+}

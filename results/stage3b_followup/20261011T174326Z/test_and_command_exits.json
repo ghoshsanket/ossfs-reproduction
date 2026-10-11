@@ -1,0 +1,49 @@
+{
+  "all_expected": true,
+  "commands": [
+    {
+      "command": "pytest",
+      "exit_code": 0
+    },
+    {
+      "command": "ruff check .",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_followup_preflight(resume-guard)",
+      "exit_code": 1,
+      "expected_nonzero": true,
+      "interpretation": "Exit 1 is the WRITE-ONCE GUARD working as designed: it refuses to overwrite the frozen config. The config was already frozen at preflight time; this is not a failure."
+    },
+    {
+      "command": "stage3b_followup_run_a(resume)",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_followup_run_b(resume)",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_followup_determinism",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_followup_report",
+      "exit_code": 0
+    }
+  ],
+  "note": "Exit codes are real values captured by re-running each command. The run scripts were re-invoked to demonstrate idempotent resume; they recomputed nothing.",
+  "run_id": "20261011T174326Z",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/command_exits/1.0",
+  "tests": {
+    "command": "uv run pytest -p no:cacheprovider",
+    "failed": 0,
+    "ok": true,
+    "passed": 302,
+    "skipped": 0,
+    "summary": [
+      "302 passed in 181.56s (0:03:01)"
+    ]
+  },
+  "utc": "2026-10-11T18:01:41Z"
+}

@@ -1,0 +1,34 @@
+{
+  "all_deterministic": true,
+  "arcene_repeat": {
+    "identical": true,
+    "ledger_identical": true,
+    "original_n_selected": 863,
+    "repeat_n_selected": 863,
+    "run_id": "ARCENE_split11_fold0_order11",
+    "selected_ids_identical": true
+  },
+  "convergence_not_forced": true,
+  "excluded_fields": [
+    "seconds",
+    "peak_rss_gib",
+    "generated_utc",
+    "predictions",
+    "wall_clock",
+    "config_sha256"
+  ],
+  "fresh_process": true,
+  "run_id": "20261011T174326Z",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/determinism/1.0",
+  "svm_control_repeat": {
+    "fit_id": "MADELON_seed11_fold0__C1.0__tol0.001",
+    "identical": true,
+    "original_accuracy": 0.6173076923076923,
+    "original_n_iter": 289653,
+    "original_status": "CONVERGED",
+    "repeat_accuracy": 0.6173076923076923,
+    "repeat_n_iter": 289653,
+    "repeat_status": "CONVERGED"
+  },
+  "utc": "2026-10-11T18:01:33Z"
+}

@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "passed": 328,
+  "failed": 0,
+  "skipped": 0,
+  "command": "uv run pytest -p no:cacheprovider",
+  "summary": [
+    "328 passed in 180.54s (0:03:00)"
+  ]
+}

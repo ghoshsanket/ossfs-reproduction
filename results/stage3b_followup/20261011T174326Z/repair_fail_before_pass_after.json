@@ -1,0 +1,20 @@
+{
+  "D1": {
+    "bug": "When the scan queued older candidates in to_remove and a later comparison set drop_new=True, the scan broke and the branch that APPLIES to_remove never ran, yet those never-applied IDs were still returned and counted in state.redundancy_removals and in the accept event's details['removed'].",
+    "fail_before_evidence": "tests/test_stage3b_followup_repair_d1.py: 3 failed, 7 passed. Concrete red output: `AssertionError: D1: accept event reported [3, 9] but only the newcomer was actually deleted` and `assert [3, 9] == [9]`.",
+    "file": "src/ossfs_dd/selector.py",
+    "fix": "Build the ledger only from removals that actually shrank the candidate list, using CandidateSet.remove's boolean return. Deletion order, pair-search order, tie-breaking and promotions are unchanged.",
+    "pass_after_evidence": "Same 19 repair tests pass (D1 10 + D2 9); full suite 302 passed.",
+    "symbol": "Selector._redundancy_pass"
+  },
+  "D2": {
+    "bug": "All events were accumulated into the cumulative counters BEFORE the checkpoint loop, so every prefix checkpoint (including arrival 100) reported end-of-run totals.",
+    "fail_before_evidence": "tests/test_stage3b_followup_repair_d2.py: 4 failed, 5 passed. Concrete red output: `AssertionError: D2: checkpoint 100 still equals the final total` / `assert 400 != 400`.",
+    "file": "src/ossfs_dd_stage3b/trace.py",
+    "fix": "Consume events chronologically and snapshot counters at each checkpoint's own prefix. A pool_flush is not an arrival; the post-stream final flush is counted only in the terminal summary.",
+    "pass_after_evidence": "Same 19 repair tests pass; full suite 302 passed.",
+    "symbol": "checkpoint_rows"
+  },
+  "invariance_proof": "50/50 ARCENE runs reproduce the saved Stage 3B ordered selected IDs and arrival positions exactly, proving the repairs are diagnostic-only.",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/repair_proof/1.0"
+}

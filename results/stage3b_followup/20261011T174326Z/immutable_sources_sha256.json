@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "files": {
+      "configs/stage1.yaml": "9d2987ec49af3671d813a35c7879bc06acf5f291bff0d5a40b67ff819409e0c3",
+      "configs/stage2.yaml": "60cb51e59a6c2578838a847846c980b371cfa43190b5e0b94d4ad97815eedd81",
+      "configs/stage3a.yaml": "10b0638e94a4d2d3184cfe76d6dbb8f0b69c0475d65d478966667447747bba44",
+      "configs/stage3b.yaml": "03749595529f1ad4727b21ae85fc042f4b2bd80ce43b98d8d7d5789e21751478",
+      "results/stage1/test_results.json": "ec31d2800050568178e67541e573da1d7d4e601b8d86491f53accb08f57b41d5",
+      "results/stage3a/aggregate.json": "36e125087c842d4f2b50219abd005d03924e66c684ec051c83c0bb45a843bb9e",
+      "results/stage3b/20261011T153549Z/STAGE3B_REPORT.md": "fb17aed334941d40199fc9fae63bd0666f8f0d0d41d09f9fbce20a7e32ac01b3",
+      "results/stage3b/20261011T153549Z/stage3b_preflight.json": "35582961683a4ffa025492b17b57e74882976964a41c3a0f805546e4366f8e58",
+      "src/ossfs_dd/pools.py": "0fc689b82f1c3094dbbdc9b9f76f340acfaf5d6df6eedd0525a4b82733d9c41f",
+      "src/ossfs_dd/selector.py": "8583f43faa24cb68ae7289b48a1551d8d3cfd5218505077bac44302ad077f42d",
+      "src/ossfs_dd_eval/classifiers.py": "290d246bf86bb9fad276551f3ff3b06024a231519b0fa98a66f2e13ae1d81ce8",
+      "src/ossfs_dd_stage3b/trace.py": "41a500436284147db93cd3337752b84f72cbd7dfd986a763aa91ffa76e1cc0cf"
+    },
+    "schema": "ossfs-dd-reproduction/stage3b_followup/baseline_inventory/1.0",
+    "stage3b_arcene_raw_runs": {
+      "composite_sha256": "ef23a30bde01ae6c20f440e9bc8d985a9462908df8487eb315e18c7a40b54e28",
+      "dir": "outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/",
+      "n": 50
+    },
+    "utc": "2026-10-11T17:33:25Z"
+  },
+  "current_source_fingerprint": "c2024065d1f6b3b398fe3e89a2f3fb4a8285a8d27d6cf4240367e315827bfa9f",
+  "permitted_edits": [
+    "src/ossfs_dd/selector.py (D1 diagnostic)",
+    "src/ossfs_dd_stage3b/trace.py (D2 diagnostic)"
+  ],
+  "run_id": "20261011T174326Z",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/immutable_sources/1.0"
+}

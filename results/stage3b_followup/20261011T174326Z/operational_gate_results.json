@@ -1,0 +1,70 @@
+{
+  "any_timeout_or_error": false,
+  "gates": {
+    "F10_CODE_AND_IMMUTABILITY": {
+      "detail": "ruff clean=True; pytest failed=0 skipped=0; protected paths clean=True; forbidden git entries=0; Stage 1 evidence present=True",
+      "name": "F10_CODE_AND_IMMUTABILITY",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F1_AUTHORIZATION_AND_SOURCE": {
+      "detail": "forbidden reads=0; hashes verified=True; Stage 3A subsets=45/45",
+      "name": "F1_AUTHORIZATION_AND_SOURCE",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F2_FAIL_BEFORE_PASS_AFTER": {
+      "d1_red": 3,
+      "d2_red": 4,
+      "detail": "D1 3 red -> 0; D2 4 red -> 0; both repair files now pass the full suite",
+      "name": "F2_FAIL_BEFORE_PASS_AFTER",
+      "pass": true,
+      "repair_tests_now": 19,
+      "status": "PASS"
+    },
+    "F3_SELECTOR_INVARIANCE": {
+      "detail": "ordered selected IDs identical 50/50; arrival positions 50/50",
+      "name": "F3_SELECTOR_INVARIANCE",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F4_TRUE_LEDGER": {
+      "detail": "ledger reconciles with state in 50/50 runs; prefix/terminal checkpoint structure valid in 50/50",
+      "name": "F4_TRUE_LEDGER",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F5_C_TRIAL_COMPLETE": {
+      "detail": "unique fit IDs=270/270 with terminal status=270; timeouts=0; fit errors=0",
+      "name": "F5_C_TRIAL_COMPLETE",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F6_ARCENE_CLASSIFICATION_COMPLETE": {
+      "detail": "subset classifiers=150/150; baselines=15/15; non-converged SVM subset fits remain visible as diagnostics",
+      "name": "F6_ARCENE_CLASSIFICATION_COMPLETE",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F7_NO_LEAKAGE": {
+      "detail": "test_rows_read==0 in 50/50 selections; scaler fitted on training rows only; fixed subsets verified",
+      "name": "F7_NO_LEAKAGE",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F8_CHRONOLOGY_AND_HASH": {
+      "detail": "journal=['PRE_FLIGHT_WRITTEN', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'EXPERIMENT_A_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'EXPERIMENT_A_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_B_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_B_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'EXPERIMENT_A_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_B_FINISHED']; every event references the frozen config digest True; write-once enforced",
+      "name": "F8_CHRONOLOGY_AND_HASH",
+      "pass": true,
+      "status": "PASS"
+    },
+    "F9_REPRODUCIBILITY": {
+      "detail": "SVM control repeat=True; ARCENE repeat=True; threshold oracle tolerance 1e-10",
+      "name": "F9_REPRODUCIBILITY",
+      "pass": true,
+      "status": "PASS"
+    }
+  },
+  "n_failed": [],
+  "run_id": "20261011T174326Z"
+}

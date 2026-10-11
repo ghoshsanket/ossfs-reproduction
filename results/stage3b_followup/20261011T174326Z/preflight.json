@@ -1,0 +1,971 @@
+{
+  "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+  "data_checks": {
+    "ARCENE": {
+      "ok": true,
+      "sha256_matches": true,
+      "status": "EXACT_VERIFIED"
+    },
+    "GINA": {
+      "ok": true,
+      "sha256_matches": true,
+      "status": "EXACT_VERIFIED"
+    },
+    "GISETTE": {
+      "ok": true,
+      "sha256_matches": true,
+      "status": "EXACT_VERIFIED"
+    },
+    "MADELON": {
+      "ok": true,
+      "sha256_matches": true,
+      "status": "EXACT_VERIFIED"
+    }
+  },
+  "freeze_limitation": "In-process, chronologically ordered freeze. Not an independently registered or attested preregistration. The Stage 3A contradicted chronology is preserved unchanged.",
+  "planned": {
+    "baselines": 15,
+    "fits": 270,
+    "selections": 50,
+    "subset_classifiers": 150
+  },
+  "planned_run_ids": {
+    "baselines": [
+      "ARCENE_all_features_fold0::knn",
+      "ARCENE_all_features_fold0::cart",
+      "ARCENE_all_features_fold0::svm",
+      "ARCENE_all_features_fold1::knn",
+      "ARCENE_all_features_fold1::cart",
+      "ARCENE_all_features_fold1::svm",
+      "ARCENE_all_features_fold2::knn",
+      "ARCENE_all_features_fold2::cart",
+      "ARCENE_all_features_fold2::svm",
+      "ARCENE_all_features_fold3::knn",
+      "ARCENE_all_features_fold3::cart",
+      "ARCENE_all_features_fold3::svm",
+      "ARCENE_all_features_fold4::knn",
+      "ARCENE_all_features_fold4::cart",
+      "ARCENE_all_features_fold4::svm"
+    ],
+    "classifiers": [
+      "ARCENE_split11_fold0_order11::knn",
+      "ARCENE_split11_fold0_order11::cart",
+      "ARCENE_split11_fold0_order11::svm",
+      "ARCENE_split11_fold0_order17::knn",
+      "ARCENE_split11_fold0_order17::cart",
+      "ARCENE_split11_fold0_order17::svm",
+      "ARCENE_split11_fold0_order23::knn",
+      "ARCENE_split11_fold0_order23::cart",
+      "ARCENE_split11_fold0_order23::svm",
+      "ARCENE_split11_fold0_order31::knn",
+      "ARCENE_split11_fold0_order31::cart",
+      "ARCENE_split11_fold0_order31::svm",
+      "ARCENE_split11_fold0_order47::knn",
+      "ARCENE_split11_fold0_order47::cart",
+      "ARCENE_split11_fold0_order47::svm",
+      "ARCENE_split11_fold0_order59::knn",
+      "ARCENE_split11_fold0_order59::cart",
+      "ARCENE_split11_fold0_order59::svm",
+      "ARCENE_split11_fold0_order71::knn",
+      "ARCENE_split11_fold0_order71::cart",
+      "ARCENE_split11_fold0_order71::svm",
+      "ARCENE_split11_fold0_order83::knn",
+      "ARCENE_split11_fold0_order83::cart",
+      "ARCENE_split11_fold0_order83::svm",
+      "ARCENE_split11_fold0_order97::knn",
+      "ARCENE_split11_fold0_order97::cart",
+      "ARCENE_split11_fold0_order97::svm",
+      "ARCENE_split11_fold0_order109::knn",
+      "ARCENE_split11_fold0_order109::cart",
+      "ARCENE_split11_fold0_order109::svm",
+      "ARCENE_split11_fold1_order11::knn",
+      "ARCENE_split11_fold1_order11::cart",
+      "ARCENE_split11_fold1_order11::svm",
+      "ARCENE_split11_fold1_order17::knn",
+      "ARCENE_split11_fold1_order17::cart",
+      "ARCENE_split11_fold1_order17::svm",
+      "ARCENE_split11_fold1_order23::knn",
+      "ARCENE_split11_fold1_order23::cart",
+      "ARCENE_split11_fold1_order23::svm",
+      "ARCENE_split11_fold1_order31::knn",
+      "ARCENE_split11_fold1_order31::cart",
+      "ARCENE_split11_fold1_order31::svm",
+      "ARCENE_split11_fold1_order47::knn",
+      "ARCENE_split11_fold1_order47::cart",
+      "ARCENE_split11_fold1_order47::svm",
+      "ARCENE_split11_fold1_order59::knn",
+      "ARCENE_split11_fold1_order59::cart",
+      "ARCENE_split11_fold1_order59::svm",
+      "ARCENE_split11_fold1_order71::knn",
+      "ARCENE_split11_fold1_order71::cart",
+      "ARCENE_split11_fold1_order71::svm",
+      "ARCENE_split11_fold1_order83::knn",
+      "ARCENE_split11_fold1_order83::cart",
+      "ARCENE_split11_fold1_order83::svm",
+      "ARCENE_split11_fold1_order97::knn",
+      "ARCENE_split11_fold1_order97::cart",
+      "ARCENE_split11_fold1_order97::svm",
+      "ARCENE_split11_fold1_order109::knn",
+      "ARCENE_split11_fold1_order109::cart",
+      "ARCENE_split11_fold1_order109::svm",
+      "ARCENE_split11_fold2_order11::knn",
+      "ARCENE_split11_fold2_order11::cart",
+      "ARCENE_split11_fold2_order11::svm",
+      "ARCENE_split11_fold2_order17::knn",
+      "ARCENE_split11_fold2_order17::cart",
+      "ARCENE_split11_fold2_order17::svm",
+      "ARCENE_split11_fold2_order23::knn",
+      "ARCENE_split11_fold2_order23::cart",
+      "ARCENE_split11_fold2_order23::svm",
+      "ARCENE_split11_fold2_order31::knn",
+      "ARCENE_split11_fold2_order31::cart",
+      "ARCENE_split11_fold2_order31::svm",
+      "ARCENE_split11_fold2_order47::knn",
+      "ARCENE_split11_fold2_order47::cart",
+      "ARCENE_split11_fold2_order47::svm",
+      "ARCENE_split11_fold2_order59::knn",
+      "ARCENE_split11_fold2_order59::cart",
+      "ARCENE_split11_fold2_order59::svm",
+      "ARCENE_split11_fold2_order71::knn",
+      "ARCENE_split11_fold2_order71::cart",
+      "ARCENE_split11_fold2_order71::svm",
+      "ARCENE_split11_fold2_order83::knn",
+      "ARCENE_split11_fold2_order83::cart",
+      "ARCENE_split11_fold2_order83::svm",
+      "ARCENE_split11_fold2_order97::knn",
+      "ARCENE_split11_fold2_order97::cart",
+      "ARCENE_split11_fold2_order97::svm",
+      "ARCENE_split11_fold2_order109::knn",
+      "ARCENE_split11_fold2_order109::cart",
+      "ARCENE_split11_fold2_order109::svm",
+      "ARCENE_split11_fold3_order11::knn",
+      "ARCENE_split11_fold3_order11::cart",
+      "ARCENE_split11_fold3_order11::svm",
+      "ARCENE_split11_fold3_order17::knn",
+      "ARCENE_split11_fold3_order17::cart",
+      "ARCENE_split11_fold3_order17::svm",
+      "ARCENE_split11_fold3_order23::knn",
+      "ARCENE_split11_fold3_order23::cart",
+      "ARCENE_split11_fold3_order23::svm",
+      "ARCENE_split11_fold3_order31::knn",
+      "ARCENE_split11_fold3_order31::cart",
+      "ARCENE_split11_fold3_order31::svm",
+      "ARCENE_split11_fold3_order47::knn",
+      "ARCENE_split11_fold3_order47::cart",
+      "ARCENE_split11_fold3_order47::svm",
+      "ARCENE_split11_fold3_order59::knn",
+      "ARCENE_split11_fold3_order59::cart",
+      "ARCENE_split11_fold3_order59::svm",
+      "ARCENE_split11_fold3_order71::knn",
+      "ARCENE_split11_fold3_order71::cart",
+      "ARCENE_split11_fold3_order71::svm",
+      "ARCENE_split11_fold3_order83::knn",
+      "ARCENE_split11_fold3_order83::cart",
+      "ARCENE_split11_fold3_order83::svm",
+      "ARCENE_split11_fold3_order97::knn",
+      "ARCENE_split11_fold3_order97::cart",
+      "ARCENE_split11_fold3_order97::svm",
+      "ARCENE_split11_fold3_order109::knn",
+      "ARCENE_split11_fold3_order109::cart",
+      "ARCENE_split11_fold3_order109::svm",
+      "ARCENE_split11_fold4_order11::knn",
+      "ARCENE_split11_fold4_order11::cart",
+      "ARCENE_split11_fold4_order11::svm",
+      "ARCENE_split11_fold4_order17::knn",
+      "ARCENE_split11_fold4_order17::cart",
+      "ARCENE_split11_fold4_order17::svm",
+      "ARCENE_split11_fold4_order23::knn",
+      "ARCENE_split11_fold4_order23::cart",
+      "ARCENE_split11_fold4_order23::svm",
+      "ARCENE_split11_fold4_order31::knn",
+      "ARCENE_split11_fold4_order31::cart",
+      "ARCENE_split11_fold4_order31::svm",
+      "ARCENE_split11_fold4_order47::knn",
+      "ARCENE_split11_fold4_order47::cart",
+      "ARCENE_split11_fold4_order47::svm",
+      "ARCENE_split11_fold4_order59::knn",
+      "ARCENE_split11_fold4_order59::cart",
+      "ARCENE_split11_fold4_order59::svm",
+      "ARCENE_split11_fold4_order71::knn",
+      "ARCENE_split11_fold4_order71::cart",
+      "ARCENE_split11_fold4_order71::svm",
+      "ARCENE_split11_fold4_order83::knn",
+      "ARCENE_split11_fold4_order83::cart",
+      "ARCENE_split11_fold4_order83::svm",
+      "ARCENE_split11_fold4_order97::knn",
+      "ARCENE_split11_fold4_order97::cart",
+      "ARCENE_split11_fold4_order97::svm",
+      "ARCENE_split11_fold4_order109::knn",
+      "ARCENE_split11_fold4_order109::cart",
+      "ARCENE_split11_fold4_order109::svm"
+    ],
+    "fits": [
+      "MADELON_seed11_fold0__C0.1__tol0.001",
+      "MADELON_seed11_fold0__C0.1__tol0.0001",
+      "MADELON_seed11_fold0__C1.0__tol0.001",
+      "MADELON_seed11_fold0__C1.0__tol0.0001",
+      "MADELON_seed11_fold0__C10.0__tol0.001",
+      "MADELON_seed11_fold0__C10.0__tol0.0001",
+      "MADELON_seed11_fold1__C0.1__tol0.001",
+      "MADELON_seed11_fold1__C0.1__tol0.0001",
+      "MADELON_seed11_fold1__C1.0__tol0.001",
+      "MADELON_seed11_fold1__C1.0__tol0.0001",
+      "MADELON_seed11_fold1__C10.0__tol0.001",
+      "MADELON_seed11_fold1__C10.0__tol0.0001",
+      "MADELON_seed11_fold2__C0.1__tol0.001",
+      "MADELON_seed11_fold2__C0.1__tol0.0001",
+      "MADELON_seed11_fold2__C1.0__tol0.001",
+      "MADELON_seed11_fold2__C1.0__tol0.0001",
+      "MADELON_seed11_fold2__C10.0__tol0.001",
+      "MADELON_seed11_fold2__C10.0__tol0.0001",
+      "MADELON_seed11_fold3__C0.1__tol0.001",
+      "MADELON_seed11_fold3__C0.1__tol0.0001",
+      "MADELON_seed11_fold3__C1.0__tol0.001",
+      "MADELON_seed11_fold3__C1.0__tol0.0001",
+      "MADELON_seed11_fold3__C10.0__tol0.001",
+      "MADELON_seed11_fold3__C10.0__tol0.0001",
+      "MADELON_seed11_fold4__C0.1__tol0.001",
+      "MADELON_seed11_fold4__C0.1__tol0.0001",
+      "MADELON_seed11_fold4__C1.0__tol0.001",
+      "MADELON_seed11_fold4__C1.0__tol0.0001",
+      "MADELON_seed11_fold4__C10.0__tol0.001",
+      "MADELON_seed11_fold4__C10.0__tol0.0001",
+      "MADELON_seed17_fold0__C0.1__tol0.001",
+      "MADELON_seed17_fold0__C0.1__tol0.0001",
+      "MADELON_seed17_fold0__C1.0__tol0.001",
+      "MADELON_seed17_fold0__C1.0__tol0.0001",
+      "MADELON_seed17_fold0__C10.0__tol0.001",
+      "MADELON_seed17_fold0__C10.0__tol0.0001",
+      "MADELON_seed17_fold1__C0.1__tol0.001",
+      "MADELON_seed17_fold1__C0.1__tol0.0001",
+      "MADELON_seed17_fold1__C1.0__tol0.001",
+      "MADELON_seed17_fold1__C1.0__tol0.0001",
+      "MADELON_seed17_fold1__C10.0__tol0.001",
+      "MADELON_seed17_fold1__C10.0__tol0.0001",
+      "MADELON_seed17_fold2__C0.1__tol0.001",
+      "MADELON_seed17_fold2__C0.1__tol0.0001",
+      "MADELON_seed17_fold2__C1.0__tol0.001",
+      "MADELON_seed17_fold2__C1.0__tol0.0001",
+      "MADELON_seed17_fold2__C10.0__tol0.001",
+      "MADELON_seed17_fold2__C10.0__tol0.0001",
+      "MADELON_seed17_fold3__C0.1__tol0.001",
+      "MADELON_seed17_fold3__C0.1__tol0.0001",
+      "MADELON_seed17_fold3__C1.0__tol0.001",
+      "MADELON_seed17_fold3__C1.0__tol0.0001",
+      "MADELON_seed17_fold3__C10.0__tol0.001",
+      "MADELON_seed17_fold3__C10.0__tol0.0001",
+      "MADELON_seed17_fold4__C0.1__tol0.001",
+      "MADELON_seed17_fold4__C0.1__tol0.0001",
+      "MADELON_seed17_fold4__C1.0__tol0.001",
+      "MADELON_seed17_fold4__C1.0__tol0.0001",
+      "MADELON_seed17_fold4__C10.0__tol0.001",
+      "MADELON_seed17_fold4__C10.0__tol0.0001",
+      "MADELON_seed23_fold0__C0.1__tol0.001",
+      "MADELON_seed23_fold0__C0.1__tol0.0001",
+      "MADELON_seed23_fold0__C1.0__tol0.001",
+      "MADELON_seed23_fold0__C1.0__tol0.0001",
+      "MADELON_seed23_fold0__C10.0__tol0.001",
+      "MADELON_seed23_fold0__C10.0__tol0.0001",
+      "MADELON_seed23_fold1__C0.1__tol0.001",
+      "MADELON_seed23_fold1__C0.1__tol0.0001",
+      "MADELON_seed23_fold1__C1.0__tol0.001",
+      "MADELON_seed23_fold1__C1.0__tol0.0001",
+      "MADELON_seed23_fold1__C10.0__tol0.001",
+      "MADELON_seed23_fold1__C10.0__tol0.0001",
+      "MADELON_seed23_fold2__C0.1__tol0.001",
+      "MADELON_seed23_fold2__C0.1__tol0.0001",
+      "MADELON_seed23_fold2__C1.0__tol0.001",
+      "MADELON_seed23_fold2__C1.0__tol0.0001",
+      "MADELON_seed23_fold2__C10.0__tol0.001",
+      "MADELON_seed23_fold2__C10.0__tol0.0001",
+      "MADELON_seed23_fold3__C0.1__tol0.001",
+      "MADELON_seed23_fold3__C0.1__tol0.0001",
+      "MADELON_seed23_fold3__C1.0__tol0.001",
+      "MADELON_seed23_fold3__C1.0__tol0.0001",
+      "MADELON_seed23_fold3__C10.0__tol0.001",
+      "MADELON_seed23_fold3__C10.0__tol0.0001",
+      "MADELON_seed23_fold4__C0.1__tol0.001",
+      "MADELON_seed23_fold4__C0.1__tol0.0001",
+      "MADELON_seed23_fold4__C1.0__tol0.001",
+      "MADELON_seed23_fold4__C1.0__tol0.0001",
+      "MADELON_seed23_fold4__C10.0__tol0.001",
+      "MADELON_seed23_fold4__C10.0__tol0.0001",
+      "GINA_seed11_fold0__C0.1__tol0.001",
+      "GINA_seed11_fold0__C0.1__tol0.0001",
+      "GINA_seed11_fold0__C1.0__tol0.001",
+      "GINA_seed11_fold0__C1.0__tol0.0001",
+      "GINA_seed11_fold0__C10.0__tol0.001",
+      "GINA_seed11_fold0__C10.0__tol0.0001",
+      "GINA_seed11_fold1__C0.1__tol0.001",
+      "GINA_seed11_fold1__C0.1__tol0.0001",
+      "GINA_seed11_fold1__C1.0__tol0.001",
+      "GINA_seed11_fold1__C1.0__tol0.0001",
+      "GINA_seed11_fold1__C10.0__tol0.001",
+      "GINA_seed11_fold1__C10.0__tol0.0001",
+      "GINA_seed11_fold2__C0.1__tol0.001",
+      "GINA_seed11_fold2__C0.1__tol0.0001",
+      "GINA_seed11_fold2__C1.0__tol0.001",
+      "GINA_seed11_fold2__C1.0__tol0.0001",
+      "GINA_seed11_fold2__C10.0__tol0.001",
+      "GINA_seed11_fold2__C10.0__tol0.0001",
+      "GINA_seed11_fold3__C0.1__tol0.001",
+      "GINA_seed11_fold3__C0.1__tol0.0001",
+      "GINA_seed11_fold3__C1.0__tol0.001",
+      "GINA_seed11_fold3__C1.0__tol0.0001",
+      "GINA_seed11_fold3__C10.0__tol0.001",
+      "GINA_seed11_fold3__C10.0__tol0.0001",
+      "GINA_seed11_fold4__C0.1__tol0.001",
+      "GINA_seed11_fold4__C0.1__tol0.0001",
+      "GINA_seed11_fold4__C1.0__tol0.001",
+      "GINA_seed11_fold4__C1.0__tol0.0001",
+      "GINA_seed11_fold4__C10.0__tol0.001",
+      "GINA_seed11_fold4__C10.0__tol0.0001",
+      "GINA_seed17_fold0__C0.1__tol0.001",
+      "GINA_seed17_fold0__C0.1__tol0.0001",
+      "GINA_seed17_fold0__C1.0__tol0.001",
+      "GINA_seed17_fold0__C1.0__tol0.0001",
+      "GINA_seed17_fold0__C10.0__tol0.001",
+      "GINA_seed17_fold0__C10.0__tol0.0001",
+      "GINA_seed17_fold1__C0.1__tol0.001",
+      "GINA_seed17_fold1__C0.1__tol0.0001",
+      "GINA_seed17_fold1__C1.0__tol0.001",
+      "GINA_seed17_fold1__C1.0__tol0.0001",
+      "GINA_seed17_fold1__C10.0__tol0.001",
+      "GINA_seed17_fold1__C10.0__tol0.0001",
+      "GINA_seed17_fold2__C0.1__tol0.001",
+      "GINA_seed17_fold2__C0.1__tol0.0001",
+      "GINA_seed17_fold2__C1.0__tol0.001",
+      "GINA_seed17_fold2__C1.0__tol0.0001",
+      "GINA_seed17_fold2__C10.0__tol0.001",
+      "GINA_seed17_fold2__C10.0__tol0.0001",
+      "GINA_seed17_fold3__C0.1__tol0.001",
+      "GINA_seed17_fold3__C0.1__tol0.0001",
+      "GINA_seed17_fold3__C1.0__tol0.001",
+      "GINA_seed17_fold3__C1.0__tol0.0001",
+      "GINA_seed17_fold3__C10.0__tol0.001",
+      "GINA_seed17_fold3__C10.0__tol0.0001",
+      "GINA_seed17_fold4__C0.1__tol0.001",
+      "GINA_seed17_fold4__C0.1__tol0.0001",
+      "GINA_seed17_fold4__C1.0__tol0.001",
+      "GINA_seed17_fold4__C1.0__tol0.0001",
+      "GINA_seed17_fold4__C10.0__tol0.001",
+      "GINA_seed17_fold4__C10.0__tol0.0001",
+      "GINA_seed23_fold0__C0.1__tol0.001",
+      "GINA_seed23_fold0__C0.1__tol0.0001",
+      "GINA_seed23_fold0__C1.0__tol0.001",
+      "GINA_seed23_fold0__C1.0__tol0.0001",
+      "GINA_seed23_fold0__C10.0__tol0.001",
+      "GINA_seed23_fold0__C10.0__tol0.0001",
+      "GINA_seed23_fold1__C0.1__tol0.001",
+      "GINA_seed23_fold1__C0.1__tol0.0001",
+      "GINA_seed23_fold1__C1.0__tol0.001",
+      "GINA_seed23_fold1__C1.0__tol0.0001",
+      "GINA_seed23_fold1__C10.0__tol0.001",
+      "GINA_seed23_fold1__C10.0__tol0.0001",
+      "GINA_seed23_fold2__C0.1__tol0.001",
+      "GINA_seed23_fold2__C0.1__tol0.0001",
+      "GINA_seed23_fold2__C1.0__tol0.001",
+      "GINA_seed23_fold2__C1.0__tol0.0001",
+      "GINA_seed23_fold2__C10.0__tol0.001",
+      "GINA_seed23_fold2__C10.0__tol0.0001",
+      "GINA_seed23_fold3__C0.1__tol0.001",
+      "GINA_seed23_fold3__C0.1__tol0.0001",
+      "GINA_seed23_fold3__C1.0__tol0.001",
+      "GINA_seed23_fold3__C1.0__tol0.0001",
+      "GINA_seed23_fold3__C10.0__tol0.001",
+      "GINA_seed23_fold3__C10.0__tol0.0001",
+      "GINA_seed23_fold4__C0.1__tol0.001",
+      "GINA_seed23_fold4__C0.1__tol0.0001",
+      "GINA_seed23_fold4__C1.0__tol0.001",
+      "GINA_seed23_fold4__C1.0__tol0.0001",
+      "GINA_seed23_fold4__C10.0__tol0.001",
+      "GINA_seed23_fold4__C10.0__tol0.0001",
+      "GISETTE_seed11_fold0__C0.1__tol0.001",
+      "GISETTE_seed11_fold0__C0.1__tol0.0001",
+      "GISETTE_seed11_fold0__C1.0__tol0.001",
+      "GISETTE_seed11_fold0__C1.0__tol0.0001",
+      "GISETTE_seed11_fold0__C10.0__tol0.001",
+      "GISETTE_seed11_fold0__C10.0__tol0.0001",
+      "GISETTE_seed11_fold1__C0.1__tol0.001",
+      "GISETTE_seed11_fold1__C0.1__tol0.0001",
+      "GISETTE_seed11_fold1__C1.0__tol0.001",
+      "GISETTE_seed11_fold1__C1.0__tol0.0001",
+      "GISETTE_seed11_fold1__C10.0__tol0.001",
+      "GISETTE_seed11_fold1__C10.0__tol0.0001",
+      "GISETTE_seed11_fold2__C0.1__tol0.001",
+      "GISETTE_seed11_fold2__C0.1__tol0.0001",
+      "GISETTE_seed11_fold2__C1.0__tol0.001",
+      "GISETTE_seed11_fold2__C1.0__tol0.0001",
+      "GISETTE_seed11_fold2__C10.0__tol0.001",
+      "GISETTE_seed11_fold2__C10.0__tol0.0001",
+      "GISETTE_seed11_fold3__C0.1__tol0.001",
+      "GISETTE_seed11_fold3__C0.1__tol0.0001",
+      "GISETTE_seed11_fold3__C1.0__tol0.001",
+      "GISETTE_seed11_fold3__C1.0__tol0.0001",
+      "GISETTE_seed11_fold3__C10.0__tol0.001",
+      "GISETTE_seed11_fold3__C10.0__tol0.0001",
+      "GISETTE_seed11_fold4__C0.1__tol0.001",
+      "GISETTE_seed11_fold4__C0.1__tol0.0001",
+      "GISETTE_seed11_fold4__C1.0__tol0.001",
+      "GISETTE_seed11_fold4__C1.0__tol0.0001",
+      "GISETTE_seed11_fold4__C10.0__tol0.001",
+      "GISETTE_seed11_fold4__C10.0__tol0.0001",
+      "GISETTE_seed17_fold0__C0.1__tol0.001",
+      "GISETTE_seed17_fold0__C0.1__tol0.0001",
+      "GISETTE_seed17_fold0__C1.0__tol0.001",
+      "GISETTE_seed17_fold0__C1.0__tol0.0001",
+      "GISETTE_seed17_fold0__C10.0__tol0.001",
+      "GISETTE_seed17_fold0__C10.0__tol0.0001",
+      "GISETTE_seed17_fold1__C0.1__tol0.001",
+      "GISETTE_seed17_fold1__C0.1__tol0.0001",
+      "GISETTE_seed17_fold1__C1.0__tol0.001",
+      "GISETTE_seed17_fold1__C1.0__tol0.0001",
+      "GISETTE_seed17_fold1__C10.0__tol0.001",
+      "GISETTE_seed17_fold1__C10.0__tol0.0001",
+      "GISETTE_seed17_fold2__C0.1__tol0.001",
+      "GISETTE_seed17_fold2__C0.1__tol0.0001",
+      "GISETTE_seed17_fold2__C1.0__tol0.001",
+      "GISETTE_seed17_fold2__C1.0__tol0.0001",
+      "GISETTE_seed17_fold2__C10.0__tol0.001",
+      "GISETTE_seed17_fold2__C10.0__tol0.0001",
+      "GISETTE_seed17_fold3__C0.1__tol0.001",
+      "GISETTE_seed17_fold3__C0.1__tol0.0001",
+      "GISETTE_seed17_fold3__C1.0__tol0.001",
+      "GISETTE_seed17_fold3__C1.0__tol0.0001",
+      "GISETTE_seed17_fold3__C10.0__tol0.001",
+      "GISETTE_seed17_fold3__C10.0__tol0.0001",
+      "GISETTE_seed17_fold4__C0.1__tol0.001",
+      "GISETTE_seed17_fold4__C0.1__tol0.0001",
+      "GISETTE_seed17_fold4__C1.0__tol0.001",
+      "GISETTE_seed17_fold4__C1.0__tol0.0001",
+      "GISETTE_seed17_fold4__C10.0__tol0.001",
+      "GISETTE_seed17_fold4__C10.0__tol0.0001",
+      "GISETTE_seed23_fold0__C0.1__tol0.001",
+      "GISETTE_seed23_fold0__C0.1__tol0.0001",
+      "GISETTE_seed23_fold0__C1.0__tol0.001",
+      "GISETTE_seed23_fold0__C1.0__tol0.0001",
+      "GISETTE_seed23_fold0__C10.0__tol0.001",
+      "GISETTE_seed23_fold0__C10.0__tol0.0001",
+      "GISETTE_seed23_fold1__C0.1__tol0.001",
+      "GISETTE_seed23_fold1__C0.1__tol0.0001",
+      "GISETTE_seed23_fold1__C1.0__tol0.001",
+      "GISETTE_seed23_fold1__C1.0__tol0.0001",
+      "GISETTE_seed23_fold1__C10.0__tol0.001",
+      "GISETTE_seed23_fold1__C10.0__tol0.0001",
+      "GISETTE_seed23_fold2__C0.1__tol0.001",
+      "GISETTE_seed23_fold2__C0.1__tol0.0001",
+      "GISETTE_seed23_fold2__C1.0__tol0.001",
+      "GISETTE_seed23_fold2__C1.0__tol0.0001",
+      "GISETTE_seed23_fold2__C10.0__tol0.001",
+      "GISETTE_seed23_fold2__C10.0__tol0.0001",
+      "GISETTE_seed23_fold3__C0.1__tol0.001",
+      "GISETTE_seed23_fold3__C0.1__tol0.0001",
+      "GISETTE_seed23_fold3__C1.0__tol0.001",
+      "GISETTE_seed23_fold3__C1.0__tol0.0001",
+      "GISETTE_seed23_fold3__C10.0__tol0.001",
+      "GISETTE_seed23_fold3__C10.0__tol0.0001",
+      "GISETTE_seed23_fold4__C0.1__tol0.001",
+      "GISETTE_seed23_fold4__C0.1__tol0.0001",
+      "GISETTE_seed23_fold4__C1.0__tol0.001",
+      "GISETTE_seed23_fold4__C1.0__tol0.0001",
+      "GISETTE_seed23_fold4__C10.0__tol0.001",
+      "GISETTE_seed23_fold4__C10.0__tol0.0001"
+    ],
+    "selections": [
+      "ARCENE_split11_fold0_order11",
+      "ARCENE_split11_fold0_order17",
+      "ARCENE_split11_fold0_order23",
+      "ARCENE_split11_fold0_order31",
+      "ARCENE_split11_fold0_order47",
+      "ARCENE_split11_fold0_order59",
+      "ARCENE_split11_fold0_order71",
+      "ARCENE_split11_fold0_order83",
+      "ARCENE_split11_fold0_order97",
+      "ARCENE_split11_fold0_order109",
+      "ARCENE_split11_fold1_order11",
+      "ARCENE_split11_fold1_order17",
+      "ARCENE_split11_fold1_order23",
+      "ARCENE_split11_fold1_order31",
+      "ARCENE_split11_fold1_order47",
+      "ARCENE_split11_fold1_order59",
+      "ARCENE_split11_fold1_order71",
+      "ARCENE_split11_fold1_order83",
+      "ARCENE_split11_fold1_order97",
+      "ARCENE_split11_fold1_order109",
+      "ARCENE_split11_fold2_order11",
+      "ARCENE_split11_fold2_order17",
+      "ARCENE_split11_fold2_order23",
+      "ARCENE_split11_fold2_order31",
+      "ARCENE_split11_fold2_order47",
+      "ARCENE_split11_fold2_order59",
+      "ARCENE_split11_fold2_order71",
+      "ARCENE_split11_fold2_order83",
+      "ARCENE_split11_fold2_order97",
+      "ARCENE_split11_fold2_order109",
+      "ARCENE_split11_fold3_order11",
+      "ARCENE_split11_fold3_order17",
+      "ARCENE_split11_fold3_order23",
+      "ARCENE_split11_fold3_order31",
+      "ARCENE_split11_fold3_order47",
+      "ARCENE_split11_fold3_order59",
+      "ARCENE_split11_fold3_order71",
+      "ARCENE_split11_fold3_order83",
+      "ARCENE_split11_fold3_order97",
+      "ARCENE_split11_fold3_order109",
+      "ARCENE_split11_fold4_order11",
+      "ARCENE_split11_fold4_order17",
+      "ARCENE_split11_fold4_order23",
+      "ARCENE_split11_fold4_order31",
+      "ARCENE_split11_fold4_order47",
+      "ARCENE_split11_fold4_order59",
+      "ARCENE_split11_fold4_order71",
+      "ARCENE_split11_fold4_order83",
+      "ARCENE_split11_fold4_order97",
+      "ARCENE_split11_fold4_order109"
+    ]
+  },
+  "run_id": "20261011T174326Z",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/preflight/1.0",
+  "source_fingerprint": "c2024065d1f6b3b398fe3e89a2f3fb4a8285a8d27d6cf4240367e315827bfa9f",
+  "stage3a_code_hash_limitation": "Stage 3A's per-run code_hash is non-authoritative (11 distinct values observed because it was recomputed per task from a moving source tree). Validation uses protocol_digest, subset identity and the current source fingerprint instead.",
+  "stage3a_subsets": [
+    {
+      "key": "MADELON_seed11_fold0",
+      "n_selected": 57
+    },
+    {
+      "key": "MADELON_seed11_fold1",
+      "n_selected": 50
+    },
+    {
+      "key": "MADELON_seed11_fold2",
+      "n_selected": 57
+    },
+    {
+      "key": "MADELON_seed11_fold3",
+      "n_selected": 56
+    },
+    {
+      "key": "MADELON_seed11_fold4",
+      "n_selected": 56
+    },
+    {
+      "key": "MADELON_seed17_fold0",
+      "n_selected": 49
+    },
+    {
+      "key": "MADELON_seed17_fold1",
+      "n_selected": 56
+    },
+    {
+      "key": "MADELON_seed17_fold2",
+      "n_selected": 54
+    },
+    {
+      "key": "MADELON_seed17_fold3",
+      "n_selected": 60
+    },
+    {
+      "key": "MADELON_seed17_fold4",
+      "n_selected": 52
+    },
+    {
+      "key": "MADELON_seed23_fold0",
+      "n_selected": 42
+    },
+    {
+      "key": "MADELON_seed23_fold1",
+      "n_selected": 40
+    },
+    {
+      "key": "MADELON_seed23_fold2",
+      "n_selected": 47
+    },
+    {
+      "key": "MADELON_seed23_fold3",
+      "n_selected": 44
+    },
+    {
+      "key": "MADELON_seed23_fold4",
+      "n_selected": 43
+    },
+    {
+      "key": "GINA_seed11_fold0",
+      "n_selected": 98
+    },
+    {
+      "key": "GINA_seed11_fold1",
+      "n_selected": 89
+    },
+    {
+      "key": "GINA_seed11_fold2",
+      "n_selected": 93
+    },
+    {
+      "key": "GINA_seed11_fold3",
+      "n_selected": 96
+    },
+    {
+      "key": "GINA_seed11_fold4",
+      "n_selected": 96
+    },
+    {
+      "key": "GINA_seed17_fold0",
+      "n_selected": 95
+    },
+    {
+      "key": "GINA_seed17_fold1",
+      "n_selected": 86
+    },
+    {
+      "key": "GINA_seed17_fold2",
+      "n_selected": 93
+    },
+    {
+      "key": "GINA_seed17_fold3",
+      "n_selected": 93
+    },
+    {
+      "key": "GINA_seed17_fold4",
+      "n_selected": 89
+    },
+    {
+      "key": "GINA_seed23_fold0",
+      "n_selected": 97
+    },
+    {
+      "key": "GINA_seed23_fold1",
+      "n_selected": 93
+    },
+    {
+      "key": "GINA_seed23_fold2",
+      "n_selected": 93
+    },
+    {
+      "key": "GINA_seed23_fold3",
+      "n_selected": 91
+    },
+    {
+      "key": "GINA_seed23_fold4",
+      "n_selected": 96
+    },
+    {
+      "key": "GISETTE_seed11_fold0",
+      "n_selected": 182
+    },
+    {
+      "key": "GISETTE_seed11_fold1",
+      "n_selected": 182
+    },
+    {
+      "key": "GISETTE_seed11_fold2",
+      "n_selected": 177
+    },
+    {
+      "key": "GISETTE_seed11_fold3",
+      "n_selected": 175
+    },
+    {
+      "key": "GISETTE_seed11_fold4",
+      "n_selected": 181
+    },
+    {
+      "key": "GISETTE_seed17_fold0",
+      "n_selected": 173
+    },
+    {
+      "key": "GISETTE_seed17_fold1",
+      "n_selected": 175
+    },
+    {
+      "key": "GISETTE_seed17_fold2",
+      "n_selected": 176
+    },
+    {
+      "key": "GISETTE_seed17_fold3",
+      "n_selected": 167
+    },
+    {
+      "key": "GISETTE_seed17_fold4",
+      "n_selected": 181
+    },
+    {
+      "key": "GISETTE_seed23_fold0",
+      "n_selected": 178
+    },
+    {
+      "key": "GISETTE_seed23_fold1",
+      "n_selected": 178
+    },
+    {
+      "key": "GISETTE_seed23_fold2",
+      "n_selected": 170
+    },
+    {
+      "key": "GISETTE_seed23_fold3",
+      "n_selected": 173
+    },
+    {
+      "key": "GISETTE_seed23_fold4",
+      "n_selected": 176
+    }
+  ],
+  "stage3b_arcene_records": [
+    {
+      "n_selected": 863,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order11.json",
+      "sha256": "dfb4425313790191a01af87c6629301831ee4d016aedbcb94c11558f0d42f50a"
+    },
+    {
+      "n_selected": 664,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order17.json",
+      "sha256": "8b657f1af63a71ce29e952c42395685c1fc992b3010466a2af8f81ba392f88d2"
+    },
+    {
+      "n_selected": 223,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order23.json",
+      "sha256": "40aab1165178dba7e9faa1a59d65144c8d352efd49cd1d01256d3da61bf22900"
+    },
+    {
+      "n_selected": 1272,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order31.json",
+      "sha256": "93249f1a70e264ea6456861ba0a5d149223a1fce0604b66528c997cb1c984225"
+    },
+    {
+      "n_selected": 1509,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order47.json",
+      "sha256": "32406c05f32c95d2bfb11937214bf4b9d5a9c1de873e3aac516a295b8468094f"
+    },
+    {
+      "n_selected": 1157,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order59.json",
+      "sha256": "54e6a2cd812be795e0f539864d1b885da55bb08ccc7a564afadb67e12aca981d"
+    },
+    {
+      "n_selected": 673,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order71.json",
+      "sha256": "a509c4ba623619fa89aaa8ed71f048995ba45044c75bd550ae993779da316150"
+    },
+    {
+      "n_selected": 554,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order83.json",
+      "sha256": "56bed9896d0402162df2c94fb30f7b3eed557a4915d145b3de9befda3745b4a5"
+    },
+    {
+      "n_selected": 580,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order97.json",
+      "sha256": "72ac98c21111493ae7a99cbd39ffa6f28fae26684297ab384e995376f1a8e830"
+    },
+    {
+      "n_selected": 793,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold0_order109.json",
+      "sha256": "37f87d9dcec2cc419b7fcb9935a825bd52d5e12fe2c741d3c69656c0bda41420"
+    },
+    {
+      "n_selected": 1139,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order11.json",
+      "sha256": "b8d0ec407871b10a195ef83fe4e076efa8d42da3359849e724bfee2b3437ee1a"
+    },
+    {
+      "n_selected": 365,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order17.json",
+      "sha256": "da9e27214a23a2970af3c474645ea1797eb709d93285b54bf081a71ec4ec13bc"
+    },
+    {
+      "n_selected": 1253,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order23.json",
+      "sha256": "b62e5630fb3bacf5e8a6766d0a8d72a2102beefb7354c63e34cf5918c40bf70a"
+    },
+    {
+      "n_selected": 1068,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order31.json",
+      "sha256": "89e74f4156de605f11f1fbcd5e567044e2078b7f66ecec40db5ade6204930eb7"
+    },
+    {
+      "n_selected": 1182,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order47.json",
+      "sha256": "e009535152eabc81e59199670ccdf1c858baca1d0c2c7fed7f826880be9df238"
+    },
+    {
+      "n_selected": 1082,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order59.json",
+      "sha256": "18e561b190fa86fcce2d648dd492405ed8c70532ccb9a265827a33c552a066c9"
+    },
+    {
+      "n_selected": 1156,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order71.json",
+      "sha256": "42c3f97fb1ba1dd688238f0c6957a642aaf3ba46c15ba42114ba9c8e1cea382a"
+    },
+    {
+      "n_selected": 1219,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order83.json",
+      "sha256": "98f685abe559629ffe0f2723f79a16ec82925e841a454ad1e3be0049d6de8cb6"
+    },
+    {
+      "n_selected": 960,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order97.json",
+      "sha256": "4d741db50b16d1cdd75fb378a86af1ebf0a24c0b5b10958eb867425cb77dd1b1"
+    },
+    {
+      "n_selected": 9,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold1_order109.json",
+      "sha256": "83bae65a05c0eb45fee8117c9c265132a1a40d429af466623ae465ca214daaf5"
+    },
+    {
+      "n_selected": 1422,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order11.json",
+      "sha256": "06cea3ab495f70386dc6e8a9eb7eeef60d2c7840f8cd39957eb3a2e68bef6b76"
+    },
+    {
+      "n_selected": 796,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order17.json",
+      "sha256": "04f0295f9df6c3a1ea4c1d55d3eb74a5298f69b5f2f347845990bb6e87b7e1a2"
+    },
+    {
+      "n_selected": 1478,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order23.json",
+      "sha256": "7690b1483fcee2fd36a8aba0e5f3630677759bac29a7659f2efc9c2ea68c9567"
+    },
+    {
+      "n_selected": 42,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order31.json",
+      "sha256": "9f9e7e33f8cec8fea173c4625c77355fb414d68bd82a7bf1bd96e12d9eaa7b08"
+    },
+    {
+      "n_selected": 152,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order47.json",
+      "sha256": "1d8a94209f70d2e0fd20880aac245dd11774cfb1b2d8ec9aee8f27e57bfedeb5"
+    },
+    {
+      "n_selected": 1488,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order59.json",
+      "sha256": "949ff23c1c0d3a57f944c06f38a3fa5cda37c79f3d1bcc135695345c2e947aa1"
+    },
+    {
+      "n_selected": 804,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order71.json",
+      "sha256": "43ba5a0445246b7bf2166bd000318f1bd1a008804ecd6fd58f80d1ee31f52a00"
+    },
+    {
+      "n_selected": 88,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order83.json",
+      "sha256": "68c217cc8e5e5695017cb003a7f0b81a99b6c609b0ec0a24918efbfcead83ed0"
+    },
+    {
+      "n_selected": 250,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order97.json",
+      "sha256": "2e8530f44b65f08cb3305146d512fa20d0fd940fdeff8abc542fe898f52708e2"
+    },
+    {
+      "n_selected": 260,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold2_order109.json",
+      "sha256": "9841127d101073e12243f52845dc26fec72076d4dbd2ab30cbf2defba5480bc8"
+    },
+    {
+      "n_selected": 1457,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order11.json",
+      "sha256": "ff3b6b04b2c3a6d639066a34d53251a284d28829a88d8412826f25f39a88c6f5"
+    },
+    {
+      "n_selected": 1473,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order17.json",
+      "sha256": "1764ae0d299d7b28ce4eea7c23b078a21befe056cb5cbaa0f944f8b0d8f58c28"
+    },
+    {
+      "n_selected": 1376,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order23.json",
+      "sha256": "c0fea576db2b3287e8023189262b13850e538ba0d018d9b253748efc461afb31"
+    },
+    {
+      "n_selected": 996,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order31.json",
+      "sha256": "d8b46725d80e2c2fc843721278293d9efd326b83464b1e5baa039a817a523088"
+    },
+    {
+      "n_selected": 1504,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order47.json",
+      "sha256": "bb1803c479150eec17859005db69d993a3872dcb3bd4f2d124cf8e1dfa0bd31e"
+    },
+    {
+      "n_selected": 345,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order59.json",
+      "sha256": "d2924f4d8b0eaa0cf17380977cafc3ea45790e240b83afce031b73f28d870a7b"
+    },
+    {
+      "n_selected": 1004,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order71.json",
+      "sha256": "39f541d6a10aac618d3b4a93a600a8533bdb76fa0802fe69963fbcd4d739df95"
+    },
+    {
+      "n_selected": 180,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order83.json",
+      "sha256": "f1a14d8c8415588c1ca95672eb112b2fa82df683da81192cb5c7b80999c3e163"
+    },
+    {
+      "n_selected": 519,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order97.json",
+      "sha256": "9b13573bb4523ebf286f47b95beb2ce8bb83262b62998f61c0b86382db28262f"
+    },
+    {
+      "n_selected": 820,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold3_order109.json",
+      "sha256": "96aea05b8bc2e4f49bb78972f772ea6a1336525dfb7268fd41a0cb801554155e"
+    },
+    {
+      "n_selected": 134,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order11.json",
+      "sha256": "dd1c51ff23d2e0fcff403f37e284d0c24224c22e9014ce6ff77a91af15604eb4"
+    },
+    {
+      "n_selected": 1507,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order17.json",
+      "sha256": "2e6f7a5e275d34044aca8219fb322fe2448225855d2bb091815294757d713289"
+    },
+    {
+      "n_selected": 265,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order23.json",
+      "sha256": "028779e8a9bf645f9d11063595b4dfef3e25bcf4f64eabd711479e12e8e1533c"
+    },
+    {
+      "n_selected": 1157,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order31.json",
+      "sha256": "ab6daba414d5c2a9f2e6b38890cb5aa5fb7790993ef07f07cd126601959e521b"
+    },
+    {
+      "n_selected": 1561,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order47.json",
+      "sha256": "127a1d53f2b442dcc94706a9af59fe9eac9e56d2d9c0f5ac05c893faa5006c04"
+    },
+    {
+      "n_selected": 1475,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order59.json",
+      "sha256": "f140e60d0c4e2360cfbd27bafd3626c01e8ede1a31d428a93f12a7f1d1cf2627"
+    },
+    {
+      "n_selected": 659,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order71.json",
+      "sha256": "6ca96678f7d7b100b3426f36c8e0253b85444db6fe44d9cfa111da567392d7b4"
+    },
+    {
+      "n_selected": 446,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order83.json",
+      "sha256": "46ba5760c4bb4068a942b6a112f057f931cf87a6dca30bb63bbd805f49e86028"
+    },
+    {
+      "n_selected": 1542,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order97.json",
+      "sha256": "2d1901ff303f27a0bb91794ec19204ec87a32ceb4218cdd038c4152342a58080"
+    },
+    {
+      "n_selected": 1286,
+      "path": "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3b/20261011T153549Z/arcene/runs/ARCENE_split11_fold4_order109.json",
+      "sha256": "82065c9d968fdfb32bf0ff6cf0c3f6796d86e00a72ae4ea863f241a43586ccaa"
+    }
+  ],
+  "utc": "2026-10-11T17:43:26Z",
+  "versions": {
+    "numpy": "2.4.6",
+    "python": "3.11.16",
+    "scikit_learn": "1.9.1"
+  }
+}

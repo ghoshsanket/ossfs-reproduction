@@ -1,0 +1,171 @@
+{
+  "config_path": "projects/ossfs-dd-reproduction/configs/stage3b_followup_v1.yaml",
+  "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+  "journal": [
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "PRE_FLIGHT_WRITTEN",
+      "note": "before any real-data fit or selection",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:26Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "A",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:49Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_A_STARTED",
+      "n_planned": 6,
+      "n_todo": 6,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:49Z",
+      "workers": 2
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "A",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:55Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_A_STARTED",
+      "n_planned": 6,
+      "n_todo": 6,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:55Z",
+      "workers": 2
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "elapsed_minutes": 0.04,
+      "event": "EXPERIMENT_A_FINISHED",
+      "n_done": 6,
+      "n_errors": 0,
+      "n_timeouts": 0,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:43:57Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "A",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:44:07Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_A_STARTED",
+      "n_planned": 270,
+      "n_todo": 264,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:44:07Z",
+      "workers": 2
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "elapsed_minutes": 3.06,
+      "event": "EXPERIMENT_A_FINISHED",
+      "n_done": 264,
+      "n_errors": 0,
+      "n_timeouts": 0,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:47:10Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "B",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:47:54Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "B",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:49:54Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_B_FINISHED",
+      "n_baselines": 15,
+      "n_invariant": 50,
+      "n_ledger_ok": 50,
+      "n_subset_classifiers": 150,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:50:45Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "B",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:50:51Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_B_FINISHED",
+      "n_baselines": 15,
+      "n_invariant": 50,
+      "n_ledger_ok": 50,
+      "n_subset_classifiers": 150,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T17:51:41Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "A",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T18:00:39Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_A_STARTED",
+      "n_planned": 270,
+      "n_todo": 0,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T18:00:39Z",
+      "workers": 2
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "elapsed_minutes": 0.01,
+      "event": "EXPERIMENT_A_FINISHED",
+      "n_done": 0,
+      "n_errors": 0,
+      "n_timeouts": 0,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T18:00:39Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "FIRST_DATA_EVALUATION_STARTED",
+      "experiment": "B",
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T18:00:40Z"
+    },
+    {
+      "config_sha256": "ae4db6a27387abb542bc768244fe80dc092addc856d18758471ed2b5a66eaf31",
+      "event": "EXPERIMENT_B_FINISHED",
+      "n_baselines": 15,
+      "n_invariant": 50,
+      "n_ledger_ok": 50,
+      "n_subset_classifiers": 150,
+      "run_id": "20261011T174326Z",
+      "utc": "2026-10-11T18:01:30Z"
+    }
+  ],
+  "label": "in-process, chronologically ordered freeze; NOT an independently registered or attested preregistration",
+  "preflight_utc": "2026-10-11T17:43:26Z",
+  "run_id": "20261011T174326Z",
+  "schema": "ossfs-dd-reproduction/stage3b_followup/freeze/1.0",
+  "stage3a_chronology": "preserved unchanged (CONTRADICTED); not repaired",
+  "write_once_enforced": true
+}

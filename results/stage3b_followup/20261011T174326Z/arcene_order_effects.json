@@ -1,0 +1,78 @@
+{
+  "B_H2": {
+    "divergence": "The range reflects order-induced subset differences within a single fixed split; the folds overlap in patients, so this is within-fold sensitivity, not an independent-sample test.",
+    "hypothesis": "B-H2",
+    "min_folds_meeting": 3,
+    "n_inconclusive": 0,
+    "n_meeting": 5,
+    "overall": "SUPPORTED",
+    "per_fold": {
+      "0": {
+        "fold": 0,
+        "max": 0.9,
+        "meets_threshold": true,
+        "min": 0.75,
+        "n": 10,
+        "outcome": "MEETS",
+        "range": 0.15000000000000002
+      },
+      "1": {
+        "fold": 1,
+        "max": 0.875,
+        "meets_threshold": true,
+        "min": 0.7,
+        "n": 10,
+        "outcome": "MEETS",
+        "range": 0.17500000000000004
+      },
+      "2": {
+        "fold": 2,
+        "max": 0.875,
+        "meets_threshold": true,
+        "min": 0.625,
+        "n": 10,
+        "outcome": "MEETS",
+        "range": 0.25
+      },
+      "3": {
+        "fold": 3,
+        "max": 0.825,
+        "meets_threshold": true,
+        "min": 0.65,
+        "n": 10,
+        "outcome": "MEETS",
+        "range": 0.17499999999999993
+      },
+      "4": {
+        "fold": 4,
+        "max": 0.775,
+        "meets_threshold": true,
+        "min": 0.65,
+        "n": 10,
+        "outcome": "MEETS",
+        "range": 0.125
+      }
+    },
+    "primary_metric": "CART",
+    "summary": "5/5 folds show a within-fold CART accuracy range >= 0.05 across the ten arrival orders (criterion: >=3).",
+    "threshold": 0.05
+  },
+  "divergence": {
+    "accounting_identity_holds": true,
+    "caveat": "Correlation between n_selected and its accounting components is not independent evidence of causation; these components define the count.",
+    "hypothesis": "B-H3",
+    "n_runs": 50,
+    "n_selected_range": [
+      9,
+      1561
+    ],
+    "outcome": "MECHANISM_UNRESOLVED",
+    "spearman_vs_n_selected": {
+      "direct_accepts": -0.3366626650660264,
+      "promoted_from_pool": -0.021368547418967588,
+      "redundancy_removals": -0.9863625450180071
+    },
+    "summary": "Threshold/pool/accept trajectories were captured for all 50 runs, but the observed count co-varies with counters that are arithmetically coupled to it (insert - remove). No additional independent intervention was performed, so no mechanism is claimed."
+  },
+  "run_id": "20261011T174326Z"
+}
