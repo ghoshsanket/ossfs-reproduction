@@ -1,0 +1,50 @@
+{
+  "declared_frozen_utc": {
+    "continuous_rnd": "2026-10-11T12:00:00Z",
+    "stage3a": "2026-10-11T12:00:00Z"
+  },
+  "explicitly_not_done": "No date was altered, no earlier time was invented, and no retroactive pre-registration is claimed. The original configs and reports are left byte-identical; this file is the only record of the finding.",
+  "finding": "The self-declared `frozen_utc: 2026-10-11T12:00:00Z` in both configs is LATER than every observed Stage 3A artifact (first run record ~07:37Z, last ~08:10Z, report generated 08:17Z). A freeze timestamp cannot postdate the evaluation it claims to precede. The declared value is therefore not a truthful record of when the configs were frozen and cannot be used to support a pre-registration claim.",
+  "status": "CONTRADICTED",
+  "timeline_utc": [
+    {
+      "event": "configs/continuous_rnd_v1.yaml last modified (mtime)",
+      "utc": "2026-10-11T07:04:00Z"
+    },
+    {
+      "event": "configs/stage3a.yaml last modified (mtime)",
+      "utc": "2026-10-11T07:35:19Z"
+    },
+    {
+      "event": "first Stage 3A run record written",
+      "utc": "2026-10-11T07:37:19Z"
+    },
+    {
+      "event": "last Stage 3A run record written",
+      "utc": "2026-10-11T08:10:23Z"
+    },
+    {
+      "event": "Stage 3A report_manifest generated_utc",
+      "utc": "2026-10-11T08:17:33Z"
+    },
+    {
+      "event": "frozen configs first committed (git committer date)",
+      "utc": "2026-10-11T14:06:47+05:30"
+    },
+    {
+      "event": "DECLARED frozen_utc in configs/stage3a.yaml",
+      "utc": "2026-10-11T12:00:00Z"
+    },
+    {
+      "event": "DECLARED frozen_utc in configs/continuous_rnd_v1.yaml",
+      "utc": "2026-10-11T12:00:00Z"
+    }
+  ],
+  "weaker_consistent_evidence": "Filesystem mtimes place the last config modification (~07:35Z) about two minutes before the first run record (~07:37Z), which is ordering-consistent with 'configured before evaluation'. This is WEAK evidence: mtimes are mutable by ordinary file operations, carry no tamper-evident signature, and can be rewritten.",
+  "what_is_missing": [
+    "snapshot proving the configs predated the runs.",
+    "for comparison therefore have no version-control provenance.",
+    "so the sweep has no self-recorded execution window.",
+    "timestamp in the workspace."
+  ]
+}

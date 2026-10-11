@@ -8,6 +8,15 @@ The session-finish hook records pass/fail counts, the presence of every required
 named test, and the git ignore-audit outcome into
 ``results/stage1/test_results.json`` so the Stage 1 gate evaluator has real
 evidence rather than an assumption.
+
+That write is **opt-in** (``--write-stage1-evidence``). It used to happen on
+every pytest session, so running an unrelated suite (for example a Stage 2/3
+regression suite) silently rewrote the Stage 1 gate artifact with that run's
+totals -- 197 instead of the committed 135 -- which made the Stage 1 evidence
+depend on what else happened to be in the tree. Stage 1 evidence is now written
+only when it is explicitly asked for; an ordinary ``uv run pytest -q`` leaves
+``results/stage1/test_results.json`` byte-identical. The payload schema and the
+gate semantics in ``ossfs_dd_data.gates`` are unchanged.
 """
 
 from __future__ import annotations
@@ -25,12 +34,35 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from ossfs_dd_data.registry import load_registry, load_stage1_config
 from ossfs_dd_data.workspace import data_root, project_root, results_dir
 
+WRITE_EVIDENCE_FLAG = "--write-stage1-evidence"
+
 STREAM_LEAKAGE_TESTS = {
     "test_stream_contains_only_training_rows",
     "test_no_target_column_in_features",
     "test_no_unlabeled_test_data",
     "test_cv_train_test_disjoint",
 }
+
+
+def pytest_addoption(parser) -> None:
+    """Register the opt-in Stage 1 evidence switch."""
+    parser.addoption(
+        WRITE_EVIDENCE_FLAG,
+        action="store_true",
+        default=False,
+        help=(
+            "Write results/stage1/test_results.json (the Stage 1 gate evidence). "
+            "Off by default so unrelated test runs never mutate Stage 1 artifacts."
+        ),
+    )
+
+
+def stage1_evidence_requested(config) -> bool:
+    """True only when the caller explicitly asked for Stage 1 evidence."""
+    try:
+        return bool(config.getoption(WRITE_EVIDENCE_FLAG))
+    except (ValueError, AttributeError):  # pragma: no cover - defensive
+        return False
 
 
 @pytest.fixture(scope="session")
@@ -60,7 +92,12 @@ def synthetic_fixture(tmp_path_factory):
 
 
 def pytest_sessionfinish(session, exitstatus):
-    """Persist test evidence for the Stage 1 gate evaluator."""
+    """Persist test evidence for the Stage 1 gate evaluator.
+
+    Opt-in only: an ordinary pytest run must not mutate Stage 1 artifacts.
+    """
+    if not stage1_evidence_requested(session.config):
+        return
     config_error: str | None = None
     try:
         cfg = load_stage1_config()

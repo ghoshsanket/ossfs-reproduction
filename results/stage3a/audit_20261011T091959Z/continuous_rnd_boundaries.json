@@ -1,0 +1,108 @@
+{
+  "boundaries": {
+    "a_not_source_verified": "The authors' Fisher_Ztest helper is absent from commit 845a8e9d5625616b43e8cee16e8d22081dbe3f62. These scores are a declared reconstruction, not the authors' semantics.",
+    "b_gaussian_assumption_imperfect": "One-vs-rest class labels are binary 0/1 indicators. The Fisher-Z approximation assumes bivariate normality, which a Bernoulli indicator does not satisfy; the test is an approximation.",
+    "c_pair_is_in_sample_linear": "heuristic_joint_v1 is an in-sample two-predictor linear regression of b_c on (1, x, z). It cannot generally identify XOR-style or otherwise non-linear synergy, and its in-sample R is upward-biased relative to an out-of-sample quantity.",
+    "d_2beta_feasibility": {
+      "empirical_evidence": {
+        "beta_exceeded_one_in_any_run": false,
+        "interpretation": "Pool promotions were observed, so the promotion condition was satisfiable: beta stayed small enough that marginal+pair exceeded 2*beta. Zero pair skips is NOT evidence of 'no interaction'; skips only count pairs the estimator could not evaluate.",
+        "promoted_from_pool_per_dataset": {
+          "LEUKEMIA": 294,
+          "LYMPHOMA": 468,
+          "PROSTATE": 277,
+          "SRBCT": 161
+        },
+        "promotions_observed": true
+      },
+      "impossibility_claim": "NOT_APPLICABLE",
+      "joint_computation_adds_marginal": true,
+      "pair_score_range": "[0, 1]",
+      "per_step_note": "The diagnostic records retain counts but not per-event alpha/beta traces, so the exact per-step threshold at each comparison cannot be reconstructed from the saved artifacts. `beta_exceeds_one_events` is a recorded counter and bounds beta at every evaluated step.",
+      "per_step_thresholds": "NOT_MEASURED",
+      "reasoning": "A bare pair score is bounded to [0,1], so a condition requiring the PAIR SCORE ALONE to exceed 2*beta>1 could never hold. But inspection of the actual code shows the comparison uses `a.score + pair` (marginal + pair), which ranges over [0,2]. The impossibility claim therefore does NOT apply to this implementation, and it would be wrong to assert it.",
+      "redundancy_formula_adds_marginal": true,
+      "threshold_form": "promote when marginal_of_a + pair_score > 2*beta"
+    },
+    "no_continuous_classification": "No classifier was fit and no accuracy computed on any continuous dataset; all four diagnostics record classifier_evaluated=false and test_rows_read=0."
+  },
+  "per_dataset": {
+    "LEUKEMIA": {
+      "alpha_exceeds_one_events": 0,
+      "beta_exceeds_one_events": 0,
+      "classifier_evaluated": false,
+      "mode_id": "continuous_reconstructed_fisherz_v1",
+      "n_features_seen": 7129,
+      "n_selected": 608,
+      "n_train_rows": 57,
+      "pair_estimator": "heuristic_joint_v1",
+      "pair_skips": 0,
+      "pool_flushes": 3,
+      "promoted_from_pool": 294,
+      "score_max": 0.6725082336083552,
+      "score_min": 0.0,
+      "selected_fraction": 0.08528545378033385,
+      "semantics_status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED",
+      "test_rows_read": 0,
+      "training_rows_only": true
+    },
+    "LYMPHOMA": {
+      "alpha_exceeds_one_events": 0,
+      "beta_exceeds_one_events": 0,
+      "classifier_evaluated": false,
+      "mode_id": "continuous_reconstructed_fisherz_v1",
+      "n_features_seen": 4026,
+      "n_selected": 343,
+      "n_train_rows": 49,
+      "pair_estimator": "heuristic_joint_v1",
+      "pair_skips": 0,
+      "pool_flushes": 6,
+      "promoted_from_pool": 468,
+      "score_max": 0.7601702497517838,
+      "score_min": 0.0,
+      "selected_fraction": 0.08519622454048684,
+      "semantics_status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED",
+      "test_rows_read": 0,
+      "training_rows_only": true
+    },
+    "PROSTATE": {
+      "alpha_exceeds_one_events": 0,
+      "beta_exceeds_one_events": 0,
+      "classifier_evaluated": false,
+      "mode_id": "continuous_reconstructed_fisherz_v1",
+      "n_features_seen": 6033,
+      "n_selected": 469,
+      "n_train_rows": 81,
+      "pair_estimator": "heuristic_joint_v1",
+      "pair_skips": 0,
+      "pool_flushes": 3,
+      "promoted_from_pool": 277,
+      "score_max": 0.7104405105864748,
+      "score_min": 0.0,
+      "selected_fraction": 0.07773910160782364,
+      "semantics_status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED",
+      "test_rows_read": 0,
+      "training_rows_only": true
+    },
+    "SRBCT": {
+      "alpha_exceeds_one_events": 0,
+      "beta_exceeds_one_events": 0,
+      "classifier_evaluated": false,
+      "mode_id": "continuous_reconstructed_fisherz_v1",
+      "n_features_seen": 2308,
+      "n_selected": 211,
+      "n_train_rows": 50,
+      "pair_estimator": "heuristic_joint_v1",
+      "pair_skips": 0,
+      "pool_flushes": 2,
+      "promoted_from_pool": 161,
+      "score_max": 0.8475351076813911,
+      "score_min": 0.0,
+      "selected_fraction": 0.09142114384748701,
+      "semantics_status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED",
+      "test_rows_read": 0,
+      "training_rows_only": true
+    }
+  },
+  "status": "RECONSTRUCTED_NOT_SOURCE_VERIFIED"
+}

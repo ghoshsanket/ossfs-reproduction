@@ -13,6 +13,8 @@ import json
 import subprocess
 from pathlib import Path
 
+import pytest
+
 import conftest as stage1_conftest
 from ossfs_dd_data.gates import evaluate_gates, load_test_results
 from ossfs_dd_data.registry import load_stage1_config
@@ -77,8 +79,32 @@ def test_git_audit_reports_error_when_dry_run_fails(tmp_path, monkeypatch):
 
 
 def _write_results(payload: dict):
-    results_dir().mkdir(parents=True, exist_ok=True)
-    (results_dir() / "test_results.json").write_text(json.dumps(payload), encoding="utf-8")
+    """Write a SYNTHETIC evidence payload into the isolated temp results dir.
+
+    These tests must never touch the committed Stage 1 artifact. They used to
+    write to and then delete `results/stage1/test_results.json` itself, which
+    was destructive: the damage happened to be masked because the always-on
+    conftest hook rewrote the file at the end of every session. With evidence
+    writing now opt-in that masking is gone, so the tests redirect
+    `gates.results_dir` to a temporary directory instead.
+    """
+    import ossfs_dd_data.gates as gates_mod
+
+    target = gates_mod.results_dir() / "test_results.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(payload), encoding="utf-8")
+
+
+@pytest.fixture
+def isolated_stage1_results(tmp_path, monkeypatch):
+    """Point the gate evaluator's results dir at a temporary directory."""
+    import ossfs_dd_data.gates as gates_mod
+
+    real = results_dir() / "test_results.json"
+    monkeypatch.setattr(gates_mod, "results_dir", lambda: tmp_path)
+    yield tmp_path / "test_results.json"
+    # defensive: the real artifact must still be exactly as we found it
+    assert real.exists() or not (results_dir() / "test_results.json").exists()
 
 
 def _evaluate():
@@ -86,7 +112,7 @@ def _evaluate():
     return evaluate_gates(cfg, 11, 5, list(cfg["evaluation_plan"]["seeds"]))
 
 
-def test_gate_fails_when_git_violations_are_unknown():
+def test_gate_fails_when_git_violations_are_unknown(isolated_stage1_results):
     _write_results({
         "passed": 54, "failed": 0, "skipped": 0,
         "stream_leakage_tests": ["a"], "stream_leakage_failures": [],
@@ -95,17 +121,14 @@ def test_gate_fails_when_git_violations_are_unknown():
         "git_audit_status": "error", "git_data_violations": None,
         "git_audit_detail": "git is not installed",
     })
-    try:
-        g = _evaluate()
-        gate = next(x for x in g["gates"] if x["name"] == "data_or_result_binaries_in_git")
-        assert gate["pass"] is False, "gate passed on absent git evidence"
-        assert gate["observed"] == "not measured", gate
-        assert "not measured" in gate["detail"].lower()
-    finally:
-        (results_dir() / "test_results.json").unlink(missing_ok=True)
+    g = _evaluate()
+    gate = next(x for x in g["gates"] if x["name"] == "data_or_result_binaries_in_git")
+    assert gate["pass"] is False, "gate passed on absent git evidence"
+    assert gate["observed"] == "not measured", gate
+    assert "not measured" in gate["detail"].lower()
 
 
-def test_gate_fails_when_a_required_test_is_skipped():
+def test_gate_fails_when_a_required_test_is_skipped(isolated_stage1_results):
     _write_results({
         "passed": 40, "failed": 0, "skipped": 1,
         "stream_leakage_tests": ["a"], "stream_leakage_failures": [],
@@ -113,16 +136,13 @@ def test_gate_fails_when_a_required_test_is_skipped():
         "config_error": None,
         "git_audit_status": "ok", "git_data_violations": 0, "git_audit_detail": "clean",
     })
-    try:
-        g = _evaluate()
-        gate = next(x for x in g["gates"] if x["name"] == "required_tests_passing")
-        assert gate["pass"] is False, "a skipped required test was treated as a pass"
-        assert "test_dataset_roundtrip" in gate["detail"]
-    finally:
-        (results_dir() / "test_results.json").unlink(missing_ok=True)
+    g = _evaluate()
+    gate = next(x for x in g["gates"] if x["name"] == "required_tests_passing")
+    assert gate["pass"] is False, "a skipped required test was treated as a pass"
+    assert "test_dataset_roundtrip" in gate["detail"]
 
 
-def test_gate_fails_when_config_could_not_be_loaded():
+def test_gate_fails_when_config_could_not_be_loaded(isolated_stage1_results):
     _write_results({
         "passed": 54, "failed": 0, "skipped": 0,
         "stream_leakage_tests": ["a"], "stream_leakage_failures": [],
@@ -130,32 +150,23 @@ def test_gate_fails_when_config_could_not_be_loaded():
         "config_error": "FileNotFoundError: configs/stage1.yaml",
         "git_audit_status": "ok", "git_data_violations": 0, "git_audit_detail": "clean",
     })
-    try:
-        g = _evaluate()
-        gate = next(x for x in g["gates"] if x["name"] == "required_tests_passing")
-        assert gate["pass"] is False, "an unloaded gate config was treated as a pass"
-        assert "config_error" in gate["detail"]
-    finally:
-        (results_dir() / "test_results.json").unlink(missing_ok=True)
+    g = _evaluate()
+    gate = next(x for x in g["gates"] if x["name"] == "required_tests_passing")
+    assert gate["pass"] is False, "an unloaded gate config was treated as a pass"
+    assert "config_error" in gate["detail"]
 
 
-def test_gate_fails_when_results_file_is_absent():
-    p = results_dir() / "test_results.json"
-    backup = None
-    if p.exists():
-        backup = p.read_text(encoding="utf-8")
-        p.unlink()
-    try:
-        assert load_test_results() is None
-        g = _evaluate()
-        for name in ("stream_leakage_tests_passing", "data_or_result_binaries_in_git",
-                     "required_tests_passing"):
-            gate = next(x for x in g["gates"] if x["name"] == name)
-            assert gate["pass"] is False, f"{name} passed with no evidence file"
-            assert gate["observed"] == "not measured"
-    finally:
-        if backup is not None:
-            p.write_text(backup, encoding="utf-8")
+def test_gate_fails_when_results_file_is_absent(isolated_stage1_results):
+    """With no evidence file at all, every evidence-dependent gate must not pass."""
+    p = isolated_stage1_results
+    assert not p.exists(), "the isolated results dir must start empty"
+    assert load_test_results() is None
+    g = _evaluate()
+    for name in ("stream_leakage_tests_passing", "data_or_result_binaries_in_git",
+                 "required_tests_passing"):
+        gate = next(x for x in g["gates"] if x["name"] == name)
+        assert gate["pass"] is False, f"{name} passed with no evidence file"
+        assert gate["observed"] == "not measured"
 
 
 def test_preregistered_gates_were_not_lowered():

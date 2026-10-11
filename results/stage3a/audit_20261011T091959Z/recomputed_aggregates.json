@@ -1,0 +1,4280 @@
+{
+  "accuracy": {
+    "outcomes_raw_primary": {
+      "ARCENE": {
+        "cart": {
+          "mean_accuracy": 0.748,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8200000000000001,
+            "17": 0.675,
+            "23": 0.74,
+            "31": 0.7549999999999999,
+            "47": 0.75,
+            "59": 0.79,
+            "71": 0.75,
+            "83": 0.7249999999999999,
+            "97": 0.745,
+            "109": 0.73
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.8089999999999999,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.78,
+            "17": 0.7849999999999999,
+            "23": 0.8400000000000001,
+            "31": 0.82,
+            "47": 0.8450000000000001,
+            "59": 0.8150000000000001,
+            "71": 0.8550000000000001,
+            "83": 0.7499999999999999,
+            "97": 0.8099999999999999,
+            "109": 0.7899999999999999
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8474999999999999,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.86,
+            "17": 0.8550000000000001,
+            "23": 0.865,
+            "31": 0.865,
+            "47": 0.835,
+            "59": 0.8300000000000001,
+            "71": 0.86,
+            "83": 0.8150000000000001,
+            "97": 0.89,
+            "109": 0.8
+          }
+        }
+      },
+      "DEXTER": {
+        "cart": {
+          "mean_accuracy": 0.8348333333333334,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.85,
+            "17": 0.8133333333333332,
+            "23": 0.85,
+            "31": 0.835,
+            "47": 0.8416666666666668,
+            "59": 0.8383333333333333,
+            "71": 0.825,
+            "83": 0.8083333333333333,
+            "97": 0.8366666666666667,
+            "109": 0.85
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.7230000000000001,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.7233333333333333,
+            "17": 0.7233333333333334,
+            "23": 0.7216666666666667,
+            "31": 0.7566666666666666,
+            "47": 0.7300000000000001,
+            "59": 0.7116666666666667,
+            "71": 0.7016666666666668,
+            "83": 0.7166666666666666,
+            "97": 0.7233333333333334,
+            "109": 0.7216666666666667
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8943333333333333,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9033333333333333,
+            "17": 0.8966666666666667,
+            "23": 0.8883333333333334,
+            "31": 0.9016666666666667,
+            "47": 0.8983333333333334,
+            "59": 0.9,
+            "71": 0.8833333333333334,
+            "83": 0.8933333333333333,
+            "97": 0.8966666666666667,
+            "109": 0.8816666666666666
+          }
+        }
+      },
+      "GINA": {
+        "cart": {
+          "mean_accuracy": 0.8246839743669716,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8310307687829301,
+            "17": 0.8145867900911128,
+            "23": 0.8232468780019213,
+            "31": 0.8076687001759048,
+            "47": 0.8344914771427738,
+            "59": 0.8264135800158854,
+            "71": 0.8365100157607361,
+            "83": 0.8180487460026364,
+            "97": 0.8189170419717972,
+            "109": 0.8359257457240166
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.8792115473383484,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8794748639129043,
+            "17": 0.8728383048267775,
+            "23": 0.8783221261607428,
+            "31": 0.858996303088522,
+            "47": 0.8826394866740689,
+            "59": 0.8849437146267117,
+            "71": 0.8840866466226697,
+            "83": 0.8936029708364004,
+            "97": 0.8716826561206965,
+            "109": 0.8855284005139913
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.44823221926968326,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.4483397166394285,
+            "17": 0.42068357515043386,
+            "23": 0.5273330256039189,
+            "31": 0.3206889812077132,
+            "47": 0.47606572102249334,
+            "59": 0.4166627160863472,
+            "71": 0.48733859800142226,
+            "83": 0.4850164884747018,
+            "97": 0.45065600425830976,
+            "109": 0.44953736625206364
+          }
+        }
+      },
+      "GISETTE": {
+        "cart": {
+          "mean_accuracy": 0.9313571428571429,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9318571428571427,
+            "17": 0.9328571428571427,
+            "23": 0.925142857142857,
+            "31": 0.9357142857142856,
+            "47": 0.9302857142857143,
+            "59": 0.9331428571428573,
+            "71": 0.9322857142857144,
+            "83": 0.9312857142857143,
+            "97": 0.9322857142857144,
+            "109": 0.9287142857142857
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.9596,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9629999999999999,
+            "17": 0.9578571428571427,
+            "23": 0.961,
+            "31": 0.9592857142857142,
+            "47": 0.9594285714285714,
+            "59": 0.9572857142857144,
+            "71": 0.9585714285714285,
+            "83": 0.9595714285714287,
+            "97": 0.9617142857142857,
+            "109": 0.9582857142857142
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8509,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8508571428571429,
+            "17": 0.849,
+            "23": 0.8505714285714285,
+            "31": 0.8172857142857142,
+            "47": 0.865,
+            "59": 0.8262857142857143,
+            "71": 0.8310000000000001,
+            "83": 0.8859999999999999,
+            "97": 0.8754285714285714,
+            "109": 0.8575714285714288
+          }
+        }
+      },
+      "MADELON": {
+        "cart": {
+          "mean_accuracy": 0.7669615384615385,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.7626923076923077,
+            "17": 0.7803846153846153,
+            "23": 0.7657692307692308,
+            "31": 0.7669230769230768,
+            "47": 0.7684615384615384,
+            "59": 0.7719230769230768,
+            "71": 0.7769230769230769,
+            "83": 0.7511538461538463,
+            "97": 0.7607692307692308,
+            "109": 0.7646153846153846
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.7803461538461539,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.7815384615384615,
+            "17": 0.7761538461538462,
+            "23": 0.778076923076923,
+            "31": 0.7542307692307693,
+            "47": 0.7857692307692308,
+            "59": 0.7826923076923077,
+            "71": 0.7938461538461539,
+            "83": 0.7865384615384615,
+            "97": 0.7819230769230769,
+            "109": 0.7826923076923077
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.513423076923077,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.5153846153846154,
+            "17": 0.5192307692307692,
+            "23": 0.5361538461538462,
+            "31": 0.49884615384615383,
+            "47": 0.5330769230769231,
+            "59": 0.51,
+            "71": 0.4903846153846153,
+            "83": 0.546923076923077,
+            "97": 0.465,
+            "109": 0.5192307692307692
+          }
+        }
+      }
+    },
+    "outcomes_standardized_sensitivity": {
+      "ARCENE": {
+        "cart": {
+          "mean_accuracy": 0.748,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8200000000000001,
+            "17": 0.675,
+            "23": 0.74,
+            "31": 0.7549999999999999,
+            "47": 0.75,
+            "59": 0.79,
+            "71": 0.75,
+            "83": 0.7249999999999999,
+            "97": 0.745,
+            "109": 0.73
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.8190000000000002,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8,
+            "17": 0.775,
+            "23": 0.8550000000000001,
+            "31": 0.825,
+            "47": 0.845,
+            "59": 0.825,
+            "71": 0.8600000000000001,
+            "83": 0.7700000000000001,
+            "97": 0.82,
+            "109": 0.8150000000000001
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8494999999999999,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.845,
+            "17": 0.85,
+            "23": 0.85,
+            "31": 0.8549999999999999,
+            "47": 0.8300000000000001,
+            "59": 0.845,
+            "71": 0.85,
+            "83": 0.845,
+            "97": 0.9,
+            "109": 0.825
+          }
+        }
+      },
+      "DEXTER": {
+        "cart": {
+          "mean_accuracy": 0.835,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.85,
+            "17": 0.8133333333333332,
+            "23": 0.85,
+            "31": 0.835,
+            "47": 0.8433333333333334,
+            "59": 0.8383333333333333,
+            "71": 0.825,
+            "83": 0.8083333333333333,
+            "97": 0.8366666666666667,
+            "109": 0.85
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.7549999999999999,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.7449999999999999,
+            "17": 0.765,
+            "23": 0.76,
+            "31": 0.7666666666666666,
+            "47": 0.7499999999999999,
+            "59": 0.7483333333333333,
+            "71": 0.7333333333333333,
+            "83": 0.7699999999999999,
+            "97": 0.7633333333333333,
+            "109": 0.7483333333333333
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8901666666666668,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9066666666666668,
+            "17": 0.885,
+            "23": 0.8933333333333333,
+            "31": 0.8833333333333334,
+            "47": 0.8966666666666667,
+            "59": 0.8983333333333332,
+            "71": 0.8883333333333333,
+            "83": 0.8866666666666667,
+            "97": 0.8883333333333333,
+            "109": 0.875
+          }
+        }
+      },
+      "GINA": {
+        "cart": {
+          "mean_accuracy": 0.8248857450586558,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8316071376590107,
+            "17": 0.8145867900911128,
+            "23": 0.8235350624399616,
+            "31": 0.8085332534900258,
+            "47": 0.8347792457302544,
+            "59": 0.8269907805930862,
+            "71": 0.8365100157607361,
+            "83": 0.8177605615645962,
+            "97": 0.8180524886576761,
+            "109": 0.8365021146000974
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.8763843873065774,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8745686590066993,
+            "17": 0.8725488728370573,
+            "23": 0.8699585396991736,
+            "31": 0.8638987653396875,
+            "47": 0.8786049045415039,
+            "59": 0.8809091324941468,
+            "71": 0.8774525826399024,
+            "83": 0.8898461768778771,
+            "97": 0.8705311659202148,
+            "109": 0.8855250737095117
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.8427340510913999,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.8451588757064261,
+            "17": 0.842841340535865,
+            "23": 0.8460192705149477,
+            "31": 0.8359357261374554,
+            "47": 0.8434231154692249,
+            "59": 0.8457364921341867,
+            "71": 0.8431424163412636,
+            "83": 0.8491892993333916,
+            "97": 0.836504609703457,
+            "109": 0.8393893650377799
+          }
+        }
+      },
+      "GISETTE": {
+        "cart": {
+          "mean_accuracy": 0.9313142857142858,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9318571428571427,
+            "17": 0.9328571428571427,
+            "23": 0.925,
+            "31": 0.9355714285714285,
+            "47": 0.9304285714285715,
+            "59": 0.933,
+            "71": 0.932,
+            "83": 0.9312857142857143,
+            "97": 0.9324285714285715,
+            "109": 0.9287142857142857
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.9604857142857142,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9608571428571429,
+            "17": 0.9597142857142856,
+            "23": 0.962142857142857,
+            "31": 0.9608571428571431,
+            "47": 0.9608571428571429,
+            "59": 0.9594285714285714,
+            "71": 0.96,
+            "83": 0.9592857142857142,
+            "97": 0.9620000000000001,
+            "109": 0.9597142857142857
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.9574000000000001,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.9572857142857142,
+            "17": 0.9571428571428571,
+            "23": 0.9555714285714286,
+            "31": 0.9552857142857143,
+            "47": 0.9592857142857143,
+            "59": 0.9565714285714286,
+            "71": 0.9585714285714285,
+            "83": 0.9572857142857142,
+            "97": 0.9600000000000002,
+            "109": 0.9570000000000001
+          }
+        }
+      },
+      "MADELON": {
+        "cart": {
+          "mean_accuracy": 0.7674615384615384,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.7634615384615384,
+            "17": 0.78,
+            "23": 0.7669230769230768,
+            "31": 0.7673076923076924,
+            "47": 0.7696153846153846,
+            "59": 0.7719230769230768,
+            "71": 0.7773076923076923,
+            "83": 0.7515384615384615,
+            "97": 0.7611538461538461,
+            "109": 0.7653846153846153
+          }
+        },
+        "knn": {
+          "mean_accuracy": 0.6379230769230768,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.6399999999999999,
+            "17": 0.6342307692307692,
+            "23": 0.6396153846153846,
+            "31": 0.6288461538461538,
+            "47": 0.62,
+            "59": 0.6384615384615384,
+            "71": 0.643076923076923,
+            "83": 0.6592307692307692,
+            "97": 0.6280769230769231,
+            "109": 0.6476923076923077
+          }
+        },
+        "svm": {
+          "mean_accuracy": 0.6035,
+          "n_runs": 50,
+          "n_seeds": 10,
+          "per_seed_mean": {
+            "11": 0.6096153846153847,
+            "17": 0.6015384615384616,
+            "23": 0.6092307692307692,
+            "31": 0.6046153846153847,
+            "47": 0.6030769230769231,
+            "59": 0.6026923076923076,
+            "71": 0.6007692307692308,
+            "83": 0.6023076923076924,
+            "97": 0.6026923076923076,
+            "109": 0.5984615384615386
+          }
+        }
+      }
+    }
+  },
+  "all_agree": true,
+  "audit_run_id": "20261011T091959Z",
+  "generated_utc": "2026-10-11T09:19:59Z",
+  "key_type_note": {
+    "action_taken": "None. The committed aggregate was NOT modified.",
+    "finding": "results/stage3a/aggregate.json stores per_seed_mean with STRING seed keys ('11', '17', ...) because JSON object keys are always strings, while the in-memory producer uses int keys. Values are unaffected.",
+    "impact": "Cosmetic/interoperability only; no numeric discrepancy."
+  },
+  "ledger_checks": [
+    {
+      "agree": true,
+      "check": "n_records",
+      "expected": 250,
+      "note": "",
+      "observed": 250,
+      "source": "raw run records",
+      "tolerance": 1e-09
+    },
+    {
+      "agree": true,
+      "check": "unique_run_ids",
+      "expected": 250,
+      "note": "",
+      "observed": 250,
+      "source": "raw run records",
+      "tolerance": 1e-09
+    },
+    {
+      "agree": true,
+      "check": "run_id_set_matches_protocol",
+      "expected": [
+        "ARCENE_seed109_fold0",
+        "ARCENE_seed109_fold1",
+        "ARCENE_seed109_fold2",
+        "ARCENE_seed109_fold3",
+        "ARCENE_seed109_fold4",
+        "ARCENE_seed11_fold0",
+        "ARCENE_seed11_fold1",
+        "ARCENE_seed11_fold2",
+        "ARCENE_seed11_fold3",
+        "ARCENE_seed11_fold4",
+        "ARCENE_seed17_fold0",
+        "ARCENE_seed17_fold1",
+        "ARCENE_seed17_fold2",
+        "ARCENE_seed17_fold3",
+        "ARCENE_seed17_fold4",
+        "ARCENE_seed23_fold0",
+        "ARCENE_seed23_fold1",
+        "ARCENE_seed23_fold2",
+        "ARCENE_seed23_fold3",
+        "ARCENE_seed23_fold4",
+        "ARCENE_seed31_fold0",
+        "ARCENE_seed31_fold1",
+        "ARCENE_seed31_fold2",
+        "ARCENE_seed31_fold3",
+        "ARCENE_seed31_fold4",
+        "ARCENE_seed47_fold0",
+        "ARCENE_seed47_fold1",
+        "ARCENE_seed47_fold2",
+        "ARCENE_seed47_fold3",
+        "ARCENE_seed47_fold4",
+        "ARCENE_seed59_fold0",
+        "ARCENE_seed59_fold1",
+        "ARCENE_seed59_fold2",
+        "ARCENE_seed59_fold3",
+        "ARCENE_seed59_fold4",
+        "ARCENE_seed71_fold0",
+        "ARCENE_seed71_fold1",
+        "ARCENE_seed71_fold2",
+        "ARCENE_seed71_fold3",
+        "ARCENE_seed71_fold4",
+        "ARCENE_seed83_fold0",
+        "ARCENE_seed83_fold1",
+        "ARCENE_seed83_fold2",
+        "ARCENE_seed83_fold3",
+        "ARCENE_seed83_fold4",
+        "ARCENE_seed97_fold0",
+        "ARCENE_seed97_fold1",
+        "ARCENE_seed97_fold2",
+        "ARCENE_seed97_fold3",
+        "ARCENE_seed97_fold4",
+        "DEXTER_seed109_fold0",
+        "DEXTER_seed109_fold1",
+        "DEXTER_seed109_fold2",
+        "DEXTER_seed109_fold3",
+        "DEXTER_seed109_fold4",
+        "DEXTER_seed11_fold0",
+        "DEXTER_seed11_fold1",
+        "DEXTER_seed11_fold2",
+        "DEXTER_seed11_fold3",
+        "DEXTER_seed11_fold4",
+        "DEXTER_seed17_fold0",
+        "DEXTER_seed17_fold1",
+        "DEXTER_seed17_fold2",
+        "DEXTER_seed17_fold3",
+        "DEXTER_seed17_fold4",
+        "DEXTER_seed23_fold0",
+        "DEXTER_seed23_fold1",
+        "DEXTER_seed23_fold2",
+        "DEXTER_seed23_fold3",
+        "DEXTER_seed23_fold4",
+        "DEXTER_seed31_fold0",
+        "DEXTER_seed31_fold1",
+        "DEXTER_seed31_fold2",
+        "DEXTER_seed31_fold3",
+        "DEXTER_seed31_fold4",
+        "DEXTER_seed47_fold0",
+        "DEXTER_seed47_fold1",
+        "DEXTER_seed47_fold2",
+        "DEXTER_seed47_fold3",
+        "DEXTER_seed47_fold4",
+        "DEXTER_seed59_fold0",
+        "DEXTER_seed59_fold1",
+        "DEXTER_seed59_fold2",
+        "DEXTER_seed59_fold3",
+        "DEXTER_seed59_fold4",
+        "DEXTER_seed71_fold0",
+        "DEXTER_seed71_fold1",
+        "DEXTER_seed71_fold2",
+        "DEXTER_seed71_fold3",
+        "DEXTER_seed71_fold4",
+        "DEXTER_seed83_fold0",
+        "DEXTER_seed83_fold1",
+        "DEXTER_seed83_fold2",
+        "DEXTER_seed83_fold3",
+        "DEXTER_seed83_fold4",
+        "DEXTER_seed97_fold0",
+        "DEXTER_seed97_fold1",
+        "DEXTER_seed97_fold2",
+        "DEXTER_seed97_fold3",
+        "DEXTER_seed97_fold4",
+        "GINA_seed109_fold0",
+        "GINA_seed109_fold1",
+        "GINA_seed109_fold2",
+        "GINA_seed109_fold3",
+        "GINA_seed109_fold4",
+        "GINA_seed11_fold0",
+        "GINA_seed11_fold1",
+        "GINA_seed11_fold2",
+        "GINA_seed11_fold3",
+        "GINA_seed11_fold4",
+        "GINA_seed17_fold0",
+        "GINA_seed17_fold1",
+        "GINA_seed17_fold2",
+        "GINA_seed17_fold3",
+        "GINA_seed17_fold4",
+        "GINA_seed23_fold0",
+        "GINA_seed23_fold1",
+        "GINA_seed23_fold2",
+        "GINA_seed23_fold3",
+        "GINA_seed23_fold4",
+        "GINA_seed31_fold0",
+        "GINA_seed31_fold1",
+        "GINA_seed31_fold2",
+        "GINA_seed31_fold3",
+        "GINA_seed31_fold4",
+        "GINA_seed47_fold0",
+        "GINA_seed47_fold1",
+        "GINA_seed47_fold2",
+        "GINA_seed47_fold3",
+        "GINA_seed47_fold4",
+        "GINA_seed59_fold0",
+        "GINA_seed59_fold1",
+        "GINA_seed59_fold2",
+        "GINA_seed59_fold3",
+        "GINA_seed59_fold4",
+        "GINA_seed71_fold0",
+        "GINA_seed71_fold1",
+        "GINA_seed71_fold2",
+        "GINA_seed71_fold3",
+        "GINA_seed71_fold4",
+        "GINA_seed83_fold0",
+        "GINA_seed83_fold1",
+        "GINA_seed83_fold2",
+        "GINA_seed83_fold3",
+        "GINA_seed83_fold4",
+        "GINA_seed97_fold0",
+        "GINA_seed97_fold1",
+        "GINA_seed97_fold2",
+        "GINA_seed97_fold3",
+        "GINA_seed97_fold4",
+        "GISETTE_seed109_fold0",
+        "GISETTE_seed109_fold1",
+        "GISETTE_seed109_fold2",
+        "GISETTE_seed109_fold3",
+        "GISETTE_seed109_fold4",
+        "GISETTE_seed11_fold0",
+        "GISETTE_seed11_fold1",
+        "GISETTE_seed11_fold2",
+        "GISETTE_seed11_fold3",
+        "GISETTE_seed11_fold4",
+        "GISETTE_seed17_fold0",
+        "GISETTE_seed17_fold1",
+        "GISETTE_seed17_fold2",
+        "GISETTE_seed17_fold3",
+        "GISETTE_seed17_fold4",
+        "GISETTE_seed23_fold0",
+        "GISETTE_seed23_fold1",
+        "GISETTE_seed23_fold2",
+        "GISETTE_seed23_fold3",
+        "GISETTE_seed23_fold4",
+        "GISETTE_seed31_fold0",
+        "GISETTE_seed31_fold1",
+        "GISETTE_seed31_fold2",
+        "GISETTE_seed31_fold3",
+        "GISETTE_seed31_fold4",
+        "GISETTE_seed47_fold0",
+        "GISETTE_seed47_fold1",
+        "GISETTE_seed47_fold2",
+        "GISETTE_seed47_fold3",
+        "GISETTE_seed47_fold4",
+        "GISETTE_seed59_fold0",
+        "GISETTE_seed59_fold1",
+        "GISETTE_seed59_fold2",
+        "GISETTE_seed59_fold3",
+        "GISETTE_seed59_fold4",
+        "GISETTE_seed71_fold0",
+        "GISETTE_seed71_fold1",
+        "GISETTE_seed71_fold2",
+        "GISETTE_seed71_fold3",
+        "GISETTE_seed71_fold4",
+        "GISETTE_seed83_fold0",
+        "GISETTE_seed83_fold1",
+        "GISETTE_seed83_fold2",
+        "GISETTE_seed83_fold3",
+        "GISETTE_seed83_fold4",
+        "GISETTE_seed97_fold0",
+        "GISETTE_seed97_fold1",
+        "GISETTE_seed97_fold2",
+        "GISETTE_seed97_fold3",
+        "GISETTE_seed97_fold4",
+        "MADELON_seed109_fold0",
+        "MADELON_seed109_fold1",
+        "MADELON_seed109_fold2",
+        "MADELON_seed109_fold3",
+        "MADELON_seed109_fold4",
+        "MADELON_seed11_fold0",
+        "MADELON_seed11_fold1",
+        "MADELON_seed11_fold2",
+        "MADELON_seed11_fold3",
+        "MADELON_seed11_fold4",
+        "MADELON_seed17_fold0",
+        "MADELON_seed17_fold1",
+        "MADELON_seed17_fold2",
+        "MADELON_seed17_fold3",
+        "MADELON_seed17_fold4",
+        "MADELON_seed23_fold0",
+        "MADELON_seed23_fold1",
+        "MADELON_seed23_fold2",
+        "MADELON_seed23_fold3",
+        "MADELON_seed23_fold4",
+        "MADELON_seed31_fold0",
+        "MADELON_seed31_fold1",
+        "MADELON_seed31_fold2",
+        "MADELON_seed31_fold3",
+        "MADELON_seed31_fold4",
+        "MADELON_seed47_fold0",
+        "MADELON_seed47_fold1",
+        "MADELON_seed47_fold2",
+        "MADELON_seed47_fold3",
+        "MADELON_seed47_fold4",
+        "MADELON_seed59_fold0",
+        "MADELON_seed59_fold1",
+        "MADELON_seed59_fold2",
+        "MADELON_seed59_fold3",
+        "MADELON_seed59_fold4",
+        "MADELON_seed71_fold0",
+        "MADELON_seed71_fold1",
+        "MADELON_seed71_fold2",
+        "MADELON_seed71_fold3",
+        "MADELON_seed71_fold4",
+        "MADELON_seed83_fold0",
+        "MADELON_seed83_fold1",
+        "MADELON_seed83_fold2",
+        "MADELON_seed83_fold3",
+        "MADELON_seed83_fold4",
+        "MADELON_seed97_fold0",
+        "MADELON_seed97_fold1",
+        "MADELON_seed97_fold2",
+        "MADELON_seed97_fold3",
+        "MADELON_seed97_fold4"
+      ],
+      "note": "",
+      "observed": [
+        "ARCENE_seed109_fold0",
+        "ARCENE_seed109_fold1",
+        "ARCENE_seed109_fold2",
+        "ARCENE_seed109_fold3",
+        "ARCENE_seed109_fold4",
+        "ARCENE_seed11_fold0",
+        "ARCENE_seed11_fold1",
+        "ARCENE_seed11_fold2",
+        "ARCENE_seed11_fold3",
+        "ARCENE_seed11_fold4",
+        "ARCENE_seed17_fold0",
+        "ARCENE_seed17_fold1",
+        "ARCENE_seed17_fold2",
+        "ARCENE_seed17_fold3",
+        "ARCENE_seed17_fold4",
+        "ARCENE_seed23_fold0",
+        "ARCENE_seed23_fold1",
+        "ARCENE_seed23_fold2",
+        "ARCENE_seed23_fold3",
+        "ARCENE_seed23_fold4",
+        "ARCENE_seed31_fold0",
+        "ARCENE_seed31_fold1",
+        "ARCENE_seed31_fold2",
+        "ARCENE_seed31_fold3",
+        "ARCENE_seed31_fold4",
+        "ARCENE_seed47_fold0",
+        "ARCENE_seed47_fold1",
+        "ARCENE_seed47_fold2",
+        "ARCENE_seed47_fold3",
+        "ARCENE_seed47_fold4",
+        "ARCENE_seed59_fold0",
+        "ARCENE_seed59_fold1",
+        "ARCENE_seed59_fold2",
+        "ARCENE_seed59_fold3",
+        "ARCENE_seed59_fold4",
+        "ARCENE_seed71_fold0",
+        "ARCENE_seed71_fold1",
+        "ARCENE_seed71_fold2",
+        "ARCENE_seed71_fold3",
+        "ARCENE_seed71_fold4",
+        "ARCENE_seed83_fold0",
+        "ARCENE_seed83_fold1",
+        "ARCENE_seed83_fold2",
+        "ARCENE_seed83_fold3",
+        "ARCENE_seed83_fold4",
+        "ARCENE_seed97_fold0",
+        "ARCENE_seed97_fold1",
+        "ARCENE_seed97_fold2",
+        "ARCENE_seed97_fold3",
+        "ARCENE_seed97_fold4",
+        "DEXTER_seed109_fold0",
+        "DEXTER_seed109_fold1",
+        "DEXTER_seed109_fold2",
+        "DEXTER_seed109_fold3",
+        "DEXTER_seed109_fold4",
+        "DEXTER_seed11_fold0",
+        "DEXTER_seed11_fold1",
+        "DEXTER_seed11_fold2",
+        "DEXTER_seed11_fold3",
+        "DEXTER_seed11_fold4",
+        "DEXTER_seed17_fold0",
+        "DEXTER_seed17_fold1",
+        "DEXTER_seed17_fold2",
+        "DEXTER_seed17_fold3",
+        "DEXTER_seed17_fold4",
+        "DEXTER_seed23_fold0",
+        "DEXTER_seed23_fold1",
+        "DEXTER_seed23_fold2",
+        "DEXTER_seed23_fold3",
+        "DEXTER_seed23_fold4",
+        "DEXTER_seed31_fold0",
+        "DEXTER_seed31_fold1",
+        "DEXTER_seed31_fold2",
+        "DEXTER_seed31_fold3",
+        "DEXTER_seed31_fold4",
+        "DEXTER_seed47_fold0",
+        "DEXTER_seed47_fold1",
+        "DEXTER_seed47_fold2",
+        "DEXTER_seed47_fold3",
+        "DEXTER_seed47_fold4",
+        "DEXTER_seed59_fold0",
+        "DEXTER_seed59_fold1",
+        "DEXTER_seed59_fold2",
+        "DEXTER_seed59_fold3",
+        "DEXTER_seed59_fold4",
+        "DEXTER_seed71_fold0",
+        "DEXTER_seed71_fold1",
+        "DEXTER_seed71_fold2",
+        "DEXTER_seed71_fold3",
+        "DEXTER_seed71_fold4",
+        "DEXTER_seed83_fold0",
+        "DEXTER_seed83_fold1",
+        "DEXTER_seed83_fold2",
+        "DEXTER_seed83_fold3",
+        "DEXTER_seed83_fold4",
+        "DEXTER_seed97_fold0",
+        "DEXTER_seed97_fold1",
+        "DEXTER_seed97_fold2",
+        "DEXTER_seed97_fold3",
+        "DEXTER_seed97_fold4",
+        "GINA_seed109_fold0",
+        "GINA_seed109_fold1",
+        "GINA_seed109_fold2",
+        "GINA_seed109_fold3",
+        "GINA_seed109_fold4",
+        "GINA_seed11_fold0",
+        "GINA_seed11_fold1",
+        "GINA_seed11_fold2",
+        "GINA_seed11_fold3",
+        "GINA_seed11_fold4",
+        "GINA_seed17_fold0",
+        "GINA_seed17_fold1",
+        "GINA_seed17_fold2",
+        "GINA_seed17_fold3",
+        "GINA_seed17_fold4",
+        "GINA_seed23_fold0",
+        "GINA_seed23_fold1",
+        "GINA_seed23_fold2",
+        "GINA_seed23_fold3",
+        "GINA_seed23_fold4",
+        "GINA_seed31_fold0",
+        "GINA_seed31_fold1",
+        "GINA_seed31_fold2",
+        "GINA_seed31_fold3",
+        "GINA_seed31_fold4",
+        "GINA_seed47_fold0",
+        "GINA_seed47_fold1",
+        "GINA_seed47_fold2",
+        "GINA_seed47_fold3",
+        "GINA_seed47_fold4",
+        "GINA_seed59_fold0",
+        "GINA_seed59_fold1",
+        "GINA_seed59_fold2",
+        "GINA_seed59_fold3",
+        "GINA_seed59_fold4",
+        "GINA_seed71_fold0",
+        "GINA_seed71_fold1",
+        "GINA_seed71_fold2",
+        "GINA_seed71_fold3",
+        "GINA_seed71_fold4",
+        "GINA_seed83_fold0",
+        "GINA_seed83_fold1",
+        "GINA_seed83_fold2",
+        "GINA_seed83_fold3",
+        "GINA_seed83_fold4",
+        "GINA_seed97_fold0",
+        "GINA_seed97_fold1",
+        "GINA_seed97_fold2",
+        "GINA_seed97_fold3",
+        "GINA_seed97_fold4",
+        "GISETTE_seed109_fold0",
+        "GISETTE_seed109_fold1",
+        "GISETTE_seed109_fold2",
+        "GISETTE_seed109_fold3",
+        "GISETTE_seed109_fold4",
+        "GISETTE_seed11_fold0",
+        "GISETTE_seed11_fold1",
+        "GISETTE_seed11_fold2",
+        "GISETTE_seed11_fold3",
+        "GISETTE_seed11_fold4",
+        "GISETTE_seed17_fold0",
+        "GISETTE_seed17_fold1",
+        "GISETTE_seed17_fold2",
+        "GISETTE_seed17_fold3",
+        "GISETTE_seed17_fold4",
+        "GISETTE_seed23_fold0",
+        "GISETTE_seed23_fold1",
+        "GISETTE_seed23_fold2",
+        "GISETTE_seed23_fold3",
+        "GISETTE_seed23_fold4",
+        "GISETTE_seed31_fold0",
+        "GISETTE_seed31_fold1",
+        "GISETTE_seed31_fold2",
+        "GISETTE_seed31_fold3",
+        "GISETTE_seed31_fold4",
+        "GISETTE_seed47_fold0",
+        "GISETTE_seed47_fold1",
+        "GISETTE_seed47_fold2",
+        "GISETTE_seed47_fold3",
+        "GISETTE_seed47_fold4",
+        "GISETTE_seed59_fold0",
+        "GISETTE_seed59_fold1",
+        "GISETTE_seed59_fold2",
+        "GISETTE_seed59_fold3",
+        "GISETTE_seed59_fold4",
+        "GISETTE_seed71_fold0",
+        "GISETTE_seed71_fold1",
+        "GISETTE_seed71_fold2",
+        "GISETTE_seed71_fold3",
+        "GISETTE_seed71_fold4",
+        "GISETTE_seed83_fold0",
+        "GISETTE_seed83_fold1",
+        "GISETTE_seed83_fold2",
+        "GISETTE_seed83_fold3",
+        "GISETTE_seed83_fold4",
+        "GISETTE_seed97_fold0",
+        "GISETTE_seed97_fold1",
+        "GISETTE_seed97_fold2",
+        "GISETTE_seed97_fold3",
+        "GISETTE_seed97_fold4",
+        "MADELON_seed109_fold0",
+        "MADELON_seed109_fold1",
+        "MADELON_seed109_fold2",
+        "MADELON_seed109_fold3",
+        "MADELON_seed109_fold4",
+        "MADELON_seed11_fold0",
+        "MADELON_seed11_fold1",
+        "MADELON_seed11_fold2",
+        "MADELON_seed11_fold3",
+        "MADELON_seed11_fold4",
+        "MADELON_seed17_fold0",
+        "MADELON_seed17_fold1",
+        "MADELON_seed17_fold2",
+        "MADELON_seed17_fold3",
+        "MADELON_seed17_fold4",
+        "MADELON_seed23_fold0",
+        "MADELON_seed23_fold1",
+        "MADELON_seed23_fold2",
+        "MADELON_seed23_fold3",
+        "MADELON_seed23_fold4",
+        "MADELON_seed31_fold0",
+        "MADELON_seed31_fold1",
+        "MADELON_seed31_fold2",
+        "MADELON_seed31_fold3",
+        "MADELON_seed31_fold4",
+        "MADELON_seed47_fold0",
+        "MADELON_seed47_fold1",
+        "MADELON_seed47_fold2",
+        "MADELON_seed47_fold3",
+        "MADELON_seed47_fold4",
+        "MADELON_seed59_fold0",
+        "MADELON_seed59_fold1",
+        "MADELON_seed59_fold2",
+        "MADELON_seed59_fold3",
+        "MADELON_seed59_fold4",
+        "MADELON_seed71_fold0",
+        "MADELON_seed71_fold1",
+        "MADELON_seed71_fold2",
+        "MADELON_seed71_fold3",
+        "MADELON_seed71_fold4",
+        "MADELON_seed83_fold0",
+        "MADELON_seed83_fold1",
+        "MADELON_seed83_fold2",
+        "MADELON_seed83_fold3",
+        "MADELON_seed83_fold4",
+        "MADELON_seed97_fold0",
+        "MADELON_seed97_fold1",
+        "MADELON_seed97_fold2",
+        "MADELON_seed97_fold3",
+        "MADELON_seed97_fold4"
+      ],
+      "source": "protocol.all_runs() vs raw run records",
+      "tolerance": 1e-09
+    },
+    {
+      "agree": true,
+      "check": "dataset_seed_fold_grid",
+      "expected": [
+        [
+          "ARCENE",
+          11,
+          0
+        ],
+        [
+          "ARCENE",
+          11,
+          1
+        ],
+        [
+          "ARCENE",
+          11,
+          2
+        ],
+        [
+          "ARCENE",
+          11,
+          3
+        ],
+        [
+          "ARCENE",
+          11,
+          4
+        ],
+        [
+          "ARCENE",
+          17,
+          0
+        ],
+        [
+          "ARCENE",
+          17,
+          1
+        ],
+        [
+          "ARCENE",
+          17,
+          2
+        ],
+        [
+          "ARCENE",
+          17,
+          3
+        ],
+        [
+          "ARCENE",
+          17,
+          4
+        ],
+        [
+          "ARCENE",
+          23,
+          0
+        ],
+        [
+          "ARCENE",
+          23,
+          1
+        ],
+        [
+          "ARCENE",
+          23,
+          2
+        ],
+        [
+          "ARCENE",
+          23,
+          3
+        ],
+        [
+          "ARCENE",
+          23,
+          4
+        ],
+        [
+          "ARCENE",
+          31,
+          0
+        ],
+        [
+          "ARCENE",
+          31,
+          1
+        ],
+        [
+          "ARCENE",
+          31,
+          2
+        ],
+        [
+          "ARCENE",
+          31,
+          3
+        ],
+        [
+          "ARCENE",
+          31,
+          4
+        ],
+        [
+          "ARCENE",
+          47,
+          0
+        ],
+        [
+          "ARCENE",
+          47,
+          1
+        ],
+        [
+          "ARCENE",
+          47,
+          2
+        ],
+        [
+          "ARCENE",
+          47,
+          3
+        ],
+        [
+          "ARCENE",
+          47,
+          4
+        ],
+        [
+          "ARCENE",
+          59,
+          0
+        ],
+        [
+          "ARCENE",
+          59,
+          1
+        ],
+        [
+          "ARCENE",
+          59,
+          2
+        ],
+        [
+          "ARCENE",
+          59,
+          3
+        ],
+        [
+          "ARCENE",
+          59,
+          4
+        ],
+        [
+          "ARCENE",
+          71,
+          0
+        ],
+        [
+          "ARCENE",
+          71,
+          1
+        ],
+        [
+          "ARCENE",
+          71,
+          2
+        ],
+        [
+          "ARCENE",
+          71,
+          3
+        ],
+        [
+          "ARCENE",
+          71,
+          4
+        ],
+        [
+          "ARCENE",
+          83,
+          0
+        ],
+        [
+          "ARCENE",
+          83,
+          1
+        ],
+        [
+          "ARCENE",
+          83,
+          2
+        ],
+        [
+          "ARCENE",
+          83,
+          3
+        ],
+        [
+          "ARCENE",
+          83,
+          4
+        ],
+        [
+          "ARCENE",
+          97,
+          0
+        ],
+        [
+          "ARCENE",
+          97,
+          1
+        ],
+        [
+          "ARCENE",
+          97,
+          2
+        ],
+        [
+          "ARCENE",
+          97,
+          3
+        ],
+        [
+          "ARCENE",
+          97,
+          4
+        ],
+        [
+          "ARCENE",
+          109,
+          0
+        ],
+        [
+          "ARCENE",
+          109,
+          1
+        ],
+        [
+          "ARCENE",
+          109,
+          2
+        ],
+        [
+          "ARCENE",
+          109,
+          3
+        ],
+        [
+          "ARCENE",
+          109,
+          4
+        ],
+        [
+          "DEXTER",
+          11,
+          0
+        ],
+        [
+          "DEXTER",
+          11,
+          1
+        ],
+        [
+          "DEXTER",
+          11,
+          2
+        ],
+        [
+          "DEXTER",
+          11,
+          3
+        ],
+        [
+          "DEXTER",
+          11,
+          4
+        ],
+        [
+          "DEXTER",
+          17,
+          0
+        ],
+        [
+          "DEXTER",
+          17,
+          1
+        ],
+        [
+          "DEXTER",
+          17,
+          2
+        ],
+        [
+          "DEXTER",
+          17,
+          3
+        ],
+        [
+          "DEXTER",
+          17,
+          4
+        ],
+        [
+          "DEXTER",
+          23,
+          0
+        ],
+        [
+          "DEXTER",
+          23,
+          1
+        ],
+        [
+          "DEXTER",
+          23,
+          2
+        ],
+        [
+          "DEXTER",
+          23,
+          3
+        ],
+        [
+          "DEXTER",
+          23,
+          4
+        ],
+        [
+          "DEXTER",
+          31,
+          0
+        ],
+        [
+          "DEXTER",
+          31,
+          1
+        ],
+        [
+          "DEXTER",
+          31,
+          2
+        ],
+        [
+          "DEXTER",
+          31,
+          3
+        ],
+        [
+          "DEXTER",
+          31,
+          4
+        ],
+        [
+          "DEXTER",
+          47,
+          0
+        ],
+        [
+          "DEXTER",
+          47,
+          1
+        ],
+        [
+          "DEXTER",
+          47,
+          2
+        ],
+        [
+          "DEXTER",
+          47,
+          3
+        ],
+        [
+          "DEXTER",
+          47,
+          4
+        ],
+        [
+          "DEXTER",
+          59,
+          0
+        ],
+        [
+          "DEXTER",
+          59,
+          1
+        ],
+        [
+          "DEXTER",
+          59,
+          2
+        ],
+        [
+          "DEXTER",
+          59,
+          3
+        ],
+        [
+          "DEXTER",
+          59,
+          4
+        ],
+        [
+          "DEXTER",
+          71,
+          0
+        ],
+        [
+          "DEXTER",
+          71,
+          1
+        ],
+        [
+          "DEXTER",
+          71,
+          2
+        ],
+        [
+          "DEXTER",
+          71,
+          3
+        ],
+        [
+          "DEXTER",
+          71,
+          4
+        ],
+        [
+          "DEXTER",
+          83,
+          0
+        ],
+        [
+          "DEXTER",
+          83,
+          1
+        ],
+        [
+          "DEXTER",
+          83,
+          2
+        ],
+        [
+          "DEXTER",
+          83,
+          3
+        ],
+        [
+          "DEXTER",
+          83,
+          4
+        ],
+        [
+          "DEXTER",
+          97,
+          0
+        ],
+        [
+          "DEXTER",
+          97,
+          1
+        ],
+        [
+          "DEXTER",
+          97,
+          2
+        ],
+        [
+          "DEXTER",
+          97,
+          3
+        ],
+        [
+          "DEXTER",
+          97,
+          4
+        ],
+        [
+          "DEXTER",
+          109,
+          0
+        ],
+        [
+          "DEXTER",
+          109,
+          1
+        ],
+        [
+          "DEXTER",
+          109,
+          2
+        ],
+        [
+          "DEXTER",
+          109,
+          3
+        ],
+        [
+          "DEXTER",
+          109,
+          4
+        ],
+        [
+          "GINA",
+          11,
+          0
+        ],
+        [
+          "GINA",
+          11,
+          1
+        ],
+        [
+          "GINA",
+          11,
+          2
+        ],
+        [
+          "GINA",
+          11,
+          3
+        ],
+        [
+          "GINA",
+          11,
+          4
+        ],
+        [
+          "GINA",
+          17,
+          0
+        ],
+        [
+          "GINA",
+          17,
+          1
+        ],
+        [
+          "GINA",
+          17,
+          2
+        ],
+        [
+          "GINA",
+          17,
+          3
+        ],
+        [
+          "GINA",
+          17,
+          4
+        ],
+        [
+          "GINA",
+          23,
+          0
+        ],
+        [
+          "GINA",
+          23,
+          1
+        ],
+        [
+          "GINA",
+          23,
+          2
+        ],
+        [
+          "GINA",
+          23,
+          3
+        ],
+        [
+          "GINA",
+          23,
+          4
+        ],
+        [
+          "GINA",
+          31,
+          0
+        ],
+        [
+          "GINA",
+          31,
+          1
+        ],
+        [
+          "GINA",
+          31,
+          2
+        ],
+        [
+          "GINA",
+          31,
+          3
+        ],
+        [
+          "GINA",
+          31,
+          4
+        ],
+        [
+          "GINA",
+          47,
+          0
+        ],
+        [
+          "GINA",
+          47,
+          1
+        ],
+        [
+          "GINA",
+          47,
+          2
+        ],
+        [
+          "GINA",
+          47,
+          3
+        ],
+        [
+          "GINA",
+          47,
+          4
+        ],
+        [
+          "GINA",
+          59,
+          0
+        ],
+        [
+          "GINA",
+          59,
+          1
+        ],
+        [
+          "GINA",
+          59,
+          2
+        ],
+        [
+          "GINA",
+          59,
+          3
+        ],
+        [
+          "GINA",
+          59,
+          4
+        ],
+        [
+          "GINA",
+          71,
+          0
+        ],
+        [
+          "GINA",
+          71,
+          1
+        ],
+        [
+          "GINA",
+          71,
+          2
+        ],
+        [
+          "GINA",
+          71,
+          3
+        ],
+        [
+          "GINA",
+          71,
+          4
+        ],
+        [
+          "GINA",
+          83,
+          0
+        ],
+        [
+          "GINA",
+          83,
+          1
+        ],
+        [
+          "GINA",
+          83,
+          2
+        ],
+        [
+          "GINA",
+          83,
+          3
+        ],
+        [
+          "GINA",
+          83,
+          4
+        ],
+        [
+          "GINA",
+          97,
+          0
+        ],
+        [
+          "GINA",
+          97,
+          1
+        ],
+        [
+          "GINA",
+          97,
+          2
+        ],
+        [
+          "GINA",
+          97,
+          3
+        ],
+        [
+          "GINA",
+          97,
+          4
+        ],
+        [
+          "GINA",
+          109,
+          0
+        ],
+        [
+          "GINA",
+          109,
+          1
+        ],
+        [
+          "GINA",
+          109,
+          2
+        ],
+        [
+          "GINA",
+          109,
+          3
+        ],
+        [
+          "GINA",
+          109,
+          4
+        ],
+        [
+          "GISETTE",
+          11,
+          0
+        ],
+        [
+          "GISETTE",
+          11,
+          1
+        ],
+        [
+          "GISETTE",
+          11,
+          2
+        ],
+        [
+          "GISETTE",
+          11,
+          3
+        ],
+        [
+          "GISETTE",
+          11,
+          4
+        ],
+        [
+          "GISETTE",
+          17,
+          0
+        ],
+        [
+          "GISETTE",
+          17,
+          1
+        ],
+        [
+          "GISETTE",
+          17,
+          2
+        ],
+        [
+          "GISETTE",
+          17,
+          3
+        ],
+        [
+          "GISETTE",
+          17,
+          4
+        ],
+        [
+          "GISETTE",
+          23,
+          0
+        ],
+        [
+          "GISETTE",
+          23,
+          1
+        ],
+        [
+          "GISETTE",
+          23,
+          2
+        ],
+        [
+          "GISETTE",
+          23,
+          3
+        ],
+        [
+          "GISETTE",
+          23,
+          4
+        ],
+        [
+          "GISETTE",
+          31,
+          0
+        ],
+        [
+          "GISETTE",
+          31,
+          1
+        ],
+        [
+          "GISETTE",
+          31,
+          2
+        ],
+        [
+          "GISETTE",
+          31,
+          3
+        ],
+        [
+          "GISETTE",
+          31,
+          4
+        ],
+        [
+          "GISETTE",
+          47,
+          0
+        ],
+        [
+          "GISETTE",
+          47,
+          1
+        ],
+        [
+          "GISETTE",
+          47,
+          2
+        ],
+        [
+          "GISETTE",
+          47,
+          3
+        ],
+        [
+          "GISETTE",
+          47,
+          4
+        ],
+        [
+          "GISETTE",
+          59,
+          0
+        ],
+        [
+          "GISETTE",
+          59,
+          1
+        ],
+        [
+          "GISETTE",
+          59,
+          2
+        ],
+        [
+          "GISETTE",
+          59,
+          3
+        ],
+        [
+          "GISETTE",
+          59,
+          4
+        ],
+        [
+          "GISETTE",
+          71,
+          0
+        ],
+        [
+          "GISETTE",
+          71,
+          1
+        ],
+        [
+          "GISETTE",
+          71,
+          2
+        ],
+        [
+          "GISETTE",
+          71,
+          3
+        ],
+        [
+          "GISETTE",
+          71,
+          4
+        ],
+        [
+          "GISETTE",
+          83,
+          0
+        ],
+        [
+          "GISETTE",
+          83,
+          1
+        ],
+        [
+          "GISETTE",
+          83,
+          2
+        ],
+        [
+          "GISETTE",
+          83,
+          3
+        ],
+        [
+          "GISETTE",
+          83,
+          4
+        ],
+        [
+          "GISETTE",
+          97,
+          0
+        ],
+        [
+          "GISETTE",
+          97,
+          1
+        ],
+        [
+          "GISETTE",
+          97,
+          2
+        ],
+        [
+          "GISETTE",
+          97,
+          3
+        ],
+        [
+          "GISETTE",
+          97,
+          4
+        ],
+        [
+          "GISETTE",
+          109,
+          0
+        ],
+        [
+          "GISETTE",
+          109,
+          1
+        ],
+        [
+          "GISETTE",
+          109,
+          2
+        ],
+        [
+          "GISETTE",
+          109,
+          3
+        ],
+        [
+          "GISETTE",
+          109,
+          4
+        ],
+        [
+          "MADELON",
+          11,
+          0
+        ],
+        [
+          "MADELON",
+          11,
+          1
+        ],
+        [
+          "MADELON",
+          11,
+          2
+        ],
+        [
+          "MADELON",
+          11,
+          3
+        ],
+        [
+          "MADELON",
+          11,
+          4
+        ],
+        [
+          "MADELON",
+          17,
+          0
+        ],
+        [
+          "MADELON",
+          17,
+          1
+        ],
+        [
+          "MADELON",
+          17,
+          2
+        ],
+        [
+          "MADELON",
+          17,
+          3
+        ],
+        [
+          "MADELON",
+          17,
+          4
+        ],
+        [
+          "MADELON",
+          23,
+          0
+        ],
+        [
+          "MADELON",
+          23,
+          1
+        ],
+        [
+          "MADELON",
+          23,
+          2
+        ],
+        [
+          "MADELON",
+          23,
+          3
+        ],
+        [
+          "MADELON",
+          23,
+          4
+        ],
+        [
+          "MADELON",
+          31,
+          0
+        ],
+        [
+          "MADELON",
+          31,
+          1
+        ],
+        [
+          "MADELON",
+          31,
+          2
+        ],
+        [
+          "MADELON",
+          31,
+          3
+        ],
+        [
+          "MADELON",
+          31,
+          4
+        ],
+        [
+          "MADELON",
+          47,
+          0
+        ],
+        [
+          "MADELON",
+          47,
+          1
+        ],
+        [
+          "MADELON",
+          47,
+          2
+        ],
+        [
+          "MADELON",
+          47,
+          3
+        ],
+        [
+          "MADELON",
+          47,
+          4
+        ],
+        [
+          "MADELON",
+          59,
+          0
+        ],
+        [
+          "MADELON",
+          59,
+          1
+        ],
+        [
+          "MADELON",
+          59,
+          2
+        ],
+        [
+          "MADELON",
+          59,
+          3
+        ],
+        [
+          "MADELON",
+          59,
+          4
+        ],
+        [
+          "MADELON",
+          71,
+          0
+        ],
+        [
+          "MADELON",
+          71,
+          1
+        ],
+        [
+          "MADELON",
+          71,
+          2
+        ],
+        [
+          "MADELON",
+          71,
+          3
+        ],
+        [
+          "MADELON",
+          71,
+          4
+        ],
+        [
+          "MADELON",
+          83,
+          0
+        ],
+        [
+          "MADELON",
+          83,
+          1
+        ],
+        [
+          "MADELON",
+          83,
+          2
+        ],
+        [
+          "MADELON",
+          83,
+          3
+        ],
+        [
+          "MADELON",
+          83,
+          4
+        ],
+        [
+          "MADELON",
+          97,
+          0
+        ],
+        [
+          "MADELON",
+          97,
+          1
+        ],
+        [
+          "MADELON",
+          97,
+          2
+        ],
+        [
+          "MADELON",
+          97,
+          3
+        ],
+        [
+          "MADELON",
+          97,
+          4
+        ],
+        [
+          "MADELON",
+          109,
+          0
+        ],
+        [
+          "MADELON",
+          109,
+          1
+        ],
+        [
+          "MADELON",
+          109,
+          2
+        ],
+        [
+          "MADELON",
+          109,
+          3
+        ],
+        [
+          "MADELON",
+          109,
+          4
+        ]
+      ],
+      "note": "",
+      "observed": [
+        [
+          "ARCENE",
+          11,
+          0
+        ],
+        [
+          "ARCENE",
+          11,
+          1
+        ],
+        [
+          "ARCENE",
+          11,
+          2
+        ],
+        [
+          "ARCENE",
+          11,
+          3
+        ],
+        [
+          "ARCENE",
+          11,
+          4
+        ],
+        [
+          "ARCENE",
+          17,
+          0
+        ],
+        [
+          "ARCENE",
+          17,
+          1
+        ],
+        [
+          "ARCENE",
+          17,
+          2
+        ],
+        [
+          "ARCENE",
+          17,
+          3
+        ],
+        [
+          "ARCENE",
+          17,
+          4
+        ],
+        [
+          "ARCENE",
+          23,
+          0
+        ],
+        [
+          "ARCENE",
+          23,
+          1
+        ],
+        [
+          "ARCENE",
+          23,
+          2
+        ],
+        [
+          "ARCENE",
+          23,
+          3
+        ],
+        [
+          "ARCENE",
+          23,
+          4
+        ],
+        [
+          "ARCENE",
+          31,
+          0
+        ],
+        [
+          "ARCENE",
+          31,
+          1
+        ],
+        [
+          "ARCENE",
+          31,
+          2
+        ],
+        [
+          "ARCENE",
+          31,
+          3
+        ],
+        [
+          "ARCENE",
+          31,
+          4
+        ],
+        [
+          "ARCENE",
+          47,
+          0
+        ],
+        [
+          "ARCENE",
+          47,
+          1
+        ],
+        [
+          "ARCENE",
+          47,
+          2
+        ],
+        [
+          "ARCENE",
+          47,
+          3
+        ],
+        [
+          "ARCENE",
+          47,
+          4
+        ],
+        [
+          "ARCENE",
+          59,
+          0
+        ],
+        [
+          "ARCENE",
+          59,
+          1
+        ],
+        [
+          "ARCENE",
+          59,
+          2
+        ],
+        [
+          "ARCENE",
+          59,
+          3
+        ],
+        [
+          "ARCENE",
+          59,
+          4
+        ],
+        [
+          "ARCENE",
+          71,
+          0
+        ],
+        [
+          "ARCENE",
+          71,
+          1
+        ],
+        [
+          "ARCENE",
+          71,
+          2
+        ],
+        [
+          "ARCENE",
+          71,
+          3
+        ],
+        [
+          "ARCENE",
+          71,
+          4
+        ],
+        [
+          "ARCENE",
+          83,
+          0
+        ],
+        [
+          "ARCENE",
+          83,
+          1
+        ],
+        [
+          "ARCENE",
+          83,
+          2
+        ],
+        [
+          "ARCENE",
+          83,
+          3
+        ],
+        [
+          "ARCENE",
+          83,
+          4
+        ],
+        [
+          "ARCENE",
+          97,
+          0
+        ],
+        [
+          "ARCENE",
+          97,
+          1
+        ],
+        [
+          "ARCENE",
+          97,
+          2
+        ],
+        [
+          "ARCENE",
+          97,
+          3
+        ],
+        [
+          "ARCENE",
+          97,
+          4
+        ],
+        [
+          "ARCENE",
+          109,
+          0
+        ],
+        [
+          "ARCENE",
+          109,
+          1
+        ],
+        [
+          "ARCENE",
+          109,
+          2
+        ],
+        [
+          "ARCENE",
+          109,
+          3
+        ],
+        [
+          "ARCENE",
+          109,
+          4
+        ],
+        [
+          "DEXTER",
+          11,
+          0
+        ],
+        [
+          "DEXTER",
+          11,
+          1
+        ],
+        [
+          "DEXTER",
+          11,
+          2
+        ],
+        [
+          "DEXTER",
+          11,
+          3
+        ],
+        [
+          "DEXTER",
+          11,
+          4
+        ],
+        [
+          "DEXTER",
+          17,
+          0
+        ],
+        [
+          "DEXTER",
+          17,
+          1
+        ],
+        [
+          "DEXTER",
+          17,
+          2
+        ],
+        [
+          "DEXTER",
+          17,
+          3
+        ],
+        [
+          "DEXTER",
+          17,
+          4
+        ],
+        [
+          "DEXTER",
+          23,
+          0
+        ],
+        [
+          "DEXTER",
+          23,
+          1
+        ],
+        [
+          "DEXTER",
+          23,
+          2
+        ],
+        [
+          "DEXTER",
+          23,
+          3
+        ],
+        [
+          "DEXTER",
+          23,
+          4
+        ],
+        [
+          "DEXTER",
+          31,
+          0
+        ],
+        [
+          "DEXTER",
+          31,
+          1
+        ],
+        [
+          "DEXTER",
+          31,
+          2
+        ],
+        [
+          "DEXTER",
+          31,
+          3
+        ],
+        [
+          "DEXTER",
+          31,
+          4
+        ],
+        [
+          "DEXTER",
+          47,
+          0
+        ],
+        [
+          "DEXTER",
+          47,
+          1
+        ],
+        [
+          "DEXTER",
+          47,
+          2
+        ],
+        [
+          "DEXTER",
+          47,
+          3
+        ],
+        [
+          "DEXTER",
+          47,
+          4
+        ],
+        [
+          "DEXTER",
+          59,
+          0
+        ],
+        [
+          "DEXTER",
+          59,
+          1
+        ],
+        [
+          "DEXTER",
+          59,
+          2
+        ],
+        [
+          "DEXTER",
+          59,
+          3
+        ],
+        [
+          "DEXTER",
+          59,
+          4
+        ],
+        [
+          "DEXTER",
+          71,
+          0
+        ],
+        [
+          "DEXTER",
+          71,
+          1
+        ],
+        [
+          "DEXTER",
+          71,
+          2
+        ],
+        [
+          "DEXTER",
+          71,
+          3
+        ],
+        [
+          "DEXTER",
+          71,
+          4
+        ],
+        [
+          "DEXTER",
+          83,
+          0
+        ],
+        [
+          "DEXTER",
+          83,
+          1
+        ],
+        [
+          "DEXTER",
+          83,
+          2
+        ],
+        [
+          "DEXTER",
+          83,
+          3
+        ],
+        [
+          "DEXTER",
+          83,
+          4
+        ],
+        [
+          "DEXTER",
+          97,
+          0
+        ],
+        [
+          "DEXTER",
+          97,
+          1
+        ],
+        [
+          "DEXTER",
+          97,
+          2
+        ],
+        [
+          "DEXTER",
+          97,
+          3
+        ],
+        [
+          "DEXTER",
+          97,
+          4
+        ],
+        [
+          "DEXTER",
+          109,
+          0
+        ],
+        [
+          "DEXTER",
+          109,
+          1
+        ],
+        [
+          "DEXTER",
+          109,
+          2
+        ],
+        [
+          "DEXTER",
+          109,
+          3
+        ],
+        [
+          "DEXTER",
+          109,
+          4
+        ],
+        [
+          "GINA",
+          11,
+          0
+        ],
+        [
+          "GINA",
+          11,
+          1
+        ],
+        [
+          "GINA",
+          11,
+          2
+        ],
+        [
+          "GINA",
+          11,
+          3
+        ],
+        [
+          "GINA",
+          11,
+          4
+        ],
+        [
+          "GINA",
+          17,
+          0
+        ],
+        [
+          "GINA",
+          17,
+          1
+        ],
+        [
+          "GINA",
+          17,
+          2
+        ],
+        [
+          "GINA",
+          17,
+          3
+        ],
+        [
+          "GINA",
+          17,
+          4
+        ],
+        [
+          "GINA",
+          23,
+          0
+        ],
+        [
+          "GINA",
+          23,
+          1
+        ],
+        [
+          "GINA",
+          23,
+          2
+        ],
+        [
+          "GINA",
+          23,
+          3
+        ],
+        [
+          "GINA",
+          23,
+          4
+        ],
+        [
+          "GINA",
+          31,
+          0
+        ],
+        [
+          "GINA",
+          31,
+          1
+        ],
+        [
+          "GINA",
+          31,
+          2
+        ],
+        [
+          "GINA",
+          31,
+          3
+        ],
+        [
+          "GINA",
+          31,
+          4
+        ],
+        [
+          "GINA",
+          47,
+          0
+        ],
+        [
+          "GINA",
+          47,
+          1
+        ],
+        [
+          "GINA",
+          47,
+          2
+        ],
+        [
+          "GINA",
+          47,
+          3
+        ],
+        [
+          "GINA",
+          47,
+          4
+        ],
+        [
+          "GINA",
+          59,
+          0
+        ],
+        [
+          "GINA",
+          59,
+          1
+        ],
+        [
+          "GINA",
+          59,
+          2
+        ],
+        [
+          "GINA",
+          59,
+          3
+        ],
+        [
+          "GINA",
+          59,
+          4
+        ],
+        [
+          "GINA",
+          71,
+          0
+        ],
+        [
+          "GINA",
+          71,
+          1
+        ],
+        [
+          "GINA",
+          71,
+          2
+        ],
+        [
+          "GINA",
+          71,
+          3
+        ],
+        [
+          "GINA",
+          71,
+          4
+        ],
+        [
+          "GINA",
+          83,
+          0
+        ],
+        [
+          "GINA",
+          83,
+          1
+        ],
+        [
+          "GINA",
+          83,
+          2
+        ],
+        [
+          "GINA",
+          83,
+          3
+        ],
+        [
+          "GINA",
+          83,
+          4
+        ],
+        [
+          "GINA",
+          97,
+          0
+        ],
+        [
+          "GINA",
+          97,
+          1
+        ],
+        [
+          "GINA",
+          97,
+          2
+        ],
+        [
+          "GINA",
+          97,
+          3
+        ],
+        [
+          "GINA",
+          97,
+          4
+        ],
+        [
+          "GINA",
+          109,
+          0
+        ],
+        [
+          "GINA",
+          109,
+          1
+        ],
+        [
+          "GINA",
+          109,
+          2
+        ],
+        [
+          "GINA",
+          109,
+          3
+        ],
+        [
+          "GINA",
+          109,
+          4
+        ],
+        [
+          "GISETTE",
+          11,
+          0
+        ],
+        [
+          "GISETTE",
+          11,
+          1
+        ],
+        [
+          "GISETTE",
+          11,
+          2
+        ],
+        [
+          "GISETTE",
+          11,
+          3
+        ],
+        [
+          "GISETTE",
+          11,
+          4
+        ],
+        [
+          "GISETTE",
+          17,
+          0
+        ],
+        [
+          "GISETTE",
+          17,
+          1
+        ],
+        [
+          "GISETTE",
+          17,
+          2
+        ],
+        [
+          "GISETTE",
+          17,
+          3
+        ],
+        [
+          "GISETTE",
+          17,
+          4
+        ],
+        [
+          "GISETTE",
+          23,
+          0
+        ],
+        [
+          "GISETTE",
+          23,
+          1
+        ],
+        [
+          "GISETTE",
+          23,
+          2
+        ],
+        [
+          "GISETTE",
+          23,
+          3
+        ],
+        [
+          "GISETTE",
+          23,
+          4
+        ],
+        [
+          "GISETTE",
+          31,
+          0
+        ],
+        [
+          "GISETTE",
+          31,
+          1
+        ],
+        [
+          "GISETTE",
+          31,
+          2
+        ],
+        [
+          "GISETTE",
+          31,
+          3
+        ],
+        [
+          "GISETTE",
+          31,
+          4
+        ],
+        [
+          "GISETTE",
+          47,
+          0
+        ],
+        [
+          "GISETTE",
+          47,
+          1
+        ],
+        [
+          "GISETTE",
+          47,
+          2
+        ],
+        [
+          "GISETTE",
+          47,
+          3
+        ],
+        [
+          "GISETTE",
+          47,
+          4
+        ],
+        [
+          "GISETTE",
+          59,
+          0
+        ],
+        [
+          "GISETTE",
+          59,
+          1
+        ],
+        [
+          "GISETTE",
+          59,
+          2
+        ],
+        [
+          "GISETTE",
+          59,
+          3
+        ],
+        [
+          "GISETTE",
+          59,
+          4
+        ],
+        [
+          "GISETTE",
+          71,
+          0
+        ],
+        [
+          "GISETTE",
+          71,
+          1
+        ],
+        [
+          "GISETTE",
+          71,
+          2
+        ],
+        [
+          "GISETTE",
+          71,
+          3
+        ],
+        [
+          "GISETTE",
+          71,
+          4
+        ],
+        [
+          "GISETTE",
+          83,
+          0
+        ],
+        [
+          "GISETTE",
+          83,
+          1
+        ],
+        [
+          "GISETTE",
+          83,
+          2
+        ],
+        [
+          "GISETTE",
+          83,
+          3
+        ],
+        [
+          "GISETTE",
+          83,
+          4
+        ],
+        [
+          "GISETTE",
+          97,
+          0
+        ],
+        [
+          "GISETTE",
+          97,
+          1
+        ],
+        [
+          "GISETTE",
+          97,
+          2
+        ],
+        [
+          "GISETTE",
+          97,
+          3
+        ],
+        [
+          "GISETTE",
+          97,
+          4
+        ],
+        [
+          "GISETTE",
+          109,
+          0
+        ],
+        [
+          "GISETTE",
+          109,
+          1
+        ],
+        [
+          "GISETTE",
+          109,
+          2
+        ],
+        [
+          "GISETTE",
+          109,
+          3
+        ],
+        [
+          "GISETTE",
+          109,
+          4
+        ],
+        [
+          "MADELON",
+          11,
+          0
+        ],
+        [
+          "MADELON",
+          11,
+          1
+        ],
+        [
+          "MADELON",
+          11,
+          2
+        ],
+        [
+          "MADELON",
+          11,
+          3
+        ],
+        [
+          "MADELON",
+          11,
+          4
+        ],
+        [
+          "MADELON",
+          17,
+          0
+        ],
+        [
+          "MADELON",
+          17,
+          1
+        ],
+        [
+          "MADELON",
+          17,
+          2
+        ],
+        [
+          "MADELON",
+          17,
+          3
+        ],
+        [
+          "MADELON",
+          17,
+          4
+        ],
+        [
+          "MADELON",
+          23,
+          0
+        ],
+        [
+          "MADELON",
+          23,
+          1
+        ],
+        [
+          "MADELON",
+          23,
+          2
+        ],
+        [
+          "MADELON",
+          23,
+          3
+        ],
+        [
+          "MADELON",
+          23,
+          4
+        ],
+        [
+          "MADELON",
+          31,
+          0
+        ],
+        [
+          "MADELON",
+          31,
+          1
+        ],
+        [
+          "MADELON",
+          31,
+          2
+        ],
+        [
+          "MADELON",
+          31,
+          3
+        ],
+        [
+          "MADELON",
+          31,
+          4
+        ],
+        [
+          "MADELON",
+          47,
+          0
+        ],
+        [
+          "MADELON",
+          47,
+          1
+        ],
+        [
+          "MADELON",
+          47,
+          2
+        ],
+        [
+          "MADELON",
+          47,
+          3
+        ],
+        [
+          "MADELON",
+          47,
+          4
+        ],
+        [
+          "MADELON",
+          59,
+          0
+        ],
+        [
+          "MADELON",
+          59,
+          1
+        ],
+        [
+          "MADELON",
+          59,
+          2
+        ],
+        [
+          "MADELON",
+          59,
+          3
+        ],
+        [
+          "MADELON",
+          59,
+          4
+        ],
+        [
+          "MADELON",
+          71,
+          0
+        ],
+        [
+          "MADELON",
+          71,
+          1
+        ],
+        [
+          "MADELON",
+          71,
+          2
+        ],
+        [
+          "MADELON",
+          71,
+          3
+        ],
+        [
+          "MADELON",
+          71,
+          4
+        ],
+        [
+          "MADELON",
+          83,
+          0
+        ],
+        [
+          "MADELON",
+          83,
+          1
+        ],
+        [
+          "MADELON",
+          83,
+          2
+        ],
+        [
+          "MADELON",
+          83,
+          3
+        ],
+        [
+          "MADELON",
+          83,
+          4
+        ],
+        [
+          "MADELON",
+          97,
+          0
+        ],
+        [
+          "MADELON",
+          97,
+          1
+        ],
+        [
+          "MADELON",
+          97,
+          2
+        ],
+        [
+          "MADELON",
+          97,
+          3
+        ],
+        [
+          "MADELON",
+          97,
+          4
+        ],
+        [
+          "MADELON",
+          109,
+          0
+        ],
+        [
+          "MADELON",
+          109,
+          1
+        ],
+        [
+          "MADELON",
+          109,
+          2
+        ],
+        [
+          "MADELON",
+          109,
+          3
+        ],
+        [
+          "MADELON",
+          109,
+          4
+        ]
+      ],
+      "source": "protocol vs raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "all_status_terminal",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "each_run_has_3_outcomes_per_variant",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "selected_ids_unique",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "selected_ids_in_bounds",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "accuracy_denominators_present",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "accuracy_equals_n_correct_over_n_test",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "raw run records",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|ARCENE|knn]",
+      "expected": 0.8089999999999999,
+      "note": "",
+      "observed": 0.8089999999999999,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|ARCENE|svm]",
+      "expected": 0.8474999999999999,
+      "note": "",
+      "observed": 0.8474999999999999,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|ARCENE|cart]",
+      "expected": 0.748,
+      "note": "",
+      "observed": 0.748,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|DEXTER|knn]",
+      "expected": 0.7230000000000001,
+      "note": "",
+      "observed": 0.7230000000000001,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|DEXTER|svm]",
+      "expected": 0.8943333333333333,
+      "note": "",
+      "observed": 0.8943333333333333,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|DEXTER|cart]",
+      "expected": 0.8348333333333334,
+      "note": "",
+      "observed": 0.8348333333333334,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|MADELON|knn]",
+      "expected": 0.7803461538461539,
+      "note": "",
+      "observed": 0.7803461538461539,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|MADELON|svm]",
+      "expected": 0.513423076923077,
+      "note": "",
+      "observed": 0.513423076923077,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|MADELON|cart]",
+      "expected": 0.7669615384615385,
+      "note": "",
+      "observed": 0.7669615384615385,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GINA|knn]",
+      "expected": 0.8792115473383484,
+      "note": "",
+      "observed": 0.8792115473383484,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GINA|svm]",
+      "expected": 0.44823221926968326,
+      "note": "",
+      "observed": 0.44823221926968326,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GINA|cart]",
+      "expected": 0.8246839743669716,
+      "note": "",
+      "observed": 0.8246839743669716,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GISETTE|knn]",
+      "expected": 0.9596,
+      "note": "",
+      "observed": 0.9596,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GISETTE|svm]",
+      "expected": 0.8509,
+      "note": "",
+      "observed": 0.8509,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_raw_primary|GISETTE|cart]",
+      "expected": 0.9313571428571429,
+      "note": "",
+      "observed": 0.9313571428571429,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|ARCENE|knn]",
+      "expected": 0.8190000000000002,
+      "note": "",
+      "observed": 0.8190000000000002,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|ARCENE|svm]",
+      "expected": 0.8494999999999999,
+      "note": "",
+      "observed": 0.8494999999999999,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|ARCENE|cart]",
+      "expected": 0.748,
+      "note": "",
+      "observed": 0.748,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|DEXTER|knn]",
+      "expected": 0.7549999999999999,
+      "note": "",
+      "observed": 0.7549999999999999,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|DEXTER|svm]",
+      "expected": 0.8901666666666668,
+      "note": "",
+      "observed": 0.8901666666666668,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|DEXTER|cart]",
+      "expected": 0.835,
+      "note": "",
+      "observed": 0.835,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|MADELON|knn]",
+      "expected": 0.6379230769230768,
+      "note": "",
+      "observed": 0.6379230769230768,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|MADELON|svm]",
+      "expected": 0.6035,
+      "note": "",
+      "observed": 0.6035,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|MADELON|cart]",
+      "expected": 0.7674615384615384,
+      "note": "",
+      "observed": 0.7674615384615384,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GINA|knn]",
+      "expected": 0.8763843873065774,
+      "note": "",
+      "observed": 0.8763843873065774,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GINA|svm]",
+      "expected": 0.8427340510913999,
+      "note": "",
+      "observed": 0.8427340510913999,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GINA|cart]",
+      "expected": 0.8248857450586558,
+      "note": "",
+      "observed": 0.8248857450586558,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GISETTE|knn]",
+      "expected": 0.9604857142857142,
+      "note": "",
+      "observed": 0.9604857142857142,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GISETTE|svm]",
+      "expected": 0.9574000000000001,
+      "note": "",
+      "observed": 0.9574000000000001,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_mean_accuracy[outcomes_standardized_sensitivity|GISETTE|cart]",
+      "expected": 0.9313142857142858,
+      "note": "",
+      "observed": 0.9313142857142858,
+      "source": "recomputed vs results/stage3a/aggregate.json",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "agg_per_seed_means_match",
+      "expected": [],
+      "note": "Compared after normalising seed keys to str. The in-memory aggregate keys seeds as int; JSON serialisation coerces them to str, so a consumer of aggregate.json must read seed keys as strings.",
+      "observed": [],
+      "source": "aggregate.json",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "csv_rows_match_records",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "per_run_outcomes.csv",
+      "tolerance": 1e-12
+    },
+    {
+      "agree": true,
+      "check": "csv_row_count",
+      "expected": 1500,
+      "note": "",
+      "observed": 1500,
+      "source": "per_run_outcomes.csv",
+      "tolerance": "exact"
+    },
+    {
+      "agree": true,
+      "check": "markdown_primary_table_matches_recompute",
+      "expected": [],
+      "note": "",
+      "observed": [],
+      "source": "docs/stage3a_evaluation.md vs recompute",
+      "tolerance": 5e-05
+    }
+  ],
+  "n_discrepancies": 0,
+  "nonconvergence": {
+    "outcomes_raw_primary": {
+      "ARCENE": {
+        "n_converged": 48,
+        "n_nonconverged": 2,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "DEXTER": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "GINA": {
+        "n_converged": 0,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "GISETTE": {
+        "n_converged": 0,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "MADELON": {
+        "n_converged": 0,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      }
+    },
+    "outcomes_standardized_sensitivity": {
+      "ARCENE": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "DEXTER": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "GINA": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "GISETTE": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      },
+      "MADELON": {
+        "n_converged": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50,
+        "n_svm_fits": 50
+      }
+    }
+  },
+  "peak_rss_gib": 0.326,
+  "recompute_rule": "mean over folds within a seed, then mean over the 10 seeds",
+  "schema": "ossfs-dd-reproduction/stage3a/audit/recomputed_aggregates/1.0",
+  "selected_counts": {
+    "ARCENE": [
+      34,
+      37,
+      134,
+      137,
+      140,
+      189,
+      204,
+      232,
+      461,
+      481,
+      497,
+      600,
+      607,
+      638,
+      745,
+      781,
+      785,
+      824,
+      863,
+      877,
+      918,
+      919,
+      922,
+      924,
+      1018,
+      1029,
+      1032,
+      1048,
+      1092,
+      1139,
+      1175,
+      1207,
+      1216,
+      1422,
+      1432,
+      1440,
+      1441,
+      1446,
+      1448,
+      1457,
+      1476,
+      1482,
+      1483,
+      1499,
+      1523,
+      1528,
+      1536,
+      1548,
+      1555,
+      1561
+    ],
+    "DEXTER": [
+      440,
+      442,
+      442,
+      448,
+      449,
+      449,
+      450,
+      450,
+      451,
+      452,
+      452,
+      453,
+      453,
+      453,
+      453,
+      454,
+      454,
+      454,
+      455,
+      458,
+      459,
+      459,
+      460,
+      461,
+      461,
+      461,
+      462,
+      462,
+      462,
+      462,
+      463,
+      463,
+      464,
+      465,
+      466,
+      466,
+      466,
+      467,
+      467,
+      468,
+      469,
+      470,
+      470,
+      472,
+      473,
+      473,
+      473,
+      475,
+      476,
+      482
+    ],
+    "GINA": [
+      76,
+      79,
+      79,
+      80,
+      80,
+      81,
+      81,
+      81,
+      82,
+      85,
+      85,
+      85,
+      85,
+      85,
+      86,
+      86,
+      89,
+      89,
+      90,
+      90,
+      91,
+      91,
+      91,
+      91,
+      92,
+      92,
+      93,
+      93,
+      93,
+      93,
+      93,
+      93,
+      93,
+      95,
+      95,
+      96,
+      96,
+      96,
+      96,
+      96,
+      97,
+      98,
+      98,
+      101,
+      102,
+      103,
+      103,
+      104,
+      108,
+      111
+    ],
+    "GISETTE": [
+      152,
+      155,
+      160,
+      162,
+      164,
+      167,
+      167,
+      168,
+      168,
+      170,
+      172,
+      172,
+      172,
+      173,
+      173,
+      173,
+      173,
+      174,
+      174,
+      174,
+      174,
+      175,
+      175,
+      175,
+      176,
+      176,
+      176,
+      177,
+      177,
+      177,
+      177,
+      178,
+      178,
+      178,
+      180,
+      181,
+      181,
+      181,
+      181,
+      182,
+      182,
+      182,
+      182,
+      182,
+      183,
+      183,
+      183,
+      184,
+      185,
+      218
+    ],
+    "MADELON": [
+      40,
+      42,
+      43,
+      44,
+      47,
+      47,
+      47,
+      49,
+      49,
+      49,
+      49,
+      50,
+      50,
+      52,
+      54,
+      54,
+      54,
+      54,
+      54,
+      55,
+      55,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      57,
+      57,
+      57,
+      57,
+      57,
+      58,
+      58,
+      59,
+      59,
+      60,
+      62,
+      62,
+      63,
+      65,
+      65,
+      65,
+      66,
+      67,
+      67,
+      68,
+      71,
+      74
+    ]
+  }
+}

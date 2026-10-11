@@ -1,0 +1,191 @@
+{
+  "audit_run_id": "20261011T091959Z",
+  "commits_made": 0,
+  "gates": {
+    "AUDIT_CONTINUOUS_BOUNDARIES_DOCUMENTED": {
+      "pass": true,
+      "status": "PASS"
+    },
+    "AUDIT_FREEZE_CHRONOLOGY": {
+      "note": "An unresolved or contradicted chronology is a legitimate result; this gate records the status rather than forcing VERIFIED.",
+      "pass": true,
+      "status": "CONTRADICTED"
+    },
+    "AUDIT_LEDGER_RECONCILES": {
+      "n_checks": 44,
+      "n_discrepancies": 0,
+      "pass": true,
+      "status": "PASS"
+    },
+    "AUDIT_NO_STAGE1_SIDE_EFFECT": {
+      "note": "Verified separately by tests/test_stage1_evidence_side_effect.py (opt-in --write-stage1-evidence).",
+      "pass": true,
+      "status": "PASS"
+    },
+    "AUDIT_SAFETY": {
+      "forbidden_reads": 0,
+      "pass": true,
+      "stage1_stage2_unchanged": true,
+      "status": "PASS"
+    },
+    "AUDIT_SOLVER_IDENTIFIED": {
+      "backend": "libsvm",
+      "pass": true,
+      "status": "PASS",
+      "svc_library_default": -1,
+      "user_declared_cap": 2000000
+    },
+    "AUDIT_VARIABILITY_CHARACTERIZED": {
+      "cause": "UNRESOLVED",
+      "pass": true,
+      "status": "PASS"
+    }
+  },
+  "generated_utc": "2026-10-11T09:19:59Z",
+  "host": {
+    "machine": "aarch64",
+    "numpy": "2.4.6",
+    "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+    "python": "3.11.16",
+    "sklearn": "1.9.1"
+  },
+  "input_artifacts": [
+    {
+      "exists": true,
+      "kind": "frozen_config",
+      "note": "Stage 3A protocol config",
+      "path": "projects/ossfs-dd-reproduction/configs/stage3a.yaml",
+      "sha256": "10b0638e94a4d2d3184cfe76d6dbb8f0b69c0475d65d478966667447747bba44"
+    },
+    {
+      "exists": true,
+      "kind": "frozen_config",
+      "note": "Workstream B reconstruction config",
+      "path": "projects/ossfs-dd-reproduction/configs/continuous_rnd_v1.yaml",
+      "sha256": "8f1c0f65b582790a8d46dce8489c7524e8d874d30a361d62c464b174f814bce0"
+    },
+    {
+      "exists": true,
+      "kind": "frozen_config",
+      "note": "Published reference ledger (NOT git-tracked: blocked by .gitignore '*.csv')",
+      "path": "projects/ossfs-dd-reproduction/configs/paper_reference_discrete.csv",
+      "sha256": "d5d52d3adff48c43b82045224a328a80657b495a8d49bc0413a609693e7dcc1f"
+    },
+    {
+      "exists": true,
+      "kind": "derived",
+      "note": "Committed aggregate produced by stage3a_report.py",
+      "path": "projects/ossfs-dd-reproduction/results/stage3a/aggregate.json",
+      "sha256": "36e125087c842d4f2b50219abd005d03924e66c684ec051c83c0bb45a843bb9e"
+    },
+    {
+      "exists": true,
+      "kind": "derived",
+      "note": "Committed per-run table produced by stage3a_report.py",
+      "path": "projects/ossfs-dd-reproduction/results/stage3a/per_run_outcomes.csv",
+      "sha256": "8b3c8312c4b31cfcfeefd345720498a82824578c259f4582076ebf891b9cea1a"
+    },
+    {
+      "exists": true,
+      "kind": "derived",
+      "note": "Committed Stage 3A markdown report",
+      "path": "projects/ossfs-dd-reproduction/docs/stage3a_evaluation.md",
+      "sha256": "8a5076e9cd992b5a4edda6c6d42d0e31d3e780f221ef5f4402b6d45de2896443"
+    },
+    {
+      "exists": true,
+      "kind": "derived",
+      "note": "Gate manifest",
+      "path": "projects/ossfs-dd-reproduction/results/stage3a/report_manifest.json",
+      "sha256": "17fe97ffd7095b68e3f26d81073519d97513acb7bf61e94d58df91971fadbfd3"
+    },
+    {
+      "exists": true,
+      "kind": "derived",
+      "note": "Sweep manifest (contains no timestamp field)",
+      "path": "projects/ossfs-dd-reproduction/results/stage3a/run_manifest.json",
+      "sha256": "57dd4a45dffb52412a41b2a2e82c340f3baaf8dc0b6a10b2627447f3d79a9c31"
+    },
+    {
+      "exists": true,
+      "kind": "source",
+      "note": "Estimator definitions",
+      "path": "projects/ossfs-dd-reproduction/src/ossfs_dd_eval/classifiers.py",
+      "sha256": "290d246bf86bb9fad276551f3ff3b06024a231519b0fa98a66f2e13ae1d81ce8"
+    },
+    {
+      "exists": true,
+      "kind": "source",
+      "note": "Reconstructed estimator",
+      "path": "projects/ossfs-dd-reproduction/src/ossfs_dd_continuous/fisherz.py",
+      "sha256": "d3ea1ff40e9b856d2c2ea9c291b867e083d7cd386b8562820556fa9695ca96c0"
+    },
+    {
+      "exists": true,
+      "kind": "source",
+      "note": "Continuous selector",
+      "path": "projects/ossfs-dd-reproduction/src/ossfs_dd_continuous/selector.py",
+      "sha256": "c90f2456980b0e7f8a785ba41c0520b7712af4f16b4d196116cbc09e80e9ccb9"
+    },
+    {
+      "exists": true,
+      "kind": "source",
+      "note": "Pytest session hook (M6 repair)",
+      "path": "projects/ossfs-dd-reproduction/tests/conftest.py",
+      "sha256": "d1efa600781d52efe087f7fbf601e35310bdde173f6f4d2f1a7a3f6267b37572"
+    },
+    {
+      "exists": true,
+      "kind": "raw_record",
+      "note": "Workstream B train-only diagnostic",
+      "path": "projects/ossfs-dd-reproduction/results/continuous_rnd/SRBCT_seed11_fold0.json",
+      "sha256": "351a2f78099c3b4dd03b5f7d5f0f18795da60083e3fb97f7b4a3a590e8ab54f4"
+    },
+    {
+      "exists": true,
+      "kind": "raw_record",
+      "note": "Workstream B train-only diagnostic",
+      "path": "projects/ossfs-dd-reproduction/results/continuous_rnd/LYMPHOMA_seed11_fold0.json",
+      "sha256": "bb72c5dc38c3f879f4687a0150f7b7768c6d9e54324d0595b6ab91eb8cef35df"
+    },
+    {
+      "exists": true,
+      "kind": "raw_record",
+      "note": "Workstream B train-only diagnostic",
+      "path": "projects/ossfs-dd-reproduction/results/continuous_rnd/PROSTATE_seed11_fold0.json",
+      "sha256": "901fb49a1e5dfcb0986f7293858c9587bed4e6042658d72c7a3290b650eb5045"
+    },
+    {
+      "exists": true,
+      "kind": "raw_record",
+      "note": "Workstream B train-only diagnostic",
+      "path": "projects/ossfs-dd-reproduction/results/continuous_rnd/LEUKEMIA_seed11_fold0.json",
+      "sha256": "e3cfd38943715340410f56a7765fd016cb1baa2b8c3d1cc28166162eb1a6beb6"
+    },
+    {
+      "exists": true,
+      "kind": "raw_record",
+      "n_files": 250,
+      "note": "Composite digest over all 250 per-run JSON records (order: filename sort)",
+      "path": "projects/ossfs-dd-reproduction/results/stage3a/runs/records/",
+      "sha256": "a86831b7d066f3f032b4c3a1e2500b858d342d8a36f926e27ca00a7ecfe1569b"
+    }
+  ],
+  "no_results_modified": true,
+  "not_measured": [
+    "per-step alpha/beta traces for the continuous diagnostics (NOT_MEASURED: the saved diagnostic records retain counts, not per-event thresholds)",
+    "configs/paper_reference_discrete.csv git provenance (the file is untracked because .gitignore excludes *.csv)",
+    "causal attribution of raw-SVM nonconvergence (no counterfactual run was performed; hypothesis only)",
+    "cause of ARCENE feature-count variability (reported UNRESOLVED)"
+  ],
+  "path_discrepancies": [
+    {
+      "expected_by_prompt": "$RESEARCH_OUTPUT_ROOT/ossfs-dd-reproduction/stage3a/",
+      "note": "Stage 3A wrote its run records into the project results tree, not into $RESEARCH_OUTPUT_ROOT. The raw records exist and were audited at their real location; no path was invented.",
+      "observed": "projects/ossfs-dd-reproduction/results/stage3a/runs/records/",
+      "status": "NOT_FOUND_AT_EXPECTED_PATH"
+    }
+  ],
+  "schema": "ossfs-dd-reproduction/stage3a/audit/manifest/1.0",
+  "verdict": "STAGE3A_AUDIT_PASS"
+}

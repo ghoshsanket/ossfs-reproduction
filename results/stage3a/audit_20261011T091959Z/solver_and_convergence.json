@@ -1,0 +1,114 @@
+{
+  "declared_in_project": {
+    "SVM_MAX_ITER": 2000000,
+    "effective_SVC_max_iter_when_built": 2000000,
+    "is_user_declared_not_solver_default": true,
+    "source": "projects/ossfs-dd-reproduction/src/ossfs_dd_eval/classifiers.py"
+  },
+  "erratum": [
+    "Stage 3A documentation stated the raw SVC cap of 2,000,000 was 'liblinear's own documented default'. That is incorrect on two counts.",
+    "sklearn.svm.SVC (including kernel='linear') is implemented using LIBSVM, not liblinear. liblinear backs sklearn.svm.LinearSVC/LinearSVR.",
+    "SVC's documented max_iter default is -1 (no user cap). 2,000,000 was a hard cap introduced by this project, not any library default.",
+    "Accordingly the accurate description is: 'user-declared hard iteration cap of 2,000,000 on the libsvm-backed SVC'."
+  ],
+  "fact_preserved": {
+    "n_primary_classifier_predictions_generated": 750,
+    "note": "750 primary predictions were produced. That is a fact about prediction generation and is independent of whether the SVM fits reached a converged optimum. A non-converged fit still returns predictions; it does not return a converged optimum."
+  },
+  "nonconvergence_cause": {
+    "statement": "Feature-scale heterogeneity is a supported contributor: MADELON's per-column standard deviations span ~224x, and 0/250 standardized fits failed to converge versus 152/250 raw fits. Standardization also changes conditioning, margin geometry and the libsvm solver's working-set selection, so the disappearance of nonconvergence after scaling is consistent with a conditioning hypothesis but does not by itself prove that scaling is the sole cause. No counterfactual (raw-fit-with-scaling-altered) run was performed, so causation is NOT established.",
+    "status": "SOLVER_CONDITIONING_HYPOTHESIS_SUPPORTED_NOT_PROVEN"
+  },
+  "observed_n_iter_tallies_among_nonconverged": {
+    "2000000": 152
+  },
+  "observed_warning_tallies_raw_primary": {
+    "None": 98,
+    "Solver terminated early (max_iter=2000000)": 152
+  },
+  "per_dataset_convergence": {
+    "outcomes_raw_primary": {
+      "ARCENE": {
+        "converged_fraction": 0.96,
+        "n_converged": 48,
+        "n_fits": 50,
+        "n_nonconverged": 2,
+        "n_predictions_present": 50
+      },
+      "DEXTER": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      },
+      "GINA": {
+        "converged_fraction": 0.0,
+        "n_converged": 0,
+        "n_fits": 50,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50
+      },
+      "GISETTE": {
+        "converged_fraction": 0.0,
+        "n_converged": 0,
+        "n_fits": 50,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50
+      },
+      "MADELON": {
+        "converged_fraction": 0.0,
+        "n_converged": 0,
+        "n_fits": 50,
+        "n_nonconverged": 50,
+        "n_predictions_present": 50
+      }
+    },
+    "outcomes_standardized_sensitivity": {
+      "ARCENE": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      },
+      "DEXTER": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      },
+      "GINA": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      },
+      "GISETTE": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      },
+      "MADELON": {
+        "converged_fraction": 1.0,
+        "n_converged": 50,
+        "n_fits": 50,
+        "n_nonconverged": 0,
+        "n_predictions_present": 50
+      }
+    }
+  },
+  "verified_from_installed_package": {
+    "LinearSVC_max_iter_default": 1000,
+    "SVC_max_iter_default": -1,
+    "early_termination_message_emitted_in_libsvm_module": true,
+    "linearsvc_docstring_states_liblinear": true,
+    "sklearn_svm_base_path": "projects/ossfs-dd-reproduction/.venv/lib/python3.11/site-packages/sklearn/svm/_base.py",
+    "sklearn_version": "1.9.1",
+    "svc_docstring_states_libsvm": true
+  }
+}

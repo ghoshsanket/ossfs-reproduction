@@ -44,6 +44,9 @@ packages = ["src/ossfs_dd_data", "src/ossfs_dd"]
 testpaths = ["tests"]
 addopts = "-q"
 filterwarnings = ["ignore::DeprecationWarning"]
+markers = [
+    "slow: subprocess or full-run regression checks",
+]
 
 [tool.ruff]
 line-length = 100

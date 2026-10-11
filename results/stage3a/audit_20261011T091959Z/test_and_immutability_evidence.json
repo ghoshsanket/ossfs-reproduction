@@ -1,0 +1,49 @@
+{
+  "audit_run_id": "20261011T091959Z",
+  "generated_utc": "2026-10-11T09:19:59Z",
+  "safety": {
+    "authorization_enforced_by": "ossfs_dd_eval.auth.authorize_run refuses any key not in the frozen allowlist and refuses the two forbidden keys; regression-tested in tests/test_stage3a_protocol.py",
+    "datasets_executed_in_records": [
+      "ARCENE",
+      "DEXTER",
+      "GINA",
+      "GISETTE",
+      "MADELON"
+    ],
+    "forbidden_datasets_executed": [],
+    "forbidden_name_appearances_in_docs": [
+      {
+        "dataset": "DLBCL",
+        "path": "projects/ossfs-dd-reproduction/docs/stage3a_evaluation.md"
+      },
+      {
+        "dataset": "BREAST",
+        "path": "projects/ossfs-dd-reproduction/docs/stage3a_evaluation.md"
+      },
+      {
+        "dataset": "DLBCL",
+        "path": "projects/ossfs-dd-reproduction/docs/stage3a_audit_addendum.md"
+      },
+      {
+        "dataset": "BREAST",
+        "path": "projects/ossfs-dd-reproduction/docs/stage3a_audit_addendum.md"
+      }
+    ],
+    "git_add_dry_run_binary_or_record_entries": [],
+    "git_add_dry_run_entries": 7,
+    "n_commits_made_by_audit": 0,
+    "n_forbidden_reads": 0,
+    "note_on_mentions": "Forbidden names appear in prose only, in statements that those datasets were NOT read. The executed-record check above is the positive evidence that no forbidden dataset was loaded.",
+    "stage1_stage2_git_status": {
+      "configs/stage1.yaml": [],
+      "configs/stage2.yaml": [],
+      "results/stage1": [],
+      "results/stage2": [],
+      "src/ossfs_dd": [],
+      "src/ossfs_dd_data": []
+    },
+    "stage1_stage2_unchanged": true,
+    "unexpected_datasets_executed": []
+  },
+  "schema": "ossfs-dd-reproduction/stage3a/audit/test_evidence/1.0"
+}
