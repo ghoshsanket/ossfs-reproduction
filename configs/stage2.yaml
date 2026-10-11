@@ -1,0 +1,204 @@
+# Stage 2 configuration — FROZEN 2026-10-10, before any real-data smoke run.
+#
+# Gates here are ENGINEERING CORRECTNESS gates, not paper performance targets.
+# None of these thresholds may be lowered, widened or reinterpreted once any
+# result exists. No gate here alters any Stage-1 gate or Stage-1 result.
+
+schema_version: 1
+project: ossfs-dd-reproduction
+stage: 2
+frozen_utc: "2026-10-10T22:40:00Z"
+freeze_statement: >
+  Frozen after the authors'-source audit (docs/stage2_source_audit.md,
+  docs/stage2_paper_vs_matlab.md) and before any real-data smoke run, as
+  required by the Stage-2 prompt sections 6.1 and 6.2.
+
+paper:
+  title: "Online Scalable Streaming Feature Selection via Dynamic Decision"
+  doi: "10.1145/3502737"
+  venue: "ACM TKDD 16(5), Article 87 (2022)"
+  authors_repo: "https://github.com/doodzhou/OSFS"
+  authors_repo_commit: "845a8e9d5625616b43e8cee16e8d22081dbe3f62"
+  discrete_entry: "OSFS_DD_mi2.m"
+  continuous_entry: "OSFS_DD_z2.m"
+
+# --------------------------------------------------------------------------
+# Restricted authorization. Researcher-authorized; DLBCL and BREAST excluded.
+# --------------------------------------------------------------------------
+authorization:
+  mode: restricted_nine
+  allowlist:
+    - SRBCT      # 63   x 2308  x 4  Real
+    - LYMPHOMA   # 62   x 4026  x 3  Real
+    - PROSTATE   # 102  x 6033  x 2  Real
+    - LEUKEMIA   # 72   x 7129  x 2  Real
+    - ARCENE     # 200  x 10000 x 2  Integer
+    - DEXTER     # 600  x 20000 x 2  Integer
+    - MADELON    # 2600 x 500   x 2  Integer
+    - GINA       # 3468 x 970   x 2  Integer
+    - GISETTE    # 7000 x 5000  x 2  Integer
+  forbidden: [DLBCL, BREAST]
+  require_manifest_status: EXACT_VERIFIED
+  require_shape_match: true
+  fail_closed_on_violation: true
+
+# --------------------------------------------------------------------------
+# Metric routing: the paper's Table 1 Real/Integer column is PRIMARY.
+# Route by declared paper type, never by numpy dtype.
+# --------------------------------------------------------------------------
+metric_routing:
+  route_by: paper_table1_feature_type
+  never_route_by_numpy_dtype: true
+  routes:
+    Integer:
+      mode_support: both
+      metric_family: discrete_information
+      source_reference: OSFS_DD_mi2.m
+      semantics_status: SOURCE_CONFIRMED
+    Real:
+      mode_support: both
+      metric_family: gaussian_fisher_z
+      source_reference: OSFS_DD_z2.m
+      semantics_status: UNRESOLVED
+      # Fisher_Ztest.m is absent from the pinned authors' repository.
+      # No proxy statistic is permitted. The runner raises
+      # UnsupportedSemanticsError instead of fabricating a score.
+      on_unresolved_semantics: raise_unsupported_verified_semantics
+      forbidden_substitutes:
+        - "1 - p_value"
+        - "abs(correlation)"
+        - "p_value"
+        - "correlation magnitude"
+        - "discretised mutual information"
+        - "sklearn.mutual_info_classif"
+
+# --------------------------------------------------------------------------
+# Algorithm modes. No auto mode, no fallback, no post-run switching.
+# --------------------------------------------------------------------------
+modes:
+  primary: matlab_compatible_v1
+  primary_rationale: >
+    Chosen because the discrete route's semantics are fully SOURCE_CONFIRMED
+    from the pinned authors' commit, whereas paper_spec_v1 requires declared
+    interpretations (joint-information definition, warm-up bootstrap, final
+    flush). Where the two can differ numerically, matching the released
+    reference is the more defensible reproduction target. Both modes are
+    implemented and tested; only the primary is used for real-data smoke.
+  available:
+    - id: paper_spec_v1
+      joint_information: normalised_su_of_joint_feature_variable
+      joint_information_formula: "2*MI({X,Z};Y) / (H({X,Z}) + H(Y))"
+      redundant_joint_comparison: strict_less_than_2_beta
+      uncertain_promotion_comparison: greater_or_equal_2_beta
+      promote: both_members
+      warmup_first_two: process_through_decision_with_declared_bootstrap
+      warmup_bootstrap: >
+        Score features 1 and 2, initialise the running mean/variance from them,
+        then route both through the ordinary three-way decision. alpha < beta
+        is never relaxed and no feature is force-selected.
+      final_pool_flush: run_once_at_stream_end_if_non_empty
+      zero_entropy_neutral_value: 0.0
+    - id: matlab_compatible_v1
+      joint_information: source_expression_SU_plus_raw_cmi
+      joint_information_formula: "SU(X_ind,Y) + cmi(X_ind, Y, X_partner)"
+      joint_units: "normalised [0,1] plus raw bits — MIXED, reproduced deliberately"
+      redundant_joint_comparison: strict_less_than_2_beta
+      uncertain_promotion_comparison: strict_greater_than_2_beta
+      promote: both_members
+      first_two_features: score_update_moments_then_skip     # mi2.m:37-41
+      first_two_z2_variant: score_update_moments_then_select # z2.m:41-46
+      pool_flush_comparison: greater_or_equal_pool_size
+      final_pool_flush: run_once_at_stream_end_if_non_empty
+      decision_order: reject_first                            # mi2.m:52
+      tie_break_redundancy: existing_feature_removed          # newMI==indMI -> else branch
+      promoted_pairs_redundancy_recheck: false
+      zero_entropy_behaviour: propagate_nan_and_flag          # mi2.m has no isnan guard
+
+# --------------------------------------------------------------------------
+# Fixed algorithm parameters (Sec. 4.2 of the paper: k1=1, k2=2, PoolSize=100)
+# --------------------------------------------------------------------------
+parameters:
+  k1: 1.0
+  k2: 2.0
+  require_k1_lt_k2: true
+  pool_size: 100
+  entropy_log_base: 2          # bits — confirmed by Entropy.c:54
+  tolerance:
+    moment_mean_abs: 1.0e-12
+    moment_sd_abs: 1.0e-10
+    information_abs: 1.0e-10
+    su_bounds_abs: 1.0e-12
+
+# --------------------------------------------------------------------------
+# Run plan: exactly 9 executions, seed 11 / fold 0. NOT 450 CV experiments.
+# --------------------------------------------------------------------------
+run_plan:
+  seeds: [11]
+  folds: [0]
+  whole_feature_stream: true
+  concurrency: 1
+  do_not_run: "no classifier, no accuracy, no hyperparameter search, no 9x10x5 sweep"
+
+# --------------------------------------------------------------------------
+# Resource safety (shared host)
+# --------------------------------------------------------------------------
+resources:
+  memory_limit_gib: 32
+  max_walltime_per_smoke_minutes: 60
+  use_gpu: false
+  sequential_only: true
+
+# --------------------------------------------------------------------------
+# Pre-registered gates. NEVER lowered.
+# --------------------------------------------------------------------------
+gates:
+  restricted_dataset_membership:
+    required_allowlist_size: 9
+    forbidden_reads_allowed: 0
+  immutability:
+    max_modified_stage1_bytes: 0
+    require_before_after_hash_equality: true
+  stage1_regression:
+    require_all_pass: true
+    require_zero_failed: true
+    require_zero_skipped: true
+  stage2_tests:
+    required_fraction: 1.0
+    allowed_skipped: 0
+    forbid_self_referential_oracle: true
+  incremental_moments:
+    mean_abs_tol: 1.0e-12
+    sd_abs_tol: 1.0e-10
+  information_primitives:
+    abs_tol: 1.0e-10
+    su_bounds_abs: 1.0e-12
+    require_finite: true
+  stream_integrity:
+    max_leakage_events: 0
+    max_index_collisions: 0
+    max_duplicate_final_ids: 0
+    require_original_ids_in_bounds: true
+  determinism:
+    required_repeated_cases: 2
+    exclude_from_equality: [wall_clock, timestamps, log_paths, rss]
+  full_stream_smoke:
+    required_attempted: 9
+    required_completed_with_verified_semantics: 9
+    max_unhandled_exceptions: 0
+    note: >
+      This gate deliberately requires all nine. If continuous-code semantics
+      cannot be established, the honest outcome is STAGE2_PARTIAL or
+      STAGE2_BLOCKED_UNVERIFIED_SEMANTICS, NOT a proxy statistic generating
+      nine apparently valid runs.
+  source_semantic_audit:
+    require_every_behaviour_labelled: true
+    forbid_guess_as_confirmed: true
+  matlab_runtime_parity:
+    claim_requires_measurement: true
+    default_when_unmeasured: NOT_MEASURED
+  prohibited_operations:
+    max_system_path_writes: 0
+    max_stage1_dataset_tree_writes: 0
+    max_git_push_or_force_push: 0
+
+verdict_values: [STAGE2_READY, STAGE2_PARTIAL, STAGE2_BLOCKED, STAGE2_BLOCKED_UNVERIFIED_SEMANTICS]

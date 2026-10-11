@@ -1,0 +1,42 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/command_exits/1.0",
+  "recorded_utc": "2026-10-10T22:28:17Z",
+  "note": "Exit codes captured verbatim. stage2_run.py exits 0 because no REQUESTED dataset failed; the 9/9 preregistered smoke gate is evaluated by stage2_report.py, which exits 2 because four datasets lack verified semantics. No exit code was suppressed or bypassed with '|| true'.",
+  "commands": [
+    {
+      "command": "uv run python scripts/stage2_preflight.py --write",
+      "exit_code": 0,
+      "meaning": "9 authorized, 2 correctly refused"
+    },
+    {
+      "command": "uv run python scripts/stage2_selfcheck.py",
+      "exit_code": 0,
+      "meaning": "22 mathematical checks passed"
+    },
+    {
+      "command": "uv run pytest -q",
+      "exit_code": 0,
+      "meaning": "119 passed, 0 failed, 0 skipped (Stage 1 + Stage 2)"
+    },
+    {
+      "command": "uv run python scripts/stage2_run.py --dataset DLBCL",
+      "exit_code": 2,
+      "meaning": "forbidden dataset refused"
+    },
+    {
+      "command": "uv run python scripts/stage2_run.py --all",
+      "exit_code": 0,
+      "meaning": "9 attempted; 5 COMPLETED, 4 UNSUPPORTED_UNVERIFIED_SEMANTICS"
+    },
+    {
+      "command": "uv run python scripts/stage2_report.py",
+      "exit_code": 2,
+      "meaning": "verdict STAGE2_PARTIAL; reports written before exit"
+    },
+    {
+      "command": "uv run python scripts/stage2_run.py --dataset MADELON (x2)",
+      "exit_code": 0,
+      "meaning": "determinism check: identical selected IDs and counts"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/selfcheck/1.0",
+  "generated_utc": "2026-10-10T22:28:21Z",
+  "checks": [
+    {
+      "check": "entropy_hand_table",
+      "pass": true,
+      "detail": "got 0.8112781244591328 expected 0.8112781244591328"
+    },
+    {
+      "check": "entropy_base_switch",
+      "pass": true,
+      "detail": "base2=0.8112781244591328 basee=0.5623351446188083 (H_bits = H_nats/ln2)"
+    },
+    {
+      "check": "mi_independent_is_zero",
+      "pass": true,
+      "detail": "I=0.0"
+    },
+    {
+      "check": "mi_identical_equals_entropy",
+      "pass": true,
+      "detail": "I=1.0 H=1.0"
+    },
+    {
+      "check": "mi_hand_2x2",
+      "pass": true,
+      "detail": "got 0.31127812445913294 expected 0.31127812445913294"
+    },
+    {
+      "check": "joint_entropy_consistency",
+      "pass": true,
+      "detail": "H(X)+H(Y)-H(X,Y) == I(X;Y)"
+    },
+    {
+      "check": "cmi_vs_per_level_decomposition",
+      "pass": true,
+      "detail": "cmi=0.5 sum_z P(z)I(X;Y|z)=0.5"
+    },
+    {
+      "check": "cmi_conditioning_on_independent",
+      "pass": true,
+      "detail": "cmi==mi when Z independent"
+    },
+    {
+      "check": "su_identical_is_one",
+      "pass": true,
+      "detail": "SU=1.0"
+    },
+    {
+      "check": "su_bounded",
+      "pass": true,
+      "detail": "SU=1.0"
+    },
+    {
+      "check": "su_zero_entropy_is_nan",
+      "pass": true,
+      "detail": "both operands constant -> 0/0 -> NaN"
+    },
+    {
+      "check": "su_one_constant_operand_is_finite",
+      "pass": true,
+      "detail": "one constant operand -> denominator H(x)>0, finite"
+    },
+    {
+      "check": "online_mean_vs_numpy",
+      "pass": true,
+      "detail": "max |diff| = 1.110e-16"
+    },
+    {
+      "check": "online_sd_vs_numpy",
+      "pass": true,
+      "detail": "max |diff| = 2.220e-16"
+    },
+    {
+      "check": "constant_stream_zero_variance",
+      "pass": true,
+      "detail": "std=0.0"
+    },
+    {
+      "check": "warmup_bootstrap",
+      "pass": true,
+      "detail": "mean=0.5 std=0.3535533905932738"
+    },
+    {
+      "check": "decide_reject_on_equality",
+      "pass": true,
+      "detail": "mi2 uses <=alpha, tested first"
+    },
+    {
+      "check": "decide_accept_on_equality",
+      "pass": true,
+      "detail": "mi2 uses >=beta"
+    },
+    {
+      "check": "decide_delay_in_between",
+      "pass": true,
+      "detail": "strict interior"
+    },
+    {
+      "check": "decide_degenerate_differs_between_files",
+      "pass": true,
+      "detail": "sigma=0: mi2 rejects, z2 accepts \u2014 reproduced, not smoothed"
+    },
+    {
+      "check": "continuous_refuses_without_source",
+      "pass": true,
+      "detail": "UNSUPPORTED_UNVERIFIED_SEMANTICS: metric_family='gaussian_fisher_z'. OSFS_DD_z2.m calls Fisher_Ztest, which do"
+    },
+    {
+      "check": "config_rejects_k1_ge_k2",
+      "pass": true,
+      "detail": "k1 (2.0) must be strictly less than k2 (1.0); the three-way decision is undefine"
+    }
+  ],
+  "passed": 22,
+  "failed": 0
+}

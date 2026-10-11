@@ -1,7 +1,7 @@
 {
   "schema": "ossfs-dd-reproduction/stage1/live_audit/1.0",
-  "generated_utc": "2026-10-10T16:59:12Z",
-  "elapsed_seconds": 139.2,
+  "generated_utc": "2026-10-10T22:38:05Z",
+  "elapsed_seconds": 145.7,
   "outcome": "DATASET_FILES_PRESENT",
   "outcome_detail": "every dataset present, hash-verified, dimensionally correct, all plans valid, no stream leakage observed",
   "dataset_tree": "dataset/ossfs-dd-reproduction",
@@ -17,7 +17,7 @@
     "gpu_used": false
   },
   "git": {
-    "commit": "dcc15d6d4fbd5ccb7a2821ecb615b2549078e21e",
+    "commit": "f522ac63d804aadd179e60495dfab2fdd0901cc1",
     "branch": "main",
     "dirty": true
   },

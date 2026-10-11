@@ -1,0 +1,73 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/verdict/1.0",
+  "generated_utc": "2026-10-10T22:35:39Z",
+  "verdict": "STAGE2_PARTIAL",
+  "failed_gates": [
+    "full_stream_restricted_smoke"
+  ],
+  "gates": [
+    {
+      "name": "restricted_dataset_membership",
+      "pass": true,
+      "threshold": "9 allowlisted / 2 forbidden / 0 forbidden reads",
+      "detail": "9 allowed, 2 excluded, 9 attempted, 0 unhandled"
+    },
+    {
+      "name": "stream_integrity",
+      "pass": true,
+      "threshold": "0 duplicate final selected IDs",
+      "detail": "2158 selected IDs across 5 completed runs, 0 duplicates"
+    },
+    {
+      "name": "stage2_tests",
+      "pass": true,
+      "threshold": "100% pass, 0 failed, 0 skipped",
+      "detail": "119 passed, 0 failed, 0 skipped (full Stage 1 + Stage 2 suite)"
+    },
+    {
+      "name": "stage1_regression",
+      "pass": true,
+      "threshold": "all Stage-1 required tests pass, none skipped",
+      "detail": "missing=[] skipped=[]"
+    },
+    {
+      "name": "selfcheck",
+      "pass": true,
+      "threshold": "all mathematical self-checks pass",
+      "detail": "22 passed, 0 failed"
+    },
+    {
+      "name": "full_stream_restricted_smoke",
+      "pass": false,
+      "threshold": 9,
+      "detail": "5/9 completed with verified semantics; 4/9 UNSUPPORTED_UNVERIFIED_SEMANTICS (['SRBCT', 'LYMPHOMA', 'PROSTATE', 'LEUKEMIA'])"
+    },
+    {
+      "name": "source_semantic_audit",
+      "pass": true,
+      "threshold": "every behaviour labelled; no guess presented as confirmed",
+      "detail": "audit complete against https://github.com/doodzhou/OSFS@845a8e9d5625; 3 items UNRESOLVED (Fisher_Ztest absent) and declared as such"
+    },
+    {
+      "name": "matlab_runtime_parity",
+      "pass": true,
+      "threshold": "parity claimed only if measured",
+      "detail": "NOT_MEASURED \u2014 not claimed"
+    },
+    {
+      "name": "runtime_resource_safety",
+      "pass": true,
+      "threshold": "<= 32 GiB RSS, <= 60 min/dataset",
+      "detail": "all completed runs within budget"
+    }
+  ],
+  "counts": {
+    "authorized": 9,
+    "forbidden": 2,
+    "completed": 5,
+    "unverified_semantics": 4,
+    "unhandled": 0
+  },
+  "stage1_untouched": true,
+  "stage1_verdict_unchanged": "STAGE1_PARTIAL"
+}

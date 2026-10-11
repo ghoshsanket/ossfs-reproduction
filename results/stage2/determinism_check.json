@@ -1,0 +1,15 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/determinism/1.0",
+  "case": "MADELON real-data rerun in two fresh processes",
+  "excluded_from_comparison": [
+    "peak_rss_gib",
+    "seconds",
+    "wall_seconds_including_load"
+  ],
+  "bundle_a": "20261010T222751Z",
+  "bundle_b": "20261010T222753Z",
+  "selected_ids_identical": true,
+  "counts_identical": true,
+  "canonical_records_equal": true,
+  "n_selected": 57
+}

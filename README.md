@@ -217,3 +217,85 @@ The current verdict is **not** written here by hand. Read:
 * `results/stage1/dataset_status.csv` — per-dataset status
 
 Stage 2 may begin only after the researcher has reviewed those artefacts.
+
+
+---
+
+# Stage 2 — OSSFS-DD Algorithm (Restricted Nine-Dataset Authorization)
+
+Researcher-authorized: **only the nine Stage-1 `EXACT_VERIFIED` datasets**
+(SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA, ARCENE, DEXTER, MADELON, GINA, GISETTE).
+**DLBCL and BREAST are excluded** and are refused even if named explicitly.
+
+No classifier is fitted and no accuracy is computed anywhere in Stage 2.
+Feature counts and runtimes are engineering diagnostics, not paper results.
+
+## Running it
+
+```bash
+export RESEARCH_PROJECT_NAME=ossfs-dd-reproduction
+cd "$RESEARCH_ROOT"; source scripts/research-env.sh; cd "$RESEARCH_PROJECT_ROOT"
+uv sync --frozen
+
+uv run python scripts/stage2_preflight.py --write   # authorization + env snapshot
+uv run python scripts/stage2_selfcheck.py            # mathematical oracles
+uv run pytest -q                                     # Stage 1 + Stage 2
+uv run python scripts/stage2_run.py --all            # 9 executions, seed 11 fold 0
+uv run python scripts/stage2_report.py               # final verdict
+```
+
+## Current status
+
+Verdict: **STAGE2_PARTIAL**. Five of nine authorized datasets complete; four
+(paper-type `Real`) return `UNSUPPORTED_UNVERIFIED_SEMANTICS`.
+
+Reason: the continuous entry point `OSFS_DD_z2.m` calls `Fisher_Ztest`, which
+**does not exist anywhere in the authors' pinned repository**. Its score,
+units and conditional test cannot be determined from source, so the selector
+raises rather than substituting a proxy statistic. No `1-p`, `|r|`, `p`,
+correlation magnitude, discretised MI or `mutual_info_classif` was used.
+
+Read the numbers — never this paragraph — in:
+
+| Artefact | Path |
+|---|---|
+| Verdict and gates | `results/stage2/stage2_verdict.json` |
+| Full report | `results/stage2/STAGE2_REPORT.md` |
+| Per-dataset summary | `results/stage2/dataset_smoke_summary.{csv,json}` |
+| Score-semantics ledger | `results/stage2/score_semantics_ledger.json` |
+| Implementation deltas | `results/stage2/implementation_delta_ledger.json` |
+| Determinism proof | `results/stage2/determinism_check.json` |
+| Stage-1 immutability proof | `results/stage2/preservation_proof.json` |
+| Method spec | `docs/stage2_method_spec.md` |
+| Paper vs MATLAB table | `docs/stage2_paper_vs_matlab.md` |
+| Source audit | `docs/stage2_source_audit.md` |
+| Reproduction guide | `docs/stage2_reproduction_guide.md` |
+| Immutable run bundles | `outputs/ossfs-dd-reproduction/stage2/runs/<run_id>/` |
+| Authors' MATLAB snapshots | `outputs/ossfs-dd-reproduction/stage2/reference_snapshots/` |
+
+## Two documented modes
+
+`paper_spec_v1` — Algorithm 1 read literally, with the paper's gaps resolved by
+preregistered choices (scale-coherent joint information, `>=` promotion,
+declared warm-up bootstrap).
+
+`matlab_compatible_v1` — mirrors the released MATLAB, including its warm-up
+skip, reject-before-accept ordering, `>2*beta` promotion, tie-breaking, and its
+**deliberate mixing of a normalised score with a raw information quantity**.
+
+The two are not numerically interchangeable; results are never compared across
+them as if they were.
+
+## Known limitations
+
+1. MATLAB runtime parity is `NOT_MEASURED` — `MIToolboxMex` ships only as a
+   Windows binary and no MATLAB/Octave exists on this host. No parity is claimed.
+2. Only seed 11 / fold 0 was executed. 9x10x5 is Stage 3 work and needs
+   separate authorization.
+3. The four `Real` datasets are blocked on unverified continuous semantics, not
+   on any defect in the discrete implementation.
+4. Split seeds remain an explicit reproduction assumption; the paper does not
+   disclose its own.
+
+Stage 3 must not begin until the researcher has reviewed
+`results/stage2/STAGE2_REPORT.md` and resolved item 3 above.
