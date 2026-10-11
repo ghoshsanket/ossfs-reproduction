@@ -1,0 +1,349 @@
+{
+  "anchor_comparison": [
+    {
+      "arrival_positions_identical": true,
+      "fold": 0,
+      "match": true,
+      "n_selected_identical": true,
+      "n_selected_stage3a": 863,
+      "n_selected_stage3b": 863,
+      "run_id": "ARCENE_split11_fold0_order11",
+      "selected_ids_identical": true,
+      "stage3a_run_id": "ARCENE_seed11_fold0"
+    },
+    {
+      "arrival_positions_identical": true,
+      "fold": 1,
+      "match": true,
+      "n_selected_identical": true,
+      "n_selected_stage3a": 1139,
+      "n_selected_stage3b": 1139,
+      "run_id": "ARCENE_split11_fold1_order11",
+      "selected_ids_identical": true,
+      "stage3a_run_id": "ARCENE_seed11_fold1"
+    },
+    {
+      "arrival_positions_identical": true,
+      "fold": 2,
+      "match": true,
+      "n_selected_identical": true,
+      "n_selected_stage3a": 1422,
+      "n_selected_stage3b": 1422,
+      "run_id": "ARCENE_split11_fold2_order11",
+      "selected_ids_identical": true,
+      "stage3a_run_id": "ARCENE_seed11_fold2"
+    },
+    {
+      "arrival_positions_identical": true,
+      "fold": 3,
+      "match": true,
+      "n_selected_identical": true,
+      "n_selected_stage3a": 1457,
+      "n_selected_stage3b": 1457,
+      "run_id": "ARCENE_split11_fold3_order11",
+      "selected_ids_identical": true,
+      "stage3a_run_id": "ARCENE_seed11_fold3"
+    },
+    {
+      "arrival_positions_identical": true,
+      "fold": 4,
+      "match": true,
+      "n_selected_identical": true,
+      "n_selected_stage3a": 134,
+      "n_selected_stage3b": 134,
+      "run_id": "ARCENE_split11_fold4_order11",
+      "selected_ids_identical": true,
+      "stage3a_run_id": "ARCENE_seed11_fold4"
+    }
+  ],
+  "determinism": {
+    "all_deterministic": true,
+    "arcene_repeat": {
+      "counters_identical": false,
+      "n_selected_original": 863,
+      "n_selected_repeat": 863,
+      "note": "counters compare excluded timing only; scientific fields compared",
+      "run_id": "ARCENE_split11_fold0_order11",
+      "selected_ids_identical": true
+    },
+    "convergence_not_forced": true,
+    "fresh_process": true,
+    "run_id": "20261011T153549Z",
+    "schema": "ossfs-dd-reproduction/stage3b/determinism/1.0",
+    "svm_repeats": [
+      {
+        "excluded_fields": [
+          "seconds",
+          "predict_seconds",
+          "peak_rss_gib",
+          "timestamps"
+        ],
+        "fields_compared": [
+          "accuracy",
+          "converged",
+          "fit_status",
+          "n_correct",
+          "n_iter_vector",
+          "n_test",
+          "status"
+        ],
+        "fit_id": "MADELON_seed11_fold0__raw__it200000",
+        "identical": true,
+        "max_iter": 200000,
+        "original": {
+          "accuracy": 0.5096153846153846,
+          "converged": false,
+          "fit_status": 1,
+          "n_correct": 265,
+          "n_iter_vector": [
+            200000
+          ],
+          "n_test": 520,
+          "status": "NONCONVERGED"
+        },
+        "original_status": "NONCONVERGED",
+        "repeat": {
+          "accuracy": 0.5096153846153846,
+          "converged": false,
+          "fit_status": 1,
+          "n_correct": 265,
+          "n_iter_vector": [
+            200000
+          ],
+          "n_test": 520,
+          "status": "NONCONVERGED"
+        },
+        "repeat_status": "NONCONVERGED",
+        "scale_variant": "raw"
+      },
+      {
+        "excluded_fields": [
+          "seconds",
+          "predict_seconds",
+          "peak_rss_gib",
+          "timestamps"
+        ],
+        "fields_compared": [
+          "accuracy",
+          "converged",
+          "fit_status",
+          "n_correct",
+          "n_iter_vector",
+          "n_test",
+          "status"
+        ],
+        "fit_id": "GISETTE_seed11_fold0__standardized__it200000",
+        "identical": true,
+        "max_iter": 200000,
+        "original": {
+          "accuracy": 0.9557142857142857,
+          "converged": false,
+          "fit_status": 1,
+          "n_correct": 1338,
+          "n_iter_vector": [
+            200000
+          ],
+          "n_test": 1400,
+          "status": "NONCONVERGED"
+        },
+        "original_status": "NONCONVERGED",
+        "repeat": {
+          "accuracy": 0.9557142857142857,
+          "converged": false,
+          "fit_status": 1,
+          "n_correct": 1338,
+          "n_iter_vector": [
+            200000
+          ],
+          "n_test": 1400,
+          "status": "NONCONVERGED"
+        },
+        "repeat_status": "NONCONVERGED",
+        "scale_variant": "standardized"
+      }
+    ],
+    "utc": "2026-10-11T16:01:39Z"
+  },
+  "gates": {
+    "B_AUTHORIZATION": {
+      "detail": "forbidden reads=0; datasets A=['ARCENE', 'DEXTER', 'MADELON', 'GINA', 'GISETTE']; B=['ARCENE']; hashes verified=True",
+      "name": "B_AUTHORIZATION",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_A_FIXED_SUBSETS": {
+      "detail": "Stage 3A subsets verified=75/75; feature selections performed in A=0",
+      "name": "B_A_FIXED_SUBSETS",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_A_GRID_COMPLETE": {
+      "detail": "unique fit IDs=450/450; terminal records=450; timeouts=0; fit errors=0; blocked inputs=0",
+      "name": "B_A_GRID_COMPLETE",
+      "pass": true,
+      "resource_limited": false,
+      "status": "PASS"
+    },
+    "B_B_ANCHOR_MATCH": {
+      "detail": "fold0=MATCH; fold1=MATCH; fold2=MATCH; fold3=MATCH; fold4=MATCH",
+      "n_matched": 5,
+      "name": "B_B_ANCHOR_MATCH",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_B_CROSSED_DESIGN": {
+      "detail": "unique run IDs=50/50; split seeds=[11]; orders=10; folds=5",
+      "name": "B_B_CROSSED_DESIGN",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_CODE_AND_SAFETY": {
+      "detail": "Stage1/2/3A trees unchanged=True; ruff clean=True; pytest failed=0 skipped=0; forbidden git entries=0; commits=0",
+      "name": "B_CODE_AND_SAFETY",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_PREFLIGHT_CHRONOLOGY": {
+      "config_sha256": "03749595529f1ad4727b21ae85fc042f4b2bd80ce43b98d8d7d5789e21751478",
+      "detail": "journal=['PRE_FLIGHT_WRITTEN', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_B_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'LAST_EVALUATION_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'LAST_EVALUATION_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'LAST_EVALUATION_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_B_FINISHED', 'FIRST_DATA_EVALUATION_STARTED', 'EXPERIMENT_A_STARTED', 'LAST_EVALUATION_FINISHED']; config digest referenced by every event=True",
+      "freeze_type": "in-process, hashed, chronologically ordered freeze",
+      "independent_attestation": false,
+      "name": "B_PREFLIGHT_CHRONOLOGY",
+      "pass": true,
+      "run_id": "20261011T153549Z",
+      "status": "PASS"
+    },
+    "B_REPRODUCIBILITY": {
+      "detail": "SVM repeats=2; ARCENE repeat=True",
+      "details": {
+        "all_deterministic": true,
+        "arcene_repeat": true,
+        "svm_repeats": 2
+      },
+      "name": "B_REPRODUCIBILITY",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_SVM_CONVERGENCE_HONEST": {
+      "detail": "all 450 fit records carry status/converged/accuracy and an n_iter vector (or a non-fit terminal status)",
+      "name": "B_SVM_CONVERGENCE_HONEST",
+      "pass": true,
+      "status": "PASS"
+    },
+    "B_TRACE_ARITHMETIC": {
+      "detail": "traces checked=50; checkpoint alpha/beta mismatches=0; event-order mismatches=None",
+      "name": "B_TRACE_ARITHMETIC",
+      "pass": true,
+      "status": "PASS"
+    }
+  },
+  "hashes": {
+    "config_stage3b_yaml": "03749595529f1ad4727b21ae85fc042f4b2bd80ce43b98d8d7d5789e21751478",
+    "report_manifest_inputs": "see per-record hashes",
+    "stage3b_preflight_json": "35582961683a4ffa025492b17b57e74882976964a41c3a0f805546e4366f8e58"
+  },
+  "raw_to_summary": {
+    "n_arcene_records_read_from_disk": 50,
+    "n_fit_records_read_from_disk": 450,
+    "planned_arcene_runs": 50,
+    "planned_fits": 450,
+    "status_counts": {
+      "CONVERGED": 234,
+      "NONCONVERGED": 216
+    },
+    "unique_fit_ids": 450
+  },
+  "run_id": "20261011T153549Z",
+  "safety": {
+    "all_hashes_verified": true,
+    "commits_made": 0,
+    "experiment_a_datasets": [
+      "ARCENE",
+      "DEXTER",
+      "MADELON",
+      "GINA",
+      "GISETTE"
+    ],
+    "experiment_b_datasets": [
+      "ARCENE"
+    ],
+    "forbidden_git_entries": 0,
+    "forbidden_git_entries_list": [],
+    "forbidden_reads": 0,
+    "n_selections_performed_in_A": 0,
+    "n_stage3a_subsets_verified": 75,
+    "pytest": {
+      "command": "uv run pytest -p no:cacheprovider",
+      "failed": 0,
+      "ok": true,
+      "passed": 283,
+      "skipped": 0,
+      "summary": [
+        "283 passed in 183.30s (0:03:03)"
+      ]
+    },
+    "pytest_failed": 0,
+    "pytest_skipped": 0,
+    "ruff": {
+      "ok": true,
+      "returncode": 0,
+      "tail": [
+        "All checks passed!"
+      ]
+    },
+    "ruff_clean": true,
+    "stage123a_dirty": [],
+    "stage123a_trees_unchanged": true,
+    "unexpected_datasets": []
+  },
+  "schema": "ossfs-dd-reproduction/stage3b/verification/1.0",
+  "stage3a_control_check": {
+    "mismatches": [],
+    "n_compared": 150,
+    "n_mismatch": 0,
+    "tolerance": 1e-10
+  },
+  "trace_checks": {
+    "all_ok": true,
+    "expected_arrivals_per_trace": 10000,
+    "n_alpha_beta_mismatch": 0,
+    "n_arrival_or_id_mismatch": 0,
+    "n_selected_id_duplicates": 0,
+    "n_total_pool_flush_events": 803,
+    "n_traces": 50,
+    "per_trace": [
+      {
+        "n_arrival_events": 10000,
+        "n_checkpoints": 100,
+        "n_pool_flush_events": 16,
+        "run_id": "ARCENE_split11_fold0_order109"
+      },
+      {
+        "n_arrival_events": 10000,
+        "n_checkpoints": 100,
+        "n_pool_flush_events": 15,
+        "run_id": "ARCENE_split11_fold0_order11"
+      },
+      {
+        "n_arrival_events": 10000,
+        "n_checkpoints": 100,
+        "n_pool_flush_events": 15,
+        "run_id": "ARCENE_split11_fold0_order17"
+      },
+      {
+        "n_arrival_events": 10000,
+        "n_checkpoints": 100,
+        "n_pool_flush_events": 16,
+        "run_id": "ARCENE_split11_fold0_order23"
+      },
+      {
+        "n_arrival_events": 10000,
+        "n_checkpoints": 100,
+        "n_pool_flush_events": 16,
+        "run_id": "ARCENE_split11_fold0_order31"
+      }
+    ]
+  },
+  "utc": "2026-10-11T16:01:40Z",
+  "verdict": "STAGE3B_READY"
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "ossfs-dd-reproduction/stage3b/command_exits/1.0",
+  "run_id": "20261011T153549Z",
+  "utc": "2026-10-11T16:01:46Z",
+  "note": "Exit codes are real values captured by re-running each command, not assumed. The run scripts were re-invoked to demonstrate idempotent resume: they recomputed nothing and exited 0.",
+  "all_zero": true,
+  "commands": [
+    {
+      "command": "pytest",
+      "exit_code": 0
+    },
+    {
+      "command": "ruff check .",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_preflight(dry-run)",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_arcene_run(resume)",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_svm_run(resume)",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_determinism",
+      "exit_code": 0
+    },
+    {
+      "command": "stage3b_report",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "ok": true,
+    "passed": 283,
+    "failed": 0,
+    "skipped": 0,
+    "command": "uv run pytest -p no:cacheprovider",
+    "summary": [
+      "283 passed in 183.30s (0:03:03)"
+    ]
+  }
+}

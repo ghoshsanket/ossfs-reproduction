@@ -1,0 +1,162 @@
+schema_version: 1
+stage: 3b
+frozen_utc: '2026-10-11T15:35:49Z'
+freeze_statement: Written and hashed before the first Stage 3B fit or ARCENE selection.
+  This is an in-process, hashed, chronologically ordered freeze, NOT an independently
+  attested preregistration.
+authorization:
+  experiment_a_datasets:
+  - ARCENE
+  - DEXTER
+  - MADELON
+  - GINA
+  - GISETTE
+  experiment_b_datasets:
+  - ARCENE
+  forbidden:
+  - DLBCL
+  - BREAST
+  continuous_excluded:
+  - SRBCT
+  - LYMPHOMA
+  - PROSTATE
+  - LEUKEMIA
+  required_manifest_status: EXACT_VERIFIED
+experiment_a:
+  purpose: SVM conditioning on already-selected Stage 3A subsets
+  datasets:
+  - ARCENE
+  - DEXTER
+  - MADELON
+  - GINA
+  - GISETTE
+  seeds:
+  - 11
+  - 17
+  - 23
+  folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  subsets_source: projects/ossfs-dd-reproduction/results/stage3a/runs/records
+  feature_selection_performed: false
+  scale_variants:
+  - raw
+  - standardized
+  max_iter_caps:
+  - 20000
+  - 200000
+  - 2000000
+  max_iter_minus_one_allowed: false
+  planned_subsets: 75
+  fits_per_subset: 6
+  planned_fits: 450
+  a_h1_datasets:
+  - MADELON
+  - GINA
+  - GISETTE
+  a_h1_top_cap: 2000000
+  a_h1_min_delta: 0.5
+  a_h1_min_std_rate: 0.8
+  a_h2_low_cap: 20000
+  a_h2_high_cap: 2000000
+  a_h2_comparisons: 10
+  control_check: cap=2000000 + matching preprocessing must reproduce Stage 3A accuracy
+    within 1e-10
+  determinism_repeats:
+  - dataset: MADELON
+    scale_variant: raw
+    max_iter: 200000
+  - dataset: GISETTE
+    scale_variant: standardized
+    max_iter: 200000
+experiment_b:
+  purpose: ARCENE feature-arrival-order sensitivity, CV split held fixed
+  dataset: ARCENE
+  split_seed: 11
+  split_source: Stage 1 ARCENE seed_11.json (FIXED for all 50 runs)
+  order_seeds:
+  - 11
+  - 17
+  - 23
+  - 31
+  - 47
+  - 59
+  - 71
+  - 83
+  - 97
+  - 109
+  folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  crossed_design: 5 folds x 10 orders; order_seed selects ONLY the permutation
+  order_seed_must_not_select_split: true
+  anchor_order_seed: 11
+  planned_runs: 50
+  b_h1_range_threshold: 500
+  b_h1_min_folds: 3
+  b_h2_mechanism_preregistered: false
+  illustrative_traces:
+    fold: 0
+    order_seeds:
+    - 11
+    - 17
+  jaccard_pairs_expected: 225
+  jaccard_empty_convention: empty/empty=1.0; empty/nonempty=0.0
+estimator:
+  class: sklearn.svm.SVC
+  params:
+    kernel: linear
+    C: 1.0
+  max_iter_swept:
+  - 20000
+  - 200000
+  - 2000000
+  other_params: installed-version defaults, recorded verbatim per fit
+  linear_svc_substitution_forbidden: true
+scaler:
+  standardized: sklearn.preprocessing.StandardScaler fitted on SELECTED TRAINING ROWS
+    ONLY
+  raw: identity
+  fitted_on_test_rows: false
+selector:
+  mode: matlab_compatible_v1
+  entry_file: mi2
+  k1: 1.0
+  k2: 2.0
+  pool_size: 100
+  modified: false
+status_semantics:
+  CONVERGED: fit completed, solver did not hit its cap
+  NONCONVERGED: predictions exist but the cap was hit or early termination warned
+  TIMEOUT: worker killed at the wall-clock limit; accuracy null
+  FIT_ERROR: fit raised; accuracy null
+  BLOCKED_INPUT: a required Stage 3A input was missing or inconsistent
+  missing_is_never_zero: true
+  nonconverged_accuracy_is_incomplete_fit_diagnostic: true
+resources:
+  cpu_only: true
+  memory_limit_gib: 32
+  experiment_a_max_wallclock_hours: 16
+  experiment_b_max_wallclock_hours: 2
+  per_fit_timeout_minutes: 10
+  experiment_a_workers: 2
+  experiment_b_workers: 1
+  blas_threads_per_worker: 1
+gates:
+- B_PREFLIGHT_CHRONOLOGY
+- B_AUTHORIZATION
+- B_A_FIXED_SUBSETS
+- B_A_GRID_COMPLETE
+- B_B_CROSSED_DESIGN
+- B_B_ANCHOR_MATCH
+- B_TRACE_ARITHMETIC
+- B_SVM_CONVERGENCE_HONEST
+- B_REPRODUCIBILITY
+- B_CODE_AND_SAFETY
+hypotheses_are_not_operational_gates: true
