@@ -1,0 +1,35 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/determinism_repeat/1.0",
+  "label": "two fresh-process repetitions per dataset, timing/RSS excluded",
+  "datasets": {
+    "GISETTE": {
+      "bundle_a": "20261011T054820Z",
+      "bundle_b": "20261011T054711Z",
+      "n_selected": 182,
+      "selected_ids_identical": true,
+      "counts_identical": true,
+      "canonical_records_equal": true,
+      "canonical_sha256": "05dba8c1188ca35dbdadd640fefeee76031f32153393f6fff1c33caff203cfb1",
+      "excluded_from_comparison": [
+        "peak_rss_gib",
+        "seconds",
+        "wall_seconds_including_load"
+      ]
+    },
+    "MADELON": {
+      "bundle_a": "20261011T054928Z",
+      "bundle_b": "20261011T054515Z",
+      "n_selected": 57,
+      "selected_ids_identical": true,
+      "counts_identical": true,
+      "canonical_records_equal": true,
+      "canonical_sha256": "2561667b8c831d00d1b9c65d74af61b57d4347873ffe407453dbf4c75ad1105f",
+      "excluded_from_comparison": [
+        "peak_rss_gib",
+        "seconds",
+        "wall_seconds_including_load"
+      ]
+    }
+  },
+  "all_identical": true
+}

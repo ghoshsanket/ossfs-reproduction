@@ -1,0 +1,93 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/regression_evidence/1.0",
+  "label": "Each test was executed against the UNMODIFIED committed selector.py (git show HEAD:src/ossfs_dd/selector.py) and then against the repaired file.",
+  "evidence_method": "git checkout of the pre-fix selector.py into the worktree, running this exact test file, then restoring the repaired file",
+  "tests": [
+    {
+      "id": "R1",
+      "test": "test_R1_redundancy_uses_beta_not_alpha",
+      "expected": "feature 3 removed as redundant (0.30 < 2*beta=0.40)",
+      "observed_before": "removed=[] ; redundancy check received 0.1 (alpha) instead of 0.20 (beta)",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R1",
+      "test": "test_R1_forwarded_threshold_is_beta",
+      "expected": "_redundancy_pass receives beta=0.20",
+      "observed_before": "received 0.1",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R2",
+      "test": "test_R2_pool_flush_breaks_after_first_match_per_outer_iteration",
+      "expected": "evaluated pairs == nested-loop oracle; (0,2) unreachable after (0,1) matches",
+      "observed_before": "evaluated sequence differed; pre-repair code walked every pair with no break",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R2",
+      "test": "test_R2_outer_loop_continues_after_inner_break",
+      "expected": "outer loop still processes later i after an inner break",
+      "observed_before": "pair-evaluation sequence differed from oracle",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R3",
+      "test": "test_R3_moment_count_matches_scores_seen[paper_spec_v1]",
+      "expected": "count == arrivals at every step",
+      "observed_before": "count advanced twice per warm-up score",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R3",
+      "test": "test_R3_moments_match_numpy_prefix[paper_spec_v1]",
+      "expected": "mean/std equal NumPy prefix reductions",
+      "observed_before": "moments diverged from np.mean/np.std(ddof=1)",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R3",
+      "test": "test_R3_moment_count_matches_scores_seen[matlab_compatible_v1]",
+      "expected": "count == arrivals",
+      "observed_before": "PASSED before and after",
+      "fail_before": false,
+      "pass_after": true,
+      "note": "COUNTEREVIDENCE: the MATLAB route returns inside the warm-up branch, so R3 does NOT affect it. The defect is confined to paper_spec_v1. No speculative edit was made to the MATLAB path."
+    },
+    {
+      "id": "R4",
+      "test": "test_R4_promotion_sorted_by_arrival_position_not_feature_id",
+      "expected": "promoted arrival positions ascending; IDs [900,5,100]",
+      "observed_before": "promoted arrival positions [1, 2, 0]; ordering followed original feature IDs",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R5",
+      "test": "test_R5_zero_alpha_is_recorded_as_zero_not_nan",
+      "expected": "alpha 0.0 recorded as 0.0",
+      "observed_before": "alpha recorded as NaN (`0.0 or float('nan')` truthiness bug)",
+      "fail_before": true,
+      "pass_after": true
+    },
+    {
+      "id": "R5",
+      "test": "test_R5_pool_flush_event_records_zero_alpha",
+      "expected": "pool flush event alpha is 0.0",
+      "observed_before": "recorded as NaN",
+      "fail_before": true,
+      "pass_after": true
+    }
+  ],
+  "summary": {
+    "tests_reproduced_defect_before_fix": 9,
+    "counterevidence_documented": 1,
+    "all_pass_after_fix": true
+  }
+}

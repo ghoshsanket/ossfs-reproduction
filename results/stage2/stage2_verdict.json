@@ -1,6 +1,6 @@
 {
   "schema": "ossfs-dd-reproduction/stage2/verdict/1.0",
-  "generated_utc": "2026-10-10T22:35:39Z",
+  "generated_utc": "2026-10-11T05:54:47Z",
   "verdict": "STAGE2_PARTIAL",
   "failed_gates": [
     "full_stream_restricted_smoke"
@@ -16,13 +16,13 @@
       "name": "stream_integrity",
       "pass": true,
       "threshold": "0 duplicate final selected IDs",
-      "detail": "2158 selected IDs across 5 completed runs, 0 duplicates"
+      "detail": "1670 selected IDs across 5 completed runs, 0 duplicates"
     },
     {
       "name": "stage2_tests",
       "pass": true,
       "threshold": "100% pass, 0 failed, 0 skipped",
-      "detail": "119 passed, 0 failed, 0 skipped (full Stage 1 + Stage 2 suite)"
+      "detail": "135 passed, 0 failed, 0 skipped (full Stage 1 + Stage 2 suite)"
     },
     {
       "name": "stage1_regression",

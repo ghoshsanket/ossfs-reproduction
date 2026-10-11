@@ -214,21 +214,33 @@ class Selector:
         self.scores.append(score)
 
         # ---- first two features --------------------------------------
-        if pos <= 2:
+        if pos <= 2 and self.cfg.mode is Mode.MATLAB_COMPATIBLE:
+            # mi2.m:37-41 — score, update moments, skip. Never selected.
+            # The moments are seeded from the scores seen so far and the
+            # branch RETURNS, so no score is folded in twice.
             mean, std = seed_from_values([s for s in self.scores if not math.isnan(s)])
             self.moments.count = pos
             self.moments.mean = mean
             self.moments.m2 = (std ** 2) * max(pos - 1, 0)
-            if self.cfg.mode is Mode.MATLAB_COMPATIBLE:
-                # mi2.m:37-41 — score, update moments, skip. Never selected.
-                self.events.append(Event(
-                    arrival_position, feature_id, score, "skipped_warmup",
-                    "i<=2 warm-up", "mi2.m:37-41 `continue` without insertion",
-                    float("nan"), float("nan"), std,
-                ))
-                return
-            # paper_spec_v1: fall through to the ordinary decision using the
-            # declared bootstrap; alpha<beta is never relaxed.
+            self.events.append(Event(
+                arrival_position, feature_id, score, "skipped_warmup",
+                "i<=2 warm-up", "mi2.m:37-41 `continue` without insertion",
+                float("nan"), float("nan"), std,
+            ))
+            return
+            # paper_spec_v1 warm-up (INTERPRETATION, versioned in configs/stage2.yaml
+            # as `paper_spec_v1.warmup_bootstrap_r2`):
+            #   The score is folded into the moments EXACTLY ONCE via the normal
+            #   update path, then the feature is routed through the ordinary
+            #   three-way decision using the resulting thresholds.
+            #   Pre-repair, seed_from_values() wrote count/mean/m2 and the score
+            #   was then passed to update() a second time, so the moments for the
+            #   first score started at count=2 and the second at count=3, skewing
+            #   every subsequent dynamic threshold.
+            #   Algorithm 1 prescribes no decision when only one score exists and
+            #   sigma==0; we therefore route it through the literal rule, which
+            #   yields REJECT (score <= alpha) rather than forcing an accept.
+            #   No future score is consulted and alpha<beta is never relaxed.
 
         mean, std = self.moments.update(score)
         self.moments.mean, self.moments.m2 = mean, self.moments.m2
@@ -264,7 +276,10 @@ class Selector:
 
         if outcome.decision is Decision.ACCEPT:
             self.state.direct_accepts += 1
-            self._accept(Candidate(feature_id, arrival_position, score, column), alpha, std)
+            # R1: _accept's second parameter is `beta`, and _redundancy_pass
+            # compares `joint < 2*beta` (mi2.m:138). `alpha` must NOT be passed
+            # here; doing so silently compared against 2*alpha.
+            self._accept(Candidate(feature_id, arrival_position, score, column), beta, std)
             return
 
         # ---- delay --------------------------------------------------
@@ -286,7 +301,8 @@ class Selector:
         removed = self._redundancy_pass(cand, beta)
         self.events.append(Event(
             cand.arrival_position, cand.feature_id, cand.score, "accept",
-            "score >= beta", "accepted, then redundancy-checked", self.last_alpha or float("nan"),
+            "score >= beta", "accepted, then redundancy-checked against 2*beta",
+            self.last_alpha if self.last_alpha is not None else float("nan"),
             beta, std, {"removed": removed, "candidates_now": len(self.candidates)},
         ))
 
@@ -328,28 +344,58 @@ class Selector:
             return
         beta = self.last_beta
         pool = list(self.pool)
-        promoted: list[int] = []
-        for i, j in self.pool.iter_pairs():
-            a, b = pool[i], pool[j]
-            joint, _ = self._joint(a.vector, b.vector, self.labels, a.score)
-            ok, _why = promotes_pair(joint, beta, mode=self.cfg.mode.value)
-            if ok:
-                promoted.extend([a.feature_id, b.feature_id])   # both members
-                # inner loop breaks here; the outer loop continues
-        for fid in sorted(set(promoted)):                        # unique()
+        n = len(pool)
+        promoted: list[int] = []          # feature IDs
+        promoted_positions: list[int] = []  # arrival positions, kept in parallel
+
+        # R2: faithful transcription of mi2.m:112-122.
+        #   for i: for j in (i+1..): if joint > 2*beta: keep i AND j; break INNER
+        # The outer loop CONTINUES. The pre-repair code walked every pair with
+        # no break at all, which both over-promoted and issued extra joint
+        # evaluations.
+        for i in range(n):
+            for j in range(i + 1, n):
+                a, b = pool[i], pool[j]
+                joint, _ = self._joint(a.vector, b.vector, self.labels, a.score)
+                ok, _why = promotes_pair(joint, beta, mode=self.cfg.mode.value)
+                if ok:
+                    promoted.extend([a.feature_id, b.feature_id])
+                    promoted_positions.extend([a.arrival_position, b.arrival_position])
+                    break                      # inner only
+
+        # R4: MATLAB's unique(selectedIndex) sorts the 1-based ARRIVAL POSITIONS
+        # (mi2.m:124), not the original feature indices. Candidate insertion order
+        # is load-bearing because _redundancy_pass traverses it in order.
+        order = sorted(
+            range(len(promoted_positions)), key=lambda k: promoted_positions[k]
+        )
+        unique_positions: list[int] = []
+        seen_positions: set[int] = set()
+        for k in order:
+            pos = promoted_positions[k]
+            if pos in seen_positions:
+                continue
+            seen_positions.add(pos)
+            unique_positions.append(pos)
+
+        added: list[int] = []
+        for pos in unique_positions:
             for c in pool:
-                if c.feature_id == fid:
+                if c.arrival_position == pos:
                     self.candidates.add(c)
+                    added.append(c.feature_id)
                     break
-        self.state.promoted_from_pool += len(set(promoted))
+        self.state.promoted_from_pool += len(added)
         self.state.peak_candidates = max(self.state.peak_candidates, len(self.candidates))
         taken = self.pool.clear()
         self.state.pool_flushes += 1
         self.events.append(Event(
             -1, -1, float("nan"), "pool_flush", trigger, "flushDeterPool",
-            self.last_alpha or float("nan"), beta, self.moments.std,
-            {"pool_size": len(taken), "promoted": sorted(set(promoted)),
-             "unique_pairs": len(promoted) // 2},
+            self.last_alpha if self.last_alpha is not None else float("nan"),
+            beta, self.moments.std,
+            {"pool_size": len(taken), "promoted": added,
+             "promoted_arrival_positions": unique_positions,
+             "unique_pairs": len(unique_positions) // 2},
         ))
 
     # ---- driving ------------------------------------------------------

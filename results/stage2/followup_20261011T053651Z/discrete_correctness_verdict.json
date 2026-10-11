@@ -1,0 +1,72 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/discrete_correctness_verdict/1.0",
+  "subgate_result": "DISCRETE_CORRECTNESS_PASS",
+  "subgate_gates": [
+    {
+      "name": "all_root_causes_investigated",
+      "pass": true,
+      "threshold": "R1-R4 + R5",
+      "detail": "9 defects reproduced fail-before, 1 counterevidence documented"
+    },
+    {
+      "name": "regression_oracles_pass_after_fix",
+      "pass": true,
+      "threshold": "100%",
+      "detail": "all 16 regression tests pass after the repair"
+    },
+    {
+      "name": "full_suite",
+      "pass": true,
+      "threshold": "100% pass, 0 skipped",
+      "detail": "135 passed, 0 failed, 0 skipped"
+    },
+    {
+      "name": "stage1_artifacts_unchanged",
+      "pass": true,
+      "threshold": "100% unchanged",
+      "detail": "490 -> 490 files, 0 changed, 0 added"
+    },
+    {
+      "name": "forbidden_dataset_reads",
+      "pass": true,
+      "threshold": "0",
+      "detail": "DLBCL/BREAST refused by allowlist; no reads"
+    },
+    {
+      "name": "discrete_smoke_5_of_5",
+      "pass": true,
+      "threshold": "5/5",
+      "detail": "5/5 COMPLETED with SOURCE_CONFIRMED semantics; 4 remain fail-closed"
+    },
+    {
+      "name": "duplicate_final_ids_zero",
+      "pass": true,
+      "threshold": "0",
+      "detail": "no duplicate final feature IDs"
+    },
+    {
+      "name": "determinism_repeats",
+      "pass": true,
+      "threshold": ">=2",
+      "detail": "two fresh-process repetitions per checked dataset, canonical records identical"
+    },
+    {
+      "name": "continuous_route_fail_closed",
+      "pass": true,
+      "threshold": "4 blocked",
+      "detail": "['LEUKEMIA', 'LYMPHOMA', 'PROSTATE', 'SRBCT'] remain UNSUPPORTED_UNVERIFIED_SEMANTICS"
+    },
+    {
+      "name": "source_unknown_unresolved",
+      "pass": true,
+      "threshold": "S6,S7,S8 unresolved",
+      "detail": "S6/S7/S8 remain UNRESOLVED; Fisher_Ztest absent from the pinned repository"
+    }
+  ],
+  "subgate_failed": [],
+  "overall_stage2_verdict": "STAGE2_PARTIAL",
+  "overall_governed_by": "configs/stage2.yaml gates.full_stream_smoke.required_completed_with_verified_semantics = 9 (UNCHANGED)",
+  "subgate_is_not_stage2_ready": true,
+  "explicit_statement": "DISCRETE_CORRECTNESS_PASS is NOT STAGE2_READY. The original 9/9 gate still fails because 4 paper-Real datasets lack verified continuous semantics.",
+  "stage1_verdict_unchanged": "STAGE1_PARTIAL"
+}

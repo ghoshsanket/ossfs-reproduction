@@ -1,0 +1,132 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/selected_id_diffs/1.0",
+  "label": "PRE_REPAIR baseline vs CORRECTED_DIAGNOSTIC; original zero-based ID SETS only, no data arrays emitted",
+  "corrected_run_bundle": "20261011T054515Z",
+  "datasets": {
+    "ARCENE": {
+      "n_selected_before": 870,
+      "n_selected_after": 863,
+      "jaccard_id_overlap": 0.991954,
+      "ids_only_before": 7,
+      "ids_only_after": 0,
+      "arrival_positions_identical": false,
+      "counts_before": {
+        "direct_accepts": 4,
+        "redundancy_removals": 586,
+        "promoted_from_pool": 1452,
+        "immediate_rejects": 8513,
+        "deferred": 1481
+      },
+      "counts_after": {
+        "direct_accepts": 4,
+        "redundancy_removals": 585,
+        "promoted_from_pool": 1444,
+        "immediate_rejects": 8513,
+        "deferred": 1481
+      },
+      "seconds_before": 12.261,
+      "seconds_after": 1.894,
+      "peak_rss_gib_after": 0.072
+    },
+    "DEXTER": {
+      "n_selected_before": 797,
+      "n_selected_after": 470,
+      "jaccard_id_overlap": 0.589711,
+      "ids_only_before": 327,
+      "ids_only_after": 0,
+      "arrival_positions_identical": false,
+      "counts_before": {
+        "direct_accepts": 822,
+        "redundancy_removals": 25,
+        "promoted_from_pool": 0,
+        "immediate_rejects": 18516,
+        "deferred": 660
+      },
+      "counts_after": {
+        "direct_accepts": 822,
+        "redundancy_removals": 352,
+        "promoted_from_pool": 0,
+        "immediate_rejects": 18516,
+        "deferred": 660
+      },
+      "seconds_before": 75.807,
+      "seconds_after": 49.592,
+      "peak_rss_gib_after": 0.072
+    },
+    "MADELON": {
+      "n_selected_before": 57,
+      "n_selected_after": 57,
+      "jaccard_id_overlap": 1.0,
+      "ids_only_before": 0,
+      "ids_only_after": 0,
+      "arrival_positions_identical": false,
+      "counts_before": {
+        "direct_accepts": 10,
+        "redundancy_removals": 0,
+        "promoted_from_pool": 47,
+        "immediate_rejects": 441,
+        "deferred": 47
+      },
+      "counts_after": {
+        "direct_accepts": 10,
+        "redundancy_removals": 0,
+        "promoted_from_pool": 47,
+        "immediate_rejects": 441,
+        "deferred": 47
+      },
+      "seconds_before": 1.605,
+      "seconds_after": 0.28,
+      "peak_rss_gib_after": 0.088
+    },
+    "GINA": {
+      "n_selected_before": 116,
+      "n_selected_after": 98,
+      "jaccard_id_overlap": 0.844828,
+      "ids_only_before": 18,
+      "ids_only_after": 0,
+      "arrival_positions_identical": false,
+      "counts_before": {
+        "direct_accepts": 55,
+        "redundancy_removals": 7,
+        "promoted_from_pool": 68,
+        "immediate_rejects": 844,
+        "deferred": 69
+      },
+      "counts_after": {
+        "direct_accepts": 55,
+        "redundancy_removals": 21,
+        "promoted_from_pool": 64,
+        "immediate_rejects": 844,
+        "deferred": 69
+      },
+      "seconds_before": 4.635,
+      "seconds_after": 2.127,
+      "peak_rss_gib_after": 0.114
+    },
+    "GISETTE": {
+      "n_selected_before": 318,
+      "n_selected_after": 182,
+      "jaccard_id_overlap": 0.572327,
+      "ids_only_before": 136,
+      "ids_only_after": 0,
+      "arrival_positions_identical": false,
+      "counts_before": {
+        "direct_accepts": 177,
+        "redundancy_removals": 86,
+        "promoted_from_pool": 227,
+        "immediate_rejects": 4591,
+        "deferred": 230
+      },
+      "counts_after": {
+        "direct_accepts": 177,
+        "redundancy_removals": 187,
+        "promoted_from_pool": 189,
+        "immediate_rejects": 4591,
+        "deferred": 230
+      },
+      "seconds_before": 103.034,
+      "seconds_after": 62.163,
+      "peak_rss_gib_after": 0.138
+    }
+  }
+}

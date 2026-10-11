@@ -1,0 +1,75 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/command_exits/1.0",
+  "note": "Literal commands with real exit codes. No non-zero code masked; no '|| true'. stage2_report.py exit 2 reflects the UNCHANGED 9/9 gate.",
+  "commands": [
+    {
+      "command": "uv run pytest tests/test_stage2_correctness_regressions.py  [pre-fix selector from git HEAD]",
+      "exit_code": 1,
+      "meaning": "9 tests FAILED against the unmodified committed selector.py (fail-before evidence)"
+    },
+    {
+      "command": "uv run pytest tests/test_stage2_correctness_regressions.py  [post-fix]",
+      "exit_code": 0,
+      "meaning": "16 passed"
+    },
+    {
+      "command": "uv run pytest -q",
+      "exit_code": 0,
+      "meaning": "135 passed, 0 failed, 0 skipped"
+    },
+    {
+      "command": "uv run --extra dev ruff check src scripts tests",
+      "exit_code": 0,
+      "meaning": "clean"
+    },
+    {
+      "command": "uv run python scripts/stage2_selfcheck.py",
+      "exit_code": 0,
+      "meaning": "22/22"
+    },
+    {
+      "command": "uv run python scripts/stage2_run.py --all  [corrected]",
+      "exit_code": 0,
+      "meaning": "9 attempted; 5 COMPLETED, 4 UNSUPPORTED_UNVERIFIED_SEMANTICS"
+    },
+    {
+      "command": "uv run python scripts/stage1_live_audit.py",
+      "exit_code": 0,
+      "meaning": "DATASET_FILES_PRESENT"
+    },
+    {
+      "command": "uv run python scripts/stage2_report.py",
+      "exit_code": 2,
+      "meaning": "overall STAGE2_PARTIAL under the unchanged 9/9 gate"
+    }
+  ],
+  "resources_post": {
+    "per_dataset_peak_rss_gib": {
+      "ARCENE": 0.072,
+      "DEXTER": 0.072,
+      "GINA": 0.114,
+      "GISETTE": 0.138,
+      "MADELON": 0.088
+    },
+    "per_dataset_seconds": {
+      "ARCENE": 1.894,
+      "DEXTER": 49.592,
+      "GINA": 2.127,
+      "GISETTE": 62.163,
+      "MADELON": 0.28
+    },
+    "limit_rss_gib": 32,
+    "limit_minutes": 60,
+    "budget_exceeded": false
+  },
+  "resources_pre": {
+    "per_dataset_seconds": {
+      "ARCENE": 12.261,
+      "DEXTER": 75.807,
+      "MADELON": 1.605,
+      "GINA": 4.635,
+      "GISETTE": 103.034
+    }
+  },
+  "delta_note": "Runtime fell sharply because R2 removed the unconditional O(n^2) pool pair scan."
+}

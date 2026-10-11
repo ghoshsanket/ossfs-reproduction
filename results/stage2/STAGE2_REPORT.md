@@ -1,9 +1,9 @@
 # Stage 2 Report — OSSFS-DD Restricted Implementation
 
-**Generated (UTC):** 2026-10-10T22:35:39Z  
-**Run id:** 20261010T223221Z  
+**Generated (UTC):** 2026-10-11T05:54:47Z  
+**Run id:** 20261011T055002Z  
 **Mode:** `matlab_compatible_v1` · seed 11 · fold 0  
-**Git HEAD:** `f522ac63d804`  
+**Git HEAD:** `b44b8b01bc7d`  
 **Authors' source:** `https://github.com/doodzhou/OSFS` @ `845a8e9d5625616b43e8cee16e8d22081dbe3f62`
 
 > No classifier was fitted and no accuracy was computed. Feature counts and
@@ -22,8 +22,8 @@ Failed gates: full_stream_restricted_smoke
 | Gate | Threshold | Result | Detail |
 |---|---|---|---|
 | `restricted_dataset_membership` | 9 allowlisted / 2 forbidden / 0 forbidden reads | **PASS** | 9 allowed, 2 excluded, 9 attempted, 0 unhandled |
-| `stream_integrity` | 0 duplicate final selected IDs | **PASS** | 2158 selected IDs across 5 completed runs, 0 duplicates |
-| `stage2_tests` | 100% pass, 0 failed, 0 skipped | **PASS** | 119 passed, 0 failed, 0 skipped (full Stage 1 + Stage 2 suite) |
+| `stream_integrity` | 0 duplicate final selected IDs | **PASS** | 1670 selected IDs across 5 completed runs, 0 duplicates |
+| `stage2_tests` | 100% pass, 0 failed, 0 skipped | **PASS** | 135 passed, 0 failed, 0 skipped (full Stage 1 + Stage 2 suite) |
 | `stage1_regression` | all Stage-1 required tests pass, none skipped | **PASS** | missing=[] skipped=[] |
 | `selfcheck` | all mathematical self-checks pass | **PASS** | 22 passed, 0 failed |
 | `full_stream_restricted_smoke` | 9 | **FAIL** | 5/9 completed with verified semantics; 4/9 UNSUPPORTED_UNVERIFIED_SEMANTICS (['SRBCT', 'LYMPHOMA', 'PROSTATE', 'LEUKEMIA']) |
@@ -39,11 +39,11 @@ Failed gates: full_stream_restricted_smoke
 | LYMPHOMA | `UNSUPPORTED_UNVERIFIED_SEMANTICS` | Real | gaussian_fisher_z | 4026 | — | — | — | — |
 | PROSTATE | `UNSUPPORTED_UNVERIFIED_SEMANTICS` | Real | gaussian_fisher_z | 6033 | — | — | — | — |
 | LEUKEMIA | `UNSUPPORTED_UNVERIFIED_SEMANTICS` | Real | gaussian_fisher_z | 7129 | — | — | — | — |
-| ARCENE | `COMPLETED` | Integer | discrete_information | 10000 | 160 | 870 | 12.261 | 0.072 |
-| DEXTER | `COMPLETED` | Integer | discrete_information | 20000 | 480 | 797 | 75.807 | 0.072 |
-| MADELON | `COMPLETED` | Integer | discrete_information | 500 | 2080 | 57 | 1.605 | 0.089 |
-| GINA | `COMPLETED` | Integer | discrete_information | 970 | 2774 | 116 | 4.635 | 0.115 |
-| GISETTE | `COMPLETED` | Integer | discrete_information | 5000 | 5600 | 318 | 103.034 | 0.144 |
+| ARCENE | `COMPLETED` | Integer | discrete_information | 10000 | 160 | 863 | 1.911 | 0.071 |
+| DEXTER | `COMPLETED` | Integer | discrete_information | 20000 | 480 | 470 | 49.807 | 0.071 |
+| MADELON | `COMPLETED` | Integer | discrete_information | 500 | 2080 | 57 | 0.29 | 0.088 |
+| GINA | `COMPLETED` | Integer | discrete_information | 970 | 2774 | 98 | 2.167 | 0.114 |
+| GISETTE | `COMPLETED` | Integer | discrete_information | 5000 | 5600 | 182 | 64.808 | 0.138 |
 
 ## Why four datasets did not run
 
@@ -57,7 +57,7 @@ was used. See `docs/stage2_source_audit.md` §2.
 
 ## Tests
 
-- Full suite: **119 passed, 0 failed, 0 skipped** (Stage 1 + Stage 2)
+- Full suite: **135 passed, 0 failed, 0 skipped** (Stage 1 + Stage 2)
 - Mathematical self-check: **22 passed, 0 failed**
 - Git audit: `ok`, 0 violations
 

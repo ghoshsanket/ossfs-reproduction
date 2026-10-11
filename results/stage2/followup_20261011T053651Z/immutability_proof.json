@@ -1,0 +1,16 @@
+{
+  "schema": "ossfs-dd-reproduction/stage2/immutability/1.0",
+  "comparison": "preflight hash snapshot (before Stage 2 work) vs now",
+  "stage1_files_before": 490,
+  "stage1_files_after": 490,
+  "changed_files": [],
+  "added_files": [],
+  "removed_files": [],
+  "stage1_artifacts_unchanged": true,
+  "stage1_verdict": "STAGE1_PARTIAL (unchanged)",
+  "forbidden_datasets_read": [],
+  "forbidden_evidence": "stage2_run.py refuses DLBCL/BREAST by allowlist check; tests/test_stage2_algorithm.py::test_forbidden_datasets_are_refused_even_if_explicitly_requested",
+  "network_fetches_during_repair": 0,
+  "author_source_snapshot_commit": "845a8e9d5625616b43e8cee16e8d22081dbe3f62",
+  "git_head": "b44b8b01bc7da5075d0437845a1043ad8c36535e"
+}

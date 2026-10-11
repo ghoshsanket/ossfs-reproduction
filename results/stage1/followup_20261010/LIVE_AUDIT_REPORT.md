@@ -1,8 +1,8 @@
 # Stage 1 Live Disk Audit
 
-**Generated (UTC):** 2026-10-10T22:38:05Z  
-**Elapsed:** 145.7 s  
-**Git commit:** `f522ac63d804` (dirty: True)  
+**Generated (UTC):** 2026-10-11T06:00:07Z  
+**Elapsed:** 146.0 s  
+**Git commit:** `b44b8b01bc7d` (dirty: True)  
 **Interpreter:** Python 3.11.16, aarch64, project venv: True  
 **GPU used:** False  
 **Dataset tree:** `dataset/ossfs-dd-reproduction` — outside git: True (dataset tree is outside the repository)

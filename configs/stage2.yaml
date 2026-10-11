@@ -92,10 +92,23 @@ modes:
       uncertain_promotion_comparison: greater_or_equal_2_beta
       promote: both_members
       warmup_first_two: process_through_decision_with_declared_bootstrap
-      warmup_bootstrap: >
-        Score features 1 and 2, initialise the running mean/variance from them,
-        then route both through the ordinary three-way decision. alpha < beta
-        is never relaxed and no feature is force-selected.
+      warmup_bootstrap_r2: >
+        INTERPRETATION, versioned 2026-10-11 (Stage 2 correctness repair, R3).
+        Each score is folded into the running moments EXACTLY ONCE via the
+        normal update path, and the feature is then routed through the ordinary
+        three-way decision. Algorithm 1 prescribes no decision when only one
+        score exists and sigma==0; the literal rule therefore yields REJECT
+        (score <= alpha) for the first feature rather than forcing an accept.
+        alpha < beta is never relaxed, no epsilon is introduced, and no future
+        score is consulted to decide a past feature. The pre-repair behaviour
+        seeded the moments with seed_from_values and then folded the same score
+        in a second time, starting the first score at count=2 and the second at
+        count=3. The MATLAB route returns inside its warm-up branch and was
+        never affected; it is unchanged by this repair.
+      warmup_bootstrap_superseded: >
+        Earlier wording: "score the first two features, initialise the running
+        mean/variance, then route both through the decision" — this is the
+        pre-R3 description and is retained only for provenance.
       final_pool_flush: run_once_at_stream_end_if_non_empty
       zero_entropy_neutral_value: 0.0
     - id: matlab_compatible_v1
@@ -202,3 +215,50 @@ gates:
     max_git_push_or_force_push: 0
 
 verdict_values: [STAGE2_READY, STAGE2_PARTIAL, STAGE2_BLOCKED, STAGE2_BLOCKED_UNVERIFIED_SEMANTICS]
+
+# --------------------------------------------------------------------------
+# ADDITIVE Stage-2 discrete-correctness subgate.
+#
+# Frozen 2026-10-11, AFTER the repairs and BEFORE the corrected rerun.
+# This is NOT a replacement for, or a reinterpretation of, any gate above.
+# `full_stream_smoke.required_completed_with_verified_semantics` REMAINS 9 and
+# was NOT modified. A passing subgate is reported as DISCRETE_CORRECTNESS_PASS
+# and is explicitly NOT STAGE2_READY.
+# --------------------------------------------------------------------------
+discrete_correctness_subgate:
+  label: DISCRETE_CORRECTNESS
+  frozen_utc: "2026-10-11T05:45:00Z"
+  gate_overlap_notice: >
+    Additive and separately labelled. It cannot promote the overall Stage 2
+    verdict, which remains governed by the original 9/9 smoke gate.
+  requirements:
+    all_root_causes_investigated:
+      required: 4          # R1, R2, R3, R4 (+ R5 trace integrity)
+      require_counterevidence_documented: true
+    regression_oracles_pass: true
+    full_suite:
+      required_fraction: 1.0
+      allowed_skipped: 0
+      allowed_failed: 0
+    ruff_clean: true
+    stage1_artifacts_unchanged: true
+    stage1_new_files_under_data_trees: 0
+    forbidden_dataset_reads: 0
+    discrete_smoke:
+      required_attempts: 5
+      required_completed: 5
+      required_semantics_status: SOURCE_CONFIRMED
+      datasets: [ARCENE, DEXTER, MADELON, GINA, GISETTE]
+      memory_limit_gib: 32
+      max_walltime_minutes: 60
+    numeric_invariants:
+      running_mean_abs_error_max: 1.0e-12
+      sample_sd_abs_error_max: 1.0e-10
+      information_primitive_abs_error_max: 1.0e-10
+      duplicate_final_feature_ids: 0
+      out_of_range_feature_ids: 0
+      held_out_row_accesses: 0
+      deterministic_repeats_min: 2
+      deterministic_excludes: [wall_clock, timestamps, log_paths, rss]
+    continuous_route_remains_fail_closed: true
+    source_unknown_items_remain_unresolved: [S6, S7, S8]
