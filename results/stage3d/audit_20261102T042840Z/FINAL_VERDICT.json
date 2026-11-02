@@ -5,9 +5,11 @@
   "h_numerical_correctness": "SUPPORTED",
   "h_pval_scoring": "DESCRIPTIVE_ONLY",
   "import_fixed": true,
+  "numerical_oracle_ok": true,
   "pool_flush_v1_bug_demonstrated": true,
   "pool_flush_v2_fix": true,
   "run_id": "20261102T042840Z",
-  "utc": "2026-11-02T09:31:15Z",
+  "utc": "2026-11-02T10:15:51Z",
+  "v2_finalized": true,
   "verdict": "STAGE3D_AUDIT_PASS"
 }

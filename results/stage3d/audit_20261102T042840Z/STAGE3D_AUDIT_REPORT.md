@@ -1,6 +1,6 @@
 # Stage 3D evidence audit report
 
-Audit run `20261102T042840Z` · generated 2026-11-02T09:31:15Z · verdict **STAGE3D_AUDIT_PASS**
+Audit run `20261102T042840Z` · generated 2026-11-02T10:15:51Z · verdict **STAGE3D_AUDIT_PASS**
 
 ## A. Audit verdict
 `STAGE3D_AUDIT_PASS`. All 460 selections, 1,380 classifier outcomes, and 15 baselines are

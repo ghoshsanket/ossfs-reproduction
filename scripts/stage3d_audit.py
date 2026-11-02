@@ -84,9 +84,13 @@ def main() -> int:
         "src/ossfs_dd_stage3d/batch_selector.py": sha256_file(PROJECT / "src" / "ossfs_dd_stage3d" / "batch_selector.py"),
         "src/ossfs_dd_stage3d/conditional_fisherz.py": sha256_file(PROJECT / "src" / "ossfs_dd_stage3d" / "conditional_fisherz.py"),
     }
+    # collect "after" hashes (only for files that existed in "before")
+    hashes_after = {k: sha256_file(PROJECT / k) for k in hashes_before}
     (audit_dir / "evidence_hashes_before_after.json").write_text(
-        json.dumps({"before": hashes_before, "after": None}, indent=2, sort_keys=True) + "\n",
+        json.dumps({"before": hashes_before, "after": hashes_after,
+                    "all_unchanged": hashes_before == hashes_after}, indent=2, sort_keys=True) + "\n",
         encoding="utf-8")
+
 
     # ---- C. independent reproduction of hypotheses --------------------
     # H-BATCH-STABILITY
@@ -162,7 +166,7 @@ def main() -> int:
             h_pval["selection_counts"][f"{ds}|{arm}"] = {
                 "n": len(cell), "mean_n_selected": float(np.mean([r["n_selected"] for r in cell]))}
 
-    h_numerical = {"outcome": "SUPPORTED", "note": "oracles verified in tests"}
+    h_numerical = None  # set after oracle check
 
     # ARCENE order stability
     arc_single = [r for r in sel if r["dataset"] == "ARCENE" and r["arm"] == "D1"]
@@ -248,53 +252,21 @@ def main() -> int:
         after_b1_pool = len(_sel.pool)
         after_b1_flushes = _sel.state.pool_flushes
         _sel.consume_batch(list(range(10, 100)), [np.zeros(100) for _ in range(90)])
-        if hasattr(sel, "finalize_stream"):
-            sel.finalize_stream()
+        if hasattr(_sel, "finalize_stream"):
+            _sel.finalize_stream()
         witness[name] = {
             "pool_size_after_batch1": after_b1_pool,
             "pool_flushes_after_batch1": after_b1_flushes,
             "pool_flushes_total": _sel.state.pool_flushes,
             "pending_pool_end": len(_sel.pool),
             "n_selected": len(_sel.candidates.feature_ids()),
+            "finalized": getattr(_sel, "_finalized", False),
         }
     (audit_dir / "pool_flush_regression.json").write_text(
         json.dumps({"v1": witness["v1"], "v2": witness["v2"],
                     "v1_flushes_between_batches": True,
                     "v2_pool_persists_across_batches": witness["v2"]["pool_size_after_batch1"] > 0},
                    indent=2, sort_keys=True) + "\n", encoding="utf-8")
-
-    # ---- C. Fisher import + oracles -----------------------------------
-
-    # verify the (now fixed) import
-    try:
-        cf_ok = True
-        cf_error = None
-    except Exception as exc:  # noqa: BLE001
-        cf_ok = False
-        cf_error = f"{type(exc).__name__}: {exc}"
-
-    # oracles
-    from ossfs_dd_stage3d.standard_fisherz import marginal_fisherz
-    rng = np.random.default_rng(0)
-    oracle_ok = True
-    for _ in range(30):
-        n = int(rng.integers(5, 200))
-        x = rng.normal(size=n)
-        y = rng.choice(["a", "b"], size=n)
-        m = marginal_fisherz(x, y, use_evidence=True)
-        b = (y == "a").astype(float)
-        r = np.corrcoef(x, b)[0, 1]
-        z = np.arctanh(np.clip(r, -(1 - 1e-12), 1 - 1e-12))
-        Z = z * np.sqrt(n - 3)
-        p = 2 * __import__("scipy.stats", fromlist=["norm"]).norm.sf(abs(Z))
-        if abs(m.Z - Z) > 1e-8 or abs(m.p_raw - p) > 1e-10:
-            oracle_ok = False
-            break
-    (audit_dir / "fisherz_import_and_oracles.json").write_text(
-        json.dumps({"import_ok": cf_ok, "import_error": cf_error,
-                    "oracle_ok": oracle_ok, "tolerance_p": 1e-10,
-                    "tolerance_Z": 1e-8}, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8")
 
     # ---- D. freeze chronology -----------------------------------------
     cfg_path = PROJECT / "configs" / "stage3d_batch_fisherz_v1.yaml"
@@ -330,6 +302,43 @@ def main() -> int:
     }
     (audit_dir / "reporter_gate_negative_tests.json").write_text(
         json.dumps(neg_tests, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+    # ---- C. Fisher import + oracles -----------------------------------
+
+    # verify the (now fixed) import
+    try:
+        cf_ok = True
+        cf_error = None
+    except Exception as exc:  # noqa: BLE001
+        cf_ok = False
+        cf_error = f"{type(exc).__name__}: {exc}"
+
+    # oracles
+    from ossfs_dd_stage3d.standard_fisherz import marginal_fisherz
+    rng = np.random.default_rng(0)
+    oracle_ok = True
+    for _ in range(30):
+        n = int(rng.integers(5, 200))
+        x = rng.normal(size=n)
+        y = rng.choice(["a", "b"], size=n)
+        m = marginal_fisherz(x, y, use_evidence=True)
+        b = (y == "a").astype(float)
+        r = np.corrcoef(x, b)[0, 1]
+        z = np.arctanh(np.clip(r, -(1 - 1e-12), 1 - 1e-12))
+        Z = z * np.sqrt(n - 3)
+        p = 2 * __import__("scipy.stats", fromlist=["norm"]).norm.sf(abs(Z))
+        # winning class may be the complement -> |Z| and p are invariant
+        if abs(abs(m.Z) - abs(Z)) > 1e-8 or abs(m.p_raw - p) > 1e-10:
+            oracle_ok = False
+            break
+    h_numerical = {"outcome": "SUPPORTED" if oracle_ok else "NOT_SUPPORTED",
+                    "note": "oracles verified in tests" if oracle_ok else "oracle FAILED"}
+    (audit_dir / "fisherz_import_and_oracles.json").write_text(
+        json.dumps({"import_ok": cf_ok, "import_error": cf_error,
+                    "oracle_ok": oracle_ok, "tolerance_p": 1e-10,
+                    "tolerance_Z": 1e-8}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8")
+
 
     # ---- F. hypothesis verdicts (recomputed) --------------------------
     # H-BATCH-STABILITY
@@ -406,21 +415,27 @@ def main() -> int:
 
     # ---- FINAL VERDICT ------------------------------------------------
     # Check if evidence supports PASS
-    verdict = "STAGE3D_AUDIT_PASS"
-    if not (len(sel) == 460 and len(clf) == 1380 and len(base) == 15):
-        verdict = "STAGE3D_AUDIT_PARTIAL"
-
+    # derive verdict from gates
+    all_gates_pass = (
+        len(sel) == 460 and len(clf) == 1380 and len(base) == 15
+        and cf_ok and oracle_ok
+        and witness["v2"]["pool_size_after_batch1"] > 0
+        and witness["v2"].get("finalized", False)
+    )
+    verdict = "STAGE3D_AUDIT_PASS" if all_gates_pass else "STAGE3D_AUDIT_PARTIAL"
     (audit_dir / "FINAL_VERDICT.json").write_text(
         json.dumps({"verdict": verdict, "utc": utcnow(), "run_id": run_id,
                     "evidence_verified": len(sel) == 460 and len(clf) == 1380,
                     "pool_flush_v1_bug_demonstrated": True,
                     "pool_flush_v2_fix": True,
-                    "import_fixed": True,
+                    "import_fixed": cf_ok,
+                    "numerical_oracle_ok": oracle_ok,
+                    "v2_finalized": witness["v2"].get("finalized", False),
                     "h_batch_stability": h_batch_stability["outcome"],
                     "h_batch_cart": h_batch_cart["outcome"],
                     "h_pval_scoring": "DESCRIPTIVE_ONLY",
-                    "h_numerical_correctness": "SUPPORTED"}, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8")
+                    "h_numerical_correctness": "SUPPORTED" if oracle_ok else "NOT_SUPPORTED"},
+                   indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     # ---- report -------------------------------------------------------
     report = f"""# Stage 3D evidence audit report

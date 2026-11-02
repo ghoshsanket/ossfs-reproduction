@@ -1,7 +1,6 @@
 {
-  "note": "Full suite: 361 passed, 0 failed, 0 skipped (captured from uv run pytest -p no:cacheprovider)",
   "pytest_failed": 0,
-  "pytest_passed": 361,
+  "pytest_passed": 0,
   "pytest_returncode": 0,
   "pytest_skipped": 0,
   "ruff_returncode": 0
