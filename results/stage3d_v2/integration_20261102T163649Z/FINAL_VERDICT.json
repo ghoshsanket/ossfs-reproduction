@@ -1,0 +1,18 @@
+{
+  "gates": {
+    "G1": "PASS",
+    "G10": "PASS",
+    "G2": "PASS",
+    "G3": "PASS",
+    "G4": "PASS",
+    "G5": "PASS",
+    "G6": "PASS",
+    "G7": "PASS",
+    "G8": "PASS",
+    "G9": "PASS"
+  },
+  "n_failed": 0,
+  "run_id": "20261102T163649Z",
+  "utc": "2026-11-02T16:36:49Z",
+  "verdict": "STAGE3D_V2_INTEGRATION_READY"
+}

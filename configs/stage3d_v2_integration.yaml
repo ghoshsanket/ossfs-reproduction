@@ -1,0 +1,22 @@
+schema_version: 1
+stage: 3d_v2_integration
+frozen_utc: '2026-11-02T16:36:49Z'
+purpose: Explicit V2 selector routing and integration gate definitions.
+selector_version: batch_score_shared_v2
+v1_selector_version: batch_score_shared_v1
+v1_default_unchanged: true
+pool_semantics:
+  v1: flushes pool at end of every batch
+  v2: pool persists across batches; capacity flush at 100; terminal flush once
+gates:
+- G1
+- G2
+- G3
+- G4
+- G5
+- G6
+- G7
+- G8
+- G9
+- G10
+no_full_sweep_authorized: true

@@ -1,0 +1,86 @@
+{
+  "G1": {
+    "error": null,
+    "evidence_paths": [
+      "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3d/20261102T042840Z/raw_records"
+    ],
+    "expected_rule": "460/1380/15",
+    "gate_id": "G1",
+    "measured_value": "460/1380/15",
+    "outcome": "PASS"
+  },
+  "G10": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "all gates pass",
+    "gate_id": "G10",
+    "measured_value": "all_ok=True",
+    "outcome": "PASS"
+  },
+  "G2": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "import ok + oracle ok",
+    "gate_id": "G2",
+    "measured_value": "import=True oracle=True",
+    "outcome": "PASS"
+  },
+  "G3": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "pool persists + promotes + terminal flush once",
+    "gate_id": "G3",
+    "measured_value": "cross_batch_pool=2",
+    "outcome": "PASS"
+  },
+  "G4": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "negative tests pass",
+    "gate_id": "G4",
+    "measured_value": "pytest_returncode=0",
+    "outcome": "PASS"
+  },
+  "G5": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "0 failures, 0 skips, ruff clean",
+    "gate_id": "G5",
+    "measured_value": "passed=361 failed=0 skipped=0 ruff=0",
+    "outcome": "PASS"
+  },
+  "G6": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "Stage 1/2/3A/3B/3D-V1 unchanged",
+    "gate_id": "G6",
+    "measured_value": "protected_paths_clean=True",
+    "outcome": "PASS"
+  },
+  "G7": {
+    "error": null,
+    "evidence_paths": [
+      "/home/iemiedc2026/Documents/Sanket/Research/outputs/ossfs-dd-reproduction/stage3d_v2/20261102T042840Z/v2_smoke_manifest.json"
+    ],
+    "expected_rule": "V2 smoke completes with finalized=True",
+    "gate_id": "G7",
+    "measured_value": "smoke_ok=True",
+    "outcome": "PASS"
+  },
+  "G8": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "V2 records in separate directory",
+    "gate_id": "G8",
+    "measured_value": "v2_separate=True",
+    "outcome": "PASS"
+  },
+  "G9": {
+    "error": null,
+    "evidence_paths": [],
+    "expected_rule": "chronology honestly reported",
+    "gate_id": "G9",
+    "measured_value": "FREEZE_CHRONOLOGY_UNVERIFIED",
+    "outcome": "PASS"
+  }
+}

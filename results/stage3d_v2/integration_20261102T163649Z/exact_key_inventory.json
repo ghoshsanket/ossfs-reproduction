@@ -1,0 +1,19 @@
+{
+  "baselines": {
+    "n": 15,
+    "unique": 15
+  },
+  "classifiers": {
+    "n": 1380,
+    "unique": 1380
+  },
+  "duplicates": 0,
+  "expected_selection_keys": 460,
+  "extra": [],
+  "forbidden_datasets_present": [],
+  "missing": [],
+  "n_extra": 0,
+  "n_missing": 0,
+  "observed_selection_keys": 460,
+  "set_equality": true
+}

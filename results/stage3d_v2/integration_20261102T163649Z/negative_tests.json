@@ -1,0 +1,19 @@
+{
+  "all_rejected": true,
+  "families": [
+    "missing_selection_record",
+    "duplicate_key_replacing_missing",
+    "missing_schedule_hash",
+    "mutated_selected_ids",
+    "falsified_oracle_result",
+    "corrupted_preflight_digest",
+    "absent_or_failing_pytest_output",
+    "forbidden_dataset",
+    "unauthorized_v1_fallback_disguised_as_v2",
+    "second_finalization_changing_state",
+    "auditor_write_to_original_preflight"
+  ],
+  "n_families": 11,
+  "note": "Executed against production audit helpers; see tests/",
+  "pytest_returncode": 0
+}

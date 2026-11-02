@@ -1,0 +1,21 @@
+{
+  "v1": {
+    "finalized": false,
+    "n_selected": 0,
+    "pending_pool_end": 0,
+    "pool_flushes_after_batch1": 1,
+    "pool_flushes_total": 1,
+    "pool_size_after_batch1": 0
+  },
+  "v1_flushes_between_batches": true,
+  "v2": {
+    "finalized": true,
+    "n_selected": 0,
+    "pending_pool_end": 0,
+    "pool_flushes_after_batch1": 0,
+    "pool_flushes_total": 1,
+    "pool_size_after_batch1": 2
+  },
+  "v2_finalized": true,
+  "v2_pool_persists_across_batches": true
+}

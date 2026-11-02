@@ -1,0 +1,23 @@
+{
+  "after": {
+    "configs/stage1.yaml": "9d2987ec49af3671d813a35c7879bc06acf5f291bff0d5a40b67ff819409e0c3",
+    "configs/stage2.yaml": "60cb51e59a6c2578838a847846c980b371cfa43190b5e0b94d4ad97815eedd81",
+    "configs/stage3a.yaml": "10b0638e94a4d2d3184cfe76d6dbb8f0b69c0475d65d478966667447747bba44",
+    "configs/stage3b.yaml": "03749595529f1ad4727b21ae85fc042f4b2bd80ce43b98d8d7d5789e21751478",
+    "configs/stage3d_batch_fisherz_v1.yaml": "c73fd71170a7191118cb5ecd9da6c36a6455e10ffb5403f0726d202152f8383a",
+    "src/ossfs_dd/selector.py": "c03ca1059a0a5a8c185b08950b5c37cc47bf4e40a5bbc13f0b979c62a97ed5d4",
+    "src/ossfs_dd_stage3d/batch_selector.py": "19d30dc552790b5a3dd5de1f4f7dbe6be436b1e34b855b87c3fce7867794db85",
+    "src/ossfs_dd_stage3d/batch_selector_v2.py": "e6ea1d26ca8d398f7b1173eb2d1615ef923e876104459ca41ad1ff521bf2d8af"
+  },
+  "all_unchanged": true,
+  "before": {
+    "configs/stage1.yaml": "9d2987ec49af3671d813a35c7879bc06acf5f291bff0d5a40b67ff819409e0c3",
+    "configs/stage2.yaml": "60cb51e59a6c2578838a847846c980b371cfa43190b5e0b94d4ad97815eedd81",
+    "configs/stage3a.yaml": "10b0638e94a4d2d3184cfe76d6dbb8f0b69c0475d65d478966667447747bba44",
+    "configs/stage3b.yaml": "03749595529f1ad4727b21ae85fc042f4b2bd80ce43b98d8d7d5789e21751478",
+    "configs/stage3d_batch_fisherz_v1.yaml": "c73fd71170a7191118cb5ecd9da6c36a6455e10ffb5403f0726d202152f8383a",
+    "src/ossfs_dd/selector.py": "c03ca1059a0a5a8c185b08950b5c37cc47bf4e40a5bbc13f0b979c62a97ed5d4",
+    "src/ossfs_dd_stage3d/batch_selector.py": "19d30dc552790b5a3dd5de1f4f7dbe6be436b1e34b855b87c3fce7867794db85",
+    "src/ossfs_dd_stage3d/batch_selector_v2.py": "e6ea1d26ca8d398f7b1173eb2d1615ef923e876104459ca41ad1ff521bf2d8af"
+  }
+}

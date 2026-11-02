@@ -1,0 +1,43 @@
+{
+  "all_identical": true,
+  "canonical_fields": [
+    "method_version",
+    "selected_feature_ids",
+    "n_selected",
+    "n_features_seen",
+    "pool_flushes",
+    "finalized"
+  ],
+  "excluded": [
+    "seconds",
+    "utc",
+    "peak_rss_gib"
+  ],
+  "n_runs_found": 3,
+  "runs": [
+    {
+      "finalized": true,
+      "method_version": "batch_score_shared_v2",
+      "n_features_seen": 30,
+      "n_selected": 0,
+      "pool_flushes": 0,
+      "selected_feature_ids": []
+    },
+    {
+      "finalized": true,
+      "method_version": "batch_score_shared_v2",
+      "n_features_seen": 30,
+      "n_selected": 0,
+      "pool_flushes": 0,
+      "selected_feature_ids": []
+    },
+    {
+      "finalized": true,
+      "method_version": "batch_score_shared_v2",
+      "n_features_seen": 30,
+      "n_selected": 0,
+      "pool_flushes": 0,
+      "selected_feature_ids": []
+    }
+  ]
+}

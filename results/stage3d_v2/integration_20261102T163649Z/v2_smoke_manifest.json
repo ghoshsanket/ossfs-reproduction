@@ -1,0 +1,22 @@
+{
+  "batch_size": 10,
+  "classifier_fitted": false,
+  "config_hash": null,
+  "dataset": "SYNTHETIC",
+  "finalized": true,
+  "method_version": "batch_score_shared_v2",
+  "n_batches": 3,
+  "n_features": 30,
+  "n_features_seen": 30,
+  "n_selected": 0,
+  "pending_pool_end": 0,
+  "pool_flushes": 0,
+  "repeat": false,
+  "run_id": "20261102T042840Z",
+  "schema": "ossfs-dd-reproduction/stage3d_v2/smoke/1.0",
+  "seconds": 0.0023,
+  "selected_feature_ids": [],
+  "source_fingerprint": "bfd3ed4fa7c5f8148004277d1bf1dbaa32f3bcd193aa487c38a6c9f82fc82d87",
+  "test_rows_read": 0,
+  "utc": "2026-11-02T16:33:48Z"
+}
