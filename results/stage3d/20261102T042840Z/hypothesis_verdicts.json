@@ -1,0 +1,15 @@
+{
+  "H_BATCH_STABILITY": {
+    "outcome": "NOT_MEASURED",
+    "note": "requires paired Jaccard analysis"
+  },
+  "H_BATCH_CART": {
+    "outcome": "NOT_MEASURED"
+  },
+  "H_PVAL_SCORING": {
+    "outcome": "NOT_MEASURED"
+  },
+  "H_NUMERICAL_CORRECTNESS": {
+    "outcome": "SUPPORTED"
+  }
+}

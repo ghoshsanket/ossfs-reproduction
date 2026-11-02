@@ -1,0 +1,105 @@
+schema_version: 1
+stage: 3d
+frozen_utc: '2026-11-02T04:28:40Z'
+freeze_statement: Frozen and hashed before any new held-out evaluation. In-process,
+  chronologically ordered freeze; NOT an independently registered or attested preregistration.
+authorization:
+  datasets:
+  - ARCENE
+  - DEXTER
+  - MADELON
+  - GINA
+  - GISETTE
+  - SRBCT
+  - LYMPHOMA
+  - PROSTATE
+  - LEUKEMIA
+  forbidden:
+  - DLBCL
+  - BREAST
+  required_manifest_status: EXACT_VERIFIED
+batch_sizes:
+  rule: p<=2000:10, 2000<p<=10000:25, p>10000:50
+  MADELON: 10
+  GINA: 10
+  SRBCT: 25
+  LYMPHOMA: 25
+  PROSTATE: 25
+  LEUKEMIA: 25
+  GISETTE: 25
+  ARCENE: 25
+  DEXTER: 50
+arms:
+  discrete:
+  - D1_single
+  - D2_batch
+  continuous:
+  - C1_single_r_only
+  - C2_batch_r_only
+  - C3_single_normalized_p
+  - C4_batch_normalized_p
+pilot:
+  discrete_seeds:
+  - 11
+  - 17
+  - 23
+  discrete_folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  arcene_seeds:
+  - 11
+  - 17
+  - 23
+  - 31
+  - 47
+  - 59
+  - 71
+  - 83
+  - 97
+  - 109
+  arcene_folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  continuous_seeds:
+  - 11
+  - 17
+  - 23
+  continuous_folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  planned_selections: 460
+  planned_classifier_outcomes: 1380
+hypotheses:
+  H_BATCH_STABILITY: batch improves within-fold Jaccard by >=0.10 on ARCENE
+  H_BATCH_CART: batch CART accuracy no more than 0.03 lower than single
+  H_PVAL_SCORING: compare effect-size vs normalized-p; no advance claim
+  H_NUMERICAL_CORRECTNESS: Fisher stats agree with oracles within tolerance
+resources:
+  memory_limit_gib: 32
+  per_selector_attempt_minutes: 60
+  initial_concurrency: 1
+  max_concurrency: 4
+  blas_threads: 1
+  cpu_only: true
+fisherz:
+  EPS_P: 1.0e-12
+  L: 12.0
+  marginal: r -> atanh -> Z=z*sqrt(n-3) -> p=2*norm.sf(|Z|)
+  holms_for_K_gt_2: true
+  min_n_marginal: 5
+  min_n_pair: 6
+  r_clip: 1.0e-12
+pair_operator:
+  type: partial_correlation
+  joint: max(marginal_x + cond_z_given_x, marginal_z + cond_x_given_z)
+  label: partial_correlation_heuristic
+  detects_xor: false

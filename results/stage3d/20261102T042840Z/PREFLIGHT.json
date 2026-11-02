@@ -1,0 +1,13 @@
+{
+  "config_sha256": "c73fd71170a7191118cb5ecd9da6c36a6455e10ffb5403f0726d202152f8383a",
+  "datasets_authorized": 9,
+  "forbidden": [
+    "DLBCL",
+    "BREAST"
+  ],
+  "g1_ok": true,
+  "run_id": "20261102T042840Z",
+  "schema": "ossfs-dd-reproduction/stage3d/preflight/1.0",
+  "stage3c_historical_reference": "NOT_AVAILABLE",
+  "utc": "2026-11-02T06:27:31Z"
+}
