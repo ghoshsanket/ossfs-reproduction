@@ -1,0 +1,13 @@
+{
+  "evidence_verified": true,
+  "h_batch_cart": "SUPPORTED",
+  "h_batch_stability": "NOT_SUPPORTED",
+  "h_numerical_correctness": "SUPPORTED",
+  "h_pval_scoring": "DESCRIPTIVE_ONLY",
+  "import_fixed": true,
+  "pool_flush_v1_bug_demonstrated": true,
+  "pool_flush_v2_fix": true,
+  "run_id": "20261102T042840Z",
+  "utc": "2026-11-02T07:29:20Z",
+  "verdict": "STAGE3D_AUDIT_PASS"
+}

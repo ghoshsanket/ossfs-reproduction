@@ -1,0 +1,8 @@
+{
+  "config_path": "configs/stage3d_batch_fisherz_v1.yaml",
+  "declared_frozen_utc": "2026-11-02T04:28:40Z",
+  "preflight_utc": "2026-11-02T06:27:31Z",
+  "reason": "The declared frozen_utc and the PREFLIGHT write time are both recorded from the same process; no independent timestamp attestation exists. The Stage 3A contradicted timestamp is preserved unchanged.",
+  "report_generated_utc": null,
+  "status": "FREEZE_CHRONOLOGY_UNVERIFIED"
+}

@@ -1,0 +1,43 @@
+{
+  "arms": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "D1",
+    "D2"
+  ],
+  "baselines": {
+    "complete": true,
+    "expected": 15,
+    "n": 15,
+    "unique": 15
+  },
+  "classifiers": {
+    "complete": true,
+    "expected": 1380,
+    "n": 1380,
+    "unique": 1380
+  },
+  "datasets": [
+    "ARCENE",
+    "DEXTER",
+    "GINA",
+    "GISETTE",
+    "LEUKEMIA",
+    "LYMPHOMA",
+    "MADELON",
+    "PROSTATE",
+    "SRBCT"
+  ],
+  "forbidden_reads": 0,
+  "run_id": "20261102T042840Z",
+  "schema": "ossfs-dd-reproduction/stage3d/audit/inventory/1.0",
+  "selections": {
+    "complete": true,
+    "expected": 460,
+    "n": 460,
+    "unique": 460
+  },
+  "utc": "2026-11-02T07:26:17Z"
+}

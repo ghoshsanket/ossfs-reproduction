@@ -1,0 +1,3157 @@
+{
+  "D1_mean_jaccard": 0.306658572685154,
+  "D2_mean_jaccard": 0.1712757943032508,
+  "jaccard_pairs": [
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.4132930513595166,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.40279465370595385,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.2611764705882353,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.4169166166766647,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.32293986636971045,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3981170141223941,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.29052466718872355,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3696236559139785,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.01925254813137033,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.6342281879194631,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3709876543209877,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.6685361749859787,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.42052194543297744,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5957320687611144,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3896742470805163,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5548387096774193,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.01954177897574124,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3425245098039216,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.6361111111111111,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.4221286831028262,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5512820512820513,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.36955187231430325,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5264997087944089,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.022758620689655173,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3583535108958838,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.28494208494208495,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3349217154526889,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.257189811010682,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3204951856946355,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.016905071521456438,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.4206815511163337,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5933098591549296,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3901399878271455,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.5306239267315398,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.020598006644518274,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3791989664082687,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.2977913175932978,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.36062378167641324,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.01810436634717785,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3630790190735695,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.4869402985074627,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.01952807160292921,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.3180901143241426,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.019851116625310174,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 0,
+      "jaccard": 0.02278481012658228,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.18227009113504558,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.07583774250440917,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.1972318339100346,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.18181818181818182,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.19382022471910113,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.08249158249158249,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.16576964477933262,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.06534653465346535,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.1761467889908257,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.09773755656108597,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.38756983240223464,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.30763473053892215,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.3169705469845722,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.11949685534591195,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.2899770466717674,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.07035647279549719,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.34739099356683345,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.09653233364573571,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.09026963657678781,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.10062240663900415,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.05665024630541872,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.0821917808219178,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.04180064308681672,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.08646998982706001,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.2754491017964072,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.3384390955506929,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.116991643454039,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.26481909160892997,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.06292352371732816,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.3232758620689655,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.26788553259141495,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.10435779816513761,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.24489795918367346,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.0725,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.2714285714285714,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.11405295315682282,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.26567656765676567,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.057754010695187166,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.2923191648023863,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.11633663366336634,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.0688622754491018,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.11437246963562753,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.05702917771883289,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.24074074074074073,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 0,
+      "jaccard": 0.0721205597416577,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5564133016627079,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.41433224755700326,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4164507772020725,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.09933774834437085,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.536064627813041,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4009728978457262,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4102402022756005,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5534262485481998,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4107259646827992,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.49376114081996436,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5176964607078585,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.09001956947162426,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.6556473829201102,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4419315403422983,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.49564206856478793,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.7021996615905245,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5024038461538461,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.37657180675049634,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.08920606601248884,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4811594202898551,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.3481638418079096,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.3810143042912874,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4904236796285548,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.39266304347826086,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.09857904085257549,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4826989619377163,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.3681592039800995,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.3914174252275683,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5155425219941349,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.37184594953519257,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.09955041746949261,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.08223350253807106,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.08836023789294817,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.09732824427480916,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.08640864086408641,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4134275618374558,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.49002849002849,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.6770833333333334,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.47990681421083287,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.36168741355463346,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4475104979004199,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.3535714285714286,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.5068807339449541,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.391820580474934,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 1,
+      "jaccard": 0.4988262910798122,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.245393634840871,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.28253968253968254,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.25,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.22193211488250653,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2899926953981008,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.22911051212938005,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2997076023391813,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.21916508538899432,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.12665198237885464,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.3038981702466189,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.24507283633247642,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.23336214347450301,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2945007235890014,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.22663139329805995,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.3155588020452885,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.22128851540616246,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.12352309344790548,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2778675282714055,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.25788197251414713,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.3488045007032349,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.24183006535947713,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.334716459197787,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2572178477690289,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.1407766990291262,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2188612099644128,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.29157345264727813,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.21272727272727274,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.28046989720998533,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2312992125984252,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.13940092165898618,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2836719337848006,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.22816901408450704,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2897897897897898,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.18243243243243243,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.1210710128055879,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2632375189107413,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.37657180675049634,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.24862313139260425,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.14027538726333907,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.25428784489187173,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.20466058763931105,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.1374233128834356,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.2501954652071931,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.13209144792548688,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 1,
+      "jaccard": 0.14986376021798364,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6370699223085461,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.11380471380471381,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.0729525120440468,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.2898919262555626,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.22272727272727272,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6260623229461756,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.017470300489168415,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.5620915032679739,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6508024349750968,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.12388250319284802,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.0755813953488372,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.3106200122774708,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.22324723247232472,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6505823627287853,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.014944769330734242,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.5736478711162255,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6889010388190268,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.06647398843930635,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.11569148936170212,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.09133858267716535,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.118508655126498,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.015267175572519083,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.1172360248447205,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.11922596754057428,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.06743185078909612,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.06216696269982238,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.07167004732927654,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.0,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.0752,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.07809523809523809,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.1545945945945946,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.29652996845425866,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.014240506329113924,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.2658757850662945,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.30917874396135264,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.22450288646568314,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.014344262295081968,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.21220930232558138,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.22992700729927007,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.018556701030927835,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.5391304347826087,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.6478641840087623,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.014717906786590351,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.015276893698281349,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 2,
+      "jaccard": 0.5727272727272728,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.1721311475409836,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.20844099913867356,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.22144112478031636,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.1319290465631929,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.13785310734463277,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2734785875281743,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.22141560798548093,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.23143080531665364,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.18377321603128055,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.169921875,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.11126005361930295,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.11491108071135431,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.20432692307692307,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.1835897435897436,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.1623740201567749,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.20365535248041775,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.22129086336965634,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.15621679064824653,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.14989293361884368,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.29178885630498536,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2191544434857636,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.20315398886827457,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2818110850897736,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.15965480043149946,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.13475935828877006,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2926829268292683,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2345679012345679,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.23106423777564716,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.269680436477007,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.10543130990415335,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.1480865224625624,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.16103603603603603,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.13382899628252787,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.15808823529411764,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.16057774001699235,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.14656144306651633,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.12625,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.14732965009208104,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2916666666666667,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2531545741324921,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.3282967032967033,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.2204724409448819,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.27207062600321025,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 2,
+      "jaccard": 0.22518765638031693,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.10955243820975284,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.26007802340702213,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.3310038119440915,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6414772727272727,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.40196681007990165,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.44478155339805825,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6578947368421053,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6838487972508591,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6604189636163176,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.08557844690966719,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.09067357512953368,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.10765064319566689,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.08210526315789474,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.09514563106796116,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.10033444816053512,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.10550458715596331,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.10420590081607031,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.17542016806722688,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.2470664928292047,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.2072155411655874,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.2206776715899218,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.24240465416936005,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.25816784112748237,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.24449877750611246,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.30434782608695654,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.23584108199492815,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.26069410815173527,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.30919395465994964,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.29804161566707466,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.3069129916567342,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.39517625231910947,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.4357099329677026,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.621331828442438,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6394825646794151,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6385079539221065,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.2805860805860806,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.38447432762836187,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.3864182692307692,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.38474970896391153,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.43159806295399517,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.44912703190848885,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.4362688296639629,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6557191392978482,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.6389496717724289,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 3,
+      "jaccard": 0.657392253136934,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.04835164835164835,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.0858257477243173,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.03723404255319149,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.07541625857002938,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.047619047619047616,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.07984790874524715,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.021660649819494584,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.08182912154031288,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.08674463937621832,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.13053348467650397,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.017142857142857144,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.14663023679417123,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.05122950819672131,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.13971880492091387,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.05463182897862233,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.12526539278131635,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.14030384271671134,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.02,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.28537360890302066,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.08603491271820449,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.27602158828064766,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.06225165562913907,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.27403414195867026,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.26764934057408846,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.02089864158829676,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.02666666666666667,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.01805416248746239,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.0125,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.019659239842726082,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.016359918200409,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.10850439882697947,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.3431372549019608,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.05237154150197629,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.2990726429675425,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.34443656980864634,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.09840674789128398,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.03908794788273615,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.09613130128956623,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.0920303605313093,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.0626204238921002,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.27806691449814125,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.33448275862068966,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.06388206388206388,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.059745347698334964,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 3,
+      "jaccard": 0.26057906458797325,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.05728643216080402,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.0634441087613293,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.0587248322147651,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.05459770114942529,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06795224977043159,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.05536332179930796,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.03787878787878788,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06253948199620973,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.0620782726045884,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.3256484149855908,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.19208087615838249,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.2153722978382706,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.34368530020703936,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.3009188361408882,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06545820745216516,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.43790087463556854,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.4213381555153707,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.21385799828913601,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.23840520748576077,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.3797736916548798,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.3140432098765432,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.060939060939060936,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.447831184056272,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.4306480920654149,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.16084656084656085,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.21496815286624205,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.1888372093023256,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.059900166389351084,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.24847374847374848,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.24166666666666667,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.2521137586471945,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.22212389380530972,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06628242074927954,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.29631864815932407,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.2903225806451613,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.30874909616775126,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.0666058394160584,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.49304750869061414,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.46441281138790036,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06720741599073002,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.3821958456973294,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.40569620253164557,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06835443037974684,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.06612685560053981,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D1",
+      "fold": 4,
+      "jaccard": 0.6426608026388125,
+      "order_a": 97,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.043933054393305436,
+      "order_a": 11,
+      "order_b": 17
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.06491885143570537,
+      "order_a": 11,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.03535353535353535,
+      "order_a": 11,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.07884856070087609,
+      "order_a": 11,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.06097560975609756,
+      "order_a": 11,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.07672301690507152,
+      "order_a": 11,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.07506053268765134,
+      "order_a": 11,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.07855822550831792,
+      "order_a": 11,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.07761966364812418,
+      "order_a": 11,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.14888888888888888,
+      "order_a": 17,
+      "order_b": 23
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.013123359580052493,
+      "order_a": 17,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.13864628820960698,
+      "order_a": 17,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.06759098786828423,
+      "order_a": 17,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.13370786516853933,
+      "order_a": 17,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.13481953290870488,
+      "order_a": 17,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.1511528608027327,
+      "order_a": 17,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.12044198895027625,
+      "order_a": 17,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.02351313969571231,
+      "order_a": 23,
+      "order_b": 31
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.23847517730496454,
+      "order_a": 23,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.12790697674418605,
+      "order_a": 23,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.21263345195729538,
+      "order_a": 23,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.2581786030061892,
+      "order_a": 23,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.28452830188679246,
+      "order_a": 23,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.2391304347826087,
+      "order_a": 23,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.026027397260273973,
+      "order_a": 31,
+      "order_b": 47
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.0189873417721519,
+      "order_a": 31,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.02877697841726619,
+      "order_a": 31,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.03333333333333333,
+      "order_a": 31,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.02230843840931135,
+      "order_a": 31,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.02710413694721826,
+      "order_a": 31,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.11630558722919042,
+      "order_a": 47,
+      "order_b": 59
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.21201413427561838,
+      "order_a": 47,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.25065502183406113,
+      "order_a": 47,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.29132075471698116,
+      "order_a": 47,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.22617987533392697,
+      "order_a": 47,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.11966824644549763,
+      "order_a": 59,
+      "order_b": 71
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.133032694475761,
+      "order_a": 59,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.1423487544483986,
+      "order_a": 59,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.1377245508982036,
+      "order_a": 59,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.2145960034752389,
+      "order_a": 71,
+      "order_b": 83
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.25617977528089886,
+      "order_a": 71,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.2412199630314233,
+      "order_a": 71,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.30307576894223553,
+      "order_a": 83,
+      "order_b": 97
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.23612334801762114,
+      "order_a": 83,
+      "order_b": 109
+    },
+    {
+      "arm": "D2",
+      "fold": 4,
+      "jaccard": 0.29285165257494233,
+      "order_a": 97,
+      "order_b": 109
+    }
+  ],
+  "n_pairs_per_arm": 225
+}

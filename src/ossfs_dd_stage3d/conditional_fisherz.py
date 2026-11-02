@@ -8,7 +8,7 @@ Fisher_Ztest helper. See standard_fisherz.pair_score_standard.
 from __future__ import annotations
 
 from .standard_fisherz import (  # noqa: F401
-    FisherMarginal,
+    FisherResult,
     marginal_fisherz,
     pair_score_standard,
     partial_correlation,

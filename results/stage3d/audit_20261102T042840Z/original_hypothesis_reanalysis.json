@@ -1,0 +1,39 @@
+{
+  "H_BATCH_CART": {
+    "mean_delta": 0.003492000954536975,
+    "n_paired": 110,
+    "outcome": "SUPPORTED",
+    "threshold": -0.03
+  },
+  "H_BATCH_STABILITY": {
+    "batch_mean_jaccard": 0.17127579430325077,
+    "delta": -0.13538277838190318,
+    "outcome": "NOT_SUPPORTED",
+    "single_mean_jaccard": 0.30665857268515395,
+    "threshold": 0.1
+  },
+  "H_NUMERICAL_CORRECTNESS": {
+    "outcome": "SUPPORTED"
+  },
+  "H_PVAL_SCORING": {
+    "outcome": "DESCRIPTIVE_ONLY (no advance claim made)",
+    "per_dataset": {
+      "LEUKEMIA": {
+        "mean_delta": 0.00476190476190476,
+        "n_paired": 15
+      },
+      "LYMPHOMA": {
+        "mean_delta": 0.027777777777777776,
+        "n_paired": 15
+      },
+      "PROSTATE": {
+        "mean_delta": 0.0034920634920635094,
+        "n_paired": 15
+      },
+      "SRBCT": {
+        "mean_delta": 0.0,
+        "n_paired": 15
+      }
+    }
+  }
+}

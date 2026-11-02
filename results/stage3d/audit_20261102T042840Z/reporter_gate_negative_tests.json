@@ -1,0 +1,8 @@
+{
+  "g2_missing_hash": "PASS (reproduced: G2 did not fail on absent schedule hash)",
+  "g7_trivial": "PASS (reproduced: G7 tested only len(sel_records)>0)",
+  "hardcoded_pass_flags": "PASS (reproduced: operational_gates.json had pass:true for all 10 gates)",
+  "new_reporter": "implemented as read-only recomputation from raw records",
+  "preflight_overwrite": "PASS (reproduced: report rewrote PREFLIGHT.json)",
+  "repeating_groups": "PASS (reproduced: selection_summary had 460 rows for 26 groups)"
+}
