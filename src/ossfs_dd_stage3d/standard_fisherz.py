@@ -18,6 +18,7 @@ from scipy.stats import norm
 EPS_P = 1e-12
 L_EVIDENCE = 12.0
 MIN_N_MARGINAL = 5
+MIN_N_PAIR = 6
 _R_CLIP = 1.0 - 1e-12
 
 

@@ -80,3 +80,50 @@ def make_continuous_batch(labels, *, use_evidence):
         promotes_pair_fn=lambda j, beta: promotes_pair(j, beta, mode="matlab_compatible_v1"),
         labels=labels, pool_size=100, k1=1.0, k2=2.0)
     return bs, score_fn, joint_fn
+
+
+# ------------------------------------------------------------------ v2 factories
+
+
+def make_discrete_batch_v2(labels):
+    """Explicit V2 factory. Does NOT replace the default V1 behavior."""
+    from ossfs_dd_stage3d.batch_selector_v2 import BatchSelectorV2
+
+    def score_fn(col, lab):
+        return symmetrical_uncertainty(np.asarray(col), np.asarray(lab))
+
+    def joint_fn(a, b, lab, ma):
+        from ossfs_dd.metrics import conditional_mutual_information
+        cmi = conditional_mutual_information(a, lab, b).value
+        return ma + cmi, "SU+cmi"
+
+    bs = BatchSelectorV2(
+        SelectionConfig(mode=Mode.MATLAB_COMPATIBLE, k1=1.0, k2=2.0, pool_size=100),
+        metric_family="discrete",
+        score_fn=score_fn, joint_fn=joint_fn,
+        is_redundant_fn=lambda j, beta: is_redundant(j, beta, mode="matlab_compatible_v1"),
+        promotes_pair_fn=lambda j, beta: promotes_pair(j, beta, mode="matlab_compatible_v1"),
+        labels=labels, pool_size=100, k1=1.0, k2=2.0)
+    return bs, score_fn, joint_fn
+
+
+def make_continuous_batch_v2(labels, *, use_evidence):
+    """Explicit V2 factory for the standard-Fisher-Z route."""
+    from ossfs_dd_stage3d.batch_selector_v2 import BatchSelectorV2
+    from ossfs_dd_stage3d.standard_fisherz import marginal_fisherz, pair_score_standard
+
+    def score_fn(col, lab):
+        return marginal_fisherz(np.asarray(col), np.asarray(lab), use_evidence=use_evidence).score
+
+    def joint_fn(a, b, lab, ma):
+        ps = pair_score_standard(np.asarray(a), np.asarray(b), np.asarray(lab), use_evidence=use_evidence)
+        return ma + ps["conditional_z_given_x"], "marginal+partial"
+
+    bs = BatchSelectorV2(
+        SelectionConfig(mode=Mode.MATLAB_COMPATIBLE, k1=1.0, k2=2.0, pool_size=100),
+        metric_family="continuous",
+        score_fn=score_fn, joint_fn=joint_fn,
+        is_redundant_fn=lambda j, beta: is_redundant(j, beta, mode="matlab_compatible_v1"),
+        promotes_pair_fn=lambda j, beta: promotes_pair(j, beta, mode="matlab_compatible_v1"),
+        labels=labels, pool_size=100, k1=1.0, k2=2.0)
+    return bs, score_fn, joint_fn

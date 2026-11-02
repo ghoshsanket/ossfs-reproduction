@@ -38,6 +38,8 @@ class BatchSelectorV2(BatchSelector):
         self._v2 = True
 
     def consume_batch(self, feature_ids: list[int], columns: list[Any]) -> None:
+        if self._finalized:
+            raise RuntimeError("consume_batch called after finalize_stream; v2 pool is closed")
         """Score + decide for one batch. NO terminal flush here."""
         # Reuse the parent's scoring/decision logic but skip the trailing
         # stream_end flush. We do that by calling the parent's consume_batch

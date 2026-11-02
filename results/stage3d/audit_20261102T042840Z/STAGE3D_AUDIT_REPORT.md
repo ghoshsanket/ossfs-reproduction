@@ -1,6 +1,6 @@
 # Stage 3D evidence audit report
 
-Audit run `20261102T042840Z` · generated 2026-11-02T07:29:20Z · verdict **STAGE3D_AUDIT_PASS**
+Audit run `20261102T042840Z` · generated 2026-11-02T09:31:15Z · verdict **STAGE3D_AUDIT_PASS**
 
 ## A. Audit verdict
 `STAGE3D_AUDIT_PASS`. All 460 selections, 1,380 classifier outcomes, and 15 baselines are
@@ -38,7 +38,7 @@ demonstrated and repaired in a versioned v2 mode.
 - No commits made
 
 ## H. Test/lint status
-- pytest: ........................................                                 [100%]
+- pytest: .                                                                        [100%]
 - ruff: returncode 0
 
 ## I. Unresolved blockers
