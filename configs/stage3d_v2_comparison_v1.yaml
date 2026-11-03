@@ -1,0 +1,50 @@
+# Stage 3D V2 comparison — frozen protocol (write-once, runtime UTC)
+
+schema_version: 1
+stage: "3d_v2_comparison"
+frozen_utc: "2026-11-03T00:00:00Z"
+freeze_note: "Placeholder timestamp; the actual freeze time is stamped at prepare-time by the human-run command. This file is versioned and must not be edited after the first prepare. Do NOT treat this as an independently attested preregistration."
+
+authorization:
+  datasets: [ARCENE, DEXTER, MADELON, GINA, GISETTE, SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA]
+  forbidden: [DLBCL, BREAST]
+  required_manifest_status: EXACT_VERIFIED
+
+experiment:
+  name: "stage3d_v2_comparison"
+  arms:
+    D2_V2: {datasets: [ARCENE, DEXTER, MADELON, GINA, GISETTE], seeds: [11,17,23,31,47,59,71,83,97,109], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: discrete_information}
+    D2_V2_pilot: {datasets: [DEXTER, MADELON, GINA, GISETTE], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: discrete_information}
+    C2_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: standard_fisherz_effect_only}
+    C4_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: standard_fisherz_normalized_p}
+  nominal_selections: 230
+  nominal_classifier_outcomes: 690
+  classifiers: [knn, svm, cart]
+  classifier_params:
+    knn: {n_neighbors: 5, weights: uniform, metric: minkowski, p: 2}
+    svm: {kernel: linear, C: 0.1, tol: 0.001, max_iter: 2000000, probability: false}
+    cart: {criterion: gini, splitter: best, random_state: 11}
+  batch_sizes: {rule: "p<=2000:10, 2001..10000:25, p>10000:50"}
+  pool_size: 100
+  k1: 1.0
+  k2: 2.0
+  mode: matlab_compatible_v1
+  entry_file: mi2
+
+hypotheses:
+  H1_BATCH_STABILITY: "V2 minus V1 mean within-fold Jaccard >= +0.10 on ARCENE"
+  H2_BATCH_CART: "mean paired V2-V1 CART accuracy >= -0.03 (descriptive)"
+  H3_CARDINALITY: "report per-dataset signed selected count/fraction differences"
+  H4_RUNTIME: "report train-only selector time and classifier time separately"
+  H5_POOL_MECHANISM: "quantify capacity flushes, terminal flushes, promotions"
+  H6_CONTINUOUS_SCORING: "compare r-only vs normalized-p; disclose approximation"
+
+resources:
+  memory_limit_gib: 32
+  per_selector_attempt_minutes: 60
+  initial_concurrency: 1
+  max_concurrency: 4
+  blas_threads: 1
+  cpu_only: true
+
+gates: [E1, E2, E3, E4, E5, E6, E7, E8, E9, E10]
