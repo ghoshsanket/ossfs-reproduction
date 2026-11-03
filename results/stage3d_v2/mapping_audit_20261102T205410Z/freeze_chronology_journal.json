@@ -1,0 +1,18 @@
+{
+  "journal": [
+    {
+      "config": "configs/stage3d_v2_integration_repair.yaml",
+      "event": "CONFIG_WRITTEN",
+      "sha256": "d8ac8089a7b5eca8f511ca40a500b045f73f6aadb8c8ec81f9d21757bbe4dbe1",
+      "utc": "2026-11-02T20:57:12Z"
+    },
+    {
+      "audit_dir": "/home/iemiedc2026/Documents/Sanket/Research/projects/ossfs-dd-reproduction/results/stage3d_v2/mapping_audit_20261102T205410Z",
+      "event": "AUDIT_COMPLETED",
+      "utc": "2026-11-02T20:57:12Z"
+    }
+  ],
+  "note": "In-process chronological ordering only; NOT independent preregistration.",
+  "stage3a_chronology": "CONTRADICTED (preserved, not repaired)",
+  "v1_chronology": "FREEZE_CHRONOLOGY_UNVERIFIED"
+}

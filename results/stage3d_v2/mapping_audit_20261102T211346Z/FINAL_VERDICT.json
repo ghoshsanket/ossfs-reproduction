@@ -1,0 +1,25 @@
+{
+  "final_verdict": "STAGE3D_V2_MAPPING_AUDIT_PARTIAL",
+  "gates": {
+    "R1": "PASS",
+    "R10": "FAIL",
+    "R2": "FAIL",
+    "R3": "PASS",
+    "R4": "PASS",
+    "R5": "PASS",
+    "R6": "FAIL",
+    "R7": "PASS",
+    "R8": "PASS",
+    "R9": "PASS"
+  },
+  "hypotheses": {
+    "H_AUDIT": "PASS",
+    "H_LIFECYCLE": "FAIL",
+    "H_MAP": "PASS",
+    "H_PRESERVE": "PASS",
+    "H_REPRO": "PASS"
+  },
+  "n_failed": 3,
+  "utc": "2026-11-02T21:16:46Z",
+  "v2_performance_not_measured": true
+}

@@ -1,0 +1,13 @@
+{
+  "baselines": 15,
+  "duplicates": 0,
+  "expected_classifier_keys": 1380,
+  "expected_selection_keys": 460,
+  "extra": [],
+  "forbidden_present": [],
+  "missing": [],
+  "observed": 460,
+  "observed_classifiers": 1380,
+  "r9_keys_pass": true,
+  "set_equality": true
+}

@@ -1,0 +1,22 @@
+{
+  "all_identical": true,
+  "excluded": [
+    "seconds",
+    "utc"
+  ],
+  "first6_ids": [
+    493,
+    338,
+    105,
+    64,
+    475,
+    453
+  ],
+  "n_runs": 3,
+  "n_selected_per_run": [
+    49,
+    49,
+    49
+  ],
+  "r10_determinism_pass": true
+}

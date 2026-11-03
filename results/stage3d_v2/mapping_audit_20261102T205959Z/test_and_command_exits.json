@@ -1,0 +1,15 @@
+{
+  "mutation_suite": {
+    "returncode": 0
+  },
+  "pytest": {
+    "failed": 0,
+    "passed": 393,
+    "returncode": 0,
+    "skipped": 0
+  },
+  "r7_pass": true,
+  "ruff": {
+    "returncode": 0
+  }
+}

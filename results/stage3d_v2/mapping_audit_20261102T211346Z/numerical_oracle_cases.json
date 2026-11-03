@@ -1,0 +1,14 @@
+{
+  "caveat": "Fisher-Z p-values on categorical indicators are Gaussian-reference approximations, not exact finite-sample tests.",
+  "hypothesis": "independent SciPy/NumPy oracles",
+  "max_abs_Z_error": 0.7393374444676081,
+  "max_abs_p_error": 0.49159114961562655,
+  "n_cases": 60,
+  "pair_score_symmetry": {
+    "in_unit_interval": true,
+    "joint": 0.04527906630251147
+  },
+  "r6_pass": false,
+  "tolerance_Z": 1e-08,
+  "tolerance_p": 1e-10
+}

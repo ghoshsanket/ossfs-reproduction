@@ -1,0 +1,92 @@
+{
+  "R1": {
+    "error": null,
+    "evidence_paths": [
+      "feature_id_column_mapping_before_after.json"
+    ],
+    "expected_rule": "0 ID->column mismatches for 100% of delivered features",
+    "measured_value": "before_mismatches=28/30 after_mismatches=0",
+    "outcome": "PASS"
+  },
+  "R10": {
+    "error": null,
+    "evidence_paths": [
+      "gate_results.json"
+    ],
+    "expected_rule": "verdict is the conjunction of R1-R9",
+    "measured_value": "all_prior_gates_pass=False",
+    "outcome": "FAIL"
+  },
+  "R2": {
+    "error": null,
+    "evidence_paths": [
+      "synthetic_selected_ids_and_cross_batch.json"
+    ],
+    "expected_rule": "cross-batch promotion + one terminal flush + idempotent",
+    "measured_value": "pool_after_b1=2 promoted=102 idempotent=True",
+    "outcome": "FAIL"
+  },
+  "R3": {
+    "error": null,
+    "evidence_paths": [
+      "independent_determinism.json"
+    ],
+    "expected_rule": "nonempty selection + 3 identical fresh-process runs",
+    "measured_value": "nonempty=49 det_runs=3 identical=True",
+    "outcome": "PASS"
+  },
+  "R4": {
+    "error": null,
+    "evidence_paths": [
+      "real_smoke_manifest.json"
+    ],
+    "expected_rule": "real smoke completes, train-only, 0 forbidden reads",
+    "measured_value": "status=COMPLETED mismatches=0",
+    "outcome": "PASS"
+  },
+  "R5": {
+    "error": null,
+    "evidence_paths": [
+      "audit_negative_mutation_results.json"
+    ],
+    "expected_rule": "all fail-closed mutations rejected",
+    "measured_value": "mutation tests passed=19",
+    "outcome": "PASS"
+  },
+  "R6": {
+    "error": null,
+    "evidence_paths": [
+      "numerical_oracle_cases.json"
+    ],
+    "expected_rule": ">=50 distinct cases, dZ<=1e-8, dp<=1e-10",
+    "measured_value": "cases=60 max_dZ=7.393e-01 max_dp=4.916e-01",
+    "outcome": "FAIL"
+  },
+  "R7": {
+    "error": null,
+    "evidence_paths": [
+      "test_and_command_exits.json"
+    ],
+    "expected_rule": "0 failed, 0 skipped, ruff clean",
+    "measured_value": "passed=393 failed=0 skipped=0 ruff=0",
+    "outcome": "PASS"
+  },
+  "R8": {
+    "error": null,
+    "evidence_paths": [
+      "protected_artifact_hashes.json"
+    ],
+    "expected_rule": "all protected artifacts byte-identical",
+    "measured_value": "protected_unchanged=True v1_unchanged=True git_rc=0",
+    "outcome": "PASS"
+  },
+  "R9": {
+    "error": null,
+    "evidence_paths": [
+      "exact_record_key_integrity.json"
+    ],
+    "expected_rule": "exact key-set equality",
+    "measured_value": "sel 460/460 clf 1380/1380 base 15/15",
+    "outcome": "PASS"
+  }
+}

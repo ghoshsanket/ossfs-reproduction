@@ -1,0 +1,25 @@
+{
+  "families": [
+    "missing_selection_record",
+    "count_preserving_substitution",
+    "duplicate_classifier_id",
+    "missing_schedule_hash",
+    "forbidden_dataset",
+    "out_of_range_feature_id",
+    "n_selected_mismatch",
+    "duplicate_selected_ids",
+    "failed_oracle",
+    "broken_import",
+    "missing_finalization",
+    "v1_fallback_disguised_as_v2",
+    "pending_pool_after_finalization",
+    "v1_artifact_changed",
+    "auditor_write_to_preflight",
+    "broken_classifier_linkage",
+    "verdict_conjunction"
+  ],
+  "n_passed": 19,
+  "r5_pass": true,
+  "returncode": 0,
+  "test_file": "tests/test_stage3d_v2_audit_mutations.py"
+}

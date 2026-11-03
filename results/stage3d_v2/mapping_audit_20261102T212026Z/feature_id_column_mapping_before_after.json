@@ -1,0 +1,52 @@
+{
+  "bug": "iter(enumerate([X[:, fid] for fid in flattened])) binds POSITION f to the column of flattened[f]; lookup by feature ID then serves the wrong column",
+  "encoding": "X[r,j] = 100000*j + r makes any column swap exactly detectable",
+  "fail_before": {
+    "examples_first6": [
+      [
+        25,
+        1
+      ],
+      [
+        22,
+        6
+      ],
+      [
+        21,
+        4
+      ],
+      [
+        28,
+        5
+      ],
+      [
+        27,
+        7
+      ],
+      [
+        29,
+        9
+      ]
+    ],
+    "n_mismatches": 28,
+    "of": 30,
+    "requested_id_then_column_actually_delivered": true
+  },
+  "hypothesis": "H-MAP",
+  "pass_after": {
+    "coverage_ok": true,
+    "delivered": 30,
+    "duplicates": 0,
+    "n_mismatches": 0,
+    "of": 30
+  },
+  "r1_pass": true,
+  "schedule": {
+    "B": 10,
+    "dataset": "SYNTH",
+    "flattened_order_sha256": "effbcda709f8167ed1d6570489bcddc2c614cc63ba94339ef2400c4d2ff7d04c",
+    "fold": 0,
+    "p": 30,
+    "seed": 11
+  }
+}
