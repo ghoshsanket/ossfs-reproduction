@@ -154,6 +154,21 @@ def test_evaluate_refuses_without_preflight_and_smoke(runner, tmp_path, monkeypa
         runner.cmd_evaluate(args)
 
 
+def _minimal_frozen_protocol_for_a() -> str:
+    """Minimal valid frozen protocol covering A_seed11_fold0__D2_V2 for resume tests."""
+    return (
+        "config_sha256: abc\n"
+        "experiment:\n"
+        "  classifiers: [cart]\n"
+        "  arms:\n"
+        "    D2_V2:\n"
+        "      datasets: [A]\n"
+        "      seeds: [11]\n"
+        "      folds: [0]\n"
+        "      metric: discrete_information\n"
+    )
+
+
 def test_classify_refuses_when_selections_missing(runner, tmp_path, monkeypatch):
     monkeypatch.setattr(runner, "OUT_ROOT", tmp_path / "ossfs-dd-reproduction" / "stage3d_v2")
     rd = tmp_path / "ossfs-dd-reproduction" / "stage3d_v2" / "comparison_x"
@@ -163,7 +178,7 @@ def test_classify_refuses_when_selections_missing(runner, tmp_path, monkeypatch)
     (rd / "comparison_key_manifest.json").write_text(
         json.dumps({"selection_keys": ["A_seed11_fold0__D2_V2"],
                     "classifier_keys": ["A_seed11_fold0__D2_V2__cart"]}), encoding="utf-8")
-    (rd / "FROZEN_PROTOCOL.yaml").write_text("config_sha256: abc\n", encoding="utf-8")
+    (rd / "FROZEN_PROTOCOL.yaml").write_text(_minimal_frozen_protocol_for_a(), encoding="utf-8")
     args = type("A", (), {"authorize_classification": True, "run_id": "x", "resume": False})()
     with pytest.raises(SystemExit, match="selection records missing"):
         runner.cmd_classify(args)
@@ -178,7 +193,7 @@ def test_resume_rejects_corrupt_record(runner, tmp_path, monkeypatch):
     (rd / "comparison_key_manifest.json").write_text(
         json.dumps({"selection_keys": ["A_seed11_fold0__D2_V2"],
                     "classifier_keys": ["A_seed11_fold0__D2_V2__cart"]}), encoding="utf-8")
-    (rd / "FROZEN_PROTOCOL.yaml").write_text("config_sha256: abc\n", encoding="utf-8")
+    (rd / "FROZEN_PROTOCOL.yaml").write_text(_minimal_frozen_protocol_for_a(), encoding="utf-8")
     sel = rd / "selection_records"
     sel.mkdir()
     (sel / "A_seed11_fold0__D2_V2.json").write_text("{not json", encoding="utf-8")
@@ -196,7 +211,7 @@ def test_resume_rejects_wrong_method_version(runner, tmp_path, monkeypatch):
     (rd / "comparison_key_manifest.json").write_text(
         json.dumps({"selection_keys": ["A_seed11_fold0__D2_V2"], "classifier_keys": []}),
         encoding="utf-8")
-    (rd / "FROZEN_PROTOCOL.yaml").write_text("config_sha256: abc\n", encoding="utf-8")
+    (rd / "FROZEN_PROTOCOL.yaml").write_text(_minimal_frozen_protocol_for_a(), encoding="utf-8")
     sel = rd / "selection_records"
     sel.mkdir()
     (sel / "A_seed11_fold0__D2_V2.json").write_text(json.dumps({
@@ -210,27 +225,58 @@ def test_resume_rejects_wrong_method_version(runner, tmp_path, monkeypatch):
 
 # ---- E/F/G. auditor and report structure
 
-def test_audit_has_ten_gates_and_conjunction(audit):
-    evidence = {
-        "sel_count": 230, "clf_count": 690, "base_count": 15,
-        "sel_keys": set(f"k{i}" for i in range(230)),
-        "expected_sel": set(f"k{i}" for i in range(230)),
-        "clf_keys": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
-        "expected_clf": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
-        "cf_ok": True, "oracle_ok": True, "all_finalized": True,
-        "map_failures": [], "v1_batch_sel_keys": set(f"k{i}" for i in range(230)),
-        "v1_batch_clf_keys": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
-        "pytest_exit": 0, "ruff_exit": 0, "preflight_pass": True,
-        "h1_delta": 0.05, "h2_cart_n": 100,
+def _complete_gate_evidence(audit):
+    """A fully valid synthetic evidence fixture for evaluate_gates (production contract)."""
+    sel_keys = {f"DS{i}_seed11_fold0__D2_V2" for i in range(230)}
+    clf_keys = {f"{k}__{c}" for k in sel_keys for c in ("knn", "svm", "cart")}
+    v1_sel_keys, v1_clf_keys = audit.expected_v1_keys_from_v2(sel_keys)
+    v2_clf = []
+    for k in sorted(sel_keys):
+        for c in ("knn", "svm", "cart"):
+            rec = {"record_id": f"{k}__{c}", "status": "COMPLETED", "classifier": c}
+            v2_clf.append(rec)
+    paired_cart = []
+    for k in sorted(sel_keys):
+        head, arm = k.rsplit("__", 1)
+        ds = head.split("_seed")[0]
+        v1_arm = audit.ARM_MAP[arm]
+        paired_cart.append({
+            "dataset": ds, "seed": 11, "fold": 0,
+            "v2_arm": arm, "v1_arm": v1_arm,
+            "v2_accuracy": 0.8, "v1_accuracy": 0.75,
+            "signed_delta_v2_minus_v1": 0.05,
+            "v2_status": "COMPLETED", "v1_status": "COMPLETED",
+        })
+    return {
+        "sel_keys": sel_keys, "expected_sel": sel_keys,
+        "clf_keys": clf_keys, "expected_clf": clf_keys,
+        "sel_count": 230, "clf_count": 690,
+        "v1_batch_sel_keys": v1_sel_keys, "v1_batch_clf_keys": v1_clf_keys,
+        "v1_sel_count": len(v1_sel_keys), "v1_clf_count": len(v1_clf_keys),
         "cfg_ok": True, "e2_measured": "ok",
+        "map_failures": [], "all_finalized": True,
+        "oracle_ok": True, "e6_measured": "ok",
+        "v2_clf": v2_clf,
+        "v2_j": 0.5, "v1_j": 0.3,
+        "paired_cart": paired_cart, "missing_pairs": [], "v1_cart_dupes": [],
+        "expected_cart_pairs": 230, "arcene_complete": True,
+        "fit_statuses": [r["status"] for r in v2_clf],
+        "all_fits_completed": True,
+        "pytest_exit": 0, "ruff_exit": 0, "preflight_pass": True,
     }
+
+
+def test_audit_has_ten_gates_and_conjunction(audit):
+    evidence = _complete_gate_evidence(audit)
     gates, verdict = audit.evaluate_gates(evidence)
     assert len(gates) == 10
     assert all(f"E{i}" in gates for i in range(1, 11))
     assert verdict == "COMPARISON_EVIDENCE_PASS"
-    # mutate one gate to FAIL -> verdict becomes PARTIAL
-    gates["E1"]["outcome"] = "FAIL"
-    verdict2 = "COMPARISON_EVIDENCE_PASS" if all(g["outcome"] == "PASS" for g in gates.values()) else "COMPARISON_EVIDENCE_PARTIAL"
+    # mutate a mandatory input and re-evaluate: production verdict must become PARTIAL
+    bad = dict(evidence)
+    bad["oracle_ok"] = False
+    gates2, verdict2 = audit.evaluate_gates(bad)
+    assert gates2["E6"]["outcome"] == "FAIL"
     assert verdict2 == "COMPARISON_EVIDENCE_PARTIAL"
 
 

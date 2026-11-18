@@ -75,29 +75,47 @@ A corrupt or stale existing record aborts with `CORRUPT_RECORD` /
 ## Phase 6: audit and report (independent)
 
 ```bash
-python scripts/stage3d_v2_comparison_audit.py --run-id "$RUN_ID"
+python scripts/stage3d_v2_comparison_audit.py --run-id "$RUN_ID"; echo "audit_exit=$?"
 python scripts/stage3d_v2_comparison_report.py --run-id "$RUN_ID"
 python scripts/stage3d_v2_comparison.py status --run-id "$RUN_ID"
 ```
+
+- The auditor writes all diagnostic artifacts even on failure, but returns exit
+  code `0` **only** for `COMPARISON_EVIDENCE_PASS`; any `PARTIAL`/`FAIL` result
+  returns a nonzero exit code.
+- Do **not** interpret a partial verdict, or a report generated after a partial
+  audit, as valid scientific evidence. Check `audit_*/FINAL_VERDICT.json` and
+  `audit_*/gate_results.json`.
+- E2 now verifies real SHA-256 hashes of every frozen closure file from disk and
+  verifies the original config hash against the retained `SOURCE_CONFIG.yaml`
+  (never the post-stamped `FROZEN_PROTOCOL.yaml` bytes). A modified protected
+  file must block the run; never re-freeze silently.
 
 ## HARD STOP CONDITIONS
 
 Do not continue past a failing step:
 - pytest or ruff exit nonzero → fix before `preflight`.
-- `preflight` exits 1 → see `PREFLIGHT_BLOCKED.json`.
+- `preflight` exits 1 → see `PREFLIGHT_BLOCKED.json` (exact V1 comparator
+  coverage is required; counts alone are insufficient).
 - `smoke` fails → see the smoke error.
 - `evaluate`/`classify` prints `REFUSED` → a prerequisite is missing.
 - `CORRUPT_RECORD` / `STALE_CACHE` → use a new `RUN_ID`.
-- `CONTROL_EVIDENCE_BLOCKED` → the V1 comparator raw records are missing.
+- `CONTROL_EVIDENCE_BLOCKED` → required V1 comparator raw records/keys missing
+  or duplicated.
+- audit exits nonzero → inspect `audit_*/FINAL_VERDICT.json`,
+  `gate_results.json`, `e2_hash_verification.json`, `paired_join_missing.json`.
 
 ## Interpreting outcomes
 
-- **Operational verdict** (`gate_results.json`): `COMPARISON_EVIDENCE_PASS` /
-  `PARTIAL` — did the pipeline run correctly?
+- **Operational verdict** (`gate_results.json` / auditor exit): 
+  `COMPARISON_EVIDENCE_PASS` only when E1–E10 all pass and auditor exit is 0;
+  otherwise `COMPARISON_EVIDENCE_PARTIAL` with nonzero exit.
 - **Scientific hypotheses** (`independent_recompute.json`): `SUPPORTED` /
-  `NOT_SUPPORTED` / `NOT_MEASURED`. A negative result is valid.
+  `NOT_SUPPORTED` / `NOT_MEASURED`. A negative result is valid only when backed
+  by complete measured evidence.
 - **Report**: `V2_PERFORMANCE_MEASURED` only when valid held-out classifier
-  records exist; otherwise `V2_PERFORMANCE_NOT_MEASURED`.
+  records exist and audit evidence is complete; otherwise
+  `V2_PERFORMANCE_NOT_MEASURED`. Report is not authoritative over the audit.
 
 ## Scientific caveats
 

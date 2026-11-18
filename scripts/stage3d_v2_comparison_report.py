@@ -75,6 +75,9 @@ def main() -> int:
 
     lines = ["# Stage 3D V2 comparison report", "",
              f"Run `{run_id}` · generated {utcnow()} · audit verdict **{audit_verdict}**", "",
+             "> **Note:** This report is descriptive. It is not valid scientific evidence "
+             "unless the independent audit verdict is `COMPARISON_EVIDENCE_PASS` with "
+             "exit code 0 and complete gate evidence.", "",
              "## Hypotheses", ""]
     lines += [f"- {k}: {v}" for k, v in sorted(hypotheses.items())]
     lines += ["", "## Selection summary", "", "| Dataset | Runs | Mean n_selected |", "|---|---|---|"]
@@ -86,9 +89,15 @@ def main() -> int:
     lines += [f"| {k.split(':')[0]} | {k.split(':', 1)[1]} | {v} |"
               for k, v in sorted(conv_counts.items())]
     has_clf = bool(v2_clf)
-    lines += ["", "## Limitations", ""]
-    lines.append("**V2_PERFORMANCE_MEASURED** — classifier outcomes exist above." if has_clf
-                 else "**V2_PERFORMANCE_NOT_MEASURED** — no classifier outcomes.")
+    measured_note = (
+        "**V2_PERFORMANCE_MEASURED** — classifier outcomes exist, but claims require "
+        "`COMPARISON_EVIDENCE_PASS`."
+        if has_clf else
+        "**V2_PERFORMANCE_NOT_MEASURED** — no classifier outcomes."
+    )
+    if audit_verdict != "COMPARISON_EVIDENCE_PASS":
+        measured_note = "**V2_PERFORMANCE_NOT_MEASURED** — audit not fully passed; results are not valid evidence."
+    lines += ["", "## Limitations", "", measured_note]
     lines += ["", f"FINAL_VERDICT: {audit_verdict}", ""]
     report = "\n".join(lines)
 
