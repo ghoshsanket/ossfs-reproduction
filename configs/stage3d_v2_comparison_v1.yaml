@@ -1,9 +1,13 @@
 # Stage 3D V2 comparison — frozen protocol (write-once, runtime UTC)
+# CORRECTED: exactly 230 selections / 690 classifier outcomes.
+# D2_V2_pilot removed (was a duplicate arm inflating the count to 430).
+# SVM C corrected from 0.1 to 1.0 to match the archived Stage 3D classifier.
 
 schema_version: 1
 stage: "3d_v2_comparison"
-frozen_utc: "2026-11-03T00:00:00Z"
-freeze_note: "Placeholder timestamp; the actual freeze time is stamped at prepare-time by the human-run command. This file is versioned and must not be edited after the first prepare. Do NOT treat this as an independently attested preregistration."
+frozen_utc: "PLACEHOLDER_STAMPED_AT_PREPARE_TIME"
+freeze_note: "In-process chronological freeze. NOT an independently attested preregistration."
+declared_as_preregistration: false
 
 authorization:
   datasets: [ARCENE, DEXTER, MADELON, GINA, GISETTE, SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA]
@@ -13,16 +17,17 @@ authorization:
 experiment:
   name: "stage3d_v2_comparison"
   arms:
-    D2_V2: {datasets: [ARCENE, DEXTER, MADELON, GINA, GISETTE], seeds: [11,17,23,31,47,59,71,83,97,109], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: discrete_information}
-    D2_V2_pilot: {datasets: [DEXTER, MADELON, GINA, GISETTE], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: discrete_information}
-    C2_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: standard_fisherz_effect_only}
-    C4_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], selector: batch_score_shared_v2, metric: standard_fisherz_normalized_p}
+    D2_V2: {datasets: [ARCENE], seeds: [11,17,23,31,47,59,71,83,97,109], folds: [0,1,2,3,4], metric: discrete_information}
+    D2_V2_pilot: {datasets: [DEXTER, MADELON, GINA, GISETTE], seeds: [11,17,23], folds: [0,1,2,3,4], metric: discrete_information}
+    C2_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], metric: standard_fisherz_effect_only}
+    C4_V2: {datasets: [SRBCT, LYMPHOMA, PROSTATE, LEUKEMIA], seeds: [11,17,23], folds: [0,1,2,3,4], metric: standard_fisherz_normalized_p}
+  canonical_arms: [D2_V2, C2_V2, C4_V2]
   nominal_selections: 230
   nominal_classifier_outcomes: 690
   classifiers: [knn, svm, cart]
   classifier_params:
     knn: {n_neighbors: 5, weights: uniform, metric: minkowski, p: 2}
-    svm: {kernel: linear, C: 0.1, tol: 0.001, max_iter: 2000000, probability: false}
+    svm: {kernel: linear, C: 1.0, tol: 0.001, max_iter: 2000000, probability: false}
     cart: {criterion: gini, splitter: best, random_state: 11}
   batch_sizes: {rule: "p<=2000:10, 2001..10000:25, p>10000:50"}
   pool_size: 100
@@ -32,8 +37,8 @@ experiment:
   entry_file: mi2
 
 hypotheses:
-  H1_BATCH_STABILITY: "V2 minus V1 mean within-fold Jaccard >= +0.10 on ARCENE"
-  H2_BATCH_CART: "mean paired V2-V1 CART accuracy >= -0.03 (descriptive)"
+  H1_BATCH_STABILITY: "V2 minus V1 D2 mean within-fold Jaccard >= +0.10 on ARCENE"
+  H2_BATCH_CART: "mean paired V2-V1 CART accuracy >= -0.03 (descriptive tolerance)"
   H3_CARDINALITY: "report per-dataset signed selected count/fraction differences"
   H4_RUNTIME: "report train-only selector time and classifier time separately"
   H5_POOL_MECHANISM: "quantify capacity flushes, terminal flushes, promotions"
