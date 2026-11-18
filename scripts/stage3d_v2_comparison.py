@@ -275,23 +275,46 @@ def cmd_smoke(args) -> int:
     bs, _, _ = make_discrete_batch_v2(ytr)
     i = 0
     t0 = time.perf_counter()
+    delivered: list[int] = []
     while i < len(flat):
         chunk = [int(j) for j in flat[i:i + B]]
         cols = [Xtr[:, j].copy() for j in chunk]
         bs.consume_batch(chunk, cols)
+        delivered.extend(chunk)
         i += B
     bs.finalize_stream()
     sel_seconds = time.perf_counter() - t0
     sel_ids = [int(v) for v in bs.candidates.feature_ids()]
 
-    # KNN held-out classification on selected features
-    if sel_ids:
-        knn = KNeighborsClassifier(n_neighbors=5, weights="uniform", metric="minkowski", p=2)
-        knn.fit(Xtr[:, sel_ids], ytr)
-        acc = float(np.mean(knn.predict(Xte[:, sel_ids]) == yte))
-    else:
-        acc = None
+    # validate mapping: every scheduled feature delivered exactly once
+    smoke_ok = True
+    blockers = []
+    if sorted(delivered) != list(range(X.shape[1])):
+        smoke_ok = False
+        blockers.append(f"MADELON mapping: coverage {len(delivered)}/{X.shape[1]}")
+    if len(set(delivered)) != len(delivered):
+        smoke_ok = False
+        blockers.append("MADELON mapping: duplicate delivered IDs")
+    if not sel_ids:
+        smoke_ok = False
+        blockers.append("MADELON D2_V2 selected empty subset (valid outcome, but smoke needs a non-empty check)")
+    if not getattr(bs, "_finalized", False):
+        smoke_ok = False
+        blockers.append("MADELON D2_V2 not finalized")
 
+    # KNN held-out classification on selected features
+    acc = None
+    if sel_ids and smoke_ok:
+        knn = KNeighborsClassifier(n_neighbors=5, weights="uniform", metric="minkowski", p=2)
+        try:
+            knn.fit(Xtr[:, sel_ids], ytr)
+            acc = float(np.mean(knn.predict(Xte[:, sel_ids]) == yte))
+            if not np.isfinite(acc):
+                smoke_ok = False
+                blockers.append("MADELON KNN accuracy not finite")
+        except Exception as exc:
+            smoke_ok = False
+            blockers.append(f"MADELON KNN fit/predict failed: {exc}")
     results = {"MADELON_D2_V2": {
         "n_selected": len(sel_ids), "finalized": getattr(bs, "_finalized", False),
         "selection_seconds": round(sel_seconds, 4),
@@ -316,14 +339,28 @@ def cmd_smoke(args) -> int:
     for arm, use_ev in (("C2_V2", False), ("C4_V2", True)):
         bs2, _, _ = make_continuous_batch_v2(labels_s, use_evidence=use_ev)
         j = 0
+        delivered_s: list[int] = []
         while j < len(flat_s):
             chunk = [int(f) for f in flat_s[j:j + B_s]]
             cols = [Xtr_s[:, f].copy() for f in chunk]
             bs2.consume_batch(chunk, cols)
+            delivered_s.extend(chunk)
             j += B_s
         bs2.finalize_stream()
+        if sorted(delivered_s) != list(range(Xs.shape[1])):
+            smoke_ok = False
+            blockers.append(f"SRBCT {arm}: coverage {len(delivered_s)}/{Xs.shape[1]}")
+        if not getattr(bs2, "_finalized", False):
+            smoke_ok = False
+            blockers.append(f"SRBCT {arm}: not finalized")
         results[f"SRBCT_{arm}"] = {"n_selected": len(bs2.candidates.feature_ids()),
                                    "finalized": getattr(bs2, "_finalized", False)}
+
+    if not smoke_ok:
+        write_once(run_dir / "SMOKE_BLOCKED.json",
+                   {"status": "BLOCKED", "blockers": blockers, "results": results, "utc": utcnow()})
+        print(f"  smoke BLOCKED: {blockers}")
+        return 1
 
     write_once(run_dir / "SMOKE_PASS.json",
                {"status": "PASS", "results": results, "utc": utcnow()})
@@ -424,6 +461,7 @@ def cmd_evaluate(args) -> int:
             "run_id": args.run_id, "key": key,
             "dataset": d, "seed": s, "fold": f, "arm": a,
             "method_version": "batch_score_shared_v2",
+            "n_features_total": int(X.shape[1]),
             "n_selected": len(bs.candidates.feature_ids()),
             "selected_feature_ids": [int(v) for v in bs.candidates.feature_ids()],
             "n_batches": bs.state.n_batches,
@@ -521,6 +559,16 @@ def cmd_classify(args) -> int:
     for key in expected_clf:
         rec_path = clf_dir / f"{key}.json"
         if rec_path.exists():
+            # validate existing record before skipping
+            try:
+                existing = json.loads(rec_path.read_text())
+            except json.JSONDecodeError:
+                raise SystemExit(f"CORRUPT_RECORD: {key} is not valid JSON")
+            if (existing.get("record_id") != key
+                    or existing.get("method_version") != "batch_score_shared_v2"
+                    or existing.get("status") not in ("COMPLETED", "EMPTY_SELECTION", "FIT_ERROR")
+                    or existing.get("classifier") not in ("knn", "svm", "cart")):
+                raise SystemExit(f"STALE_CACHE: {key} fails integrity checks")
             done += 1
             continue
         sel_key, clf_name = key.rsplit("__", 1)

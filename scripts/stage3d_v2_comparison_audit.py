@@ -50,8 +50,16 @@ def jaccard(a: set, b: set) -> float:
 ARM_MAP = {"D2_V2": "D2", "D2_V2_pilot": "D2", "C2_V2": "C2", "C4_V2": "C4"}
 
 
-def split_record(record_id: str):
-    """(dataset, arm, seed, fold, classifier) from a record key, or None."""
+def split_selection_key(record_id: str):
+    """(dataset, arm, seed, fold) from a V2 selection key, or None."""
+    m = re.search(r"^(.+)_seed(\d+)_fold(\d+)__(.+)$", record_id)
+    if not m:
+        return None
+    return m.group(1), m.group(4), int(m.group(2)), int(m.group(3))
+
+
+def split_classifier_key(record_id: str):
+    """(dataset, arm, seed, fold, classifier) from a classifier key, or None."""
     if "__" not in record_id:
         return None
     sel_part, clf = record_id.rsplit("__", 1)
@@ -82,7 +90,7 @@ def build_paired_cart(v2_clf, v1_clf) -> tuple[list[dict], list[dict], list[str]
     for c1 in v1_clf:
         if c1.get("classifier") != "cart":
             continue
-        parsed = split_record(c1["record_id"])
+        parsed = split_classifier_key(c1["record_id"])
         if parsed is None:
             continue
         ds, arm, seed, fold, _ = parsed
@@ -94,7 +102,7 @@ def build_paired_cart(v2_clf, v1_clf) -> tuple[list[dict], list[dict], list[str]
     for c2 in v2_clf:
         if c2.get("classifier") != "cart" or c2.get("accuracy") is None:
             continue
-        parsed = split_record(c2["record_id"])
+        parsed = split_classifier_key(c2["record_id"])
         if parsed is None:
             continue
         ds, arm, seed, fold, _ = parsed
@@ -203,14 +211,14 @@ def main() -> int:
     v1_batch_keys = set(v1_sel_by_key.keys())
     v1_batch_clf_keys = set()
     for c in v1_clf:
-        _p = split_record(c["record_id"])
+        _p = split_classifier_key(c["record_id"])
         if _p is not None and _p[1] in ("D2", "C2", "C4"):
             v1_batch_clf_keys.add(c["record_id"])
     e3 = {"outcome": "PASS" if (len(v1_batch_keys) >= 230
                                 and len(v1_batch_clf_keys) >= 690) else "FAIL",
           "measured": (f"V1 batch-arm selections={len(v1_batch_keys)} (need >=230); "
                        f"V1 batch-arm classifiers={len(v1_batch_clf_keys)} (need >=690); "
-                       f"arms={sorted({a for _, a, _, _, _ in map(split_record, v1_batch_keys)})}")}
+                       f"arms={sorted({split_selection_key(k)[1] for k in v1_batch_keys if split_selection_key(k) is not None})}")}
 
     # ---- E4: mapping (feature IDs in range) --------------------------
     # Use the dataset's TRUE dimensionality. A missing n_features_total must
