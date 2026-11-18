@@ -141,7 +141,18 @@ def cmd_prepare(args) -> int:
     # V1 batch-arm keys that match V2 canonical arms
     v1_batch_keys = {f"{r['dataset']}_seed{r['seed']}_fold{r['fold']}__{r['arm']}"
                      for r in v1_sel if r["arm"] in ("D2", "C2", "C4")}
-    v1_clf_keys = {c["record_id"] for c in v1_clf}
+    # Exact arm mapping for the classifier join: D2_V2->D2, D2_V2_pilot->D2,
+    # C2_V2->C2, C4_V2->C4. Never a naive replace.
+    _v2_to_v1_arm = {"D2_V2": "D2", "D2_V2_pilot": "D2", "C2_V2": "C2", "C4_V2": "C4"}
+    v1_batch_clf_keys = set()
+    for c in v1_clf:
+        _p = None
+        if "__" in c["record_id"]:
+            _sel, _clf = c["record_id"].rsplit("__", 1)
+            if "__" in _sel:
+                _head, _arm = _sel.rsplit("__", 1)
+                if _arm in ("D2", "C2", "C4"):
+                    v1_batch_clf_keys.add(c["record_id"])
 
     write_once(run_dir / "closure_hashes.json", closure)
     write_once(run_dir / "comparison_key_manifest.json", {
@@ -152,11 +163,11 @@ def cmd_prepare(args) -> int:
         "v1_run_id": "20261102T042840Z",
         "v1_n_selections": len(v1_sel), "v1_n_classifiers": len(v1_clf),
         "v1_batch_arm_selection_keys": sorted(v1_batch_keys),
-        "v1_batch_arm_classifier_keys": sorted(v1_clf_keys),
+        "v1_batch_arm_classifier_keys": sorted(v1_batch_clf_keys),
         "v1_batch_arm_count": len(v1_batch_keys),
-        "v1_classifier_count": len(v1_clf_keys),
+        "v1_batch_arm_classifier_count": len(v1_batch_clf_keys),
         "control_evidence_status": ("AVAILABLE" if len(v1_batch_keys) >= 230
-                                    and len(v1_clf_keys) >= 690
+                                    and len(v1_batch_clf_keys) >= 690
                                     else "CONTROL_EVIDENCE_BLOCKED"),
     })
     write_once(run_dir / "PREFLIGHT.json", {
@@ -326,6 +337,18 @@ def cmd_evaluate(args) -> int:
     if not args.authorize_full_evaluation:
         raise SystemExit("REFUSED: --authorize-full-evaluation is required")
     run_dir = run_id_dir(args.run_id)
+    # D: evaluation is gated on BOTH the preflight and the smoke pass.
+    pp = run_dir / "PREFLIGHT_PASS.json"
+    sp = run_dir / "SMOKE_PASS.json"
+    if not pp.exists() or not sp.exists():
+        raise SystemExit("REFUSED: PREFLIGHT_PASS.json and SMOKE_PASS.json must both exist "
+                         "(run preflight, then smoke)")
+    for label, path in (("preflight", pp), ("smoke", sp)):
+        try:
+            if json.loads(path.read_text()).get("status") != "PASS":
+                raise SystemExit(f"REFUSED: {label} did not pass")
+        except json.JSONDecodeError:
+            raise SystemExit(f"REFUSED: {label} file is corrupt")
     frozen = load_frozen(args.run_id)
     manifest = json.loads((run_dir / "comparison_key_manifest.json").read_text())
     expected_sel = manifest["selection_keys"]
@@ -347,17 +370,22 @@ def cmd_evaluate(args) -> int:
     done = 0
     for key in expected_sel:
         rec_path = ledger_dir / f"{key}.json"
-        if rec_path.exists() and not args.resume:
-            # verify existing record integrity
+        if rec_path.exists():
+            # D: resume must VERIFY the existing record, never blindly skip it.
             try:
-                rec = json.loads(rec_path.read_text())
-                if rec.get("method_version") != "batch_score_shared_v2":
-                    raise SystemExit(f"STALE_CACHE: {key} has wrong method_version")
-                done += 1
-                continue
+                existing = json.loads(rec_path.read_text())
             except json.JSONDecodeError:
-                raise SystemExit(f"CORRUPT_RECORD: {key}")  # noqa: B904
-        elif rec_path.exists() and args.resume:
+                raise SystemExit(f"CORRUPT_RECORD: {key} is not valid JSON; refusing to resume")
+            if (existing.get("key") != key
+                    or existing.get("method_version") != "batch_score_shared_v2"
+                    or existing.get("finalized") is not True
+                    or not existing.get("split_train_sha256")
+                    or not existing.get("schedule_hash")):
+                raise SystemExit(f"STALE_CACHE: {key} fails integrity checks; "
+                                 "start a NEW run ID rather than resuming")
+            ids = existing.get("selected_feature_ids") or []
+            if len(set(ids)) != len(ids):
+                raise SystemExit(f"CORRUPT_RECORD: {key} has duplicate selected IDs")
             done += 1
             continue
 
@@ -423,6 +451,17 @@ def cmd_classify(args) -> int:
     if not args.authorize_classification:
         raise SystemExit("REFUSED: --authorize-classification is required")
     run_dir = run_id_dir(args.run_id)
+    # D: classification is gated on BOTH the preflight and the smoke pass.
+    pp = run_dir / "PREFLIGHT_PASS.json"
+    sp = run_dir / "SMOKE_PASS.json"
+    if not pp.exists() or not sp.exists():
+        raise SystemExit("REFUSED: PREFLIGHT_PASS.json and SMOKE_PASS.json must both exist")
+    for label, path in (("preflight", pp), ("smoke", sp)):
+        try:
+            if json.loads(path.read_text()).get("status") != "PASS":
+                raise SystemExit(f"REFUSED: {label} did not pass")
+        except json.JSONDecodeError:
+            raise SystemExit(f"REFUSED: {label} file is corrupt")
     frozen = load_frozen(args.run_id)
     manifest = json.loads((run_dir / "comparison_key_manifest.json").read_text())
     expected_clf = manifest["classifier_keys"]
@@ -430,12 +469,34 @@ def cmd_classify(args) -> int:
     clf_dir = run_dir / "classification_records"
     clf_dir.mkdir(exist_ok=True)
 
-    # verify all 230 selections exist
+    # verify all 230 selections exist AND are valid before classifying
     sel_keys = {p.stem for p in sorted(sel_dir.glob("*.json"))}
     expected_sel = set(manifest["selection_keys"])
     missing = expected_sel - sel_keys
+    extra = sel_keys - expected_sel
     if missing:
         raise SystemExit(f"REFUSED: {len(missing)} selection records missing, e.g. {sorted(missing)[:5]}")
+    if extra:
+        raise SystemExit(f"REFUSED: {len(extra)} unexpected selection records, e.g. {sorted(extra)[:5]}")
+
+    # validate every selection record before trusting it
+    for key in sorted(expected_sel):
+        p = sel_dir / f"{key}.json"
+        try:
+            r = json.loads(p.read_text())
+        except json.JSONDecodeError:
+            raise SystemExit(f"CORRUPT_RECORD: {key}")
+        if (r.get("key") != key
+                or r.get("method_version") != "batch_score_shared_v2"
+                or r.get("finalized") is not True
+                or not r.get("split_train_sha256")
+                or not r.get("schedule_hash")):
+            raise SystemExit(f"STALE_CACHE: {key} fails integrity checks")
+        ids = r.get("selected_feature_ids") or []
+        if len(set(ids)) != len(ids):
+            raise SystemExit(f"CORRUPT_RECORD: {key} has duplicate selected IDs")
+        if any((not isinstance(i, int)) or i < 0 or i >= 10**9 for i in ids):
+            raise SystemExit(f"CORRUPT_RECORD: {key} has an out-of-range ID")
 
     import time
 
@@ -484,29 +545,48 @@ def cmd_classify(args) -> int:
             est = build(clf_name)
             t0 = time.perf_counter()
             try:
-                est.fit(Xtr, ytr)
+                # SINGLE fit: capture convergence warnings around the one and
+                # only .fit(), never re-fitting the same task a second time.
+                import warnings as _w
+                with _w.catch_warnings(record=True) as caught:
+                    _w.simplefilter("always")
+                    est.fit(Xtr, ytr)
                 yhat = est.predict(Xte)
                 n_test = len(yte)
                 n_correct = int(np.sum(yhat == yte))
-                rec = {"record_id": key, "classifier": clf_name, "status": "COMPLETED",
-                       "accuracy": n_correct / n_test if n_test else None,
-                       "balanced_accuracy": float(balanced_accuracy_score(yte, yhat)),
-                       "n_correct": n_correct, "n_test": n_test,
-                       "n_selected": len(sel_ids),
-                       "converged": True, "seconds": round(time.perf_counter() - t0, 4)}
+                early = [str(w.message) for w in caught
+                         if "Convergence" in str(w.message)
+                         or "terminated early" in str(w.message)]
+                n_iter_vec = None
                 if clf_name == "svm":
-                    import warnings as _w
-                    with _w.catch_warnings(record=True) as caught:
-                        _w.simplefilter("always")
-                        est2 = build(clf_name)
-                        est2.fit(Xtr, ytr)
-                    if any("Convergence" in str(w.message) for w in caught):
-                        rec["converged"] = False
+                    ni = getattr(est, "n_iter_", None)
+                    n_iter_vec = [int(v) for v in np.ravel(ni)] if ni is not None else None
+                rec = {
+                    "record_id": key, "classifier": clf_name, "status": "COMPLETED",
+                    "dataset": d, "seed": s, "fold": f, "arm": sel_rec["arm"],
+                    "method_version": "batch_score_shared_v2",
+                    "accuracy": n_correct / n_test if n_test else None,
+                    "balanced_accuracy": float(balanced_accuracy_score(yte, yhat)),
+                    "n_correct": n_correct, "n_test": n_test,
+                    "n_selected": len(sel_ids),
+                    "converged": not bool(early),
+                    "early_termination_warnings": early,
+                    "n_iter_vector": n_iter_vec,
+                    "estimator_params": {k: (v if isinstance(v, (int, float, str, bool, type(None))) else str(v))
+                                         for k, v in sorted(est.get_params(deep=False).items())},
+                    "fit_seconds": round(time.perf_counter() - t0, 4),
+                    "subset_ids_sha256": hashlib.sha256(
+                        json.dumps([int(x) for x in sel_ids], sort_keys=True).encode()).hexdigest(),
+                    "split_train_sha256": sel_rec.get("split_train_sha256"),
+                    "schedule_hash": sel_rec.get("schedule_hash"),
+                }
             except Exception as exc:
                 rec = {"record_id": key, "classifier": clf_name, "status": "FIT_ERROR",
+                       "dataset": d, "seed": s, "fold": f, "arm": sel_rec["arm"],
+                       "method_version": "batch_score_shared_v2",
                        "accuracy": None, "balanced_accuracy": None,
                        "n_test": len(te), "n_correct": None, "n_selected": len(sel_ids),
-                       "error": f"{type(exc).__name__}: {exc}"}
+                       "converged": None, "error": f"{type(exc).__name__}: {exc}"}
         tmp = rec_path.with_suffix(".partial")
         tmp.write_text(json.dumps(rec, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         os.replace(tmp, rec_path)

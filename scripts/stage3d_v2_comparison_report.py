@@ -55,11 +55,23 @@ def main() -> int:
     by_clf = {}
     for c in v2_clf:
         ds = c.get("dataset") or c["record_id"].split("_seed")[0]
+        # V2 arm must stay distinct: C2 and C4 are different arms.
+        arm = c.get("arm")
+        if arm is None and "__" in c["record_id"]:
+            arm = c["record_id"].rsplit("__", 2)[1] if c["record_id"].count("__") >= 2 else "?"
         cn = c["classifier"]
         acc = c.get("accuracy")
         if acc is not None:
-            by_clf.setdefault((ds, cn), []).append(acc)
-    clf_rows = [(k[0], k[1], len(v), round(float(np.mean(v)), 4)) for k, v in sorted(by_clf.items())]
+            by_clf.setdefault((ds, arm, cn), []).append(acc)
+    clf_rows = [(k[0], k[1], k[2], len(v), round(float(np.mean(v)), 4))
+                for k, v in sorted(by_clf.items(), key=lambda kv: str(kv[0]))]
+    conv_counts = {}
+    for c in v2_clf:
+        cn = c["classifier"]
+        st = ("converged" if c.get("converged") is True
+              else "nonconverged" if c.get("converged") is False
+              else c.get("status", "other"))
+        conv_counts[f"{cn}:{st}"] = conv_counts.get(f"{cn}:{st}", 0) + 1
 
     lines = ["# Stage 3D V2 comparison report", "",
              f"Run `{run_id}` · generated {utcnow()} · audit verdict **{audit_verdict}**", "",
@@ -67,8 +79,12 @@ def main() -> int:
     lines += [f"- {k}: {v}" for k, v in sorted(hypotheses.items())]
     lines += ["", "## Selection summary", "", "| Dataset | Runs | Mean n_selected |", "|---|---|---|"]
     lines += [f"| {d} | {n} | {m} |" for d, n, m in ds_rows]
-    lines += ["", "## Classifier accuracy", "", "| Dataset | Classifier | N | Mean accuracy |", "|---|---|---|---|"]
-    lines += [f"| {d} | {c} | {n} | {m} |" for d, c, n, m in clf_rows]
+    lines += ["", "## Classifier accuracy (dataset × V2 arm × classifier)", "",
+              "| Dataset | V2 arm | Classifier | N | Mean accuracy |", "|---|---|---|---|---|"]
+    lines += [f"| {d} | {a} | {c} | {n} | {m} |" for d, a, c, n, m in clf_rows]
+    lines += ["", "## Convergence", "", "| Classifier | Status | Count |", "|---|---|---|"]
+    lines += [f"| {k.split(':')[0]} | {k.split(':', 1)[1]} | {v} |"
+              for k, v in sorted(conv_counts.items())]
     has_clf = bool(v2_clf)
     lines += ["", "## Limitations", ""]
     lines.append("**V2_PERFORMANCE_MEASURED** — classifier outcomes exist above." if has_clf

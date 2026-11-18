@@ -46,16 +46,33 @@ python scripts/stage3d_v2_comparison.py smoke --run-id "$RUN_ID"
 python scripts/stage3d_v2_comparison.py status --run-id "$RUN_ID"
 ```
 
-## Phase 5: evaluate
+## Phase 5: evaluate (230 selections) then classify (690 outcomes)
 
 ```bash
 python scripts/stage3d_v2_comparison.py evaluate \
   --run-id "$RUN_ID" --authorize-full-evaluation
+python scripts/stage3d_v2_comparison.py classify \
+  --run-id "$RUN_ID" --authorize-classification
 ```
 
-Resume: `--resume`
+Both refuse to run unless `PREFLIGHT_PASS.json` and `SMOKE_PASS.json` exist and
+say `PASS`. `classify` additionally refuses unless all 230 selection records
+exist, are unique, and pass integrity checks (key, method_version, finalized,
+split/schedule hashes, no duplicate IDs).
 
-## Phase 6: audit and report
+Resume an interrupted run of the SAME frozen run ID:
+
+```bash
+python scripts/stage3d_v2_comparison.py evaluate \
+  --run-id "$RUN_ID" --authorize-full-evaluation --resume
+python scripts/stage3d_v2_comparison.py classify \
+  --run-id "$RUN_ID" --authorize-classification --resume
+```
+
+A corrupt or stale existing record aborts with `CORRUPT_RECORD` /
+`STALE_CACHE`; start a NEW `RUN_ID` instead.
+
+## Phase 6: audit and report (independent)
 
 ```bash
 python scripts/stage3d_v2_comparison_audit.py --run-id "$RUN_ID"
@@ -63,16 +80,32 @@ python scripts/stage3d_v2_comparison_report.py --run-id "$RUN_ID"
 python scripts/stage3d_v2_comparison.py status --run-id "$RUN_ID"
 ```
 
-## Common blockers
+## HARD STOP CONDITIONS
 
-| Blocker | Fix |
-|---|---|
-| preflight exit 1 | Fix the test/lint failure |
-| V1 comparator BLOCKED | Check `$RESEARCH_OUTPUT_ROOT/.../stage3d/20261102T042840Z/raw_records/` |
-| evaluate REFUSED | Add `--authorize-full-evaluation` |
-| prepare aborts | Choose a new RUN_ID |
+Do not continue past a failing step:
+- pytest or ruff exit nonzero → fix before `preflight`.
+- `preflight` exits 1 → see `PREFLIGHT_BLOCKED.json`.
+- `smoke` fails → see the smoke error.
+- `evaluate`/`classify` prints `REFUSED` → a prerequisite is missing.
+- `CORRUPT_RECORD` / `STALE_CACHE` → use a new `RUN_ID`.
+- `CONTROL_EVIDENCE_BLOCKED` → the V1 comparator raw records are missing.
 
 ## Interpreting outcomes
 
-**`V2_PERFORMANCE_NOT_MEASURED`** — this pipeline presents operational integrity
-and descriptive comparisons only.
+- **Operational verdict** (`gate_results.json`): `COMPARISON_EVIDENCE_PASS` /
+  `PARTIAL` — did the pipeline run correctly?
+- **Scientific hypotheses** (`independent_recompute.json`): `SUPPORTED` /
+  `NOT_SUPPORTED` / `NOT_MEASURED`. A negative result is valid.
+- **Report**: `V2_PERFORMANCE_MEASURED` only when valid held-out classifier
+  records exist; otherwise `V2_PERFORMANCE_NOT_MEASURED`.
+
+## Scientific caveats
+
+- V1's premature batch-pool flush may have affected V1 results; V2 differs only
+  in pool lifetime.
+- The authors' private Fisher-Z helper is not reproduced.
+- Fisher-Z p-values on categorical indicators are Gaussian-reference
+  approximations, not exact finite-sample tests.
+- Mean CART tolerance ≥ −0.03 is a descriptive criterion, not statistical
+  proof of noninferiority.
+- Runtime is not hardware-comparable across V1 and V2.

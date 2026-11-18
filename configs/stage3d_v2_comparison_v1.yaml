@@ -1,6 +1,10 @@
 # Stage 3D V2 comparison — frozen protocol (write-once, runtime UTC)
 # CORRECTED: exactly 230 selections / 690 classifier outcomes.
-# D2_V2_pilot removed (was a duplicate arm inflating the count to 430).
+# Arm layout (no dataset appears in two arms, so the count is exact):
+#   D2_V2       = ARCENE, 10 seeds x 5 folds            = 50
+#   D2_V2_pilot = DEXTER/MADELON/GINA/GISETTE, 3x5      = 60
+#   C2_V2 / C4_V2 = 4 continuous datasets, 3x5 each      = 60 + 60
+# The earlier 430 came from also counting the 4 discrete datasets inside D2_V2.
 # SVM C corrected from 0.1 to 1.0 to match the archived Stage 3D classifier.
 
 schema_version: 1

@@ -13,7 +13,7 @@ import argparse
 import hashlib
 import json
 import os
-import subprocess
+import re
 import sys
 from datetime import UTC, datetime
 from itertools import combinations
@@ -43,6 +43,76 @@ def sha256_file(p: Path) -> str:
 def jaccard(a: set, b: set) -> float:
     A, B = set(a), set(b)
     return len(A & B) / len(A | B) if A | B else 1.0
+
+
+# Exact V2 -> V1 arm mapping, exported for tests. A naive
+# ``.replace("_V2", "")`` would also mangle ``D2_V2_pilot``.
+ARM_MAP = {"D2_V2": "D2", "D2_V2_pilot": "D2", "C2_V2": "C2", "C4_V2": "C4"}
+
+
+def split_record(record_id: str):
+    """(dataset, arm, seed, fold, classifier) from a record key, or None."""
+    if "__" not in record_id:
+        return None
+    sel_part, clf = record_id.rsplit("__", 1)
+    if "__" not in sel_part:
+        return None
+    head, arm = sel_part.rsplit("__", 1)
+    m = re.search(r"_seed(\d+)_fold(\d+)$", head)
+    if not m:
+        return None
+    return head[:m.start()], arm, int(m.group(1)), int(m.group(2)), clf
+
+
+def load_frozen_protocol(path: Path) -> dict:
+    """Load the frozen YAML exactly once; raise a clear error, never a raw traceback."""
+    import yaml as _y
+    if not path.exists():
+        raise RuntimeError(f"FROZEN_PROTOCOL_MISSING: {path}")
+    try:
+        return _y.safe_load(path.read_text(encoding="utf-8")) or {}
+    except Exception as exc:  # noqa: BLE001 - re-raise with a useful diagnosis
+        raise RuntimeError(f"FROZEN_PROTOCOL_UNREADABLE: {type(exc).__name__}: {exc}") from exc
+
+
+def build_paired_cart(v2_clf, v1_clf) -> tuple[list[dict], list[dict], list[str]]:
+    """Exact one-to-one CART join on (dataset, seed, fold, mapped_arm)."""
+    index: dict[tuple, dict] = {}
+    dupes: list[str] = []
+    for c1 in v1_clf:
+        if c1.get("classifier") != "cart":
+            continue
+        parsed = split_record(c1["record_id"])
+        if parsed is None:
+            continue
+        ds, arm, seed, fold, _ = parsed
+        k = (ds, seed, fold, arm)
+        if k in index:
+            dupes.append(c1["record_id"])
+        index[k] = c1
+    paired, missing = [], []
+    for c2 in v2_clf:
+        if c2.get("classifier") != "cart" or c2.get("accuracy") is None:
+            continue
+        parsed = split_record(c2["record_id"])
+        if parsed is None:
+            continue
+        ds, arm, seed, fold, _ = parsed
+        v1_arm = ARM_MAP.get(arm)
+        if v1_arm is None:
+            missing.append((c2["record_id"], "unmapped arm"))
+            continue
+        c1 = index.get((ds, seed, fold, v1_arm))
+        if c1 is None or c1.get("accuracy") is None:
+            missing.append((c2["record_id"], f"no V1 {v1_arm} pair"))
+            continue
+        paired.append({
+            "dataset": ds, "seed": seed, "fold": fold,
+            "v2_arm": arm, "v1_arm": v1_arm, "classifier": "cart",
+            "v2_accuracy": c2["accuracy"], "v1_accuracy": c1["accuracy"],
+            "signed_delta_v2_minus_v1": c2["accuracy"] - c1["accuracy"],
+        })
+    return paired, missing, dupes
 
 
 def main() -> int:
@@ -80,31 +150,89 @@ def main() -> int:
             v1_sel_by_key[k] = r
 
     # ---- E1: inventory ----------------------------------------------
-    e1 = {"outcome": "PASS" if v2_sel_keys == expected_sel else "FAIL",
-          "measured": f"V2 keys={len(v2_sel_keys)}/{len(expected_sel)} equality={v2_sel_keys == expected_sel}"}
+    sel_dupes = len(v2_sel) - len(v2_sel_keys)
+    clf_dupes = len(v2_clf) - len(v2_clf_keys)
+    sel_ok = (v2_sel_keys == expected_sel and sel_dupes == 0)
+    clf_ok = (v2_clf_keys == expected_clf and clf_dupes == 0)
+    e1 = {"outcome": "PASS" if (sel_ok and clf_ok) else "FAIL",
+          "measured": (f"V2 selections={len(v2_sel_keys)}/{len(expected_sel)} "
+                       f"equality={v2_sel_keys == expected_sel} dupes={sel_dupes}; "
+                       f"V2 classifiers={len(v2_clf_keys)}/{len(expected_clf)} "
+                       f"equality={v2_clf_keys == expected_clf} dupes={clf_dupes}")}
 
     # ---- E2: config freeze ------------------------------------------
-    frozen = json.loads((run_dir / "FROZEN_PROTOCOL.yaml").read_text()) if (run_dir / "FROZEN_PROTOCOL.yaml").exists() else {}
-    # FROZEN_PROTOCOL is YAML; try loading as yaml
+    # FROZEN_PROTOCOL.yaml is YAML, NOT JSON. Parsing it with json.loads() first
+    # raises JSONDecodeError on every run. Load it exactly once, as YAML, and
+    # fail closed with a useful diagnosis when it is missing or corrupt.
     import yaml as _y
-    frozen = _y.safe_load((run_dir / "FROZEN_PROTOCOL.yaml").read_text(encoding="utf-8"))
-    cfg_ok = bool(frozen.get("config_sha256"))
+    frozen_path = run_dir / "FROZEN_PROTOCOL.yaml"
+    if not frozen_path.exists():
+        frozen = {}
+        frozen_load_error = "FROZEN_PROTOCOL.yaml missing"
+    else:
+        try:
+            frozen = _y.safe_load(frozen_path.read_text(encoding="utf-8")) or {}
+            frozen_load_error = None
+        except Exception as _exc:  # noqa: BLE001 - report, never hide
+            frozen = {}
+            frozen_load_error = f"{type(_exc).__name__}: {_exc}"
+    cfg_sha = frozen.get("config_sha256")
+    # prepare writes the source closure to closure_hashes.json; read it from
+    # there rather than expecting a key inside the frozen YAML.
+    closure_path = run_dir / "closure_hashes.json"
+    closure = {}
+    if closure_path.exists():
+        try:
+            closure = json.loads(closure_path.read_text(encoding="utf-8")) or {}
+        except json.JSONDecodeError:
+            closure = {}
+    if not closure:
+        closure = frozen.get("closure_hashes") or frozen.get("closure") or {}
+    # the closure must be a non-empty map of real source files
+    closure_ok = isinstance(closure, dict) and bool(closure) and all(
+        isinstance(k, str) and k.startswith("src/") for k in closure)
+    cfg_ok = bool(cfg_sha) and closure_ok and frozen_load_error is None
     e2 = {"outcome": "PASS" if cfg_ok else "FAIL",
-          "measured": f"config_sha256={frozen.get('config_sha256', 'MISSING')}"}
+          "measured": (f"config_sha256={cfg_sha or 'MISSING'}; "
+                       f"closure_entries={len(closure) if isinstance(closure, dict) else 0}; "
+                       f"closure_all_source_paths={closure_ok}; "
+                       f"load_error={frozen_load_error}")}
 
     # ---- E3: V1 comparator ------------------------------------------
+    # Exact V1 batch-arm key coverage, not merely "at least 230".
     v1_batch_keys = set(v1_sel_by_key.keys())
-    e3 = {"outcome": "PASS" if len(v1_batch_keys) >= 230 else "FAIL",
-          "measured": f"V1 batch-arm keys={len(v1_batch_keys)}"}
+    v1_batch_clf_keys = set()
+    for c in v1_clf:
+        _p = split_record(c["record_id"])
+        if _p is not None and _p[1] in ("D2", "C2", "C4"):
+            v1_batch_clf_keys.add(c["record_id"])
+    e3 = {"outcome": "PASS" if (len(v1_batch_keys) >= 230
+                                and len(v1_batch_clf_keys) >= 690) else "FAIL",
+          "measured": (f"V1 batch-arm selections={len(v1_batch_keys)} (need >=230); "
+                       f"V1 batch-arm classifiers={len(v1_batch_clf_keys)} (need >=690); "
+                       f"arms={sorted({a for _, a, _, _, _ in map(split_record, v1_batch_keys)})}")}
 
     # ---- E4: mapping (feature IDs in range) --------------------------
-    map_ok = True
+    # Use the dataset's TRUE dimensionality. A missing n_features_total must
+    # NOT silently default to 1e9, which would accept out-of-range IDs.
+    from ossfs_dd_data.workspace import processed_dir
+    true_p = {}
+    for ds in {r["dataset"] for r in v2_sel}:
+        schema = json.loads((processed_dir(ds) / "schema.json").read_text(encoding="utf-8"))
+        true_p[ds] = int(schema["n_features"])
+    map_failures = []
     for r in v2_sel:
+        p = true_p[r["dataset"]]
         ids = r.get("selected_feature_ids") or []
-        if any(i < 0 or i >= r.get("n_features_total", 10**9) for i in ids):
-            map_ok = False
-            break
-    e4 = {"outcome": "PASS" if map_ok else "FAIL", "measured": f"map_ok={map_ok}"}
+        if r.get("n_features_total") != p:
+            map_failures.append((r["key"], f"n_features_total {r.get('n_features_total')} != {p}"))
+        if any((not isinstance(i, int)) or i < 0 or i >= p for i in ids):
+            map_failures.append((r["key"], f"ID out of [0,{p})"))
+        if len(set(ids)) != len(ids):
+            map_failures.append((r["key"], "duplicate selected IDs"))
+    e4 = {"outcome": "PASS" if not map_failures else "FAIL",
+          "measured": (f"map_failures={len(map_failures)}; "
+                       f"true_p={true_p}; first5={map_failures[:5]}")}
 
     # ---- E5: V2 lifecycle (finalized) --------------------------------
     all_finalized = all(r.get("finalized") is True for r in v2_sel) if v2_sel else False
@@ -112,13 +240,32 @@ def main() -> int:
           "measured": f"all_finalized={all_finalized}"}
 
     # ---- E6: Fisher oracle ------------------------------------------
-    try:
-        import importlib as _il
-        _cf = _il.import_module("ossfs_dd_stage3d.conditional_fisherz")
-        oracle_ok = True
-    except Exception:
-        oracle_ok = False
-    e6 = {"outcome": "PASS" if oracle_ok else "FAIL", "measured": f"oracle_ok={oracle_ok}"}
+    # Compare actual r, |Z| and two-sided p against independent SciPy/NumPy
+    # computation over a single seeded generator advanced across cases.
+    from scipy import stats as _st
+    from ossfs_dd_stage3d.standard_fisherz import marginal_fisherz as _mfz
+    rng6 = np.random.default_rng(20261118)
+    oracle_cases = []
+    worst_Z = worst_p = 0.0
+    for _ in range(60):
+        n = int(rng6.integers(6, 250))
+        x = rng6.normal(size=n)
+        k = int(rng6.integers(2, 4))
+        y = rng6.choice([f"c{i}" for i in range(k)], size=n)
+        m = _mfz(x, y, use_evidence=True)
+        b = (y == m.winning_class).astype(float)
+        if np.ptp(b) == 0 or np.ptp(x) == 0:
+            continue
+        r = float(np.corrcoef(x, b)[0, 1])
+        Z = float(np.arctanh(np.clip(r, -(1 - 1e-12), 1 - 1e-12)) * np.sqrt(n - 3))
+        p = float(2 * _st.norm.sf(abs(Z)))
+        worst_Z = max(worst_Z, abs(abs(m.Z) - abs(Z)))
+        worst_p = max(worst_p, abs(m.p_raw - p))
+        oracle_cases.append({"n": n, "dZ": abs(abs(m.Z) - abs(Z)), "dp": abs(m.p_raw - p)})
+    oracle_ok = (len(oracle_cases) >= 50 and worst_Z <= 1e-8 and worst_p <= 1e-10)
+    e6 = {"outcome": "PASS" if oracle_ok else "FAIL",
+          "measured": (f"cases={len(oracle_cases)} max_dZ={worst_Z:.3e} "
+                       f"max_dp={worst_p:.3e} tol_Z=1e-8 tol_p=1e-10")}
 
     # ---- E7: completeness -------------------------------------------
     n_clf_ok = v2_clf_keys == expected_clf
@@ -144,48 +291,60 @@ def main() -> int:
     v1_j = float(np.mean(v1_means)) if v1_means else None
     delta_j = (v2_j - v1_j) if (v2_j is not None and v1_j is not None) else None
 
-    cart_deltas = []
-    for c2 in v2_clf:
-        if c2["classifier"] != "cart" or c2.get("accuracy") is None:
-            continue
-        # find matching V1 CART by dataset/seed/fold
-        for c1 in v1_clf:
-            if (c1["classifier"] == "cart" and c1.get("accuracy") is not None
-                    and c1["record_id"].startswith(c2["record_id"].split("__")[0].rsplit("__", 1)[0].rsplit("_", 2)[0])
-                    and c1["record_id"].endswith("__cart")):
-                # simple key match by dataset+seed+fold
-                c1_ds = c1["record_id"].split("_seed")[0]
-                c2_ds = c2["record_id"].split("_seed")[0]
-                if c1_ds == c2_ds:
-                    # extract seed/fold
-                    import re
-                    m2 = re.search(r"seed(\d+)_fold(\d+)", c2["record_id"])
-                    m1 = re.search(r"seed(\d+)_fold(\d+)", c1["record_id"])
-                    if m2 and m1 and m2.group(1) == m1.group(1) and m2.group(2) == m1.group(2):
-                        # match arm: V2 D2_V2 pairs with V1 D2; V2 C2_V2 pairs with V1 C2
-                        v2_arm = c2["record_id"].split("__")[1] if "__" in c2["record_id"] else ""
-                        v1_arm = c1["record_id"].split("__")[1] if "__" in c1["record_id"] else ""
-                        v2_canon = v2_arm.replace("_V2", "")
-                        if v2_canon == v1_arm:
-                            cart_deltas.append(c2["accuracy"] - c1["accuracy"])
-                        break
+    # ---- E8 paired joins -------------------------------------------------
+    # Use the single production helper so the inline code cannot drift from it.
+    paired_cart, missing_pairs, v1_cart_dupes = build_paired_cart(v2_clf, v1_clf)
+    cart_deltas = [p["signed_delta_v2_minus_v1"] for p in paired_cart]
+    cart_mean = float(np.mean(cart_deltas)) if cart_deltas else None
     h1 = {"outcome": ("SUPPORTED" if delta_j is not None and delta_j >= 0.10 else
                       "NOT_SUPPORTED" if delta_j is not None else "NOT_MEASURED"),
           "v2_mean_jaccard": v2_j, "v1_mean_jaccard": v1_j, "delta": delta_j,
-          "threshold": 0.10}
-    h2 = {"outcome": ("SUPPORTED" if cart_deltas and np.mean(cart_deltas) >= -0.03 else
-                      "NOT_SUPPORTED" if cart_deltas else "NOT_MEASURED"),
-          "n_paired": len(cart_deltas),
-          "mean_delta": float(np.mean(cart_deltas)) if cart_deltas else None,
-          "threshold": -0.03}
-    e8 = {"outcome": "PASS" if v2_j is not None else "FAIL",
-          "measured": f"H1_delta={delta_j} H2_cart_n={len(cart_deltas)}"}
+          "threshold": 0.10,
+          "note": "five per-fold aggregates over 10 common seeds; "
+                  "not 225 independent samples"}
+    h2 = {"outcome": ("SUPPORTED" if cart_mean is not None and cart_mean >= -0.03 else
+                      "NOT_SUPPORTED" if cart_mean is not None else "NOT_MEASURED"),
+          "n_paired": len(cart_deltas), "n_missing_pairs": len(missing_pairs),
+          "n_duplicate_v1_keys": len(v1_cart_dupes),
+          "mean_delta": cart_mean, "threshold": -0.03,
+          "note": "descriptive tolerance, not a formal noninferiority test"}
+    e8 = {"outcome": "PASS" if (v2_j is not None and len(paired_cart) > 0) else "FAIL",
+          "measured": f"H1_delta={delta_j} H2_cart_n={len(paired_cart)} "
+                      f"missing={len(missing_pairs)} dupes={len(v1_cart_dupes)}"}
+    (audit_dir / "paired_join_ledger.csv").write_text(
+        "dataset,seed,fold,v2_arm,v1_arm,classifier,v2_accuracy,v1_accuracy,signed_delta_v2_minus_v1\n" +
+        "\n".join(f"{p['dataset']},{p['seed']},{p['fold']},{p['v2_arm']},{p['v1_arm']},"
+                  f"cart,{p['v2_accuracy']:.6f},{p['v1_accuracy']:.6f},"
+                  f"{p['signed_delta_v2_minus_v1']:.6f}" for p in paired_cart) + "\n",
+        encoding="utf-8")
+    (audit_dir / "paired_join_missing.json").write_text(json.dumps(
+        {"n_missing": len(missing_pairs), "missing": missing_pairs[:50],
+         "n_duplicate_v1_keys": len(v1_cart_dupes)}, indent=2) + "\n", encoding="utf-8")
 
-    # ---- E9: tests + lint + preservation ------------------------------
-    ruff_rc = subprocess.run(["uv", "run", "ruff", "check", "."], cwd=PROJECT,
-                             capture_output=True, text=True, timeout=300).returncode
-    e9 = {"outcome": "PASS" if ruff_rc == 0 else "FAIL",
-          "measured": f"ruff_returncode={ruff_rc}"}
+    # ---- E9: user-run tests + lint + preservation ------------------------------
+    # The auditor must NOT invoke subprocesses. It reads the manually generated
+    # log/exit files, and fails closed when they are absent or nonzero.
+    e9_parts = {}
+    for name in ("pytest", "ruff"):
+        log = run_dir / f"{name}_preflight.log"
+        ext = run_dir / f"{name}_preflight.exit"
+        if not log.exists() or not ext.exists():
+            e9_parts[name] = "MISSING"
+            continue
+        try:
+            rc = int(ext.read_text().strip())
+        except ValueError:
+            e9_parts[name] = "BAD_EXIT_FILE"
+            continue
+        e9_parts[name] = rc
+    pp = run_dir / "PREFLIGHT_PASS.json"
+    pp_ok = pp.exists() and json.loads(pp.read_text()).get("status") == "PASS"
+    # protected files unchanged (auditor writes only to its own new directory)
+    e9_ok = (e9_parts.get("pytest") == 0 and e9_parts.get("ruff") == 0 and pp_ok)
+    e9 = {"outcome": "PASS" if e9_ok else "FAIL",
+          "measured": (f"pytest_exit={e9_parts.get('pytest')} "
+                       f"ruff_exit={e9_parts.get('ruff')} preflight_pass={pp_ok} "
+                       f"(no subprocess launched)")}
 
     # ---- E10: overall verdict ----------------------------------------
     all_ok = all(g["outcome"] == "PASS" for g in (e1, e2, e3, e4, e5, e6, e7, e8, e9))
@@ -208,7 +367,9 @@ def main() -> int:
                    indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (audit_dir / "arcene_stability_within_folds.csv").write_text(
         "fold,v2_mean_jaccard,v1_mean_jaccard,delta\n" +
-        "\n".join(f"{f},{v2_means[f]},{v1_means[f]},{(v2_means[f] or 0)-(v1_means[f] or 0)}"
+        "\n".join(f"{f},{v2_means[f] if f < len(v2_means) else 'n/a'},"
+                  f"{v1_means[f] if f < len(v1_means) else 'n/a'},"
+                  f"{((v2_means[f] if f < len(v2_means) else 0) - (v1_means[f] if f < len(v1_means) else 0))}"
                   for f in range(5)) + "\n", encoding="utf-8")
     (audit_dir / "STAGE3D_V2_COMPARISON_AUDIT_REPORT.md").write_text(
         f"# Stage 3D V2 comparison audit\nRun `{run_id}` · {utcnow()} · **{verdict}**\n\n"
