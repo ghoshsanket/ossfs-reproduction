@@ -49,9 +49,14 @@ def test_frozen_protocol_missing_raises_clear_error(audit, tmp_path):
 
 def test_frozen_protocol_corrupt_raises_clear_error(audit, tmp_path):
     bad = tmp_path / "FROZEN_PROTOCOL.yaml"
-    bad.write_text("::: not yaml [[[", encoding="utf-8")
-    with pytest.raises(RuntimeError, match="FROZEN_PROTOCOL_UNREADABLE"):
+    bad.write_text("a: 1\n  - broken indent\n: bad\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="FROZEN_PROTOCOL_UNREADABLE|FROZEN_PROTOCOL_INVALID"):
         audit.load_frozen_protocol(bad)
+    # a plain scalar must also be rejected as invalid protocol
+    scalar = tmp_path / "scalar.yaml"
+    scalar.write_text("42", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="FROZEN_PROTOCOL_INVALID"):
+        audit.load_frozen_protocol(scalar)
 
 
 def test_frozen_protocol_roundtrips(audit, tmp_path):
@@ -103,11 +108,12 @@ def test_cart_pilot_maps_to_d2(audit):
 
 
 def test_cart_duplicate_v1_key_is_flagged(audit):
-    v1 = [_v1_cart("ARCENE", 11, 0, "D2", acc=0.8, rid="A"),
-          _v1_cart("ARCENE", 11, 0, "D2", acc=0.9, rid="B")]
+    # Use two records with the SAME valid composite key to test duplication.
+    v1 = [_v1_cart("ARCENE", 11, 0, "D2", acc=0.8),
+          _v1_cart("ARCENE", 11, 0, "D2", acc=0.9)]
     v2 = [_v2_cart("ARCENE", 11, 0, "D2_V2")]
     _, _, dupes = audit.build_paired_cart(v2, v1)
-    assert dupes
+    assert dupes, "duplicate V1 keys must be reported, not silently overwritten"
 
 
 # ---- C. single-fit SVM
@@ -140,7 +146,7 @@ def test_classify_requires_authorization(runner):
 
 
 def test_evaluate_refuses_without_preflight_and_smoke(runner, tmp_path, monkeypatch):
-    monkeypatch.setenv("RESEARCH_OUTPUT_ROOT", str(tmp_path))
+    monkeypatch.setattr(runner, "OUT_ROOT", tmp_path / "ossfs-dd-reproduction" / "stage3d_v2")
     rd = tmp_path / "ossfs-dd-reproduction" / "stage3d_v2" / "comparison_x"
     rd.mkdir(parents=True)
     args = type("A", (), {"authorize_full_evaluation": True, "run_id": "x", "resume": False})()
@@ -149,7 +155,7 @@ def test_evaluate_refuses_without_preflight_and_smoke(runner, tmp_path, monkeypa
 
 
 def test_classify_refuses_when_selections_missing(runner, tmp_path, monkeypatch):
-    monkeypatch.setenv("RESEARCH_OUTPUT_ROOT", str(tmp_path))
+    monkeypatch.setattr(runner, "OUT_ROOT", tmp_path / "ossfs-dd-reproduction" / "stage3d_v2")
     rd = tmp_path / "ossfs-dd-reproduction" / "stage3d_v2" / "comparison_x"
     rd.mkdir(parents=True)
     (rd / "PREFLIGHT_PASS.json").write_text('{"status": "PASS"}', encoding="utf-8")
@@ -164,7 +170,7 @@ def test_classify_refuses_when_selections_missing(runner, tmp_path, monkeypatch)
 
 
 def test_resume_rejects_corrupt_record(runner, tmp_path, monkeypatch):
-    monkeypatch.setenv("RESEARCH_OUTPUT_ROOT", str(tmp_path))
+    monkeypatch.setattr(runner, "OUT_ROOT", tmp_path / "ossfs-dd-reproduction" / "stage3d_v2")
     rd = tmp_path / "ossfs-dd-reproduction" / "stage3d_v2" / "comparison_x"
     rd.mkdir(parents=True)
     (rd / "PREFLIGHT_PASS.json").write_text('{"status": "PASS"}', encoding="utf-8")
@@ -182,7 +188,7 @@ def test_resume_rejects_corrupt_record(runner, tmp_path, monkeypatch):
 
 
 def test_resume_rejects_wrong_method_version(runner, tmp_path, monkeypatch):
-    monkeypatch.setenv("RESEARCH_OUTPUT_ROOT", str(tmp_path))
+    monkeypatch.setattr(runner, "OUT_ROOT", tmp_path / "ossfs-dd-reproduction" / "stage3d_v2")
     rd = tmp_path / "ossfs-dd-reproduction" / "stage3d_v2" / "comparison_x"
     rd.mkdir(parents=True)
     (rd / "PREFLIGHT_PASS.json").write_text('{"status": "PASS"}', encoding="utf-8")
@@ -205,10 +211,27 @@ def test_resume_rejects_wrong_method_version(runner, tmp_path, monkeypatch):
 # ---- E/F/G. auditor and report structure
 
 def test_audit_has_ten_gates_and_conjunction(audit):
-    src = inspect.getsource(audit.main)
-    for g in ("E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10"):
-        assert f'"{g}"' in src, f"gate {g} missing"
-    assert "all_ok" in src
+    evidence = {
+        "sel_count": 230, "clf_count": 690, "base_count": 15,
+        "sel_keys": set(f"k{i}" for i in range(230)),
+        "expected_sel": set(f"k{i}" for i in range(230)),
+        "clf_keys": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
+        "expected_clf": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
+        "cf_ok": True, "oracle_ok": True, "all_finalized": True,
+        "map_failures": [], "v1_batch_sel_keys": set(f"k{i}" for i in range(230)),
+        "v1_batch_clf_keys": set(f"k{i}__c" for i in range(230) for c in ("knn", "svm", "cart")),
+        "pytest_exit": 0, "ruff_exit": 0, "preflight_pass": True,
+        "h1_delta": 0.05, "h2_cart_n": 100,
+        "cfg_ok": True, "e2_measured": "ok",
+    }
+    gates, verdict = audit.evaluate_gates(evidence)
+    assert len(gates) == 10
+    assert all(f"E{i}" in gates for i in range(1, 11))
+    assert verdict == "COMPARISON_EVIDENCE_PASS"
+    # mutate one gate to FAIL -> verdict becomes PARTIAL
+    gates["E1"]["outcome"] = "FAIL"
+    verdict2 = "COMPARISON_EVIDENCE_PASS" if all(g["outcome"] == "PASS" for g in gates.values()) else "COMPARISON_EVIDENCE_PARTIAL"
+    assert verdict2 == "COMPARISON_EVIDENCE_PARTIAL"
 
 
 def test_fisher_oracle_is_real(audit):

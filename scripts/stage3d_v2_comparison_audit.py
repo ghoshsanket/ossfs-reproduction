@@ -40,9 +40,48 @@ def sha256_file(p: Path) -> str:
     return h.hexdigest()
 
 
-def jaccard(a: set, b: set) -> float:
-    A, B = set(a), set(b)
-    return len(A & B) / len(A | B) if A | B else 1.0
+def evaluate_gates(evidence: dict) -> tuple[dict, str]:
+    """Pure gate evaluation from an evidence dict. Used by the auditor and tests.
+
+    evidence keys (all required):
+      sel_count, clf_count, base_count, sel_keys, expected_sel, clf_keys, expected_clf,
+      cf_ok, oracle_ok, all_finalized, map_failures, v1_batch_sel_keys, v1_batch_clf_keys,
+      pytest_exit, ruff_exit, preflight_pass, protected_clean, forbidden_reads
+    """
+    e1 = {"outcome": "PASS" if (evidence["sel_keys"] == evidence["expected_sel"]
+                                 and evidence["sel_count"] == len(evidence["expected_sel"])
+                                 and len(evidence["sel_keys"]) == evidence["sel_count"])
+                          else "FAIL",
+          "measured": (f"V2 selections={evidence['sel_count']}/{len(evidence['expected_sel'])} "
+                       f"equality={evidence['sel_keys'] == evidence['expected_sel']}")}
+    e2 = {"outcome": "PASS" if evidence.get("cfg_ok", False) else "FAIL",
+          "measured": evidence.get("e2_measured", "")}
+    e3 = {"outcome": "PASS" if (len(evidence["v1_batch_sel_keys"]) >= 230
+                                 and len(evidence["v1_batch_clf_keys"]) >= 690) else "FAIL",
+          "measured": (f"V1 batch-arm selections={len(evidence['v1_batch_sel_keys'])} "
+                       f"classifiers={len(evidence['v1_batch_clf_keys'])}")}
+    e4 = {"outcome": "PASS" if not evidence.get("map_failures") else "FAIL",
+          "measured": f"map_failures={len(evidence.get('map_failures', []))}"}
+    e5 = {"outcome": "PASS" if evidence.get("all_finalized") else "FAIL",
+          "measured": f"all_finalized={evidence.get('all_finalized')}"}
+    e6 = {"outcome": "PASS" if evidence.get("oracle_ok") else "FAIL",
+          "measured": f"oracle_ok={evidence.get('oracle_ok')}"}
+    e7 = {"outcome": "PASS" if (evidence.get("clf_keys") == evidence.get("expected_clf")
+                                 and len(evidence.get("v2_clf", [])) >= 690) else "FAIL",
+          "measured": f"classifiers={len(evidence.get('v2_clf_keys', set()))}/{len(evidence.get('expected_clf', set()))}"}
+    e8 = {"outcome": "PASS" if evidence.get("h1_delta") is not None else "FAIL",
+          "measured": f"H1_delta={evidence.get('h1_delta')} H2_cart_n={evidence.get('h2_cart_n', 0)}"}
+    e9 = {"outcome": "PASS" if (evidence.get("pytest_exit") == 0
+                                 and evidence.get("ruff_exit") == 0
+                                 and evidence.get("preflight_pass") is True) else "FAIL",
+          "measured": (f"pytest_exit={evidence.get('pytest_exit')} "
+                       f"ruff_exit={evidence.get('ruff_exit')} preflight_pass={evidence.get('preflight_pass')}")}
+    all_ok = all(g["outcome"] == "PASS" for g in (e1, e2, e3, e4, e5, e6, e7, e8, e9))
+    e10 = {"outcome": "PASS" if all_ok else "FAIL", "measured": f"all_ok={all_ok}"}
+    gates = {f"E{i}": g for i, g in enumerate(
+        [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10], 1)}
+    verdict = "COMPARISON_EVIDENCE_PASS" if all_ok else "COMPARISON_EVIDENCE_PARTIAL"
+    return gates, verdict
 
 
 # Exact V2 -> V1 arm mapping, exported for tests. A naive
@@ -78,9 +117,14 @@ def load_frozen_protocol(path: Path) -> dict:
     if not path.exists():
         raise RuntimeError(f"FROZEN_PROTOCOL_MISSING: {path}")
     try:
-        return _y.safe_load(path.read_text(encoding="utf-8")) or {}
+        result = _y.safe_load(path.read_text(encoding="utf-8"))
     except Exception as exc:  # noqa: BLE001 - re-raise with a useful diagnosis
         raise RuntimeError(f"FROZEN_PROTOCOL_UNREADABLE: {type(exc).__name__}: {exc}") from exc
+    if not isinstance(result, dict):
+        raise RuntimeError(
+            f"FROZEN_PROTOCOL_INVALID: expected a YAML mapping, got {type(result).__name__}"
+        )
+    return result
 
 
 def build_paired_cart(v2_clf, v1_clf) -> tuple[list[dict], list[dict], list[str]]:
