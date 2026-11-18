@@ -358,12 +358,17 @@ def main() -> int:
         json.dumps({"H1": h1, "H2": h2}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (audit_dir / "gate_results.json").write_text(
         json.dumps(gates, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    clf_dir = run_dir / "classification_records"
+    has_clf = clf_dir.exists() and any(clf_dir.glob("*.json"))
     (audit_dir / "FINAL_VERDICT.json").write_text(
         json.dumps({"verdict": verdict, "utc": utcnow(), "run_id": run_id,
                     "gates": {k: v["outcome"] for k, v in gates.items()},
                     "h1": h1["outcome"], "h2": h2["outcome"],
-                    "v2_performance_not_measured": False,
-                    "v2_performance_note": "Classifier outcomes exist; see report for actual metrics."},
+                    "v2_performance_not_measured": not has_clf,
+                    "v2_performance_note": ("Classifier outcomes exist; see report for actual metrics."
+                                           if has_clf else "No classifier outcomes yet."),
+                    "v2_performance_status": ("V2_PERFORMANCE_MEASURED" if has_clf
+                                             else "V2_PERFORMANCE_NOT_MEASURED")},
                    indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (audit_dir / "arcene_stability_within_folds.csv").write_text(
         "fold,v2_mean_jaccard,v1_mean_jaccard,delta\n" +
